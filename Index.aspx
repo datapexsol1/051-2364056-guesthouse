@@ -12,7 +12,7 @@
 		<!-- Flexslider -->
 		<div class="flexslider flexslider-banner">
 		  <ul class="slides">
-		    <li>
+		    <li>abc
 			    <div class="tm-banner-inner">
 					<h1 class="tm-banner-title">Find <span class="tm-yellow-text">The Best</span> Place</h1>
 					<p class="tm-banner-subtitle">For Your Holidays</p>
