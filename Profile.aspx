@@ -114,5 +114,89 @@
             </form>
     
 
+
+
+
+
+     <!--------------------------- Modal Detail Information -->
+       <%-- <div id="DetailInformation" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Update Detail Information</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        <%--<form class="form-inline" runat="server" id="f2" >--%>
+                      <%--  <asp:Panel ID="panel5" runat="server">      <%-- OnPreRender="panel5_PreRender"--%>
+
+                         <%--   <table class="table table-hover">
+
+                                <tr>
+                                    <th>Name</th>
+                                    <td>
+                                        <asp:TextBox ID="tb_Nam" runat="server"></asp:TextBox></td>
+                                    <th>Father Name</th>
+                                    <td>
+                                        <asp:TextBox ID="tb_FatherName" runat="server"></asp:TextBox></td>
+
+                                </tr>
+
+
+                                <tr>
+                                    <th>Gender</th>
+                                    <td>
+                                        <select id="dd_Gender" runat="server">
+                                            <option value="Male">Male </option>
+                                            <option value="Female">Female</option>
+                                        </select></td>
+                                    <th>Date of Birth</th>
+                                    <td>
+                                        <asp:TextBox ID="tb_DOB" runat="server"></asp:TextBox></td>
+                                </tr>
+                                <tr>
+                                    <th>City</th>
+                                    <td>
+                                        <asp:TextBox ID="tb_City" runat="server"></asp:TextBox></td>
+                                    <th>Nationality</th>
+                                    <td>
+                                        <asp:TextBox ID="tb_Nationality" runat="server"></asp:TextBox></td>
+                                </tr>
+                                <tr>
+                                    <th>Contact</th>
+                                    <td colspan="3">
+                                        <asp:TextBox ID="tb_Contact" runat="server"></asp:TextBox></td>
+
+
+                                </tr>
+                                <tr>
+                                    <th colspan="2">Upload Profile Picture</th>
+                                    <td colspan="2">
+                                        <asp:FileUpload ID="ProfileImage" runat="server" />--%>
+                                        <%--<input type="file" class="form-control-file" id="UploadProfilePic" />--%></td>
+
+
+                              <%--  </tr>
+
+                            </table>
+
+
+                            <asp:Button ID="Button1" class="btn btn-primary btn-lg1 btn-block" runat="server" Text="Update"  UseSubmitBehavior="False" />
+                        </asp:Panel>
+                        <%--</form>--%>
+                   <%-- </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>--%>
+        <!-------------------------/ Modal Detail Information -->
+
 </asp:Content>
 
