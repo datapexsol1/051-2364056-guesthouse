@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MainMaster.master" AutoEventWireup="true" CodeFile="LogIn.aspx.cs" Inherits="LogIn" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MainMaster.master" AutoEventWireup="true" CodeFile="guestlogin.aspx.cs" Inherits="LogIn" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
@@ -111,7 +111,7 @@
                				<input type="submit" class="btn btn-lg btn-default btn-block" value="Sign In" />
                			</form>
                			<div id="tabs" data-tabs="tabs">
-               				<p class="text-center"><a href="#register" data-toggle="tab">Need an Account?</a></p>
+               				<p class="text-center"><a href="guestsignup.aspx" data-toggle="tab">Need an Account?</a></p>
                				<p class="text-center"><a href="#select" data-toggle="tab">Select Account</a></p>
               				</div>
 						</div>
@@ -177,7 +177,7 @@
 								<input type="submit" class="btn btn-lg btn-default btn-block" value="Sign In" />
 							</form>
 							<p class="text-center"><a href="#login" data-toggle="tab">Back to Login</a></p>
-               		<p class="text-center"><a href="#select" data-toggle="tab">Select another Account</a></p>
+               		<p class="text-center"><a href="#" data-toggle="tab">Select another Account</a></p>
 						</div>
 					</div>
             </div>

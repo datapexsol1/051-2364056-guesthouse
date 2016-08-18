@@ -49,7 +49,7 @@ http://www.templatemo.com/tm-475-holiday
 							<li><a href="About.aspx">About</a></li>
 							<li><a href="LifeStyle.aspx">Life Style</a></li>
 							<li><a href="Contact.aspx">Contact</a></li>
-                           <%-- <li><a href="LogIn.aspx">Guest</a></li>--%>
+                            <li><a href="guestlogin.aspx">Log In</a></li>
 						</ul>
 					</nav>		
 	  			</div>				
