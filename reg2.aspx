@@ -108,69 +108,70 @@
                         <div class="form-horizontal form-label-left">
 
                           <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Registration No <span class="required">*</span>
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">Registration No <span class="required">*</span>
                             </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="number" id="regno" required="required" class="form-control col-md-7 col-xs-12">
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                              <input type="number" id="regno" required="required" class="form-control col-md-7 col-xs-12"/>
+                            </div>
+                          <%--</div>
+
+                          <div class="form-group">--%>
+                            <label class="control-label col-md-1 col-sm-1 col-xs-12" for="last-name">Arrival Date <span class="required">*</span>
+                            </label>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                              <input type="date" id="Arrival" name="arrivaldate" required="required" class="form-control col-md-7 col-xs-12"/>
                             </div>
                           </div>
 
                           <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Arrival Date <span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="date" id="Arrival" name="arrivaldate" required="required" class="form-control col-md-7 col-xs-12">
+                            <label for="arrival-time" class="control-label col-md-2 col-sm-2 col-xs-12">Arrival Time</label>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                              <input id="atime" class="form-control col-md-7 col-xs-12" type="time" name="middle-name"/>
                             </div>
-                          </div>
-                          <div class="form-group">
-                            <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Arrival Time</label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input id="atime" class="form-control col-md-7 col-xs-12" type="time" name="middle-name">
-                            </div>
-                          </div>
+                          <%--</div>
                             
-                          <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Guest Name <span class="required">*</span>
+                          <div class="form-group">--%>
+                            <label class="control-label col-md-1 col-sm-1 col-xs-12" for="first-name">Guest Name <span class="required">*</span>
                             </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="Text" id="gname" required="required" class="form-control col-md-7 col-xs-12">
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                              <input type="Text" id="gname" required="required" class="form-control col-md-7 col-xs-12"/>
                             </div>
                           </div>
 
                           <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Gender</label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12">Gender</label>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
                               <div id="gender" class="btn-group" data-toggle="buttons">
                                 <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                  <input type="radio" name="gender" value="male"> &nbsp; Male &nbsp;
+                                  <input type="radio" name="gender" value="male"/> &nbsp; Male &nbsp;
                                 </label>
                                 <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                  <input type="radio" name="gender" value="female"> Female
+                                  <input type="radio" name="gender" value="female"/> Female
                                 </label>
                               </div>
                             </div>
-                          </div>
-                          <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Date Of Birth <span class="required">*</span>
+                          <%--</div>
+                          <div class="form-group">--%>
+                            <label class="control-label col-md-1 col-sm-1 col-xs-12">Date Of Birth <span class="required">*</span>
                             </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="date">
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                              <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="date"/>
                             </div>
                           </div>
                             
                           <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">N.I.C No <span class="required">*</span>
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">N.I.C No <span class="required"/>*</span>
                             </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="number" id="nicno" required="required" class="form-control col-md-7 col-xs-12">
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                              <input type="number" id="nicno" required="required" class="form-control col-md-7 col-xs-12"/>
                             </div>
-                          </div>
+                          <%--</div>
 
-                            <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Company Name <span class="required">*</span>
+                            <div class="form-group">--%>
+                            <label class="control-label col-md-1 col-sm-1 col-xs-12" for="first-name">Company Name <span class="required">*</span>
                             </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="text" id="Cname" required="required" class="form-control col-md-7 col-xs-12">
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                              <input type="text" id="Cname" required="required" class="form-control col-md-7 col-xs-12"/>
                             </div>
                           </div>
 
@@ -186,7 +187,7 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Proffesion<span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="text" id="proffesion" required="required" class="form-control col-md-7 col-xs-12">
+                              <input type="text" id="proffesion" required="required" class="form-control col-md-7 col-xs-12"/>
                             </div>
                           </div>
 
@@ -194,7 +195,7 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Designation<span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="text" id="designation" required="required" class="form-control col-md-7 col-xs-12">
+                              <input type="text" id="designation" required="required" class="form-control col-md-7 col-xs-12"/>
                             </div>
                           </div>
 
@@ -210,7 +211,7 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">PH: No Office <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="number" id="Poffice" required="required" class="form-control col-md-7 col-xs-12">
+                              <input type="number" id="Poffice" required="required" class="form-control col-md-7 col-xs-12"/>
                             </div>
                           </div>
 
@@ -218,7 +219,7 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">PH: No Residence <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="number" id="Presidence" required="required" class="form-control col-md-7 col-xs-12">
+                              <input type="number" id="Presidence" required="required" class="form-control col-md-7 col-xs-12"/>
                             </div>
                           </div>
 
@@ -226,7 +227,7 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">PH: No Cell<span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="number" id="Pcell" required="required" class="form-control col-md-7 col-xs-12">
+                              <input type="number" id="Pcell" required="required" class="form-control col-md-7 col-xs-12"/>
                             </div>
                           </div>
 
@@ -234,7 +235,7 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Departure Date <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="date" id="Depature" name="departure date" required="required" class="form-control col-md-7 col-xs-12">
+                              <input type="date" id="Depature" name="departure date" required="required" class="form-control col-md-7 col-xs-12"/>
                             </div>
                           </div>
 
@@ -249,7 +250,7 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Flight No<span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="number" id="flightno" required="required" class="form-control col-md-7 col-xs-12">
+                              <input type="number" id="flightno" required="required" class="form-control col-md-7 col-xs-12"/>
                             </div>
                           </div>
 
@@ -264,7 +265,7 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Passport/IC No <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="number" id="passno" required="required" class="form-control col-md-7 col-xs-12">
+                              <input type="number" id="passno" required="required" class="form-control col-md-7 col-xs-12"/>
                             </div>
                           </div>
 
@@ -272,7 +273,7 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Nationality <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="text" id="nationality" required="required" class="form-control col-md-7 col-xs-12">
+                              <input type="text" id="nationality" required="required" class="form-control col-md-7 col-xs-12"/>
                             </div>
                           </div>
 
@@ -280,7 +281,7 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Place of Issue<span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="text" id="placeofissue" required="required" class="form-control col-md-7 col-xs-12">
+                              <input type="text" id="placeofissue" required="required" class="form-control col-md-7 col-xs-12"/>
                             </div>
                           </div>
 
@@ -288,7 +289,7 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Date Of Issue <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="date" id="dateofissue" required="required" class="form-control col-md-7 col-xs-12">
+                              <input type="date" id="dateofissue" required="required" class="form-control col-md-7 col-xs-12"/>
                             </div>
                           </div>
 
@@ -296,7 +297,7 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Visa No <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="number" id="visano" required="required" class="form-control col-md-7 col-xs-12">
+                              <input type="number" id="visano" required="required" class="form-control col-md-7 col-xs-12"/>
                             </div>
                           </div>
 
@@ -304,7 +305,7 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Valid Upto <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="date" id="validupto" required="required" class="form-control col-md-7 col-xs-12">
+                              <input type="date" id="validupto" required="required" class="form-control col-md-7 col-xs-12"/>
                             </div>
                           </div>
 
@@ -313,13 +314,13 @@
                             <div class="col-md-6 col-sm-6 col-xs-12">
                               <div id="purpose" class="btn-group" data-toggle="buttons">
                                 <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                  <input type="radio" name="visit" value="business"> &nbsp; Business &nbsp;
+                                  <input type="radio" name="visit" value="business"/> &nbsp; Business &nbsp;
                                 </label>
                                 <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                  <input type="radio" name="visit" value="transit"> Transit
+                                  <input type="radio" name="visit" value="transit"/> Transit
                                 </label>
                                   <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                  <input type="radio" name="visit" value="vacation"> Leasure/Vacation
+                                  <input type="radio" name="visit" value="vacation"/> Leasure/Vacation
                                 </label>
                               </div>
                             </div>
@@ -329,7 +330,7 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Comming From <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="number" id="cfrom" required="required" class="form-control col-md-7 col-xs-12">
+                              <input type="number" id="cfrom" required="required" class="form-control col-md-7 col-xs-12"/>
                             </div>
                           </div>
 
@@ -337,7 +338,7 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Going To <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="number" id="gto" required="required" class="form-control col-md-7 col-xs-12">
+                              <input type="number" id="gto" required="required" class="form-control col-md-7 col-xs-12"/>
                             </div>
                           </div>
 
@@ -351,7 +352,7 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Room No <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="number" id="rno" required="required" class="form-control col-md-7 col-xs-12">
+                              <input type="number" id="rno" required="required" class="form-control col-md-7 col-xs-12"/>
                             </div>
                           </div>
                                    <div class="form-group">
@@ -359,19 +360,19 @@
                             <div class="col-md-6 col-sm-6 col-xs-12">
                               <div id="type" class="btn-group" data-toggle="buttons">
                                 <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                  <input type="radio" name="rtype" value="business"> &nbsp; S.G.L &nbsp;
+                                  <input type="radio" name="rtype" value="business"/> &nbsp; S.G.L &nbsp;
                                 </label>
                                 <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                  <input type="radio" name="rtype" value="transit"> B.D.L
+                                  <input type="radio" name="rtype" value="transit"/> B.D.L
                                 </label>
                                   <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                  <input type="radio" name="rtype" value="vacation"> Jr,Suite
+                                  <input type="radio" name="rtype" value="vacation"/> Jr,Suite
                                 </label>
                                   <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                  <input type="radio" name="rtype" value="vacation"> Exec. Suite
+                                  <input type="radio" name="rtype" value="vacation"/> Exec. Suite
                                 </label>
                                   <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                  <input type="radio" name="rtype" value="vacation"> Royal Suite
+                                  <input type="radio" name="rtype" value="vacation"/> Royal Suite
                                 </label>
                               </div>
                             </div>
@@ -381,7 +382,7 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">No Of Pax <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="number" id="noofpax" required="required" class="form-control col-md-7 col-xs-12">
+                              <input type="number" id="noofpax" required="required" class="form-control col-md-7 col-xs-12"/>
                             </div>
                           </div>
                               
@@ -391,13 +392,13 @@
                             <div class="col-md-6 col-sm-6 col-xs-12">
                               <div id="Pay" class="btn-group" data-toggle="buttons">
                                 <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                  <input type="radio" name="mode" value="business"> &nbsp; Cash &nbsp;
+                                  <input type="radio" name="mode" value="business"/> &nbsp; Cash &nbsp;
                                 </label>
                                 <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                  <input type="radio" name="mode" value="transit"> Credit Card
+                                  <input type="radio" name="mode" value="transit"/> Credit Card
                                 </label>
                                   <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                  <input type="radio" name="mode" value="vacation"> Company Account
+                                  <input type="radio" name="mode" value="vacation"/> Company Account
                                 </label>
                              
                               </div>
@@ -407,7 +408,7 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Room Rent <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="number" id="rrent" required="required" class="form-control col-md-7 col-xs-12">
+                              <input type="number" id="rrent" required="required" class="form-control col-md-7 col-xs-12"/>
                             </div>
                           </div>
 
@@ -415,7 +416,7 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">F.D.O <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="text" id="fdo" required="required" class="form-control col-md-7 col-xs-12">
+                              <input type="text" id="fdo" required="required" class="form-control col-md-7 col-xs-12"/>
                             </div>
                           </div>
 
