@@ -1,32 +1,13 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MainMaster.master" AutoEventWireup="true" CodeFile="employeguestregistration.aspx.cs" Inherits="employeguestregistration" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EmployePanel.master" AutoEventWireup="true" CodeFile="employeguestregistration.aspx.cs" Inherits="employeguestregistration" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
-     
-     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!-- Meta, title, CSS, favicons, etc. -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>Gentellela Alela! | </title>
-
-    <!-- Bootstrap -->
-    <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <!-- NProgress -->
-    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
-
-    <!-- Custom Theme Style -->
-    <link href="../build/css/custom.min.css" rel="stylesheet">
-
 </asp:Content>
 
 
 
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-  
 
+
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <!-- page content -->
         <div class="right_col" role="main">
           <div class="">
@@ -261,6 +242,7 @@
                         </div>
 
                       </div>
+
                       <div id="step-2">
                           <div class="form-horizontal form-label-left">
                         <h2 class="StepTitle">Step 2 Content</h2>
@@ -351,12 +333,12 @@
 
                       <div id="step-3">
                           <div class="form-horizontal form-label-left">
-
+                               <h2 class="StepTitle">Step 3 Content</h2>
                                <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Room No <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="number" id="rno" required="required" class="form-control col-md-7 col-xs-12"/>
+                              <input type="" id="rno" required="required" class="form-control col-md-7 col-xs-12"/>
                             </div>
                           </div>
                                    <div class="form-group">
@@ -473,5 +455,6 @@
         });
     </script>
     <!-- /jQuery Smart Wizard -->
+
 </asp:Content>
 
