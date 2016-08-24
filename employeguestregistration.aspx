@@ -92,7 +92,88 @@
                       <div id="step-1">
                         <div class="form-horizontal form-label-left">
 
-                          <div class="form-group">
+                        <h2 class="StepTitle">Step 3 Content</h2>
+                               <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Room No <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input type="" id="rno" required="required" class="form-control col-md-7 col-xs-12"/>
+                            </div>
+                          </div>
+                                   <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Type Of Room</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <div id="type" class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                                  <input type="radio" name="rtype" value="business"/> &nbsp; S.G.L &nbsp;
+                                </label>
+                                <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                                  <input type="radio" name="rtype" value="transit"/> B.D.L
+                                </label>
+                                  <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                                  <input type="radio" name="rtype" value="vacation"/> Jr,Suite
+                                </label>
+                                  <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                                  <input type="radio" name="rtype" value="vacation"/> Exec. Suite
+                                </label>
+                                  <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                                  <input type="radio" name="rtype" value="vacation"/> Royal Suite
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+
+                               <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">No Of Pax <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input type="number" id="noofpax" required="required" class="form-control col-md-7 col-xs-12"/>
+                            </div>
+                          </div>
+                              
+
+                                 <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Mode Of Payment</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <div id="Pay" class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                                  <input type="radio" name="mode" value="business"/> &nbsp; Cash &nbsp;
+                                </label>
+                                <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                                  <input type="radio" name="mode" value="transit"/> Credit Card
+                                </label>
+                                  <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                                  <input type="radio" name="mode" value="vacation"/> Company Account
+                                </label>
+                             
+                              </div>
+                            </div>
+                          </div>
+                               <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Room Rent <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input type="number" id="rrent" required="required" class="form-control col-md-7 col-xs-12"/>
+                            </div>
+                          </div>
+
+                               <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">F.D.O <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input type="text" id="fdo" required="required" class="form-control col-md-7 col-xs-12"/>
+                            </div>
+
+                        </div>
+                          </div>
+                          </div>
+
+                      <div id="step-2">
+                          <div class="form-horizontal form-label-left">
+                        <h2 class="StepTitle">Step 2 Content</h2>
+
+
+                                 <div class="form-group">
                             <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">Registration No <span class="required">*</span>
                             </label>
                             <div class="col-md-4 col-sm-4 col-xs-12">
@@ -238,16 +319,12 @@
                               <input type="number" id="flightno" required="required" class="form-control col-md-7 col-xs-12"/>
                             </div>
                           </div>
+ </div>
+                          </div>
 
-                        </div>
-
-                      </div>
-
-                      <div id="step-2">
+                      <div id="step-3">
                           <div class="form-horizontal form-label-left">
-                        <h2 class="StepTitle">Step 2 Content</h2>
-
-                            <div class="form-group">
+                             <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Passport/IC No <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
@@ -327,100 +404,13 @@
                               <input type="number" id="gto" required="required" class="form-control col-md-7 col-xs-12"/>
                             </div>
                           </div>
-
-                      </div>
-                          </div>
-
-                      <div id="step-3">
-                          <div class="form-horizontal form-label-left">
-                               <h2 class="StepTitle">Step 3 Content</h2>
-                               <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Room No <span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="" id="rno" required="required" class="form-control col-md-7 col-xs-12"/>
-                            </div>
-                          </div>
-                                   <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Type Of Room</label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                              <div id="type" class="btn-group" data-toggle="buttons">
-                                <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                  <input type="radio" name="rtype" value="business"/> &nbsp; S.G.L &nbsp;
-                                </label>
-                                <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                  <input type="radio" name="rtype" value="transit"/> B.D.L
-                                </label>
-                                  <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                  <input type="radio" name="rtype" value="vacation"/> Jr,Suite
-                                </label>
-                                  <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                  <input type="radio" name="rtype" value="vacation"/> Exec. Suite
-                                </label>
-                                  <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                  <input type="radio" name="rtype" value="vacation"/> Royal Suite
-                                </label>
-                              </div>
-                            </div>
-                          </div>
-
-                               <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">No Of Pax <span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="number" id="noofpax" required="required" class="form-control col-md-7 col-xs-12"/>
-                            </div>
-                          </div>
-                              
-
-                                 <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Mode Of Payment</label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                              <div id="Pay" class="btn-group" data-toggle="buttons">
-                                <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                  <input type="radio" name="mode" value="business"/> &nbsp; Cash &nbsp;
-                                </label>
-                                <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                  <input type="radio" name="mode" value="transit"/> Credit Card
-                                </label>
-                                  <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                  <input type="radio" name="mode" value="vacation"/> Company Account
-                                </label>
-                             
-                              </div>
-                            </div>
-                          </div>
-                               <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Room Rent <span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="number" id="rrent" required="required" class="form-control col-md-7 col-xs-12"/>
-                            </div>
-                          </div>
-
-                               <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">F.D.O <span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="text" id="fdo" required="required" class="form-control col-md-7 col-xs-12"/>
-                            </div>
                           </div>
 
 
                               </div>
 
 
-
-                         
-
-
-
-                         
-
-
-
-                       
-                    </div>
+</div>
                       
 
                     </div>
