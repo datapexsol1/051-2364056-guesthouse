@@ -86,8 +86,8 @@
                   <li><a><i class="fa fa-desktop"></i> Employe Controls <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="employeerooms.aspx">Rooms</a></li>
-                      <li><a href="#">Guests</a></li>
-                      <li><a href="#">Inventories</a></li>
+                      <li><a href="employeguests.aspx">Guests</a></li>
+                      <li><a href="employeinventories.aspx">Inventories</a></li>
                       
                     </ul>
                   </li>
