@@ -174,58 +174,25 @@
                                <table class="data table table-striped no-margin">
                               <thead>
                                 <tr>
-                                  <th>#</th>
-                                  <th>Project Name</th>
-                                  <th>Client Company</th>
-                                  <th class="hidden-phone">Hours Spent</th>
-                                  <th>Contribution</th>
+                                  <th>Room NO</th>
+                                  <th>Room Type</th>
+                                  <th>Room Size</th>
+                                  <th>Maximum Room Rent</th>
+                                  <th>Minimum Room Rent</th>
+                                    <th>Branch</th>
                                 </tr>
                               </thead>
                               <tbody>
                                 <tr>
-                                  <td>1</td>
-                                  <td>New Company Takeover Review</td>
-                                  <td>Deveint Inc</td>
-                                  <td class="hidden-phone">18</td>
-                                  <td class="vertical-align-mid">
-                                    <div class="progress">
-                                      <div class="progress-bar progress-bar-success" data-transitiongoal="35"></div>
-                                    </div>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>2</td>
-                                  <td>New Partner Contracts Consultanci</td>
-                                  <td>Deveint Inc</td>
-                                  <td class="hidden-phone">13</td>
-                                  <td class="vertical-align-mid">
-                                    <div class="progress">
-                                      <div class="progress-bar progress-bar-danger" data-transitiongoal="15"></div>
-                                    </div>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>3</td>
-                                  <td>Partners and Inverstors report</td>
-                                  <td>Deveint Inc</td>
-                                  <td class="hidden-phone">30</td>
-                                  <td class="vertical-align-mid">
-                                    <div class="progress">
-                                      <div class="progress-bar progress-bar-success" data-transitiongoal="45"></div>
-                                    </div>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>4</td>
-                                  <td>New Company Takeover Review</td>
-                                  <td>Deveint Inc</td>
-                                  <td class="hidden-phone">28</td>
-                                  <td class="vertical-align-mid">
-                                    <div class="progress">
-                                      <div class="progress-bar progress-bar-success" data-transitiongoal="75"></div>
-                                    </div>
-                                  </td>
-                                </tr>
+                                  <td><input type="text" name="roomno" id="roomno"/></td>
+                                  <td><input type="text" name="roomtype" id="roomtype"/></td>
+                                    <td><input type="text" name="roomsize" id="roomsize"/></td>
+                                  <td><input type="text" name="roommaxrent" id="roommaxrent"/></td>
+                                  <td><input type="text" name="roomminrent" id="roomminrent"/></td>
+                                    <td><input type="text" name="roombranch" id="roombranch"/></td>
+                                 
+                                </tr>  
+                                  <tr><td colspan="1"><asp:Button ID="saveroom" runat="server" Text="Save Room" OnClick="saveroom_click" />></td></tr> 
                               </tbody>
                             </table>
                           </div>

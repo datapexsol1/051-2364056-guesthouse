@@ -35,6 +35,9 @@ public partial class ctownDataContext : System.Data.Linq.DataContext
   partial void Insertemployee(employee instance);
   partial void Updateemployee(employee instance);
   partial void Deleteemployee(employee instance);
+  partial void Insertroom(room instance);
+  partial void Updateroom(room instance);
+  partial void Deleteroom(room instance);
   #endregion
 	
 	public ctownDataContext() : 
@@ -80,6 +83,14 @@ public partial class ctownDataContext : System.Data.Linq.DataContext
 		get
 		{
 			return this.GetTable<employee>();
+		}
+	}
+	
+	public System.Data.Linq.Table<room> rooms
+	{
+		get
+		{
+			return this.GetTable<room>();
 		}
 	}
 }
@@ -543,6 +554,212 @@ public partial class employee : INotifyPropertyChanging, INotifyPropertyChanged
 				this._address = value;
 				this.SendPropertyChanged("address");
 				this.OnaddressChanged();
+			}
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+		}
+	}
+}
+
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.rooms")]
+public partial class room : INotifyPropertyChanging, INotifyPropertyChanged
+{
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private int _Id;
+	
+	private string _room_no;
+	
+	private string _room_type;
+	
+	private string _room_size;
+	
+	private string _maximum_room_rent;
+	
+	private string _minimum_room_rent;
+	
+	private string _branch_id;
+	
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void Onroom_noChanging(string value);
+    partial void Onroom_noChanged();
+    partial void Onroom_typeChanging(string value);
+    partial void Onroom_typeChanged();
+    partial void Onroom_sizeChanging(string value);
+    partial void Onroom_sizeChanged();
+    partial void Onmaximum_room_rentChanging(string value);
+    partial void Onmaximum_room_rentChanged();
+    partial void Onminimum_room_rentChanging(string value);
+    partial void Onminimum_room_rentChanged();
+    partial void Onbranch_idChanging(string value);
+    partial void Onbranch_idChanged();
+    #endregion
+	
+	public room()
+	{
+		OnCreated();
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+	public int Id
+	{
+		get
+		{
+			return this._Id;
+		}
+		set
+		{
+			if ((this._Id != value))
+			{
+				this.OnIdChanging(value);
+				this.SendPropertyChanging();
+				this._Id = value;
+				this.SendPropertyChanged("Id");
+				this.OnIdChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_room_no", DbType="NVarChar(25) NOT NULL", CanBeNull=false)]
+	public string room_no
+	{
+		get
+		{
+			return this._room_no;
+		}
+		set
+		{
+			if ((this._room_no != value))
+			{
+				this.Onroom_noChanging(value);
+				this.SendPropertyChanging();
+				this._room_no = value;
+				this.SendPropertyChanged("room_no");
+				this.Onroom_noChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_room_type", DbType="NVarChar(25) NOT NULL", CanBeNull=false)]
+	public string room_type
+	{
+		get
+		{
+			return this._room_type;
+		}
+		set
+		{
+			if ((this._room_type != value))
+			{
+				this.Onroom_typeChanging(value);
+				this.SendPropertyChanging();
+				this._room_type = value;
+				this.SendPropertyChanged("room_type");
+				this.Onroom_typeChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_room_size", DbType="NVarChar(25) NOT NULL", CanBeNull=false)]
+	public string room_size
+	{
+		get
+		{
+			return this._room_size;
+		}
+		set
+		{
+			if ((this._room_size != value))
+			{
+				this.Onroom_sizeChanging(value);
+				this.SendPropertyChanging();
+				this._room_size = value;
+				this.SendPropertyChanged("room_size");
+				this.Onroom_sizeChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_maximum_room_rent", DbType="NVarChar(25) NOT NULL", CanBeNull=false)]
+	public string maximum_room_rent
+	{
+		get
+		{
+			return this._maximum_room_rent;
+		}
+		set
+		{
+			if ((this._maximum_room_rent != value))
+			{
+				this.Onmaximum_room_rentChanging(value);
+				this.SendPropertyChanging();
+				this._maximum_room_rent = value;
+				this.SendPropertyChanged("maximum_room_rent");
+				this.Onmaximum_room_rentChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_minimum_room_rent", DbType="NVarChar(25) NOT NULL", CanBeNull=false)]
+	public string minimum_room_rent
+	{
+		get
+		{
+			return this._minimum_room_rent;
+		}
+		set
+		{
+			if ((this._minimum_room_rent != value))
+			{
+				this.Onminimum_room_rentChanging(value);
+				this.SendPropertyChanging();
+				this._minimum_room_rent = value;
+				this.SendPropertyChanged("minimum_room_rent");
+				this.Onminimum_room_rentChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_branch_id", DbType="NVarChar(25) NOT NULL", CanBeNull=false)]
+	public string branch_id
+	{
+		get
+		{
+			return this._branch_id;
+		}
+		set
+		{
+			if ((this._branch_id != value))
+			{
+				this.Onbranch_idChanging(value);
+				this.SendPropertyChanging();
+				this._branch_id = value;
+				this.SendPropertyChanged("branch_id");
+				this.Onbranch_idChanged();
 			}
 		}
 	}
