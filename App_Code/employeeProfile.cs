@@ -15,11 +15,11 @@ public class employeeProfile
         // TODO: Add constructor logic here
         //
     }
-    public static void addEmployeeInfo(employee emp)
+    public static void employeSignUp(employee emp)
     {
         ctownDataContext Database = new ctownDataContext();
         int count = (from x in Database.employees
-                     where x.Id == emp.Id     //for checking already existance of client
+                     where x.username == emp.username     //for checking already existance of client
                      select x).Count();
         if (count == 0)
         {
@@ -34,4 +34,20 @@ public class employeeProfile
             }
         }
     }
+    public static bool employeSignin(string username,string password)
+    {
+        ctownDataContext Database = new ctownDataContext();
+        int count = (from x in Database.employees
+                     where x.username == username && x.password==password     //for checking already existance of client
+                     select x).Count();
+        if (count == 0)
+        {
+            return false; 
+        }
+        else
+        {
+            return true;
+        }
+    }
+
 }

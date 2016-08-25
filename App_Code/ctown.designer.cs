@@ -224,6 +224,10 @@ public partial class employee : INotifyPropertyChanging, INotifyPropertyChanged
 	
 	private string _login_type;
 	
+	private System.Nullable<System.DateTime> _dateofjoining;
+	
+	private string _address;
+	
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -252,6 +256,10 @@ public partial class employee : INotifyPropertyChanging, INotifyPropertyChanged
     partial void OnpasswordChanged();
     partial void Onlogin_typeChanging(string value);
     partial void Onlogin_typeChanged();
+    partial void OndateofjoiningChanging(System.Nullable<System.DateTime> value);
+    partial void OndateofjoiningChanged();
+    partial void OnaddressChanging(string value);
+    partial void OnaddressChanged();
     #endregion
 	
 	public employee()
@@ -439,7 +447,7 @@ public partial class employee : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_username", DbType="NVarChar(50)")]
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_username", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
 	public string username
 	{
 		get
@@ -459,7 +467,7 @@ public partial class employee : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_password", DbType="NVarChar(50)")]
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_password", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
 	public string password
 	{
 		get
@@ -495,6 +503,46 @@ public partial class employee : INotifyPropertyChanging, INotifyPropertyChanged
 				this._login_type = value;
 				this.SendPropertyChanged("login_type");
 				this.Onlogin_typeChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dateofjoining", DbType="DateTime")]
+	public System.Nullable<System.DateTime> dateofjoining
+	{
+		get
+		{
+			return this._dateofjoining;
+		}
+		set
+		{
+			if ((this._dateofjoining != value))
+			{
+				this.OndateofjoiningChanging(value);
+				this.SendPropertyChanging();
+				this._dateofjoining = value;
+				this.SendPropertyChanged("dateofjoining");
+				this.OndateofjoiningChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_address", DbType="VarChar(150)")]
+	public string address
+	{
+		get
+		{
+			return this._address;
+		}
+		set
+		{
+			if ((this._address != value))
+			{
+				this.OnaddressChanging(value);
+				this.SendPropertyChanging();
+				this._address = value;
+				this.SendPropertyChanged("address");
+				this.OnaddressChanged();
 			}
 		}
 	}

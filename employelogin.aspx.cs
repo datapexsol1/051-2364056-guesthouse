@@ -18,14 +18,14 @@ public partial class employelogin : System.Web.UI.Page
         string password = Request.Form["password"];
 
 
-        int id = adminProfile.adminAuthentication(name, password);
-        if (id !=0 )
+        bool result = employeeProfile.employeSignin(name, password);
+        if (result ==true )
         {
-            Response.Write("notlogedin");
+            Response.Write("your login ");
         }
         else
         {
-            Response.Write("notlogedin");
+            Response.Write("yournotlogin");
         }
     }
 }
