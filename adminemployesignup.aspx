@@ -165,8 +165,7 @@
                     
                       <div class="form-group">
                         <div class="col-md-6 col-md-offset-10">
-                          
-                          <button id="send" type="submit" class="btn btn-success">Submit</button>
+                          <asp:Button ID="send" runat="server" Text="Submit"  class="btn btn-success" OnClick="send_Click" />
                         </div>
                       </div>
                        </div>
