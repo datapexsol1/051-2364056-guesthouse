@@ -80,10 +80,27 @@
 
                     <div class="form-horizontal form-label-left">
 
-                      <p>For alternative validation library <code>parsleyJS</code> check out in the <a href="form.html">form page</a>
-                      </p>
-                      <span class="section">Personal Info</span>
+                      
+                      <span class="section">Employe Signup</span>
                         
+                        <div class="row">
+                          <div class="form-group col-md-6" style="float:right;">
+                              <label class="control-label col-md-4 " for="name">Branch <span class="required">*</span></label>
+                              <div class="col-md-8">
+                                  <select class="form-control" name="brancid">
+                                      <option value="0">Select</option>
+                                      <% IQueryable<branch> brachdata=branchClass.getBrachesinfo();
+                                          foreach (var b in brachdata)
+                                          {%>
+                                      <option value=<%=b.Id %>>   <%=b.city %></option>
+                                      <%} %>
+                                  </select>
+
+                          
+                        </div>
+                             </div>
+                            </div>
+                        <div class="row">
                       <div class="form-group col-md-6">
                         <label class="control-label col-md-4 " for="name">Name <span class="required">*</span>
                         </label>
@@ -139,11 +156,12 @@
                           <input id="image" type="file" name="image"  class="optional form-control " runat="server"/>
                         </div>
                       </div>
+
                       <div class="form-group col-md-6">
                         <label class="control-label col-md-4" for="email">Username <span class="required">*</span>
                         </label>
                         <div class="col-md-8">
-                          <input type="email" id="username" name="username" data-validate-linked="email" required="required" class="form-control"/>
+                          <input type="text" id="username" name="username"  required="required" class="form-control"/>
                         </div>
                           </div>
                           <div class="form-group col-md-6">
@@ -161,7 +179,17 @@
                           <input id="confirmpassword" type="password" name="confirmpassword" data-validate-length-range="5,20" class="optional form-control"/>
                         </div>
                       </div>
-                        
+                      
+                         <div class="form-group col-md-12">
+                             <label class="control-label col-md-2" for="email">Address <span class="required">*</span></label>
+                        <div class="col-md-10">
+                            
+                             <input id="address" type="text" name="address" data-validate-length-range="5,150" class="optional form-control"/>
+
+                          
+                        </div>
+                             </div>
+                       </div>
                      
                         <div style="margin-top:20px;">
                     

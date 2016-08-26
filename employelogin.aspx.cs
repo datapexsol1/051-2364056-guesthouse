@@ -21,7 +21,7 @@ public partial class employelogin : System.Web.UI.Page
         bool result = employeeProfile.employeSignin(name, password);
         if (result ==true )
         {
-            Response.Write("your login ");
+            Response.Redirect("employeindex.aspx");
         }
         else
         {

@@ -45,7 +45,7 @@
                                <table class="data table table-striped no-margin">
                               <thead>
                                 <tr>
-                                  <th>Id</th>
+                                  <th>Branch No</th>
                                   <th>Name</th>
                                   <th>City</th>
                                   <th class="hidden-phone">Country</th>
@@ -53,13 +53,18 @@
                                 </tr>
                               </thead>
                               <tbody>
+                                  <% IQueryable<branch> branch_data = branchClass.getBrachesinfo();
+                                      foreach (var b in branch_data)
+                                      {%>
                                 <tr>
-                                  <td><label id="bid">1</label></td>
-                                  <td><label id="bname">Cape Town</label></td>
-                                  <td><label id="bcity">ISlamabad</label></td>
-                                  <td><label id="bcountry">Pakistan</label></td>
-                                  <td><label id="badress">Islamabad Pakistan</label></td>
+                                    
+                                  <td><label id="vbno"><%=b.brachno %></label></td>
+                                  <td><label id="vbname"><%=b.name %></label></td>
+                                  <td><label id="vbcity"><%=b.city %></label></td>
+                                  <td><label id="vbcountry"><%=b.country %></label></td>
+                                  <td><label id="vbadress"><%=b.address %></label></td>
                                 </tr>
+                                  <%} %>
                             </tbody>
                                   </table>
                               </div>
@@ -91,7 +96,7 @@
                                     
                                  
                                 </tr>  
-                                  <tr><td colspan="1"><asp:Button ID="savebranch" runat="server" Text="Save Branch"  /></td></tr> 
+                                  <tr><td colspan="1"><asp:Button ID="savebranch" runat="server" Text="Save Branch" onclick="savebranch_click" /></td></tr> 
                               </tbody>
                             </table>
                         </div>

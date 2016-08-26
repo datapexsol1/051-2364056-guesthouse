@@ -21,8 +21,8 @@ public partial class adminlogin : System.Web.UI.Page
         string password = Request.Form["password"];
  
       
-            int id = adminProfile.adminAuthentication(name, password);
-            if (0 != id)
+            bool result = adminProfile.adminAuthentication(name, password);
+            if (result==true)
             {
                    Response.Redirect("AdminIndex.aspx");
         }
