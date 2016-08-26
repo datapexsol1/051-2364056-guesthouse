@@ -119,7 +119,18 @@
                                     <td><input type="text" name="roomsize" id="roomsize"/></td>
                                   <td><input type="text" name="roommaxrent" id="roommaxrent"/></td>
                                   <td><input type="text" name="roomminrent" id="roomminrent"/></td>
-                                    <td><input type="text" name="roombranch" id="roombranch"/></td>
+                                   <td><select class="form-control" name="roombranch">
+                                      <option value="0">Select</option>
+                                      <% IQueryable<branch> brachdata=branchClass.getBrachesinfo();
+                                          foreach (var b in brachdata)
+                                          {%>
+                                      <option value=<%=b.Id %>>   <%=b.city %></option>
+                                      <%} %>
+                                  </select>
+
+                                   </td>
+
+                                
                                  
                                 </tr>  
                                   <tr><td colspan="1"><asp:Button ID="saveroom" runat="server" Text="Save Room" OnClick="saveroom_click" />></td></tr> 
