@@ -16,33 +16,37 @@ public class adminProfile
     }
 
 
-    public static int adminAuthentication(string uname, string password)
+    public static bool adminAuthentication(string uname, string password)
     {
 
-        int returnid = 0;
+        
         try
         {
             ctownDataContext Database = new ctownDataContext();
 
-            var q = (from a in Database.GetTable<employee>()
-                     where a.username == uname && a.password == password && a.login_type=="Admin"
+            int count = (from a in Database.GetTable<employee>()
+                     where a.username == uname && a.password == password && a.login_type == "Admin"
                      select new
                      {
                          a.username,
                          a.Id
-                     }).First();
-            int x = q.Id;
-            if (x > 0)
+                     }).Count();
+            
+            if (count > 0)
             {
-                returnid = q.Id;
+                return true;
+            }
+            else
+            {
+                return false; 
             }
 
 
         }
         catch (Exception e)
         {
-
+            return false;
         }
-        return returnid;
+      
     }
 }

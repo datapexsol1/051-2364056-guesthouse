@@ -30,9 +30,17 @@ public partial class adminemployesignup : System.Web.UI.Page
         //if(imageuploaded.hasfile)then do this
         HttpPostedFile postedfile = image.PostedFile;
         emp.image = imageToByteArray(postedfile);
-        emp.address = "XYz";
+        emp.address = Request.Form["address"].ToString(); ;
 
-        employeeProfile.employeSignUp(emp);
+        bool result=employeeProfile.employeSignUp(emp);
+        if (result == true)
+        {
+           //show succesful msg
+        }
+        else
+        {
+           //show error msg 
+        }
     }
     public static byte[] imageToByteArray(HttpPostedFile postedfile)
     {

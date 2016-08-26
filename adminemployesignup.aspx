@@ -139,11 +139,12 @@
                           <input id="image" type="file" name="image"  class="optional form-control " runat="server"/>
                         </div>
                       </div>
+
                       <div class="form-group col-md-6">
                         <label class="control-label col-md-4" for="email">Username <span class="required">*</span>
                         </label>
                         <div class="col-md-8">
-                          <input type="email" id="username" name="username" data-validate-linked="email" required="required" class="form-control"/>
+                          <input type="text" id="username" name="username"  required="required" class="form-control"/>
                         </div>
                           </div>
                           <div class="form-group col-md-6">
@@ -161,7 +162,14 @@
                           <input id="confirmpassword" type="password" name="confirmpassword" data-validate-length-range="5,20" class="optional form-control"/>
                         </div>
                       </div>
-                        
+                        <div class="form-group col-md-6">
+                        <label class="control-label col-md-4" for="email">Username <span class="required">*</span>
+                        </label>
+                        <div class="col-md-8">
+                            <textarea id="address" name="address"  required="required" class="form-control" ></textarea>
+
+                          
+                        </div>
                      
                         <div style="margin-top:20px;">
                     
