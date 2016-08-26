@@ -51,11 +51,17 @@
                                <table class="data table table-striped no-margin">
                               <thead>
                                 <tr>
-                                  <th>#</th>
-                                  <th>Project Name</th>
-                                  <th>Client Company</th>
-                                  <th class="hidden-phone">Hours Spent</th>
-                                  <th>Contribution</th>
+                                  <th>Guest Reg No</th>
+                                  <th>Name</th>
+                                  <th>N.I.C No</th>
+                                  <th class="hidden-phone">Date Of Birth</th>
+                                  <th>Company Name</th>
+                                    <th>Complete Adress</th>
+                                    <th>Profession</th>
+                                    <th>Designation</th>
+                                    <th>Permanent Adress</th>
+                                    <th>Ph No Office</th>
+                                    <th>Ph No Residence</th>
                                 </tr>
                               </thead>
                               <tbody>
