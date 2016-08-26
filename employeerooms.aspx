@@ -27,7 +27,22 @@
 
     <!-- Custom Theme Style -->
     <link href="../custom/custom.min.css" rel="stylesheet">
+
   </head>
+
+    <style>
+	
+	/* 
+	Max width before this PARTICULAR table gets nasty
+	This query will take effect for any screen smaller than 760px
+	and also iPads specifically.
+	*/
+	
+	</style>
+
+
+
+
       <div class="right_col" role="main">
     <div class="row">
      <div class="col-md-12 col-sm-12 col-xs-12">
@@ -58,10 +73,11 @@
                                 </tr>
                               </thead>
                               <tbody>
+                                
                                 <tr>
-                                  <td><label id="froomid">1</label></td>
+                                  <td>rooom no<label></label></td>
                                   <td><label id="froomtype">suite</label></td>
-                                  <td><label id="froomsize">normal</label></td>
+                                  <td><label id="froomsize0">normal</label></td>
                                   <td> <label id="froomrent">10000</label></td>
                                   <td><label id="froombranch">Capetown</label></td>
                                 </tr>
@@ -101,31 +117,59 @@
 
                           </div>
                           <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
-                               <table class="data table table-striped no-margin">
-                              <thead>
-                                <tr>
-                                  <th>Room NO</th>
-                                  <th>Room Type</th>
-                                  <th>Room Size</th>
-                                  <th>Maximum Room Rent</th>
-                                  <th>Minimum Room Rent</th>
-                                    <th>Branch</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                <tr>
-                                  <td><input type="text" name="roomno" id="roomno"/></td>
-                                  <td><input type="text" name="roomtype" id="roomtype"/></td>
-                                    <td><input type="text" name="roomsize" id="roomsize"/></td>
-                                  <td><input type="text" name="roommaxrent" id="roommaxrent"/></td>
-                                  <td><input type="text" name="roomminrent" id="roomminrent"/></td>
-                                    <td><input type="text" name="roombranch" id="roombranch"/></td>
-                                 
-                                </tr>  
-                                  <tr><td colspan="1"><asp:Button ID="saveroom" runat="server" Text="Save Room" OnClick="saveroom_click" />></td></tr> 
-                              </tbody>
-                            </table>
-                          </div>
+                               
+                              
+                              <div class="container">       
+                                        
+                                   
+                                <label class="control-label col-md-5 col-sm-5 col-xs-12"> Room NO</label>
+                                       <div class="col-md-6 col-sm-6 col-xs-12">
+                                         <input type="text" name="roomno" id="roomno"/>
+                                             </div>
+                                          
+                                          
+                                         
+
+                                             <div class="col-md-6 col-sm-6 col-xs-12">
+                                              <input type="text" name="roomtype" id="roomtype"/>
+                                          </div>
+                                              
+                                          
+                                        
+                                <label class="control-label col-md-5 col-sm-5 col-xs-12">Room Size</label>
+                                              <div class="col-md-6 col-sm-6 col-xs-12">
+                                             <input type="text" name="roomsize" id="roomsize"/>
+                                             </div>
+                                              
+                                         
+                                         
+                              <label class="control-label col-md-5 col-sm-5 col-xs-12">Maximum Room Rent</label>
+                                             <div class="col-md-6 col-sm-6 col-xs-12">
+                                               <input type="text" name="roommaxrent" id="roommaxrent"/>
+                                               </div>
+                                             
+                                          
+                                        
+                               <label class="control-label col-md-5 col-sm-5 col-xs-12">Minimum Room Rent</label>
+                                              <div class="col-md-6 col-sm-6 col-xs-12">
+                                             <input type="text" name="roomminrent" id="roomminrent"/>
+                                             </div>
+                                             
+                                          
+                                         
+                                 <label class="control-label col-md-5 col-sm-5 col-xs-12">Branch</label>
+                                             <div class="col-md-6 col-sm-6 col-xs-12">
+                                         <input type="text" name="roombranch" id="roombranch"/>
+                                              </div>
+                                       
+                                         
+                                         <div style="padding-top:10px;" class="col-md-4 col-sm-4 col-xs-12">
+                                         <asp:Button ID="saveroom" runat="server" Text="Save Room" OnClick="saveroom_click" />
+                                        </div>
+                                             </div>
+                                              </div>
+                           
+                         
                         </div>
                       </div>
          </div>
@@ -136,130 +180,12 @@
     
 
 
-      <!-- jQuery -->
-    <script src="../vendors/jquery/dist/jquery.min.js"></script>
-    <!-- Bootstrap -->
-    <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-    <!-- FastClick -->
-    <script src="../vendors/fastclick/lib/fastclick.js"></script>
-    <!-- NProgress -->
-    <script src="../vendors/nprogress/nprogress.js"></script>
-    <!-- morris.js -->
-    <script src="../vendors/raphael/raphael.min.js"></script>
-    <script src="../vendors/morris.js/morris.min.js"></script>
-    <!-- bootstrap-progressbar -->
-    <script src="../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
-    <!-- bootstrap-daterangepicker -->
-    <script src="js/moment/moment.min.js"></script>
-    <script src="js/datepicker/daterangepicker.js"></script>
+  
     
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
 
-    <script>
-        $(function () {
-            Morris.Bar({
-                element: 'graph_bar',
-                data: [
-                  { "period": "Jan", "Hours worked": 80 },
-                  { "period": "Feb", "Hours worked": 125 },
-                  { "period": "Mar", "Hours worked": 176 },
-                  { "period": "Apr", "Hours worked": 224 },
-                  { "period": "May", "Hours worked": 265 },
-                  { "period": "Jun", "Hours worked": 314 },
-                  { "period": "Jul", "Hours worked": 347 },
-                  { "period": "Aug", "Hours worked": 287 },
-                  { "period": "Sep", "Hours worked": 240 },
-                  { "period": "Oct", "Hours worked": 211 }
-                ],
-                xkey: 'period',
-                hideHover: 'auto',
-                barColors: ['#26B99A', '#34495E', '#ACADAC', '#3498DB'],
-                ykeys: ['Hours worked', 'sorned'],
-                labels: ['Hours worked', 'SORN'],
-                xLabelAngle: 60,
-                resize: true
-            });
-
-            $MENU_TOGGLE.on('click', function () {
-                $(window).resize();
-            });
-        });
-    </script>
-
-    <!-- datepicker -->
-    <script type="text/javascript">
-        $(document).ready(function () {
-
-            var cb = function (start, end, label) {
-                console.log(start.toISOString(), end.toISOString(), label);
-                $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-                //alert("Callback has fired: [" + start.format('MMMM D, YYYY') + " to " + end.format('MMMM D, YYYY') + ", label = " + label + "]");
-            }
-
-            var optionSet1 = {
-                startDate: moment().subtract(29, 'days'),
-                endDate: moment(),
-                minDate: '01/01/2012',
-                maxDate: '12/31/2015',
-                dateLimit: {
-                    days: 60
-                },
-                showDropdowns: true,
-                showWeekNumbers: true,
-                timePicker: false,
-                timePickerIncrement: 1,
-                timePicker12Hour: true,
-                ranges: {
-                    'Today': [moment(), moment()],
-                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                    'This Month': [moment().startOf('month'), moment().endOf('month')],
-                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-                },
-                opens: 'left',
-                buttonClasses: ['btn btn-default'],
-                applyClass: 'btn-small btn-primary',
-                cancelClass: 'btn-small',
-                format: 'MM/DD/YYYY',
-                separator: ' to ',
-                locale: {
-                    applyLabel: 'Submit',
-                    cancelLabel: 'Clear',
-                    fromLabel: 'From',
-                    toLabel: 'To',
-                    customRangeLabel: 'Custom',
-                    daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-                    monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-                    firstDay: 1
-                }
-            };
-            $('#reportrange span').html(moment().subtract(29, 'days').format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
-            $('#reportrange').daterangepicker(optionSet1, cb);
-            $('#reportrange').on('show.daterangepicker', function () {
-                console.log("show event fired");
-            });
-            $('#reportrange').on('hide.daterangepicker', function () {
-                console.log("hide event fired");
-            });
-            $('#reportrange').on('apply.daterangepicker', function (ev, picker) {
-                console.log("apply event fired, start/end dates are " + picker.startDate.format('MMMM D, YYYY') + " to " + picker.endDate.format('MMMM D, YYYY'));
-            });
-            $('#reportrange').on('cancel.daterangepicker', function (ev, picker) {
-                console.log("cancel event fired");
-            });
-            $('#options1').click(function () {
-                $('#reportrange').data('daterangepicker').setOptions(optionSet1, cb);
-            });
-            $('#options2').click(function () {
-                $('#reportrange').data('daterangepicker').setOptions(optionSet2, cb);
-            });
-            $('#destroy').click(function () {
-                $('#reportrange').data('daterangepicker').remove();
-            });
-        });
-    </script>
+    
     <!-- /datepicker -->
    
 </asp:Content>
