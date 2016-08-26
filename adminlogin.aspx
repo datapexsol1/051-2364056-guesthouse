@@ -36,16 +36,16 @@
       <div class="login_wrapper">
         <div class="animate form login_form">
           <section class="login_content">
-            <form>
+            <form runat="server" method="post">
               <h1>Admin Login</h1>
               <div>
-                <input type="text" class="form-control" placeholder="Username" required="" />
+                <input type="text" class="form-control" placeholder="Username" name="username" required="" />
               </div>
               <div>
-                <input type="password" class="form-control" placeholder="Password" required="" />
+                <input type="password" class="form-control" placeholder="Password" name="password" required="" />
               </div>
               <div>
-                <a class="btn btn-default submit" href="index.html">Log in</a>
+                  <asp:Button ID="login" runat="server" Text="Log in" class="btn btn-default submit" OnClick="login_Click"/>
                 <a class="reset_pass" href="#">Lost your password?</a>
               </div>
 

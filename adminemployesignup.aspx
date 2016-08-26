@@ -84,79 +84,81 @@
                       </p>
                       <span class="section">Personal Info</span>
                         
-                      <div class="form-group">
-                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="name">Name <span class="required">*</span>
+                      <div class="form-group col-md-6">
+                        <label class="control-label col-md-4 " for="name">Name <span class="required">*</span>
                         </label>
-                        <div class="col-md-4 col-sm-4 col-xs-12">
-                          <input id="name" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="name" placeholder="both name(s) e.g Jon Doe" required="required" type="text">
-                        </div>
-                      
-                     
-                        <label class="control-label col-md-1 col-sm-1 col-xs-12" for="email">Email <span class="required">*</span>
-                        </label>
-                        <div class="col-md-4 col-sm-4 col-xs-12">
-                          <input type="email" id="email" name="email" required="required" class="form-control col-md-7 col-xs-12">
+                        <div class="col-md-8">
+                          <input id="name" class="form-control" data-validate-length-range="6" data-validate-words="2" name="name" placeholder="Complete name(s) e.g Waqas khan" required="required" type="text"/>
                         </div>
                       </div>
-                           
-
-                      <div class="form-group">
-                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="email">Confirm Email <span class="required">*</span>
+                      <div class="form-group col-md-6">
+                        <label class="control-label col-md-4 " for="email">Email <span class="required">*</span>
                         </label>
-                        <div class="col-md-4 col-sm-4 col-xs-12">
-                          <input type="email" id="email2" name="confirm_email" data-validate-linked="email" required="required" class="form-control col-md-7 col-xs-12">
+                        <div class="col-md-8">
+                          <input type="email" id="email" name="email" required="required" placeholder="Email" class="form-control "/>
                         </div>
-                      
-                     
-                        <label class="control-label col-md-1 col-sm-1 col-xs-12" for="number">Number <span class="required">*</span>
+                      </div>
+                        
+                           <div class="form-group col-md-6">
+                        <label class="control-label col-md-4" for="number">Number <span class="required">*</span>
                         </label>
-                        <div class="col-md-4 col-sm-4 col-xs-12">
-                          <input type="number" id="number" name="number" required="required" data-validate-minmax="10,100" class="form-control col-md-7 col-xs-12">
+                        <div class="col-md-8">
+                          <input type="number" id="number" name="number" required="required" data-validate-minmax="10,100" class="form-control col-md-7 col-xs-12"/>
                         </div>
                       </div>
                         
 
-                      <div class="form-group">
-                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="website">C.N.I.C <span class="required">*</span>
+                      <div class="form-group col-md-6">
+                        <label class="control-label col-md-4" for="website">C.N.I.C <span class="required">*</span>
                         </label>
-                        <div class="col-md-4 col-sm-4 col-xs-12">
-                          <input type="number" id="cnic" name="cnic" required="required"  class="form-control col-md-7 col-xs-12">
+                        <div class="col-md-8">
+                          <input type="number" id="cnic" name="cnic" required="required"  class="form-control"/>
                         </div>
+                          </div>
                       
-                    
-                        <label class="control-label col-md-1 col-sm-1 col-xs-12" for="occupation">Designation <span class="required">*</span>
+                    <div class="form-group col-md-6">
+                        <label class="control-label col-md-4" for="occupation">Designation <span class="required">*</span>
                         </label>
-                        <div class="col-md-4 col-sm-4 col-xs-12">
-                          <input id="designation" type="text" name="designation" data-validate-length-range="5,20" class="optional form-control col-md-7 col-xs-12">
+                        <div class="col-md-8">
+                          <input id="designation" type="text" name="designation" data-validate-length-range="5,20" class="optional form-control"/>
                         </div>
                       </div>
                         
-                   <div class="form-group">
-                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="website">Salary <span class="required">*</span>
+                   <div class="form-group col-md-6">
+                        <label class="control-label col-md-4" for="website">Salary <span class="required">*</span>
                         </label>
-                        <div class="col-md-4 col-sm-4 col-xs-12">
-                          <input type="number" id="salary" name="salary" required="required" class="form-control col-md-7 col-xs-12">
+                        <div class="col-md-8">
+                          <input type="number" id="salary" name="salary" required="required" class="form-control"/>
                         </div>
+                       </div>
                       
-                    
-                        <label class="control-label col-md-1 col-sm-1 col-xs-12" for="occupation">Choose Image <span class="required">*</span>
+                    <div class="form-group col-md-6">
+                        <label class="control-label col-md-4" for="occupation">Choose Image <span class="required">*</span>
                         </label>
-                        <div class="col-md-4 col-sm-4 col-xs-12">
-                          <input id="image" type="file" name="image"  class="optional form-control col-md-7 col-xs-12">
+                        <div class="col-md-8">
+                          <input id="image" type="file" name="image"  class="optional form-control " runat="server"/>
                         </div>
                       </div>
-                          <div class="form-group">
-                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="website">Password <span class="required">*</span>
+                      <div class="form-group col-md-6">
+                        <label class="control-label col-md-4" for="email">Username <span class="required">*</span>
                         </label>
-                        <div class="col-md-4 col-sm-4 col-xs-12">
-                          <input type="password" id="password" name="password" required="required" class="form-control col-md-7 col-xs-12">
+                        <div class="col-md-8">
+                          <input type="email" id="username" name="username" data-validate-linked="email" required="required" class="form-control"/>
                         </div>
-                      
-                    
-                        <label class="control-label col-md-1 col-sm-1 col-xs-12" for="occupation">confirm Password <span class="required">*</span>
+                          </div>
+                          <div class="form-group col-md-6">
+                        <label class="control-label col-md-4" for="website">Password <span class="required">*</span>
                         </label>
-                        <div class="col-md-4 col-sm-4 col-xs-12">
-                          <input id="confirmpassword" type="password" name="confirmpassword" data-validate-length-range="5,20" class="optional form-control col-md-7 col-xs-12">
+                        <div class="col-md-8">
+                          <input type="password" id="password" name="password" required="required" class="form-control"/>
+                        </div>
+                              </div>
+                      
+                    <div class="form-group col-md-6">
+                        <label class="control-label col-md-4" for="occupation">confirm Password <span class="required">*</span>
+                        </label>
+                        <div class="col-md-8">
+                          <input id="confirmpassword" type="password" name="confirmpassword" data-validate-length-range="5,20" class="optional form-control"/>
                         </div>
                       </div>
                         
@@ -165,8 +167,7 @@
                     
                       <div class="form-group">
                         <div class="col-md-6 col-md-offset-10">
-                          
-                          <button id="send" type="submit" class="btn btn-success">Submit</button>
+                          <asp:Button ID="send" runat="server" Text="Submit"  class="btn btn-success" OnClick="send_Click" />
                         </div>
                       </div>
                        </div>

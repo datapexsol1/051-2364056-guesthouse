@@ -53,47 +53,19 @@
                                   <th>Room No</th>
                                   <th>Room Type</th>
                                   <th>Room Size</th>
-                                  <th class="hidden-phone">Room Rent Max</th>
-                                  <th>Room Rent Min</th>
+                                  <th>Room Rent</th>
+                                  <th>Branch</th>
                                 </tr>
                               </thead>
                               <tbody>
                                 <tr>
-                                  <td>1</td>
-                                  <td>suit</td>
-                                  <td>Large</td>
-                                  <td class="hidden-phone">20000</td>
-                                  <td class="vertical-align-mid">
-                                    30000
-                                  </td>
+                                  <td><label id="froomid">1</label></td>
+                                  <td><label id="froomtype">suite</label></td>
+                                  <td><label id="froomsize">normal</label></td>
+                                  <td> <label id="froomrent">10000</label></td>
+                                  <td><label id="froombranch">Capetown</label></td>
                                 </tr>
-                                <tr>
-                                  <td>2</td>
-                                  <td>suit</td>
-                                  <td>Large</td>
-                                  <td class="hidden-phone">20000</td>
-                                  <td class="vertical-align-mid">
-                                    30000
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>3</td>
-                                  <td>suit</td>
-                                  <td>Large</td>
-                                  <td class="hidden-phone">20000</td>
-                                  <td class="vertical-align-mid">
-                                    30000
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>4</td>
-                                  <td>suit</td>
-                                  <td>Large</td>
-                                  <td class="hidden-phone">20000</td>
-                                  <td class="vertical-align-mid">
-                                    30000
-                                  </td>
-                                </tr>
+                               
                               </tbody>
                             </table>
                             <!-- end recent activity -->
@@ -102,106 +74,55 @@
                           <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
 
                             <!-- start user projects -->
-                           <table class="data table table-striped no-margin">
+                            <table class="data table table-striped no-margin">
                               <thead>
                                 <tr>
                                   <th>Room No</th>
                                   <th>Room Type</th>
                                   <th>Room Size</th>
-                                  <th class="hidden-phone">Room Rent Max</th>
-                                  <th>Room Rent Min</th>
+                                  <th>Maximum Room Rent</th>
+                                  <th>Minimum Room Rent</th>
+                                  <th>Branch</th>
                                 </tr>
                               </thead>
                               <tbody>
                                 <tr>
-                                  <td>1</td>
-                                  <td>suit</td>
-                                  <td>Large</td>
-                                  <td class="hidden-phone">20000</td>
-                                  <td class="vertical-align-mid">
-                                    30000
-                                  </td>
+                                  <td><label id="Aroomid">1</label></td>
+                                  <td><label id="Aroomtype">suite</label></td>
+                                  <td><label id="Aroomsize">normal</label></td>
+                                  <td> <label id="Amaxroomrent">10000</label></td>
+                                  <td> <label id="Aminroomrent">5000</label></td>
+                                  <td><label id="Aroombranch">Capetown</label></td>
                                 </tr>
-                                <tr>
-                                  <td>2</td>
-                                  <td>suit</td>
-                                  <td>Large</td>
-                                  <td class="hidden-phone">20000</td>
-                                  <td class="vertical-align-mid">
-                                    30000
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>3</td>
-                                  <td>suit</td>
-                                  <td>Large</td>
-                                  <td class="hidden-phone">20000</td>
-                                  <td class="vertical-align-mid">
-                                    30000
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>4</td>
-                                  <td>suit</td>
-                                  <td>Large</td>
-                                  <td class="hidden-phone">20000</td>
-                                  <td class="vertical-align-mid">
-                                    30000
-                                  </td>
-                                </tr>
+                                
                               </tbody>
                             </table>
                             <!-- end user projects -->
 
                           </div>
                           <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
-                               < <table class="data table table-striped no-margin">
+                               <table class="data table table-striped no-margin">
                               <thead>
                                 <tr>
-                                  <th>Room No</th>
+                                  <th>Room NO</th>
                                   <th>Room Type</th>
                                   <th>Room Size</th>
-                                  <th class="hidden-phone">Room Rent Max</th>
-                                  <th>Room Rent Min</th>
+                                  <th>Maximum Room Rent</th>
+                                  <th>Minimum Room Rent</th>
+                                    <th>Branch</th>
                                 </tr>
                               </thead>
                               <tbody>
                                 <tr>
-                                  <td>1</td>
-                                  <td>suit</td>
-                                  <td>Large</td>
-                                  <td class="hidden-phone">20000</td>
-                                  <td class="vertical-align-mid">
-                                    30000
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>2</td>
-                                  <td>suit</td>
-                                  <td>Large</td>
-                                  <td class="hidden-phone">20000</td>
-                                  <td class="vertical-align-mid">
-                                    30000
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>3</td>
-                                  <td>suit</td>
-                                  <td>Large</td>
-                                  <td class="hidden-phone">20000</td>
-                                  <td class="vertical-align-mid">
-                                    30000
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>4</td>
-                                  <td>suit</td>
-                                  <td>Large</td>
-                                  <td class="hidden-phone">20000</td>
-                                  <td class="vertical-align-mid">
-                                    30000
-                                  </td>
-                                </tr>
+                                  <td><input type="text" name="roomno" id="roomno"/></td>
+                                  <td><input type="text" name="roomtype" id="roomtype"/></td>
+                                    <td><input type="text" name="roomsize" id="roomsize"/></td>
+                                  <td><input type="text" name="roommaxrent" id="roommaxrent"/></td>
+                                  <td><input type="text" name="roomminrent" id="roomminrent"/></td>
+                                    <td><input type="text" name="roombranch" id="roombranch"/></td>
+                                 
+                                </tr>  
+                                  <tr><td colspan="1"><asp:Button ID="saveroom" runat="server" Text="Save Room" OnClick="saveroom_click" />></td></tr> 
                               </tbody>
                             </table>
                           </div>

@@ -11,4 +11,21 @@ public partial class employelogin : System.Web.UI.Page
     {
 
     }
+
+    protected void login_Click(object sender, EventArgs e)
+    {
+        string name = Request.Form["username"];
+        string password = Request.Form["password"];
+
+
+        bool result = employeeProfile.employeSignin(name, password);
+        if (result ==true )
+        {
+            Response.Write("your login ");
+        }
+        else
+        {
+            Response.Write("yournotlogin");
+        }
+    }
 }
