@@ -19,7 +19,8 @@ public partial class employeerooms : System.Web.UI.Page
         r.room_size = Request.Form["roomsize"].ToString();
         r.maximum_room_rent = Request.Form["roommaxrent"].ToString();
         r.minimum_room_rent = Request.Form["roomminrent"].ToString();
-        r.branch_id = Request.Form["roombranch"].ToString();
+        r.branch_id = int.Parse(Request.Form["roombranch"].ToString());
+        r.availbilty = "yes";
         roomsclass.Addroom(r);//if true display msg 
     }
     

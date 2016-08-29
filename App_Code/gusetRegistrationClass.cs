@@ -49,7 +49,7 @@ public class gusetRegistrationClass
         }
 
     }
-    public static bool checkRoomAvailbilty(string roomno,DateTime checkin)
+    public static bool checkRoomAvailbilty(int roomno,DateTime checkin)
     {
         //return false when record does not exist
         ctownDataContext db = new ctownDataContext();

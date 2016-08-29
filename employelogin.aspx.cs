@@ -18,8 +18,9 @@ public partial class employelogin : System.Web.UI.Page
         string password = Request.Form["password"];
 
 
-        bool result = employeeProfile.employeSignin(name, password);
-        if (result ==true )
+       string  emp = employeeProfile.employeSignin(name, password);
+        
+        if (emp!="" || emp!=null )
         {
             Response.Redirect("employeindex.aspx");
         }

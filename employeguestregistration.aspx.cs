@@ -9,10 +9,15 @@ public partial class employeguestregistration : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+      
+
+    }
+    protected void registerRooms(object sender,EventArgs e)
+    {
         guest g = new guest();
         g.reg_no = "123";
         g.guest_name = "kaleem ";
-            g.cnic = "37101-18713479-1";
+        g.cnic = "37101-18713479-1";
         g.date_of_birth = DateTime.Now;
         g.company_name = "datapexsol";
         g.complete__address = "sawat ";
@@ -21,8 +26,8 @@ public partial class employeguestregistration : System.Web.UI.Page
         g.permanent_address = "xyz";
         g.office_phone = "123123";
         g.residence = "123123";
-        g.mobile= "123123";
-             g.f_passport_no = "";
+        g.mobile = "123123";
+        g.f_passport_no = "";
         g.f_nationality = "";
         g.f_passport_issue_date = null;
         g.f_visa_number = "";
@@ -32,11 +37,11 @@ public partial class employeguestregistration : System.Web.UI.Page
         g.f_going_to = "";
         //***************************************************roombooking code *********************************
         booking b = new booking();
-        b.branch_id ="";
+        b.branch_id = "";
         b.check_in_date = DateTime.Now;
-        b.room_id = "1";
-        b.employee_id = "1";
-        b.guest_id = "1";
+        b.room_id = 1;
+        b.employee_id = 1;
+        b.guest_id = 1;
         b.check_out_date = null;
         b.booking_rent = "20000";
         b.departure_date = null;
@@ -47,11 +52,6 @@ public partial class employeguestregistration : System.Web.UI.Page
         b.no_of_pax = "2";
 
 
-        gusetRegistrationClass.RoomBooking(g,b);
-
-    }
-    protected void registerRooms(object sender,EventArgs e)
-    {
-       
+        gusetRegistrationClass.RoomBooking(g, b);
     }
 }
