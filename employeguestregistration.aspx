@@ -183,11 +183,20 @@
 
                       <div id="s1">
                       <div  class="form-horizontal form-label-left">
+                        
       <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Room No <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="number" id="rno" required="required" class="form-control col-md-7 col-xs-12"/>
+                              <select  id="rno" name="rno" required="required" class="form-control col-md-7 col-xs-12">
+                                     <option>Select Room</option>
+                                      <%  int bid = employeeProfile.getEmployeBranch("kk");
+                                          IQueryable<room> r = roomsclass.getAvailableRooms(bid);
+                                          foreach (var room in r)
+                                          { %>
+                                         <option><%=room.room_no %></option>
+                                       <%} %>
+                                  </select>
                             </div>
                           </div>
                                    <div class="form-group">

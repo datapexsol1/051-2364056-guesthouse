@@ -40,18 +40,29 @@ public class employeeProfile
             return false; 
         }
     }
-    public static IQueryable<employee> employeSignin(string username,string password)
+    public static string employeSignin(string username,string password)
     {
         ctownDataContext Database = new ctownDataContext();
-        IQueryable<employee> data = (from x in Database.employees
+       string emp = (from x in Database.employees
                      where x.username == username && x.password == password && x.login_type == "Employe"   //for checking already existance of client
-                     select x);
+                     select x.username).First();
+        return emp;
         
-            return data; 
+            
         
         
            
         
+    }
+    public static int getEmployeBranch(string username)
+    {
+        ctownDataContext db = new ctownDataContext();
+
+        int bid = (from x in db.GetTable<employee>()
+                   join b in db.branches on x.branch_id equals b.Id
+                   where x.username == username
+                   select b.Id).First();
+        return bid;
     }
 
 }

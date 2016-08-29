@@ -23,7 +23,7 @@ public partial class adminemployesignup : System.Web.UI.Page
         emp.employee_no = "123";
         emp.cnic = Request.Form["cnic"].ToString();
         emp.designation = Request.Form["designation"].ToString();
-        emp.branch_id = Request.Form["brancid"].ToString();
+        emp.branch_id = int.Parse(Request.Form["brancid"].ToString());
         emp.block_client = 0;
         emp.dateofjoining = DateTime.Now;
         emp.login_type = "Employe";

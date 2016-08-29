@@ -15,9 +15,8 @@ public class roomsclass
         // TODO: Add constructor logic here
         //
     }
-    public static bool Addroom(room r)
+    public  static bool Addroom(room r)
     {
-
         ctownDataContext db = new ctownDataContext();
         int count = (from x in db.rooms
                      where x.branch_id == r.branch_id && x.room_no==r.room_no     //for checking already existance of client
@@ -41,5 +40,14 @@ public class roomsclass
         }
 
         
+    }
+    public  static IQueryable<room> getAvailableRooms(int bid)
+    {
+        ctownDataContext db = new ctownDataContext();
+        IQueryable<room> rom = from r in db.rooms
+                 
+                   where r.availbilty=="yes" && r.branch_id==bid
+                   select r;
+        return rom;
     }
 }

@@ -12,20 +12,21 @@ public partial class employelogin : System.Web.UI.Page
 
     }
 
-    //protected void login_Click(object sender, EventArgs e)
-    //{
-    //    string name = Request.Form["username"];
-    //    string password = Request.Form["password"];
+    protected void login_Click(object sender, EventArgs e)
+    {
+        string name = Request.Form["username"];
+        string password = Request.Form["password"];
 
 
-    //    bool result = employeeProfile.employeSignin(name, password);
-    //    if (result ==true )
-    //    {
-    //        Response.Redirect("employeindex.aspx");
-    //    }
-    //    else
-    //    {
-    //        Response.Write("yournotlogin");
-    //    }
-    //}
+       string  emp = employeeProfile.employeSignin(name, password);
+        
+        if (emp!="" || emp!=null )
+        {
+            Response.Redirect("employeindex.aspx");
+        }
+        else
+        {
+            Response.Write("yournotlogin");
+        }
+    }
 }
