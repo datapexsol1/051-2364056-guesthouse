@@ -46,8 +46,19 @@
                         <div id="myTabContent" class="tab-content">
                           <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
 
+
+
+
+                    
+
+
+
+
+
+
+
                             <!-- start recent activity -->
-                               <table class="data table table-striped no-margin">
+                           <table class="data table table-striped no-margin">
                               <thead>
                                 <tr>
                                   <th>Room No</th>
@@ -70,8 +81,10 @@
                             </table>
                             <!-- end recent activity -->
 
-                          </div>
-                          <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
+                 </div>
+                         
+                            
+                             <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
 
                             <!-- start user projects -->
                             <table class="data table table-striped no-margin">
@@ -101,7 +114,64 @@
 
                           </div>
                           <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
-                               <table class="data table table-striped no-margin">
+                             
+                              
+                                   <div class="form-group col-md-6">
+                        <label class="control-label col-md-4 " for="room no">Room No <span class="required">*</span>
+                        </label>
+                        <div class="col-md-8">
+                          <input type="text" id="roomno" name="room no" required="required" placeholder="Room No" class="form-control "/>
+                        </div>
+                      </div>
+
+                               <div class="form-group col-md-6">
+                        <label class="control-label col-md-4 " for="room type">Room Type <span class="required">*</span>
+                        </label>
+                        <div class="col-md-8">
+                          <input type="text" id="Room Type" name="room type" required="required" placeholder="Room type" class="form-control "/>
+                        </div>
+                      </div>
+                               <div class="form-group col-md-6">
+                        <label class="control-label col-md-4 " for="room size">Room Size <span class="required">*</span>
+                        </label>
+                        <div class="col-md-8">
+                          <input type="text" id="roomsize" name="room size" required="required" placeholder="Room size" class="form-control "/>
+                        </div>
+                      </div>
+                               <div class="form-group col-md-6">
+                        <label class="control-label col-md-4 " for="room rent">Max Room Rent <span class="required">*</span>
+                        </label>
+                        <div class="col-md-8">
+                          <input type="number" id="roomrent" name="room rent" required="required" placeholder="Room rent max" class="form-control "/>
+                        </div>
+                      </div>
+                               <div class="form-group col-md-6">
+                        <label class="control-label col-md-4 " for="room rent">Min Room Rent <span class="required">*</span>
+                        </label>
+                        <div class="col-md-8">
+                          <input type="number" id="minroomrent" name="room no" required="required" placeholder="Room Rent" class="form-control "/>
+                        </div>
+                      </div>
+                               <div class="form-group col-md-6">
+                        <label class="control-label col-md-4 " for="branch no">Branch <span class="required">*</span>
+                        </label>
+                        <div class="col-md-8">
+                        <select class="form-control" name="roombranch">
+                             <option value="0">Select</option>
+                            </select>
+                        </div>
+                      </div>
+                              <div class="form-group">
+                        <div class="col-md-6 col-md-offset-11">
+                          <asp:Button ID="send" runat="server" Text="Submit"  class="btn btn-success" />
+                        </div>
+                      </div>
+                              
+                              
+                              
+                              
+                              
+                               <%-- <table class="data table table-striped no-margin">
                               <thead>
                                 <tr>
                                   <th>Room NO</th>
@@ -120,13 +190,13 @@
                                   <td><input type="text" name="roommaxrent" id="roommaxrent"/></td>
                                   <td><input type="text" name="roomminrent" id="roomminrent"/></td>
                                    <td><select class="form-control" name="roombranch">
-                                      <option value="0">Select</option>
-                                      <% IQueryable<branch> brachdata=branchClass.getBrachesinfo();
+                                      <option value="0">Select</option>--%>
+                                     <%-- <% IQueryable<branch> brachdata=branchClass.getBrachesinfo();
                                           foreach (var b in brachdata)
                                           {%>
                                       <option value=<%=b.Id %>>   <%=b.city %></option>
-                                      <%} %>
-                                  </select>
+                                      <%} %>--%>
+                                  <%--</select>
 
                                    </td>
 
@@ -135,7 +205,7 @@
                                 </tr>  
                                   <tr><td colspan="1"><asp:Button ID="saveroom" runat="server" Text="Save Room" OnClick="saveroom_click" />></td></tr> 
                               </tbody>
-                            </table>
+                            </table>--%>
                           </div>
                         </div>
                       </div>
