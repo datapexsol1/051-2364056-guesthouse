@@ -8,67 +8,67 @@ using System.Web;
 /// </summary>
 public class gusetRegistrationClass
 {
-    public gusetRegistrationClass()
-    {
-        //
-        // TODO: Add constructor logic here
-        //
-    }
-    public static void RoomBooking(guest g, booking b)
-    {
-        ctownDataContext db = new ctownDataContext();
+//    public gusetRegistrationClass()
+//    {
+//        //
+//        // TODO: Add constructor logic here
+//        //
+//    }
+//    public static void RoomBooking(guest g, booking b)
+//    {
+//        ctownDataContext db = new ctownDataContext();
        
-        if (checkRoomAvailbilty(b.room_id, b.check_in_date) == true)
-        {
-            db.guests.InsertOnSubmit(g);
-            db.SubmitChanges();
-            db.bookings.InsertOnSubmit(b);
-            db.SubmitChanges();
-        }
+//        if (checkRoomAvailbilty(b.room_id, b.check_in_date) == true)
+//        {
+//            db.guests.InsertOnSubmit(g);
+//            db.SubmitChanges();
+//            db.bookings.InsertOnSubmit(b);
+//            db.SubmitChanges();
+//        }
 
 
-    }
-    public static bool CheckGhustExistance(string cnicorpassport)
-    {
-        //return false when record does not exist
-        ctownDataContext db = new ctownDataContext();
-        var result= (from gust in db.GetTable<guest>()
+//    }
+//    public static bool CheckGhustExistance(string cnicorpassport)
+//    {
+//        //return false when record does not exist
+//        ctownDataContext db = new ctownDataContext();
+//        var result= (from gust in db.GetTable<guest>()
 
-                                   where gust.cnic == cnicorpassport || gust.f_passport_no==cnicorpassport
-                                   select gust);
-        int count = result.Count();
-        if (count == 0)
-        {
+//                                   where gust.cnic == cnicorpassport || gust.f_passport_no==cnicorpassport
+//                                   select gust);
+//        int count = result.Count();
+//        if (count == 0)
+//        {
           
-                return false;
+//                return false;
         
-        }
-        else
-        {
-            return true;
-        }
+//        }
+//        else
+//        {
+//            return true;
+//        }
 
-    }
-    public static bool checkRoomAvailbilty(string roomno,DateTime checkin)
-    {
-        //return false when record does not exist
-        ctownDataContext db = new ctownDataContext();
-        int count = (from r in db.GetTable<booking>()
+//    }
+//    public static bool checkRoomAvailbilty(string roomno,DateTime checkin)
+//    {
+//        //return false when record does not exist
+//        ctownDataContext db = new ctownDataContext();
+//        int count = (from r in db.GetTable<booking>()
 
-                      where r.room_id==roomno && r.check_in_date==checkin
-                      select r).Count();
+//                      where r.room_id==roomno && r.check_in_date==checkin
+//                      select r).Count();
        
-        if (count == 0)
-        {
+//        if (count == 0)
+//        {
 
-            return true;
+//            return true;
 
-        }
-        else
-        {
-            return false;
-        }
+//        }
+//        else
+//        {
+//            return false;
+//        }
 
-    }
+//    }
 
 }

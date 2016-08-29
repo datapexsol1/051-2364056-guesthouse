@@ -42,7 +42,7 @@
                 <input type="password" class="form-control" id="password" placeholder="Password" required="" />
               </div>
               <div>
-                  <asp:Button ID="login" runat="server" Text="Log in" class="btn btn-default submit" OnClick="login_Click" />
+                  <asp:Button ID="login" runat="server" Text="Log in" class="btn btn-default submit"  />
                 <a class="reset_pass" href="#">Lost your password?</a>
               </div>
 
