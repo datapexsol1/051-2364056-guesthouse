@@ -20,12 +20,6 @@
         <elementListCompartment Id="913a8ceb-6044-4cbd-b039-ba97a482a760" absoluteBounds="3.1399999999999997, 2.835, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="ffcf8ffe-b5db-4a62-abfc-76761c014145" isExpanded="false" absoluteBounds="3.125, 0.5, 2, 0.45">
-      <DataClassMoniker Name="/ctownDataContext/booking" />
-      <nestedChildShapes>
-        <elementListCompartment Id="8735593d-a29c-43f7-b448-341732ba6f6b" absoluteBounds="3.14, 0.96, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
     <classShape Id="a44646a4-7bc4-4c5c-91a9-b527b4d005cd" isExpanded="false" absoluteBounds="0.5, 1.375, 2, 0.45">
       <DataClassMoniker Name="/ctownDataContext/login" />
       <nestedChildShapes>
@@ -38,10 +32,16 @@
         <elementListCompartment Id="36f1c957-9955-4bfa-b880-14d867bed723" absoluteBounds="3.14, 1.835, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="a84c7716-14ec-478c-aad3-7ce9dae06f01" absoluteBounds="0.5, 2.25, 2, 4.8477197265625">
+    <classShape Id="82386e6a-d20a-49b3-826b-34e3eb2d9033" absoluteBounds="1.375, 2.875, 2, 4.8477197265625">
       <DataClassMoniker Name="/ctownDataContext/guest" />
       <nestedChildShapes>
-        <elementListCompartment Id="901a4e5f-80a4-4f95-9a7c-ef943728dd6c" absoluteBounds="0.515, 2.71, 1.9700000000000002, 4.2877197265625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="776ca14a-d6fd-4401-b3ab-09c1437d9bdb" absoluteBounds="1.3900000000000001, 3.335, 1.9700000000000002, 4.2877197265625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="e09c4b1f-f2ce-4d52-a542-f34aee5298f1" absoluteBounds="4.875, 3, 2, 3.3093082682291666">
+      <DataClassMoniker Name="/ctownDataContext/booking" />
+      <nestedChildShapes>
+        <elementListCompartment Id="0cbe947a-0720-4208-a6c2-80565ecd218d" absoluteBounds="4.8900000000000006, 3.46, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

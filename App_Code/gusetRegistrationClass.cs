@@ -17,8 +17,14 @@ public class gusetRegistrationClass
     public static void RoomBooking(guest g, booking b)
     {
         ctownDataContext db = new ctownDataContext();
-        db.guests.InsertOnSubmit(g);
-        db.SubmitChanges();
+       
+        if (checkRoomAvailbilty(b.room_id, b.check_in_date) == true)
+        {
+            db.guests.InsertOnSubmit(g);
+            db.SubmitChanges();
+            db.bookings.InsertOnSubmit(b);
+            db.SubmitChanges();
+        }
 
 
     }
@@ -43,6 +49,26 @@ public class gusetRegistrationClass
         }
 
     }
-  
+    public static bool checkRoomAvailbilty(string roomno,DateTime checkin)
+    {
+        //return false when record does not exist
+        ctownDataContext db = new ctownDataContext();
+        int count = (from r in db.GetTable<booking>()
+
+                      where r.room_id==roomno && r.check_in_date==checkin
+                      select r).Count();
+       
+        if (count == 0)
+        {
+
+            return true;
+
+        }
+        else
+        {
+            return false;
+        }
+
+    }
 
 }

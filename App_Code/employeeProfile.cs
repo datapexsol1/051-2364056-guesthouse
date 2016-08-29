@@ -40,20 +40,18 @@ public class employeeProfile
             return false; 
         }
     }
-    public static bool employeSignin(string username,string password)
+    public static IQueryable<employee> employeSignin(string username,string password)
     {
         ctownDataContext Database = new ctownDataContext();
-        int count = (from x in Database.employees
-                     where x.username == username && x.password==password && x.login_type=="Employe"   //for checking already existance of client
-                     select x).Count();
-        if (count == 0)
-        {
-            return false; 
-        }
-        else
-        {
-            return true;
-        }
+        IQueryable<employee> data = (from x in Database.employees
+                     where x.username == username && x.password == password && x.login_type == "Employe"   //for checking already existance of client
+                     select x);
+        
+            return data; 
+        
+        
+           
+        
     }
 
 }
