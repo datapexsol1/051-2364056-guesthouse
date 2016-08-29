@@ -64,5 +64,15 @@ public class employeeProfile
                    select b.Id).First();
         return bid;
     }
+    public static int getEmployeid(string username)
+    {
+        ctownDataContext db = new ctownDataContext();
+
+        int bid = (from x in db.GetTable<employee>()
+                   
+                   where x.username == username
+                   select x.Id).First();
+        return bid;
+    }
 
 }
