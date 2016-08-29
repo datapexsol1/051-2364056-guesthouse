@@ -89,11 +89,11 @@
                               <div class="col-md-8">
                                   <select class="form-control" name="brancid">
                                       <option value="0">Select</option>
-                                      <% IQueryable<branch> brachdata=branchClass.getBrachesinfo();
+                                     <%-- <% IQueryable<branch> brachdata=branchClass.getBrachesinfo();
                                           foreach (var b in brachdata)
                                           {%>
                                       <option value=<%=b.Id %>>   <%=b.city %></option>
-                                      <%} %>
+                                      <%} %>--%>
                                   </select>
 
                           
