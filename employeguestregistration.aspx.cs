@@ -9,49 +9,95 @@ public partial class employeguestregistration : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-      
+        if (IsPostBack)
+        {
+            Save_Click(sender, e);
+        }
 
     }
-    protected void registerRooms_click(object sender,EventArgs e)
+   
+    protected void Save_Click(object sender, EventArgs e)
     {
         guest g = new guest();
-        g.reg_no = "123";
-        g.guest_name = "kaleem ";
-        g.cnic = "37101-18713479-1";
-        g.date_of_birth = DateTime.Now;
-        g.company_name = "datapexsol";
-        g.complete__address = "sawat ";
-        g.profession = "xyz";
-        g.designation = "xyz";
-        g.permanent_address = "xyz";
-        g.office_phone = "123123";
-        g.residence = "123123";
-        g.mobile = "123123";
-        g.f_passport_no = "";
-        g.f_nationality = "";
-        g.f_passport_issue_date = null;
-        g.f_visa_number = "";
-        g.f_visa_valid_upto = null;
-        g.f_purpose_of_visist = "";
-        g.f_coming_from = "";
-        g.f_going_to = "";
+        if (Request.Form["guestType"].ToString() == "pakistani")
+        {
+            g.reg_no = Request.Form["regno"];
+            g.guest_name = Request.Form["gname"];
+            g.cnic = Request.Form["cnicno"];
+            g.date_of_birth = DateTime.Parse(Request.Form["dob"]);
+            g.company_name = Request.Form["cname"];
+            g.complete__address = Request.Form["sawat "];
+            g.profession = Request.Form["proffesion"];
+            g.designation = Request.Form["designation"];
+            g.permanent_address = Request.Form["paddress"];
+            g.office_phone = Request.Form["poffice"];
+            g.residence = Request.Form["presidence"];
+            g.mobile = Request.Form["pcell"];
+           /* g.f_passport_no = null;
+            g.f_nationality = null;
+            g.place_of_issue = null;
+            g.f_passport_issue_date = null;
+            g.f_visa_number = null;
+            g.f_visa_valid_upto = null;
+            g.f_purpose_of_vist = null;
+            g.f_coming_from = null;
+            g.f_going_to = null;
+            g.departure_date = null;
+            g.flight_no = null;*/
+        }
+        else if (Request.Form["guestType"].ToString() == "pakistani")
+        {
+            g.reg_no = Request.Form["fregno"];
+            g.guest_name = Request.Form["fgname"];
+            g.cnic = Request.Form["fcnicno"];
+            g.date_of_birth = DateTime.Parse(Request.Form["fdob"]);
+            g.company_name = Request.Form["fcaddress"];
+            g.complete__address = Request.Form["sawat "];
+            g.profession = Request.Form["fproffesion"];
+            g.designation = Request.Form["fdesignation"];
+            g.permanent_address = Request.Form["fpaddress"];//*
+            g.office_phone = Request.Form["fpoffice"];
+            g.residence = Request.Form["fpresidence"];
+            g.mobile = Request.Form["fpcell"];
+            g.f_passport_no = Request.Form["fpassno"];
+            g.f_nationality = Request.Form["nationality"];
+            g.place_of_issue = Request.Form["placeofissue"];
+            g.f_passport_issue_date = DateTime.Parse(Request.Form["fdateofissue"]);
+            g.f_visa_number = Request.Form["visano"];
+            g.f_visa_valid_upto = DateTime.Parse(Request.Form["validupto"]);
+            g.f_purpose_of_vist = Request.Form["visit"];
+            g.f_coming_from = Request.Form["fcfrom"];
+            g.f_going_to = Request.Form["fgoto"];
+            DateTime dt = DateTime.Parse(Request.Form["fdeparture"] + Request.Form["fdtime"]);
+            g.departure_date = dt;
+            g.flight_no = Request.Form["fflightno"];
+
+        }
+        else
+        {
+
+        }
+
+
         //***************************************************roombooking code *********************************
+
+        // arrival date: arrivaldate     atime
+        // departure date :departure     dtime
+        // flight no :flightno
+        // ******************************************
+        // farrivaldate
+        // fatime
+
         booking b = new booking();
         b.branch_id = int.Parse(Request.Form["branch"].ToString());
         b.check_in_date = DateTime.Now;
-        b.room_id =roomsclass.getRoomID(Request.Form["rno"].ToString(), int.Parse(Request.Form["branch"].ToString())) ;
+        b.room_id = roomsclass.getRoomID(Request.Form["rno"].ToString(), int.Parse(Request.Form["branch"].ToString()));
         b.employee_id = employeeProfile.getEmployeid("kk");//get employe username from sessions
-        b.guest_id = 1;
+        b.guest_id = gusetRegistrationClass.insertGuestinfo(g);//will insert guest data to db and return the id of the guest
         b.check_out_date = null;
-        b.booking_rent = "20000";
-        b.departure_date = null;
-        b.departure_time = null;
-        b.flight_no = null;
-        b.branch_id = "1";
+        b.booking_rent = Request.Form["rrent"].ToString();
         b.guest_reg_card_arr_date = "111";
-        b.no_of_pax = "2";
-
-
-        gusetRegistrationClass.RoomBooking(g, b);
+        b.no_of_pax = Request.Form["noofpax"].ToString();
+        gusetRegistrationClass.bookRoom(b);
     }
 }
