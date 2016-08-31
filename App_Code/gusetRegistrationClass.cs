@@ -42,6 +42,39 @@ public class gusetRegistrationClass
 
 
     }
+    public static bool bookRoom(booking g)
+    {
+
+        ctownDataContext db = new ctownDataContext();
+        int roomid = g.room_id;
+        var rm = (from x in db.rooms
+                    where x.Id == roomid
+                    select x).First();
+        rm.availbilty = "false";
+        try
+        {
+            db.SubmitChanges();
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+
+        db.bookings.InsertOnSubmit(g);
+        try
+        {
+            db.SubmitChanges();
+            return true;
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+            
+
+
+
+    }
     public static bool CheckGhustExistance(string cnic,string passporno)
     {
         //return false when record does not exist
