@@ -29,6 +29,10 @@
     <!-- Custom Theme Style -->
     <link href="../custom/custom.min.css" rel="stylesheet">
   </head>
+
+
+   
+
       <div class="right_col" role="main">
     <div class="row">
      <div class="col-md-12 col-sm-12 col-xs-12">
@@ -37,9 +41,9 @@
          <h3>Guests</h3>
     <div class="" role="tabpanel" data-example-id="togglable-tabs">
                         <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-                          <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Guests</a>
+                          <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Local Guests</a>
                           </li>
-                          <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Orders</a>
+                          <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Foriegn Guests</a>
                           </li>
                           <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">lists</a>
                           </li>
@@ -48,132 +52,127 @@
                           <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
 
                             <!-- start recent activity -->
-                               <table class="data table table-striped no-margin">
+                               <div style="overflow:auto;">
+                               <table style="column-span:all" class="data table table-striped no-margin" ">
                               <thead>
-                                <tr>
-                                  <th>Guest Reg No</th>
+                                <tr >
+                                    <th>Image</th>
+                                    <th>Check In</th>
+                                    <th>Check Out</th>
+                                    <th>Room No</th>
+                                    <th>No Of Persons</th>
+                                  <th>Reg No</th>
                                   <th>Name</th>
                                   <th>N.I.C No</th>
-                                  <th class="hidden-phone">Date Of Birth</th>
+                                  <th >Birth Date</th>
                                   <th>Company Name</th>
-                                    <th>Complete Adress</th>
+                                    
                                     <th>Profession</th>
                                     <th>Designation</th>
+                                    <th>Company Adress</th>
                                     <th>Permanent Adress</th>
+                                    <th>Present Adress</th>
                                     <th>Ph No Office</th>
                                     <th>Ph No Residence</th>
                                 </tr>
+
                               </thead>
                               <tbody>
                                 <tr>
-                                  <td>1</td>
-                                  <td>New Company Takeover Review</td>
-                                  <td>Deveint Inc</td>
-                                  <td class="hidden-phone">18</td>
-                                  <td class="vertical-align-mid">
-                                    <div class="progress">
-                                      <div class="progress-bar progress-bar-success" data-transitiongoal="35"></div>
-                                    </div>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>2</td>
-                                  <td>New Partner Contracts Consultanci</td>
-                                  <td>Deveint Inc</td>
-                                  <td class="hidden-phone">13</td>
-                                  <td class="vertical-align-mid">
-                                    <div class="progress">
-                                      <div class="progress-bar progress-bar-danger" data-transitiongoal="15"></div>
-                                    </div>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>3</td>
-                                  <td>Partners and Inverstors report</td>
-                                  <td>Deveint Inc</td>
-                                  <td class="hidden-phone">30</td>
-                                  <td class="vertical-align-mid">
-                                    <div class="progress">
-                                      <div class="progress-bar progress-bar-success" data-transitiongoal="45"></div>
-                                    </div>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>4</td>
-                                  <td>New Company Takeover Review</td>
-                                  <td>Deveint Inc</td>
-                                  <td class="hidden-phone">28</td>
-                                  <td class="vertical-align-mid">
-                                    <div class="progress">
-                                      <div class="progress-bar progress-bar-success" data-transitiongoal="75"></div>
-                                    </div>
-                                  </td>
-                                </tr>
+                                      <td><label id="image"></label></td>
+                                      <td><label id="checkin"></label></td>
+                                      <td><label id="checkout"></label></td>
+                                      <td><label id="roomno"></label></td>
+                                      <td><label id="noofpersons"></label></td>
+                                      <td><label id="regno"></label></td>
+                                      <td><label id ="name"></label></td>
+                                       <td><label id="nicno"></label></td>
+                                       <td><label id="dob"></label></td>
+                                       <td><label id="companyname"></label></td>
+                                      <td><label id="proffesion"></label></td>
+                                      <td><label id="designation"></label></td>
+                                      <td><label id="companyadress"></label></td>
+                                       <td><label id="permanentadress"></label></td>
+                                       <td><label id="presentadress" ></label></td>
+                                       <td><label id="phoffice"></label></td>
+                                       <td><label id="phresidence" ></label></td>
+                                      
+
+
+                                  </tr>
                               </tbody>
                             </table>
+                                   </div>
                             <!-- end recent activity -->
 
                           </div>
                           <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
 
                             <!-- start user projects -->
+                                <div style="overflow:auto;">
                             <table class="data table table-striped no-margin">
                               <thead>
                                 <tr>
-                                  <th>#</th>
-                                  <th>Project Name</th>
-                                  <th>Client Company</th>
-                                  <th class="hidden-phone">Hours Spent</th>
-                                  <th>Contribution</th>
+                                 <th>Image</th>
+                                    <th>Check In</th>
+                                    <th>Check Out</th>
+                                    <th>Room No</th>
+                                    <th>No Of Persons</th>
+                                  <th>Reg No</th>
+                                  <th>Name</th>
+                                  <th>Passport No</th>
+                                    <th>Nationality</th>
+                                    <th>Visa No</th>
+                                    <th>Valid Upto</th>
+                                     <th>Purpose of visit</th>
+                                    <th>Coming From</th>
+                                    <th>Going To</th>
+                                    <th>Issue Date</th>
+                                  <th>Birth Date</th>
+                                  <th>Company Name</th>                                
+                                    <th>Profession</th>
+                                    <th>Designation</th>
+                                    <th>Company Adress</th>
+                                    <th>Permanent Adress</th>
+                                    <th>Present Adress</th>
+                                    <th>Ph No Office</th>
+                                    <th>Ph No Residence</th>
                                 </tr>
                               </thead>
                               <tbody>
-                                <tr>
-                                  <td>1</td>
-                                  <td>New Company Takeover Review</td>
-                                  <td>Deveint Inc</td>
-                                  <td class="hidden-phone">18</td>
-                                  <td class="vertical-align-mid">
-                                    <div class="progress">
-                                      <div class="progress-bar progress-bar-success" data-transitiongoal="35"></div>
-                                    </div>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>2</td>
-                                  <td>New Partner Contracts Consultanci</td>
-                                  <td>Deveint Inc</td>
-                                  <td class="hidden-phone">13</td>
-                                  <td class="vertical-align-mid">
-                                    <div class="progress">
-                                      <div class="progress-bar progress-bar-danger" data-transitiongoal="15"></div>
-                                    </div>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>3</td>
-                                  <td>Partners and Inverstors report</td>
-                                  <td>Deveint Inc</td>
-                                  <td class="hidden-phone">30</td>
-                                  <td class="vertical-align-mid">
-                                    <div class="progress">
-                                      <div class="progress-bar progress-bar-success" data-transitiongoal="45"></div>
-                                    </div>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>4</td>
-                                  <td>New Company Takeover Review</td>
-                                  <td>Deveint Inc</td>
-                                  <td class="hidden-phone">28</td>
-                                  <td class="vertical-align-mid">
-                                    <div class="progress">
-                                      <div class="progress-bar progress-bar-success" data-transitiongoal="75"></div>
-                                    </div>
-                                  </td>
-                                </tr>
+                                 <tr>
+                                      <td><label id="fimage"></label></td>
+                                      <td><label id="fcheckin"></label></td>
+                                      <td><label id="fcheckout"></label></td>
+                                      <td><label id="froomno"></label></td>
+                                      <td><label id="fnoofpersons"></label></td>
+                                      <td><label id="fregno"></label></td>
+                                      <td><label id ="fname"></label></td>
+                                      <td><label id="passportno"></label></td>
+                                    <td><label id="fnationality"></label></td>
+                                    <td><label id="fvisano"></label></td>
+                                    <td><label id="fvalidupto"></label></td>
+                                     <td><label id="fpurposeofvisit"></label></td>
+                                    <td><label id="fcomingfrom"></label></td>
+                                    <td><label id="fgoingto"></label></td>
+                                    <td><label id="fissuedate"></label></td>
+                                       
+                                       <td><label id="fdob"></label></td>
+                                       <td><label id="fcompanyname"></label></td>
+                                      <td><label id="fproffesion"></label></td>
+                                      <td><label id="fdesignation"></label></td>
+                                      <td><label id="fcompanyadress"></label></td>
+                                       <td><label id="fpermanentadress"></label></td>
+                                       <td><label id="fpresentadress" ></label></td>
+                                       <td><label id="fphoffice"></label></td>
+                                       <td><label id="fphresidence" ></label></td>
+                                      
+
+
+                                  </tr>
                               </tbody>
                             </table>
+                                    </div>
                             <!-- end user projects -->
 
                           </div>
