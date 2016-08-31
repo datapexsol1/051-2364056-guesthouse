@@ -1,8 +1,42 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EmployePanel.master" AutoEventWireup="true" CodeFile="employeguestregistration.aspx.cs" Inherits="employeguestregistration" EnableEventValidation="false" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EmployePanel.master" AutoEventWireup="true" CodeFile="employeguestregistration.aspx.cs" Inherits="employeguestregistration" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+</asp:Content>
+
+
+
+
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
     <script>
+       
+
+
+
+
+        //$(document).ready(function () {
+           
+        //    $("input[name='nat']:radio").click(function () { // attack a click event on all radio buttons with name 'radiogroup'
+        //        if ($(this).val() == '0') {//check which radio button is clicked 
+        //            alert("abc");
+        //        } else if ($(this).val() == '1') {
+        //            $("#s2").hide();
+                    
+        //        } else if ($(this).val() == '2') {
+        //            $("s3").hide();
+        //        }
+        //    });
+        //});
+
+
+
+
+
+
+
+
         $(document).ready(function(){
          
             $("#s2").hide();
@@ -14,32 +48,124 @@
 
 
         $(function () {
-            $("#pakistani").click(function () {
+            $("#b1").click(function () {
                 $("#s2").show();
                 $("#s3").hide();
-                $("#guestType").val("pakistani") ;
-                alert($("#guestType").val());
                 
             });
         });
 
         $(function () {
-            $("#foriegner").click(function () {
+            $("#b2").click(function () {
                 $("#s3").show();
                 $("#s2").hide();
-                $("#guestType").val("foriegner");
-                alert($("#guestType").val());
 
             });
         });
+
+
+
+        //$(function () {
+        //    $("#submit").click(function () {
+        //        var a = $("input[name=nat]:checked").val();
+        //        if(a=='Pakistani')
+        //        {
+        //            $("#s2").show();
+        //            $("#s3").hide();
+        //        }
+        //        if(a=='Foriegner')
+        //        {
+        //            $("#s3").show();
+        //            $("#s2").hide();
+        //        }
+        //    });
+        //});
+
+
+
+        //$(function () { $("input:radio[name=nat][value=1]").trigger(function () { $("#s2").show(); }); });
+     
+         
+            
+                    
+                  
+       
+        //$(document).ready(function () {
+
+
+
+        //    $("#s2").hide();
+        //    $("#s3").hide();
+
+        //    $('input[type="radio" name="nat"]').click(function () {
+        //        if ($(this).attr("value") == "Pakistani") {
+                    
+        //            $("#s2").show();
+        //        }
+        //        if ($(this).attr("value") == "Foriegner") {
+        //            $("#s3").show();
+            
+        //        }
+                
+        //    });
+        //});
+
+
+
+        //$(function(){
+        //    if ($('#Pakistani').is(':checked')) {
+        //        $('#rbutton').click(function () { $("#s2").show(); });
+        //    }
+        //})
+
+
+
+
+       
+
+
+        //$("#Pakistani").click(function () {
+        //    disp();
+        //});
+
+        //function disp() {
+        //    alert('click');
+        //}
+
+
+
+        //$("#Pakistani input[name='nat']").click(function () {
+        //    alert('You clicked radio!');
+        //    if ($('input:radio[name=nat]:checked').val() == "Pakistani") {
+        //        alert($('input:radio[name=nat]:checked').val());
+        //        //$('#select-table > .roomNumber').attr('enabled',false);
+        //    }
+        //});
+
+
+    //    $('input:radio[name="nats"]').change(
+    //function () {
+    //    if (this.checked && this.value == 'Pakistani') {
+    //        alert("duz duz");
+    //    }
+    //});
+     
+        //$('input[type=radio][name=nat]').on('change', function () {
+        //    switch ($(this).val()) {
+        //        case 'Pakistani':
+        //            alert("Allot Thai Gayo Bhai");
+        //            break;
+        //        case 'Foriegner':
+        //            alert("Transfer Thai Gayo");
+        //            break;
+        //    }
+        //});
+
     </script>
 
-</asp:Content>
 
 
 
-
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <div class="right_col" role="main">
           <div class="">
             <div class="page-title">
@@ -64,7 +190,6 @@
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <%  int bid = employeeProfile.getEmployeBranch("kk");//get from session %>
                                <input type="hidden" name="branch" id="branch" value=<%=bid%> />
-                                    <input type="hidden" name="guestType" id="guestType" value="xyz" />
                               <select  id="rno" name="rno" required="required" class="form-control col-md-7 col-xs-12">
                                      <option>Select Room</option>
                                       <%  
@@ -104,7 +229,7 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">No Of Pax <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="number" id="noofpax" name="noofpax" required="required" class="form-control col-md-7 col-xs-12"/>
+                              <input type="number" id="noofpax" required="required" class="form-control col-md-7 col-xs-12"/>
                             </div>
                           </div>
                               
@@ -130,7 +255,7 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Room Rent <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="number" id="rrent" name="rrent" required="required" class="form-control col-md-7 col-xs-12"/>
+                              <input type="number" id="rrent" required="required" class="form-control col-md-7 col-xs-12"/>
                             </div>
                           </div>
 
@@ -147,10 +272,10 @@
                             <div class="col-md-6 col-sm-6 col-xs-12">
 
                                 <div id="national" class="btn-group" data-toggle="buttons">
-                                    <button id="pakistani">Pakistani</button>
+                                    <button id="b1">Pakistani</button>
                                     </div>
                                <div id="national1" class="btn-group" data-toggle="buttons">
-                                    <button id="foriegner">Foriegner</button>
+                                    <button id="b2">Foriegner</button>
                                     </div>
 
                               <%--<div id="national" class="btn-group" data-toggle="buttons">
@@ -189,7 +314,7 @@
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                 <label >Registration No <span class="required">*</span>
                             </label>
-                              <input type="number" id="regno" name="regno"  class="form-control col-md-7 col-xs-12"/>
+                              <input type="number" id="regno" required="required" class="form-control col-md-7 col-xs-12"/>
                             </div>
                           <%--</div>
 
@@ -198,7 +323,7 @@
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                  <label >Arrival Date <span class="required">*</span>
                             </label>
-                              <input type="date" id="Arrival" name="arrivaldate"  class="form-control col-md-7 col-xs-12"/>
+                              <input type="date" id="Arrival" name="arrivaldate" required="required" class="form-control col-md-7 col-xs-12"/>
                             </div>
                           </div>
 
@@ -206,7 +331,7 @@
                             
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                 <label >Arrival Time</label>
-                              <input id="atime"  class="form-control col-md-7 col-xs-12" type="time" name="atime"/>
+                              <input id="atime" class="form-control col-md-7 col-xs-12" type="time" name="middle-name"/>
                             </div>
                           <%--</div>
                             
@@ -215,7 +340,7 @@
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                 <label>Guest Name <span class="required">*</span>
                             </label>
-                              <input type="Text" id="gname" name="gname"  class="form-control col-md-7 col-xs-12"/>
+                              <input type="Text" id="gname" required="required" class="form-control col-md-7 col-xs-12"/>
                             </div>
                           </div>
 
@@ -229,14 +354,14 @@
                                   <div class="col-md-4 col-sm-4 col-xs-12">
                                                             <label>N.I.C No <span class="required"/>*</span>
                             </label>
-                              <input type="number" id="cnicno" name="cnicno"  class="form-control col-md-7 col-xs-12"/>
+                              <input type="number" id="nicno" required="required" class="form-control col-md-7 col-xs-12"/>
                             </div>
 
 
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                  <label>Date Of Birth <span class="required">*</span>
                             </label>
-                              <input id="dob" name="dob" class="date-picker form-control col-md-7 col-xs-12"  type="date"/>
+                              <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="date"/>
                             </div>
                           </div>
                             
@@ -250,7 +375,7 @@
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                  <label >Company Name <span class="required">*</span>
                             </label>
-                              <input type="text" id="cname" name="cname"  class="form-control col-md-7 col-xs-12"/>
+                              <input type="text" id="Cname" required="required" class="form-control col-md-7 col-xs-12"/>
                             </div>
                           </div>
 
@@ -261,7 +386,7 @@
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                 <label >Proffesion<span class="required">*</span>
                             </label>
-                              <input type="text" id="proffesion" name="proffesion"  class="form-control col-md-7 col-xs-12"/>
+                              <input type="text" id="proffesion" required="required" class="form-control col-md-7 col-xs-12"/>
                             </div>
                           <%--</div>
 
@@ -271,7 +396,7 @@
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                   <label>Designation<span class="required">*</span>
                             </label>
-                              <input type="text" id="designation" name="designation"  class="form-control col-md-7 col-xs-12"/>
+                              <input type="text" id="designation" required="required" class="form-control col-md-7 col-xs-12"/>
                             </div>
                           </div>
 
@@ -280,7 +405,7 @@
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                  <label >PH: No Office <span class="required">*</span>
                             </label>
-                              <input type="number" id="poffice" name="poffice"  class="form-control col-md-7 col-xs-12"/>
+                              <input type="number" id="Poffice" required="required" class="form-control col-md-7 col-xs-12"/>
                             </div>
                           <%--</div>
 
@@ -289,7 +414,7 @@
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                 <label >PH: No Residence <span class="required">*</span>
                             </label>
-                              <input type="number" id="presidence" name="presidence"  class="form-control col-md-7 col-xs-12"/>
+                              <input type="number" id="Presidence" required="required" class="form-control col-md-7 col-xs-12"/>
                             </div>
                           </div>
 
@@ -298,7 +423,7 @@
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                 <label >PH: No Cell<span class="required">*</span>
                             </label>
-                              <input type="number" id="pcell" name="pcell"   class="form-control col-md-7 col-xs-12"/>
+                              <input type="number" id="Pcell" required="required" class="form-control col-md-7 col-xs-12"/>
                             </div>
                           <%--</div>
 
@@ -307,7 +432,7 @@
                             <div class="col-md-4 col-sm-4 col-xs-12">
                              <label>Departure Date <span class="required">*</span>
                             </label>
-                              <input type="date" id="Depature" name="departure"  class="form-control col-md-7 col-xs-12"/>
+                              <input type="date" id="Depature" name="departure date" required="required" class="form-control col-md-7 col-xs-12"/>
                             </div>
                           </div>
 
@@ -315,7 +440,7 @@
                           
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                   <label>Departure Time</label>
-                              <input id="dtime" name="dtime" class="form-control col-md-7 col-xs-12" type="time" />
+                              <input id="Dtime" class="form-control col-md-7 col-xs-12" type="time" name="middle-name">
                             </div>
                           <%--</div>
 
@@ -324,7 +449,7 @@
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                                             <label>Flight No<span class="required">*</span>
                             </label>
-                              <input type="number" id="flightno" name="flightno"  class="form-control col-md-7 col-xs-12"/>
+                              <input type="number" id="flightno" required="required" class="form-control col-md-7 col-xs-12"/>
                             </div>
                           </div>
 
@@ -335,7 +460,7 @@
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <label >Company Adress<span class="required">*</span>
                             </label>
-                             <textarea  id="caddress" name="caddress"  class="form-control col-md-7 col-xs-12"></textarea>
+                             <textarea name="fCaddress" required="required" class="form-control col-md-7 col-xs-12"></textarea>
                             </div>
                           <%--</div>
 
@@ -344,12 +469,21 @@
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                  <label >Permanent Adress<span class="required">*</span>
                             </label>
-                             <textarea id="paddress" name="paddress"  class="form-control col-md-7 col-xs-12"></textarea>
+                             <textarea name="Paddress" required="required" class="form-control col-md-7 col-xs-12"></textarea>
                             </div>
                           </div>
+
+      <div class="col-md-12 col-sm-12 col-xs-12">
+                                 <label >Present Adress<span class="required">*</span>
+                            </label>
+                             <textarea id="presentaddress" name="presentaddress" required="required" class="form-control col-md-7 col-xs-12"></textarea>
+                            </div>
+                          </div>
+
+
      <div style="padding-top:15px;" class="alignright col-md-2 col-sm-2 col-xs-12">
 
-       
+         <button >Save </button>
      </div>
                            <%-- <div class="col-md-4 col-sm-4 col-xs-12">
                                 <label>Gender</label>
@@ -381,14 +515,16 @@
                                  <div class="col-md-4 col-sm-4 col-xs-12">
                                 <label >Registration No <span class="required">*</span>
                             </label>
-                              <input type="number" id="fregno"  name="fregno"  class="form-control col-md-7 col-xs-12"/>
+                              <input type="number" id="fregno" required="required" class="form-control col-md-7 col-xs-12"/>
                             </div>
-                          
+                          <%--</div>
+
+                          <div class="form-group">--%>
                            
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                  <label >Arrival Date <span class="required">*</span>
                             </label>
-                              <input type="date" id="farrival" name="farrivaldate"  class="form-control col-md-7 col-xs-12"/>
+                              <input type="date" id="fArrival" name="arrivaldate" required="required" class="form-control col-md-7 col-xs-12"/>
                             </div>
                           </div>
 
@@ -396,7 +532,7 @@
                             
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                 <label >Arrival Time</label>
-                              <input id="fatime" class="form-control col-md-7 col-xs-12" type="time" name="fatime"/>
+                              <input id="fatime" class="form-control col-md-7 col-xs-12" type="time" name="middle-name"/>
                             </div>
                           <%--</div>
                             
@@ -405,7 +541,7 @@
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                 <label>Guest Name <span class="required">*</span>
                             </label>
-                              <input type="Text" id="fgname" name="fgname"  class="form-control col-md-7 col-xs-12"/>
+                              <input type="Text" id="fgname" required="required" class="form-control col-md-7 col-xs-12"/>
                             </div>
                           </div>
 
@@ -419,14 +555,14 @@
                                   <div class="col-md-4 col-sm-4 col-xs-12">
                                                             <label>N.I.C No <span class="required"/>*</span>
                             </label>
-                              <input type="number" id="fcnicno" name="fcnicno"  class="form-control col-md-7 col-xs-12"/>
+                              <input type="number" id="fnicno" required="required" class="form-control col-md-7 col-xs-12"/>
                             </div>
 
 
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                  <label>Date Of Birth <span class="required">*</span>
                             </label>
-                              <input id="fdob"  name="fdob" class="date-picker form-control col-md-7 col-xs-12"  type="date"/>
+                              <input id="fbirthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="date"/>
                             </div>
                           </div>
                             
@@ -440,7 +576,7 @@
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                  <label >Company Name <span class="required">*</span>
                             </label>
-                              <input type="text" id="fcname" name="fcname"  class="form-control col-md-7 col-xs-12"/>
+                              <input type="text" id="fCname" required="required" class="form-control col-md-7 col-xs-12"/>
                             </div>
                           </div>
 
@@ -451,7 +587,7 @@
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                 <label >Proffesion<span class="required">*</span>
                             </label>
-                              <input type="text" id="fproffesion" name="fproffesion"  class="form-control col-md-7 col-xs-12"/>
+                              <input type="text" id="fproffesion" required="required" class="form-control col-md-7 col-xs-12"/>
                             </div>
                           <%--</div>
 
@@ -461,7 +597,7 @@
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                   <label>Designation<span class="required">*</span>
                             </label>
-                              <input type="text" id="fdesignation" name="fdesignation"  class="form-control col-md-7 col-xs-12"/>
+                              <input type="text" id="fdesignation" required="required" class="form-control col-md-7 col-xs-12"/>
                             </div>
                           </div>
 
@@ -470,7 +606,7 @@
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                  <label >PH: No Office <span class="required">*</span>
                             </label>
-                              <input type="number" id="fpoffice" name="fpoffice"  class="form-control col-md-7 col-xs-12"/>
+                              <input type="number" id="fPoffice" required="required" class="form-control col-md-7 col-xs-12"/>
                             </div>
                           <%--</div>
 
@@ -479,7 +615,7 @@
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                 <label >PH: No Residence <span class="required">*</span>
                             </label>
-                              <input type="number" id="fpresidence" name="fpresidence"  class="form-control col-md-7 col-xs-12"/>
+                              <input type="number" id="fPresidence" required="required" class="form-control col-md-7 col-xs-12"/>
                             </div>
                           </div>
 
@@ -488,7 +624,7 @@
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                 <label >PH: No Cell<span class="required">*</span>
                             </label>
-                              <input type="number" id="fpcell" name="fpcell"  class="form-control col-md-7 col-xs-12"/>
+                              <input type="number" id="fPcell" required="required" class="form-control col-md-7 col-xs-12"/>
                             </div>
                           <%--</div>
 
@@ -497,7 +633,7 @@
                             <div class="col-md-4 col-sm-4 col-xs-12">
                              <label>Departure Date <span class="required">*</span>
                             </label>
-                              <input type="date" id="fdeparture" name="fdeparture"  class="form-control col-md-7 col-xs-12"/>
+                              <input type="date" id="fDepature" name="departure date" required="required" class="form-control col-md-7 col-xs-12"/>
                             </div>
                           </div>
 
@@ -505,7 +641,7 @@
                           
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                   <label>Departure Time</label>
-                              <input id="fdtime" name="fdtime"class="form-control col-md-7 col-xs-12" type="time" />
+                              <input id="fDtime" class="form-control col-md-7 col-xs-12" type="time" name="middle-name">
                             </div>
                           <%--</div>
 
@@ -514,7 +650,7 @@
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                                             <label>Flight No<span class="required">*</span>
                             </label>
-                              <input type="number" id="fflightno" name="fflightno"  class="form-control col-md-7 col-xs-12"/>
+                              <input type="number" id="fflightno" required="required" class="form-control col-md-7 col-xs-12"/>
                             </div>
                           </div>
 
@@ -525,7 +661,7 @@
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <label >Company Adress<span class="required">*</span>
                             </label>
-                             <textarea name="fcaddress" id="fcaddress"  class="form-control col-md-7 col-xs-12"></textarea>
+                             <textarea name="fCaddress" required="required" class="form-control col-md-7 col-xs-12"></textarea>
                             </div>
                           <%--</div>
 
@@ -534,15 +670,23 @@
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                  <label >Permanent Adress<span class="required">*</span>
                             </label>
-                             <textarea name="fpaddress" id="fpaddress"  class="form-control col-md-7 col-xs-12"></textarea>
+                             <textarea name="fPaddress" required="required" class="form-control col-md-7 col-xs-12"></textarea>
                             </div>
                           </div>
 
+
+
+      <div class="col-md-12 col-sm-12 col-xs-12">
+                                 <label >Present Adress<span class="required">*</span>
+                            </label>
+                             <textarea id="fpresentaddress" name="fpresentaddress" required="required" class="form-control col-md-7 col-xs-12"></textarea>
+                            </div>
+                          </div>
                            
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                  <label >Passport/IC No <span class="required">*</span>
                             </label>
-                              <input type="number" id="fpassno" name="fpassno"  class="form-control col-md-7 col-xs-12"/>
+                              <input type="number" id="fpassno" required="required" class="form-control col-md-7 col-xs-12"/>
                             </div>
                           <%--</div>
 
@@ -551,7 +695,7 @@
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                 <label >Nationality <span class="required">*</span>
                             </label>
-                              <input type="text" id="nationality" name="nationality"  class="form-control col-md-7 col-xs-12"/>
+                              <input type="text" id="nationality" required="required" class="form-control col-md-7 col-xs-12"/>
                             </div>
                           </div>
 
@@ -560,7 +704,7 @@
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                 <label >Place of Issue<span class="required">*</span>
                             </label>
-                              <input type="text" id="placeofissue" name="placeofissue"  class="form-control col-md-7 col-xs-12"/>
+                              <input type="text" id="placeofissue" required="required" class="form-control col-md-7 col-xs-12"/>
                             </div>
                           <%--</div>
 
@@ -569,7 +713,7 @@
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                 <label>Date Of Issue <span class="required">*</span>
                             </label>
-                              <input type="date" id="dateofissue" name="fdateofissue"  class="form-control col-md-7 col-xs-12"/>
+                              <input type="date" id="dateofissue" required="required" class="form-control col-md-7 col-xs-12"/>
                             </div>
                           </div>
 
@@ -578,7 +722,7 @@
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                 <label>Visa No <span class="required">*</span>
                             </label>
-                              <input type="number" id="visano" name="visano"  class="form-control col-md-7 col-xs-12"/>
+                              <input type="number" id="visano" required="required" class="form-control col-md-7 col-xs-12"/>
                             </div>
                           <%--</div>
 
@@ -587,31 +731,30 @@
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                  <label>Valid Upto <span class="required">*</span>
                             </label>
-                              <input type="date" id="validupto" name="validupto"  class="form-control col-md-7 col-xs-12"/>
+                              <input type="date" id="validupto" required="required" class="form-control col-md-7 col-xs-12"/>
                             </div>
                           </div>
 
                               <div class="form-group">
                             
-<%--                        
+<%--                          
                           </div>
 
                                <div class="form-group">
                            
-                           
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                 <label >Comming From <span class="required">*</span>
+                            </label>
+                              <input type="number" id="cfrom" required="required" class="form-control col-md-7 col-xs-12"/>
+                            </div>
                           <%--</div>
 
                                <div class="form-group">--%>
-                                   <div class="col-md-4 col-sm-4 col-xs-12">
-                                 <label >Comming From <span class="required">*</span>
-                            </label>
-                              <input type="number" id="fcfrom" name="fcfrom"  class="form-control col-md-7 col-xs-12"/>
-                            </div>
                             
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                 <label >Going To <span class="required">*</span>
                             </label>
-                              <input type="number" id="fgoto" name="fgoto"  class="form-control col-md-7 col-xs-12"/>
+                              <input type="number" id="gto" required="required" class="form-control col-md-7 col-xs-12"/>
                             </div>
                           </div>
     
@@ -630,11 +773,13 @@
                                 </label>
                               </div>
                             </div>
-    </div>
-                  <div style="padding-top:15px;" class="alignright col-md-2 col-sm-2 col-xs-12">
-      <asp:Button ID="Save" runat="server" Text="Register Guest" OnClick="Save_Click"  CausesValidation="false" />
-         
+
+     <div style="padding-top:15px;" class="alignright col-md-2 col-sm-2 col-xs-12">
+
+         <button >Save </button>
      </div>
+
+    </div>
 
 
 
