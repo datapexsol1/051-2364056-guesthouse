@@ -1180,7 +1180,7 @@ public partial class employee : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_image", DbType="VarBinary(MAX)", UpdateCheck=UpdateCheck.Never)]
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_image", DbType="VarBinary(MAX)", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
 	public System.Data.Linq.Binary image
 	{
 		get
@@ -1693,6 +1693,10 @@ public partial class guest : INotifyPropertyChanging, INotifyPropertyChanged
 	
 	private string _place_of_issue;
 	
+	private string _guest_type;
+	
+	private System.Data.Linq.Binary _image;
+	
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -1745,6 +1749,10 @@ public partial class guest : INotifyPropertyChanging, INotifyPropertyChanged
     partial void Onflight_noChanged();
     partial void Onplace_of_issueChanging(string value);
     partial void Onplace_of_issueChanged();
+    partial void Onguest_typeChanging(string value);
+    partial void Onguest_typeChanged();
+    partial void OnimageChanging(System.Data.Linq.Binary value);
+    partial void OnimageChanged();
     #endregion
 	
 	public guest()
@@ -2228,6 +2236,46 @@ public partial class guest : INotifyPropertyChanging, INotifyPropertyChanged
 				this._place_of_issue = value;
 				this.SendPropertyChanged("place_of_issue");
 				this.Onplace_of_issueChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_guest_type", DbType="VarChar(50)")]
+	public string guest_type
+	{
+		get
+		{
+			return this._guest_type;
+		}
+		set
+		{
+			if ((this._guest_type != value))
+			{
+				this.Onguest_typeChanging(value);
+				this.SendPropertyChanging();
+				this._guest_type = value;
+				this.SendPropertyChanged("guest_type");
+				this.Onguest_typeChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_image", DbType="VarBinary(MAX)", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
+	public System.Data.Linq.Binary image
+	{
+		get
+		{
+			return this._image;
+		}
+		set
+		{
+			if ((this._image != value))
+			{
+				this.OnimageChanging(value);
+				this.SendPropertyChanging();
+				this._image = value;
+				this.SendPropertyChanged("image");
+				this.OnimageChanged();
 			}
 		}
 	}

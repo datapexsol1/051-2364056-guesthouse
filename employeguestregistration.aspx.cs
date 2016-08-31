@@ -33,17 +33,18 @@ public partial class employeguestregistration : System.Web.UI.Page
             g.office_phone = Request.Form["poffice"];
             g.residence = Request.Form["presidence"];
             g.mobile = Request.Form["pcell"];
-           /* g.f_passport_no = null;
-            g.f_nationality = null;
-            g.place_of_issue = null;
-            g.f_passport_issue_date = null;
-            g.f_visa_number = null;
-            g.f_visa_valid_upto = null;
-            g.f_purpose_of_vist = null;
-            g.f_coming_from = null;
-            g.f_going_to = null;
-            g.departure_date = null;
-            g.flight_no = null;*/
+            /* g.f_passport_no = null;
+             g.f_nationality = null;
+             g.place_of_issue = null;
+             g.f_passport_issue_date = null;
+             g.f_visa_number = null;
+             g.f_visa_valid_upto = null;
+             g.f_purpose_of_vist = null;
+             g.f_coming_from = null;
+             g.f_going_to = null;
+             g.departure_date = null;
+             g.flight_no = null;*/
+            g.guest_type = "local";
         }
         else if (Request.Form["guestType"].ToString() == "pakistani")
         {
@@ -71,6 +72,7 @@ public partial class employeguestregistration : System.Web.UI.Page
             DateTime dt = DateTime.Parse(Request.Form["fdeparture"] + Request.Form["fdtime"]);
             g.departure_date = dt;
             g.flight_no = Request.Form["fflightno"];
+            g.guest_type = "forigner";
 
         }
         else
