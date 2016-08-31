@@ -71,8 +71,8 @@
                     <ul class="nav child_menu">
                       <li><a href="employeerooms.aspx">Rooms</a></li>
                       <li><a href="employeguests.aspx">Guests</a></li>
-                      <li><a href="employeguesthouseassets.aspx">Room Inventories</a></li>
-                      <li><a href="employeguesthouseassets.aspx">Branch Inventories</a></li>
+                      <li><a href="employeroominventories.aspx">Room Inventories</a></li>
+                      <li><a href="employebranchinventory.aspx">Branch Inventories</a></li>
                     </ul>
                   </li>
                  
