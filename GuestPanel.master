@@ -1,12 +1,15 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="EmployePanel.master.cs" Inherits="EmployePanel" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="GuestPanel.master.cs" Inherits="GuestPanel" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
 
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title></title>
+    
+    
+     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -25,17 +28,9 @@
     
     <!-- Custom Theme Style -->
     <link href="../custom/custom.min.css" rel="stylesheet">
-
-
-
-
     <asp:ContentPlaceHolder id="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
-
-
-
-
 
 
 
@@ -44,8 +39,10 @@
     <form id="form1" runat="server">
     <div>
 
-                 <!--starting tag-->
-         <body class="nav-md">
+
+
+         <!--starting tag-->
+         
     <div class="container body">
       <div class="main_container">
         <div class="col-md-3 left_col">
@@ -229,7 +226,10 @@
         </asp:ContentPlaceHolder>
 
 
-  <!-- footer content -->
+
+
+
+           <!-- footer content -->
         <footer>
           <div class="pull-right">
             Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
@@ -599,20 +599,7 @@
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
 
-    <!-- jQuery Smart Wizard -->
-    <script>
-        $(document).ready(function () {
-            $('#wizard').smartWizard();
 
-            $('#wizard_verticle').smartWizard({
-                transitionEffect: 'slide'
-            });
-
-            $('.buttonNext').addClass('btn btn-success');
-            $('.buttonPrevious').addClass('btn btn-primary');
-            $('.buttonFinish').addClass('btn btn-default');
-        });
-    </script>
     <!-- /jQuery Smart Wizard -->
 
 
@@ -622,7 +609,9 @@
 
 
         <!--closing tag-->
-        
+
+
+
 
     </div>
     </form>

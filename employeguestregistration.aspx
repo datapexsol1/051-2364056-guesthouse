@@ -469,6 +469,15 @@
                              <textarea name="Paddress" required="required" class="form-control col-md-7 col-xs-12"></textarea>
                             </div>
                           </div>
+
+      <div class="col-md-12 col-sm-12 col-xs-12">
+                                 <label >Present Adress<span class="required">*</span>
+                            </label>
+                             <textarea id="presentaddress" name="presentaddress" required="required" class="form-control col-md-7 col-xs-12"></textarea>
+                            </div>
+                          </div>
+
+
      <div style="padding-top:15px;" class="alignright col-md-2 col-sm-2 col-xs-12">
 
          <button >Save </button>
@@ -520,7 +529,7 @@
                             
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                 <label >Arrival Time</label>
-                              <input id="atime" class="form-control col-md-7 col-xs-12" type="time" name="middle-name"/>
+                              <input id="fatime" class="form-control col-md-7 col-xs-12" type="time" name="middle-name"/>
                             </div>
                           <%--</div>
                             
@@ -662,6 +671,14 @@
                             </div>
                           </div>
 
+
+
+      <div class="col-md-12 col-sm-12 col-xs-12">
+                                 <label >Present Adress<span class="required">*</span>
+                            </label>
+                             <textarea id="fpresentaddress" name="fpresentaddress" required="required" class="form-control col-md-7 col-xs-12"></textarea>
+                            </div>
+                          </div>
                            
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                  <label >Passport/IC No <span class="required">*</span>
