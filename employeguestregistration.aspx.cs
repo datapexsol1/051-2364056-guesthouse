@@ -12,7 +12,7 @@ public partial class employeguestregistration : System.Web.UI.Page
       
 
     }
-    protected void registerRooms(object sender,EventArgs e)
+    protected void registerRooms_click(object sender,EventArgs e)
     {
         guest g = new guest();
         g.reg_no = "123";
@@ -37,10 +37,10 @@ public partial class employeguestregistration : System.Web.UI.Page
         g.f_going_to = "";
         //***************************************************roombooking code *********************************
         booking b = new booking();
-        b.branch_id = "";
+        b.branch_id = int.Parse(Request.Form["branch"].ToString());
         b.check_in_date = DateTime.Now;
-        b.room_id = 1;
-        b.employee_id = 1;
+        b.room_id =roomsclass.getRoomID(Request.Form["rno"].ToString(), int.Parse(Request.Form["branch"].ToString())) ;
+        b.employee_id = employeeProfile.getEmployeid("kk");//get employe username from sessions
         b.guest_id = 1;
         b.check_out_date = null;
         b.booking_rent = "20000";

@@ -58,23 +58,6 @@
       <Column Name="f_going_to" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.booking" Member="bookings">
-    <Type Name="booking">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="guest_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="room_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="employee_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="check_in_date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="check_out_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="booking_rent" Type="System.String" DbType="NVarChar(25) NOT NULL" CanBeNull="false" />
-      <Column Name="departure_date" Type="System.String" DbType="NVarChar(25)" CanBeNull="true" />
-      <Column Name="departure_time" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
-      <Column Name="flight_no" Type="System.String" DbType="NVarChar(25)" CanBeNull="true" />
-      <Column Name="branch_id" Type="System.String" DbType="NVarChar(25) NOT NULL" CanBeNull="false" />
-      <Column Name="guest_reg_card_arr_date" Type="System.String" DbType="NVarChar(25) NOT NULL" CanBeNull="false" />
-      <Column Name="no_of_pax" Type="System.String" DbType="NVarChar(25) NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
   <Table Name="dbo.rooms" Member="rooms">
     <Type Name="room">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -103,6 +86,23 @@
       <Column Name="login_type" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="dateofjoining" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="address" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.booking" Member="bookings">
+    <Type Name="booking">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="guest_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="room_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="employee_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="check_in_date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="check_out_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="booking_rent" Type="System.String" DbType="NVarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="departure_date" Type="System.String" DbType="NVarChar(25)" CanBeNull="true" />
+      <Column Name="departure_time" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="flight_no" Type="System.String" DbType="NVarChar(25)" CanBeNull="true" />
+      <Column Name="branch_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="guest_reg_card_arr_date" Type="System.String" DbType="NVarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="no_of_pax" Type="System.String" DbType="NVarChar(25) NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
 </Database>

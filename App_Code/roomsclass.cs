@@ -50,4 +50,13 @@ public class roomsclass
                    select r;
         return rom;
     }
+    public static int getRoomID(string roomno,int bid)
+    {
+        ctownDataContext db = new ctownDataContext();
+        int romid = (from r in db.GetTable<room>()
+                     where r.room_no == roomno && r.branch_id==bid
+                     select r.Id).First();
+                    
+        return romid;
+    }
 }
