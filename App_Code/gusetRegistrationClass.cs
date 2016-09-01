@@ -111,10 +111,12 @@ public class gusetRegistrationClass
         int i = 0;
        foreach(var x in result)
         {
+            bookingguestdata[i] = new guestBookingAttributes();
             bookingguestdata[i].b_checkinDate=x.booking.check_in_date;
-                
+            if (x.booking.check_out_date != null)
+            {
                 bookingguestdata[i].b_checkoutdate = x.booking.check_out_date.Value;
-            
+            }
            
             bookingguestdata[i].b_roomno=x.room_no;
             bookingguestdata[i].b_no_pax=x.booking.no_of_pax;
@@ -130,12 +132,18 @@ public class gusetRegistrationClass
             bookingguestdata[i].g_office_phone = x.guest.office_phone;
             bookingguestdata[i].g_residence = x.guest.residence;
             bookingguestdata[i].g_mobile = x.guest.mobile;
-      
+
             //   DateTime dt = DateTime_Parse(Request_Form["fdeparture"] + Request_Form["fdtime"]);
-            bookingguestdata[i]. g_departure_date = x.guest.departure_date.Value;
+            if (x.guest.departure_date != null)
+            {
+                bookingguestdata[i].g_departure_date = x.guest.departure_date.Value;
+            }
             bookingguestdata[i].g_flight_no = x.guest.flight_no;
             bookingguestdata[i].g_guest_type = x.guest.guest_type;
-            bookingguestdata[i].image = x.guest.image.ToArray();
+            if (x.guest.image != null)
+            {
+                bookingguestdata[i].image = x.guest.image.ToArray();
+            }
             i++;
         }
         return bookingguestdata;
