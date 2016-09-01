@@ -82,15 +82,15 @@
               <div class="menu_section">
                 <h3>General</h3>
                 <ul class="nav side-menu">
-                  <li><a href="AdminIndex.aspx"><i class="fa fa-home"></i> Home </a>
+                  <li><a href="adminIndex.aspx"><i class="fa fa-home"></i> Home </a>
                     
                   </li>
-                 <li><a href="EmployeeInfo.aspx"><i class="fa fa-edit"></i> Employee Information</a></li>
+                 
 
                   <li><a><i class="fa fa-edit"></i> Employe <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="adminemployesignup.aspx">Employee sign up</a></li>
-                      <li><a href="EmployeeInfo.aspx">Profiles</a></li>
+                      <li><a href="adminemployeinfo.aspx">View Employee Profile</a></li>
                       <li><a href="#">Attendence</a></li>
 
                     </ul>

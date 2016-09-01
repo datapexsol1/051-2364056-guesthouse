@@ -11,7 +11,7 @@ public partial class employeguestregistration : System.Web.UI.Page
     {
         if (IsPostBack)
         {
-            Save_Click(sender, e);
+           // Save_Click(sender, e);
         }
 
     }
@@ -46,7 +46,7 @@ public partial class employeguestregistration : System.Web.UI.Page
              g.flight_no = null;*/
             g.guest_type = "local";
         }
-        else if (Request.Form["guestType"].ToString() == "pakistani")
+        else if (Request.Form["guestType"].ToString() == "foriegner")
         {
             g.reg_no = Request.Form["fregno"];
             g.guest_name = Request.Form["fgname"];
@@ -69,8 +69,8 @@ public partial class employeguestregistration : System.Web.UI.Page
             g.f_purpose_of_vist = Request.Form["visit"];
             g.f_coming_from = Request.Form["fcfrom"];
             g.f_going_to = Request.Form["fgoto"];
-            DateTime dt = DateTime.Parse(Request.Form["fdeparture"] + Request.Form["fdtime"]);
-            g.departure_date = dt;
+         //   DateTime dt = DateTime.Parse(Request.Form["fdeparture"] + Request.Form["fdtime"]);
+           // g.departure_date = dt;
             g.flight_no = Request.Form["fflightno"];
             g.guest_type = "forigner";
 
