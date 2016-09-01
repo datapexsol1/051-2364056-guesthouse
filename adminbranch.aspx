@@ -53,18 +53,18 @@
                                 </tr>
                               </thead>
                               <tbody>
-                                  <% IQueryable<branch> branch_data = branchClass.getBrachesinfo();
-                                      foreach (var b in branch_data)
-                                      {%>
+                                  <% //IQueryable<branch> branch_data = branchClass.getBrachesinfo();
+                                      //foreach (var b in branch_data)
+                                      //{%>
                                 <tr>
                                     
-                                  <td><label id="vbno"><%=b.brachno %></label></td>
-                                  <td><label id="vbname"><%=b.name %></label></td>
-                                  <td><label id="vbcity"><%=b.city %></label></td>
-                                  <td><label id="vbcountry"><%=b.country %></label></td>
-                                  <td><label id="vbadress"><%=b.address %></label></td>
+                                  <td><label id="vbno"><%//=b.brachno %></label></td>
+                                  <td><label id="vbname"><%//=b.name %></label></td>
+                                  <td><label id="vbcity"><%//=b.city %></label></td>
+                                  <td><label id="vbcountry"><%//=b.country %></label></td>
+                                  <td><label id="vbadress"><%//=b.address %></label></td>
                                 </tr>
-                                  <%} %>
+                                  <%//} %>
                             </tbody>
                                   </table>
                               </div>
