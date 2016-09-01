@@ -52,8 +52,8 @@
                           <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
 
                             <!-- start recent activity -->
-                               <div style="overflow:auto;">
-                               <table style="column-span:all" class="data table table-striped no-margin" ">
+                               <div style="overflow:auto;white-space:nowrap;">
+                               <table class="data table table-striped no-margin" >
                               <thead>
                                 <tr >
                                     <th>Image</th>
@@ -109,7 +109,7 @@
                           <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
 
                             <!-- start user projects -->
-                                <div style="overflow:auto;">
+                                <div style="overflow:auto;white-space:nowrap;">
                             <table class="data table table-striped no-margin">
                               <thead>
                                 <tr>
