@@ -50,6 +50,15 @@ public class roomsclass
                    select r;
         return rom;
     }
+    public static IQueryable<room> getAllRooms(int bid)
+    {
+        ctownDataContext db = new ctownDataContext();
+        IQueryable<room> rom = from r in db.rooms
+
+                               where  r.branch_id == bid
+                               select r;
+        return rom;
+    }
     public static int getRoomID(string roomno,int bid)
     {
         ctownDataContext db = new ctownDataContext();

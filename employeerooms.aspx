@@ -36,12 +36,9 @@
          <h3>Rooms</h3>
     <div class="" role="tabpanel" data-example-id="togglable-tabs">
                         <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-                          <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Rooms</a>
-                          </li>
-                          <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Available Rooms</a>
-                          </li>
-                          <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Add Rooms</a>
-                          </li>
+                          <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Rooms</a></li>
+                          
+                          <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Add Rooms</a></li>
                             
                           
                         </ul>
@@ -68,16 +65,29 @@
                                   <th>Room Size</th>
                                   <th>Room Rent</th>
                                   <th>Branch</th>
+                                    <th>Availbilty</th>
                                 </tr>
                               </thead>
                               <tbody>
+                                  <%  IQueryable<room> branchRooms=roomsclass.getAllRooms(employeeProfile.getEmployeBranch("kk"));
+                                      foreach (var r in branchRooms)
+                                      { %>
                                 <tr>
-                                  <td><label id="froomid">1</label></td>
-                                  <td><label id="froomtype">suite</label></td>
-                                  <td><label id="froomsize">normal</label></td>
-                                  <td> <label id="froomrent">10000</label></td>
-                                  <td><label id="froombranch">Capetown</label></td>
+                                  <td><label id="froomid"><%=r.room_no%></label></td>
+                                  <td><label id="froomtype"><%=r.room_type %></label></td>
+                                  <td><label id="froomsize"><%=r.room_size%></label></td>
+                                  <td> <label id="froomrent"><%=r.maximum_room_rent %></label></td>
+                                  <td><label id="froombranch"><%=r.branch_id %></label></td>
+                                    <% if (r.availbilty == "yes")
+                                        { %>
+                                              <td><label id="availbiltyroomy" style="color:green">Available</label></td>
+                                              <%}
+                                                else
+                                                { %>
+                                              <td><label id="availbiltyroomn" style="color:red">Booked</label></td>
+                                               <%} %>
                                 </tr>
+                                  <%} %>
                                
                               </tbody>
                             </table>
@@ -86,35 +96,7 @@
                  </div>
                          
                             
-                             <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
-
-                            <!-- start user projects -->
-                            <table class="data table table-striped no-margin">
-                              <thead>
-                                <tr>
-                                  <th>Room No</th>
-                                  <th>Room Type</th>
-                                  <th>Room Size</th>
-                                  <th>Maximum Room Rent</th>
-                                  <th>Minimum Room Rent</th>
-                                  <th>Branch</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                <tr>
-                                  <td><label id="Aroomid">1</label></td>
-                                  <td><label id="Aroomtype">suite</label></td>
-                                  <td><label id="Aroomsize">normal</label></td>
-                                  <td> <label id="Amaxroomrent">10000</label></td>
-                                  <td> <label id="Aminroomrent">5000</label></td>
-                                  <td><label id="Aroombranch">Capetown</label></td>
-                                </tr>
-                                
-                              </tbody>
-                            </table>
-                            <!-- end user projects -->
-
-                          </div>
+                            
                           <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
                              
                               
@@ -122,7 +104,7 @@
                         <label class="control-label col-md-4 " for="room no">Room No <span class="required">*</span>
                         </label>
                         <div class="col-md-8">
-                          <input type="text" id="roomno" name="room no" required="required" placeholder="Room No" class="form-control "/>
+                          <input type="text" id="roomno" name="roomno" required="required" placeholder="Room No" class="form-control "/>
                         </div>
                       </div>
 
@@ -130,28 +112,28 @@
                         <label class="control-label col-md-4 " for="room type">Room Type <span class="required">*</span>
                         </label>
                         <div class="col-md-8">
-                          <input type="text" id="Room Type" name="room type" required="required" placeholder="Room type" class="form-control "/>
+                          <input type="text" id="roomtype" name="roomtype" required="required" placeholder="Room type" class="form-control "/>
                         </div>
                       </div>
                                <div class="form-group col-md-6">
                         <label class="control-label col-md-4 " for="room size">Room Size <span class="required">*</span>
                         </label>
                         <div class="col-md-8">
-                          <input type="text" id="roomsize" name="room size" required="required" placeholder="Room size" class="form-control "/>
+                          <input type="text" id="roomsize" name="roomsize" required="required" placeholder="Room size" class="form-control "/>
                         </div>
                       </div>
                                <div class="form-group col-md-6">
                         <label class="control-label col-md-4 " for="room rent">Max Room Rent <span class="required">*</span>
                         </label>
                         <div class="col-md-8">
-                          <input type="number" id="roomrent" name="room rent" required="required" placeholder="Room rent max" class="form-control "/>
+                          <input type="number" id="roommaxrent" name="roommaxrent" required="required" placeholder="Room rent max" class="form-control "/>
                         </div>
                       </div>
                                <div class="form-group col-md-6">
                         <label class="control-label col-md-4 " for="room rent">Min Room Rent <span class="required">*</span>
                         </label>
                         <div class="col-md-8">
-                          <input type="number" id="minroomrent" name="room no" required="required" placeholder="Room Rent" class="form-control "/>
+                          <input type="number" id="roomminrent" name="roomminrent" required="required" placeholder="Room Rent" class="form-control "/>
                         </div>
                       </div>
                                <div class="form-group col-md-6">
@@ -160,12 +142,17 @@
                         <div class="col-md-8">
                         <select class="form-control" name="roombranch">
                              <option value="0">Select</option>
+                             <% IQueryable<branch> brachdata=branchClass.getBrachesinfo();
+                                          foreach (var b in brachdata)
+                                          {%>
+                                      <option value='<%=b.Id %>'>   <%=b.city %></option>
+                                      <%} %>
                             </select>
                         </div>
                       </div>
                               <div class="form-group">
                         <div class="col-md-6 col-md-offset-11">
-                          <asp:Button ID="send" runat="server" Text="Submit"  class="btn btn-success" />
+                          <asp:Button ID="saveroom" runat="server" Text="Save Room" OnClick="saveroom_click" />
                         </div>
                       </div>
                               
@@ -173,41 +160,7 @@
                               
                               
                               
-                               <%-- <table class="data table table-striped no-margin">
-                              <thead>
-                                <tr>
-                                  <th>Room NO</th>
-                                  <th>Room Type</th>
-                                  <th>Room Size</th>
-                                  <th>Maximum Room Rent</th>
-                                  <th>Minimum Room Rent</th>
-                                    <th>Branch</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                <tr>
-                                  <td><input type="text" name="roomno" id="roomno"/></td>
-                                  <td><input type="text" name="roomtype" id="roomtype"/></td>
-                                    <td><input type="text" name="roomsize" id="roomsize"/></td>
-                                  <td><input type="text" name="roommaxrent" id="roommaxrent"/></td>
-                                  <td><input type="text" name="roomminrent" id="roomminrent"/></td>
-                                   <td><select class="form-control" name="roombranch">
-                                      <option value="0">Select</option>--%>
-                                     <%-- <% IQueryable<branch> brachdata=branchClass.getBrachesinfo();
-                                          foreach (var b in brachdata)
-                                          {%>
-                                      <option value=<%=b.Id %>>   <%=b.city %></option>
-                                      <%} %>--%>
-                                  <%--</select>
-
-                                   </td>
-
-                                
-                                 
-                                </tr>  
-                                  <tr><td colspan="1"><asp:Button ID="saveroom" runat="server" Text="Save Room" OnClick="saveroom_click" />></td></tr> 
-                              </tbody>
-                            </table>--%>
+                              
                           </div>
                         </div>
                       </div>
