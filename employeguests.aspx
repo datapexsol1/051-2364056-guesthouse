@@ -56,6 +56,7 @@
                                <table class="table table-bordered table-striped" <%-- class="data table table-striped no-margin"--%> >
                               <thead>
                                 <tr >
+                                    <th>*</th>
                                     <th>Image</th>
                                     <th>Check In</th>
                                     <th>Check Out</th>
@@ -78,15 +79,16 @@
 
                               </thead>
                               <tbody>
-                                  <% guestBookingAttributes[] bookings=gusetRegistrationClass.getlocalClientData();
-                                      foreach (guestBookingAttributes b in bookings)
-                                      {
+                                  <% //guestBookingAttributes[] bookings=gusetRegistrationClass.getlocalClientData();
+                                     // foreach (guestBookingAttributes b in bookings)
+                                     // {
 
                                        %>
                                 <tr>
-                                      <td><label id="image">"Not added yet"</label></td>
-                                      <td><label id="checkin"><%=b.b_checkinDate%></label></td>
-                                      <td><label id="checkout"><%=b.b_checkoutdate%></label></td>
+                                    <td><a href="#"><label>Check Out</label></a></td>
+                                     <%-- <td><label id="image">"Not added yet"</label></td>
+                                      <td><label id="checkin"><%=b.b_checkinDate%> </label></td>
+                                      <td><label id="checkout"><%=b.b_checkoutdate%> </label></td>
                                       <td><label id="roomno"><%=b.b_roomno %></label></td>
                                       <td><label id="noofpersons"><%=b.b_no_pax %></label></td>
                                       <td><label id="regno"><%=b.g_reg_no %></label></td>
@@ -96,16 +98,16 @@
                                        <td><label id="companyname"><%= b.g_company_name%></label></td>
                                       <td><label id="proffesion"><%=b.g_profession %></label></td>
                                       <td><label id="designation"><%=b.g_designation %></label></td>
-                                      <td><label id="companyadress"><%=b.g_company_name%></label></td>
+                                      <td><label id="companyadress"><%=b.g_company_name%> </label></td>
                                        <td><label id="permanentadress"><%=b.g_permanent_address %></label></td>
                                        <td><label id="presentadress" ><%="not added in yet"%></label></td>
                                        <td><label id="phoffice"><%=b.g_office_phone %></label></td>
-                                       <td><label id="phresidence" ><%=b.g_residence %></label></td>
+                                       <td><label id="phresidence" ><%=b.g_residence %></label></td>--%>
                                       
 
 
                                   </tr>
-                                  <%} %>
+                                  <%//} %>
                               </tbody>
                             </table>
                                    </div>
@@ -119,6 +121,7 @@
                             <table class="table table-bordered table-striped" <%--class="data table table-striped no-margin"--%>>
                               <thead>
                                 <tr>
+                                    <th>*</th>
                                  <th>Image</th>
                                     <th>Check In</th>
                                     <th>Check Out</th>
@@ -146,11 +149,12 @@
                                 </tr>
                               </thead>
                               <tbody>
-                                  <% guestBookingAttributes[] fbooking = gusetRegistrationClass.getforignerClientData();
-                                      foreach (guestBookingAttributes fb in fbooking)
-                                      { %>
+                                  <% //guestBookingAttributes[] fbooking = gusetRegistrationClass.getforignerClientData();
+                                      //foreach (guestBookingAttributes fb in fbooking)
+                                      //{ %>
                                  <tr>
-                                      <td><label id="fimage"><%="not yet"%></label></td>
+                                     <td><a href="#"><label>Check Out</label></a></td>
+                                      <%--<td><label id="fimage"><%="not yet"%></label></td>
                                       <td><label id="fcheckin"><%=fb.b_checkinDate %></label></td>
                                       <td><label id="fcheckout"><%=fb.b_checkoutdate %></label></td>
                                       <td><label id="froomno"><%= fb.b_roomno%></label></td>
@@ -175,11 +179,11 @@
                                        <td><label id="fpresentadress" ><%= "not added"%></label></td>
                                        <td><label id="fphoffice"><%=fb.g_office_phone%></label></td>
                                        <td><label id="fphresidence" ><%=fb.g_residence%></label></td>
-                                      
+                                      --%>
 
 
                                   </tr>
-                                  <%} %>
+                                  <%//} %>
                               </tbody>
                             </table>
                                     </div>
