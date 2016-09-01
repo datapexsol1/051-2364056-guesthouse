@@ -115,7 +115,7 @@
                           <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
 
                             <!-- start user projects -->
-                                <div style="overflow:auto;">
+                                <div style="overflow:auto;white-space:nowrap;">
                             <table class="data table table-striped no-margin">
                               <thead>
                                 <tr>
