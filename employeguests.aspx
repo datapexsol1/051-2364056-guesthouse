@@ -53,7 +53,7 @@
 
                             <!-- start recent activity -->
                                <div style="overflow:auto;white-space:nowrap;">
-                               <table style="column-span:all" class="data table table-striped no-margin" ">
+                               <table class="table table-borderede" <%--class="data table table-striped no-margin"--%> >
                               <thead>
                                 <tr >
                                     <th>Image</th>
@@ -78,34 +78,34 @@
 
                               </thead>
                               <tbody>
-                                  <% guestBookingAttributes[] bookings=gusetRegistrationClass.getlocalClientData();
-                                      foreach (guestBookingAttributes b in bookings)
-                                      {
+                                  <% //guestBookingAttributes[] bookings=gusetRegistrationClass.getlocalClientData();
+                                      //foreach (guestBookingAttributes b in bookings)
+                                      //{
 
                                        %>
                                 <tr>
                                       <td><label id="image">"Not added yet"</label></td>
-                                      <td><label id="checkin"><%=b.b_checkinDate%></label></td>
-                                      <td><label id="checkout"><%=b.b_checkoutdate%></label></td>
-                                      <td><label id="roomno"><%=b.b_roomno %></label></td>
-                                      <td><label id="noofpersons"><%=b.b_no_pax %></label></td>
-                                      <td><label id="regno"><%=b.g_reg_no %></label></td>
-                                      <td><label id ="name"><%= b.g_guest_name%></label></td>
-                                       <td><label id="nicno"><%=b.g_cnic %></label></td>
-                                       <td><label id="dob"><%=b.g_date_of_birth %></label></td>
-                                       <td><label id="companyname"><%= b.g_company_name%></label></td>
-                                      <td><label id="proffesion"><%=b.g_profession %></label></td>
-                                      <td><label id="designation"><%=b.g_designation %></label></td>
-                                      <td><label id="companyadress"><%=b.g_company_name%></label></td>
-                                       <td><label id="permanentadress"><%=b.g_permanent_address %></label></td>
-                                       <td><label id="presentadress" ><%="not added in yet"%></label></td>
-                                       <td><label id="phoffice"><%=b.g_office_phone %></label></td>
-                                       <td><label id="phresidence" ><%=b.g_residence %></label></td>
+                                      <td><label id="checkin"><%//=b.b_checkinDate%></label></td>
+                                      <td><label id="checkout"><%//=b.b_checkoutdate%></label></td>
+                                      <td><label id="roomno"><%//=b.b_roomno %></label></td>
+                                      <td><label id="noofpersons"><%//=b.b_no_pax %></label></td>
+                                      <td><label id="regno"><%//=b.g_reg_no %></label></td>
+                                      <td><label id ="name"><%//= b.g_guest_name%></label></td>
+                                       <td><label id="nicno"><%//=b.g_cnic %></label></td>
+                                       <td><label id="dob"><%//=b.g_date_of_birth %></label></td>
+                                       <td><label id="companyname"><%//= b.g_company_name%></label></td>
+                                      <td><label id="proffesion"><%//=b.g_profession %></label></td>
+                                      <td><label id="designation"><%//=b.g_designation %></label></td>
+                                      <td><label id="companyadress"><%//=b.g_company_name%></label></td>
+                                       <td><label id="permanentadress"><%//=b.g_permanent_address %></label></td>
+                                       <td><label id="presentadress" ><%//="not added in yet"%></label></td>
+                                       <td><label id="phoffice"><%//=b.g_office_phone %></label></td>
+                                       <td><label id="phresidence" ><%//=b.g_residence %></label></td>
                                       
 
 
                                   </tr>
-                                  <%} %>
+                                  <%//} %>
                               </tbody>
                             </table>
                                    </div>
@@ -116,7 +116,7 @@
 
                             <!-- start user projects -->
                                 <div style="overflow:auto;">
-                            <table class="data table table-striped no-margin">
+                            <table class="table table-borderede"  <%--class="data table table-striped no-margin"--%>>
                               <thead>
                                 <tr>
                                  <th>Image</th>

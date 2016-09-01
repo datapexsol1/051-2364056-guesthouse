@@ -58,11 +58,12 @@
                                 <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
 
 
-                                     <div style="overflow:auto;">
+                                     <div style="overflow:auto;white-space:nowrap;">
        <table class="data table table-striped no-margin">
                               <thead>
                                 <tr>
                                   <th>Room No</th>
+                                    <th>Select Inventory</th>
                                   <th>Label</th>
                                   <th>Item Description</th>
                                   <th>Number Of Item</th>
@@ -72,6 +73,9 @@
                               <tbody>
                                 <tr>
                                   <td> <input type="number" id="uroomno" name="aroomno" required="required" placeholder="Room No" class="form-control "/></td>
+                                    <td><select class="form-control" name="roombranch">
+                                        <option value="0">Select</option>
+                                        </select></td>
                                   <td> <input type="text" id="ulabel" name="alabel" required="required" placeholder="Label" class="form-control "/></td>
                                   <td>  <input type="text" id="udescription" name="adescription" required="required" placeholder="Description" class="form-control "/></td>
                                   <td>   <input type="number" id="uitemno" name="aitemno" required="required" placeholder="Number Of Items" class="form-control "/></td>
