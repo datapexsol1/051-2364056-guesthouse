@@ -53,7 +53,7 @@
 
                             <!-- start recent activity -->
                                <div style="overflow:auto;white-space:nowrap;">
-                               <table style="column-span:all" class="data table table-striped no-margin" ">
+                               <table class="table table-bordered table-striped" <%-- class="data table table-striped no-margin"--%> >
                               <thead>
                                 <tr >
                                     <th>Image</th>
@@ -116,7 +116,7 @@
 
                             <!-- start user projects -->
                                 <div style="overflow:auto;white-space:nowrap;">
-                            <table class="data table table-striped no-margin">
+                            <table class="table table-bordered table-striped" <%--class="data table table-striped no-margin"--%>>
                               <thead>
                                 <tr>
                                  <th>Image</th>
