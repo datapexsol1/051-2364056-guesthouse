@@ -24,23 +24,11 @@ public partial class employeroominventories : System.Web.UI.Page
 
     protected void Button1_Click(object sender, EventArgs e)
     {
-        int rowCnt;
-        // Current row count.
-        int rowCtr;
-        // Total number of cells per row (columns).
-        int cellCtr;
-        // Current cell counter
-        int cellCnt;
-
-        rowCnt = 3;
-        cellCnt = 4;
+       
 
 
         TableRow tRow1 = new TableRow();
         assetsViewTable.Rows.Add(tRow1);
-      // for (cellCtr = 1; cellCtr <= cellCnt; cellCtr++)
-       // {
-            // Create a new cell and add it to the row.
             TableCell tCell1 = new TableCell();
             tCell1.Text = "RoomNo ";
             tRow1.Cells.Add(tCell1);
@@ -54,24 +42,14 @@ public partial class employeroominventories : System.Web.UI.Page
         tCell4.Text = "Total Item";
         tRow1.Cells.Add(tCell4);
         // }
-        int roomid=int.Parse(Request["rnovxxxx"]);
+        int roomid=int.Parse(Request["rnovxxxx"].ToString());
         int branchid = int.Parse(Request["branch"]);
        
         
         IQueryable<room_asset> rom = roomassetclass.getAllRoomAssets(branchid, roomid);
         foreach(var x in rom) { 
-        //for (rowCtr = 1; rowCtr <= rowCnt; rowCtr++)
-        //{
-            // Create new row and add it to the table.
             TableRow tRow = new TableRow();
             assetsViewTable.Rows.Add(tRow);
-            //for (cellCtr = 1; cellCtr <= cellCnt; cellCtr++)
-            //{
-            //    // Create a new cell and add it to the row.
-            //    TableCell tCell = new TableCell();
-            //    tCell.Text = roomid.ToString();
-            //    tRow.Cells.Add(tCell);
-            //}
             TableCell tCellr = new TableCell();
             tCellr.Text = x.room_id.ToString();
             tRow.Cells.Add(tCellr);

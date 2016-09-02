@@ -28,30 +28,33 @@
 
      <div id="myTabContent" class="tab-content">
                           <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
-  <div style="overflow:auto;">
-        <div></div><label class="control-label col-md-4 " for="room no">Room No <span class="required">*</span>
+     <div style="overflow:auto;">
+      
+        <label class="control-label col-md-4 " for="room no">Room No <span class="required">*</span>
                                                    
-                                   <div class="form-group col-md-6">
+                         <div class="form-group col-md-6">
 
                         
                         
-                         <%  int bid = employeeProfile.getEmployeBranch("kk");//get from session %>
-                               <input type="hidden" name="branch" id="branch" value=<%= bid%> />
-                              <select  id="rnovxxxx" name="rnovxxxx"  class="form-control col-md-7 col-xs-12" >
-                                     <option>Select Room</option>
-                                      <%  
+                             <%  int bid = employeeProfile.getEmployeBranch("kk");//get from session %>
+                                   <input type="hidden" name="branch" id="branch" value=<%= bid%> />
+                                  <select  id="rnovxxxx" name="rnovxxxx"  class="form-control col-md-7 col-xs-12" >
+                                         <option value="0">Select Room</option>
+                                          <%  
 
-                                          IQueryable<room> r = roomsclass.getAllRooms(bid);
-                                          foreach (var x in r)
-                                          { %>
-                                         <option value='<%=x.Id %>'><%= x.room_no %></option>
-                                       <%} %>
-                                  </select>
-                      </div></label>
+                                              IQueryable<room> r = roomsclass.getAllRooms(bid);
+                                              foreach (var x in r)
+                                              { %>
+                                             <option value='<%=x.Id %>'><%= x.room_no %></option>
+                                           <%} %>
+                                </select>
+                      </div>
+
+        </label>
       <asp:Button ID="Button1" runat="server" Text="Button" OnClick="Button1_Click" />   
                                       </div>
                              
-                           <asp:Table class="data table table-striped no-margin" ID="assetsViewTable"  RepeatColumns="4" runat="server">
+                           <asp:Table class="data table table-striped no-margin" ID="assetsViewTable"  runat="server">
                              
                             
                              
@@ -59,7 +62,7 @@
                              
                            </asp:Table>
       </div>
-                              </div>
+                              
 
 
                                 <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
@@ -108,7 +111,7 @@
                          <% // int bid = employeeProfile.getEmployeBranch("kk");//get from session %>
                                
                               <select  id="rno" name="rno"  class="form-control col-md-7 col-xs-12">
-                                     <option>Select Room</option>
+                                     <option value='0'>Select Room</option>
                                       <%  
 
                                         //  IQueryable<room> r = roomsclass.getAllRooms(bid);
@@ -147,6 +150,7 @@
                         </div>
                       </div>
                             </div>
+         </div>
 
          </div>
         </div>
@@ -154,13 +158,7 @@
          </div>
          </div>
         </div>
-         </div>
-    
-
-
-
-     </div>
-    
+        
 
 
 
