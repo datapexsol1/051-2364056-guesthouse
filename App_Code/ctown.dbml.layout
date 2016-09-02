@@ -44,5 +44,11 @@
         <elementListCompartment Id="c93a2021-a937-4005-a79f-b5a015a0e42f" absoluteBounds="1.1400000000000001, 4.71, 1.9700000000000002, 5.249226888020833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
+    <classShape Id="7807b78e-e51b-4693-8090-627b663ea781" absoluteBounds="3.5, 4.5, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/ctownDataContext/room_asset" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6805c206-ab83-4020-9ea5-039e2d19679d" absoluteBounds="3.5149999999999997, 4.96, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

@@ -50,6 +50,9 @@ public partial class ctownDataContext : System.Data.Linq.DataContext
   partial void Insertguest(guest instance);
   partial void Updateguest(guest instance);
   partial void Deleteguest(guest instance);
+  partial void Insertroom_asset(room_asset instance);
+  partial void Updateroom_asset(room_asset instance);
+  partial void Deleteroom_asset(room_asset instance);
   #endregion
 	
 	public ctownDataContext() : 
@@ -135,6 +138,14 @@ public partial class ctownDataContext : System.Data.Linq.DataContext
 		get
 		{
 			return this.GetTable<guest>();
+		}
+	}
+	
+	public System.Data.Linq.Table<room_asset> room_assets
+	{
+		get
+		{
+			return this.GetTable<room_asset>();
 		}
 	}
 }
@@ -1180,7 +1191,7 @@ public partial class employee : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_image", DbType="VarBinary(MAX)", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_image", DbType="VarBinary(MAX)", UpdateCheck=UpdateCheck.Never)]
 	public System.Data.Linq.Binary image
 	{
 		get
@@ -2260,7 +2271,7 @@ public partial class guest : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_image", DbType="VarBinary(MAX)", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_image", DbType="VarBinary(MAX)", UpdateCheck=UpdateCheck.Never)]
 	public System.Data.Linq.Binary image
 	{
 		get
@@ -2276,6 +2287,164 @@ public partial class guest : INotifyPropertyChanging, INotifyPropertyChanged
 				this._image = value;
 				this.SendPropertyChanged("image");
 				this.OnimageChanged();
+			}
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+		}
+	}
+}
+
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.room_assets")]
+public partial class room_asset : INotifyPropertyChanging, INotifyPropertyChanged
+{
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private int _id;
+	
+	private int _room_id;
+	
+	private string _label;
+	
+	private string _description;
+	
+	private int _total_item;
+	
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void Onroom_idChanging(int value);
+    partial void Onroom_idChanged();
+    partial void OnlabelChanging(string value);
+    partial void OnlabelChanged();
+    partial void OndescriptionChanging(string value);
+    partial void OndescriptionChanged();
+    partial void Ontotal_itemChanging(int value);
+    partial void Ontotal_itemChanged();
+    #endregion
+	
+	public room_asset()
+	{
+		OnCreated();
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+	public int id
+	{
+		get
+		{
+			return this._id;
+		}
+		set
+		{
+			if ((this._id != value))
+			{
+				this.OnidChanging(value);
+				this.SendPropertyChanging();
+				this._id = value;
+				this.SendPropertyChanged("id");
+				this.OnidChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_room_id", DbType="Int NOT NULL")]
+	public int room_id
+	{
+		get
+		{
+			return this._room_id;
+		}
+		set
+		{
+			if ((this._room_id != value))
+			{
+				this.Onroom_idChanging(value);
+				this.SendPropertyChanging();
+				this._room_id = value;
+				this.SendPropertyChanged("room_id");
+				this.Onroom_idChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_label", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+	public string label
+	{
+		get
+		{
+			return this._label;
+		}
+		set
+		{
+			if ((this._label != value))
+			{
+				this.OnlabelChanging(value);
+				this.SendPropertyChanging();
+				this._label = value;
+				this.SendPropertyChanged("label");
+				this.OnlabelChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_description", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+	public string description
+	{
+		get
+		{
+			return this._description;
+		}
+		set
+		{
+			if ((this._description != value))
+			{
+				this.OndescriptionChanging(value);
+				this.SendPropertyChanging();
+				this._description = value;
+				this.SendPropertyChanged("description");
+				this.OndescriptionChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_item", DbType="Int NOT NULL")]
+	public int total_item
+	{
+		get
+		{
+			return this._total_item;
+		}
+		set
+		{
+			if ((this._total_item != value))
+			{
+				this.Ontotal_itemChanging(value);
+				this.SendPropertyChanging();
+				this._total_item = value;
+				this.SendPropertyChanged("total_item");
+				this.Ontotal_itemChanged();
 			}
 		}
 	}
