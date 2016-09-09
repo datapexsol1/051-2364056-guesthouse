@@ -33,11 +33,7 @@
             });
         });
     </script>
-    <style>
-        .btnwidth{
-            width:120%;
-        }
-    </style>
+
 </asp:Content>
 
 
@@ -63,30 +59,19 @@
                       <div  class="form-horizontal form-label-left">
                         
       <div class="form-group">
-         <div class="col-md-12">
-             <div class="col-md-6">
-             <label>Room No <span class="required">*</span>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Room No <span class="required">*</span>
                             </label>
-                            <div>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
                                 <%  int bid = employeeProfile.getEmployeBranch("kk");//get from session %>
                                <input type="hidden" name="branch" id="branch" value=<%= bid%> />
                                     <input type="hidden" name="guestType" id="guestType" value="xyz" />
-                              <select  id="rno" name="rno" required="required" class="form-control col-md-7 col-xs-12">
-                                     <option>Select Room</option>
-                                      <%  
-
-                                          IQueryable<room> r = roomsclass.getAvailableRooms(bid);
-                                          foreach (var x in r)
-                                          { %>
-                                         <option><%= x.room_no %></option>
-                                       <%} %>
-                                  </select>
+                                <asp:TextBox ID="selectedrooms" runat="server"></asp:TextBox>
                             </div>
-         </div>
-             <div class="col-md-6">
-                   <label >Type Of Room</label>
-                            <div >
-                              <div id="type" class="btn-group btn-group-justified" data-toggle="buttons">
+                          </div>
+                                   <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Type Of Room</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <div id="type" class="btn-group" data-toggle="buttons">
                                 <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
                                   <input type="radio" name="rtype" value="business"/> &nbsp; S.G.L &nbsp;
                                 </label>
@@ -104,73 +89,53 @@
                                 </label>
                               </div>
                             </div>
-             </div>
-             </div>
-                            
-                          </div>
- 
-
-         <div class="form-group">
-             <div class="col-md-12">
-                 <div class="col-md-6">
-                     <label >No Of Pax <span class="required">*</span>
-                                </label>
-                                <div >
-                                  <input type="number" id="noofpax" name="noofpax" placeholder="Enter number of persons" min="1" required="required" class="form-control col-md-7 col-xs-12"/>
-                                </div>
-                     </div>
-                 <div class="col-md-6">
-                       <label >Mode Of Payment</label>
-                            <div >
-                              <div id="Pay" class="btn-group btn-group-justified" data-toggle="buttons">
-                                  <div class="btn-group">
-                                <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                  <input type="radio" name="mode" value="business" /> &nbsp; Cash &nbsp;
-                                </label></div>
-                                  <div class="btn-group">
-                                <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                  <input type="radio" name="mode" value="transit"/> Credit Card
-                                </label>
-                                      </div>
-                                      <div class="btn-group">
-                                  <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                  <input type="radio" name="mode" value="vacation"/> Company Account
-                                </label>
-                             </div>
-                              </div>
-                            </div>
-                 </div>
-
-              </div>
-         </div>
-                              
-
-                             
-        <div class="form-group">
-            <div class="col-md-12">
-                 <div class="col-md-6">
-                     <label >Room Rent <span class="required">*</span>
-                            </label>
-                            <div >
-                              <input type="number" id="rrent" name="rrent" placeholder="Enter rent" min="0" required="required" class="form-control col-md-7 col-xs-12"/>
-                            </div>
-                 </div>
-                <div class="col-md-6">
-                    <label >F.D.O <span class="required">*</span>
-                            </label>
-                            <div >
-                              <input type="text" id="fdo" placeholder="Enter FDO" required="required" class="form-control col-md-7 col-xs-12"/>
-                            </div>
-                </div>
-
-            </div>
-                            
                           </div>
 
                                <div class="form-group">
-                                   <div class="col-md-12">
-                                       <label>You are?</label>
-                                            <div>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">No Of Pax <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input type="number" id="noofpax" name="noofpax" required="required" class="form-control col-md-7 col-xs-12"/>
+                            </div>
+                          </div>
+                              
+
+                                 <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Mode Of Payment</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <div id="Pay" class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                                  <input type="radio" name="mode" value="business"/> &nbsp; Cash &nbsp;
+                                </label>
+                                <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                                  <input type="radio" name="mode" value="transit"/> Credit Card
+                                </label>
+                                  <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                                  <input type="radio" name="mode" value="vacation"/> Company Account
+                                </label>
+                             
+                              </div>
+                            </div>
+                          </div>
+                               <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Room Rent <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input type="number" id="rrent" name="rrent" required="required" class="form-control col-md-7 col-xs-12"/>
+                            </div>
+                          </div>
+
+                               <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">F.D.O <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input type="text" id="fdo" required="required" class="form-control col-md-7 col-xs-12"/>
+                            </div>
+</div>
+                          
+                              <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">You are?</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
 
                                 <div id="national" class="btn-group" data-toggle="buttons">
                                     <button id="pakistani">Pakistani</button>
@@ -187,13 +152,8 @@
                                   <input type="radio" id="Foriegner" name="nat" value="Foriegner"/> Foriegner
                                 </label>--%>
                               </div>
-                                   </div>
-                               </div>
-                            
-</div>
-                          
-                            
-                        
+                            </div>
+                          </div>
 
             <hr style="border:solid">              
 </div>

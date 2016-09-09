@@ -82,10 +82,11 @@
                                   <% guestBookingAttributes[] bookings=gusetRegistrationClass.getlocalClientData();
                                       foreach (guestBookingAttributes b in bookings)
                                       {
-
+                                          try
+                                          {
                                        %>
                                 <tr>
-                                    <td><a href="#"><label>Check Out</label></a></td>
+                                    <td><a href="employeguestpayment.aspx?booking=<%=b.b_id%>"<label>Check Out</label></a></td>
                                       <td><label id="image">"Not added yet"</label></td>
                                       <td><label id="checkin"><%=b.b_checkinDate%> </label></td>
                                       <td><label id="checkout"><%=b.b_checkoutdate%> </label></td>
@@ -107,7 +108,7 @@
 
 
                                   </tr>
-                                  <%} %>
+                                  <%} catch (Exception ex) { } } %>
                               </tbody>
                             </table>
                                    </div>
@@ -153,7 +154,7 @@
                                       foreach (guestBookingAttributes fb in fbooking)
                                       { %>
                                  <tr>
-                                     <td><a href="#"><label>Check Out</label></a></td>
+                                     <td><a href="employeguestpayment.aspx?booking=<%=fb.b_id%>"><label>Check Out</label></a></td>
                                       <td><label id="fimage"><%="not yet"%></label></td>
                                       <td><label id="fcheckin"><%=fb.b_checkinDate %></label></td>
                                       <td><label id="fcheckout"><%=fb.b_checkoutdate %></label></td>
