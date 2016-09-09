@@ -65,16 +65,7 @@
                                 <%  int bid = employeeProfile.getEmployeBranch("kk");//get from session %>
                                <input type="hidden" name="branch" id="branch" value=<%= bid%> />
                                     <input type="hidden" name="guestType" id="guestType" value="xyz" />
-                              <select  id="rno" name="rno" required="required" class="form-control col-md-7 col-xs-12">
-                                     <option>Select Room</option>
-                                      <%  
-
-                                          IQueryable<room> r = roomsclass.getAvailableRooms(bid);
-                                          foreach (var x in r)
-                                          { %>
-                                         <option><%= x.room_no %></option>
-                                       <%} %>
-                                  </select>
+                                <asp:TextBox ID="selectedrooms" runat="server"></asp:TextBox>
                             </div>
                           </div>
                                    <div class="form-group">

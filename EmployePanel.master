@@ -64,7 +64,7 @@
                   </li>
                  <li><a href="#"><i class="fa fa-edit"></i> Employee Information</a></li>
 
-                  <li><a href="employeguestregistration.aspx"><i class="fa fa-edit"></i> Guest Registration</a>
+                  <li><a href="employeroomlayout.aspx"><i class="fa fa-edit"></i> Book Room</a>
                     
                   </li>
                   <li><a><i class="fa fa-desktop"></i> Employe Controls <span class="fa fa-chevron-down"></span></a>
