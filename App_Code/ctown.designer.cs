@@ -56,7 +56,7 @@ public partial class ctownDataContext : System.Data.Linq.DataContext
   #endregion
 	
 	public ctownDataContext() : 
-			base(global::System.Configuration.ConfigurationManager.ConnectionStrings["guest_house_databaseConnectionString"].ConnectionString, mappingSource)
+			base(global::System.Configuration.ConfigurationManager.ConnectionStrings["guest_house_databaseConnectionString1"].ConnectionString, mappingSource)
 	{
 		OnCreated();
 	}
