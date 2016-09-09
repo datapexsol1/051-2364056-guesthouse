@@ -84,6 +84,8 @@
                                       {
                                           try
                                           {
+                                              if (b.b_id != 0)
+                                              {
                                        %>
                                 <tr>
                                     <td><a href="employeguestpayment.aspx?booking=<%=b.b_id%>"<label>Check Out</label></a></td>
@@ -108,7 +110,8 @@
 
 
                                   </tr>
-                                  <%} catch (Exception ex) { } } %>
+                                  <%}
+        } catch (Exception ex) { } } %>
                               </tbody>
                             </table>
                                    </div>
