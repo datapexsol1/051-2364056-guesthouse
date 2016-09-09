@@ -84,6 +84,8 @@
                                       {
                                           try
                                           {
+                                              if (b.b_id != 0)
+                                              {
                                        %>
                                 <tr>
                                     <td><a href="employeguestpayment.aspx?booking=<%=b.b_id%>"<label>Check Out</label></a></td>
@@ -108,7 +110,8 @@
 
 
                                   </tr>
-                                  <%} catch (Exception ex) { } } %>
+                                  <%}
+                                                   } catch (Exception ex) { } } %>
                               </tbody>
                             </table>
                                    </div>
@@ -152,7 +155,8 @@
                               <tbody>
                                   <% guestBookingAttributes[] fbooking = gusetRegistrationClass.getforignerClientData();
                                       foreach (guestBookingAttributes fb in fbooking)
-                                      { %>
+                                      { 
+                                          %>
                                  <tr>
                                      <td><a href="employeguestpayment.aspx?booking=<%=fb.b_id%>"><label>Check Out</label></a></td>
                                       <td><label id="fimage"><%="not yet"%></label></td>

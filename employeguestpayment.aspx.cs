@@ -33,6 +33,7 @@ public partial class employeguestpayment : System.Web.UI.Page
             TableCell tCell6 = new TableCell();
             tCell6.Text = "Checkout";
             tRow1.Cells.Add(tCell6);
+            
             foreach (bookingRoomAttr x in data)
             {
                 TableRow tRow = new TableRow();
@@ -56,9 +57,8 @@ public partial class employeguestpayment : System.Web.UI.Page
                tCellbtotal.Text = totalcost(Double.Parse(x.r_rent), x.b_check_in_date).ToString();
                 tRow.Cells.Add(tCellbtotal);
                 TableCell checkoutbtn = new TableCell();
-                checkoutbtn.Text = "<a href='#'>Checkout</a>";
+                checkoutbtn.Text = "<a href='#' style='color:blue;' >Checkout</a>";
                 tRow.Cells.Add(checkoutbtn);
-
 
             }
 
