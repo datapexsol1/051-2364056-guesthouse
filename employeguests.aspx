@@ -111,7 +111,7 @@
 
                                   </tr>
                                   <%}
-                                                   } catch (Exception ex) { } } %>
+        } catch (Exception ex) { } } %>
                               </tbody>
                             </table>
                                    </div>
