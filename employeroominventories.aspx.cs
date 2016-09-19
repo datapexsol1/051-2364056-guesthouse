@@ -9,7 +9,18 @@ public partial class employeroominventories : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        int bid = employeeProfile.getEmployeBranch("kk");//get from session
+        IQueryable<room> r = roomsclass.getAllRooms(bid);
+        string[] rooms = new string[r.Count()];
+        int i = 0;
+        foreach(var x in r)
+        {
+           
+            rooms[i] = x.room_no;
+            i++;
+        }
+        uroomno.DataSource = rooms;
+        uroomno.DataBind();
     }
     
   protected void saveAssets_click(object sender, EventArgs e)

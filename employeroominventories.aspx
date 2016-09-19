@@ -30,9 +30,8 @@
                           <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
      <div style="overflow:auto;">
       
-        <label class="control-label col-md-4 " for="room no">Room No <span class="required">*</span>
                                                    
-                         <div class="form-group col-md-6">
+                         <div class="form-group col-md-5">
 
                         
                         
@@ -50,8 +49,8 @@
                                 </select>
                       </div>
 
-        </label>
-      <asp:Button ID="Button1" runat="server" Text="Button" OnClick="Button1_Click" />   
+
+      <asp:Button ID="Button1" runat="server" Text="Save" OnClick="Button1_Click" class="btn btn-success" />   
                                       </div>
                              
                            <asp:Table class="data table table-striped no-margin" ID="assetsViewTable"  runat="server">
@@ -82,7 +81,16 @@
                               </thead>
                               <tbody>
                                 <tr>
-                                  <td> <input type="number" id="uroomno" name="aroomno"  placeholder="Room No Xyz" class="form-control "/></td>
+                                  <td>
+                                        
+                                                 <asp:DropDownList  runat="server" class="form-control" ID="uroomno" name="aroomno">
+                                                      
+                                                   
+                                         
+                                               </asp:DropDownList>  
+                                  
+                                     </td>
+
                                     <td><select class="form-control" name="roombranch">
                                         <option value="0">Select</option>
                                         </select></td>
@@ -103,14 +111,11 @@
 
            <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
                              
-                              
-                        <div class="form-group col-md-6">
-
-                        <label class="control-label col-md-4 " for="room no">Room No <span class="required">*</span>
-                        </label>
-                         <% // int bid = employeeProfile.getEmployeBranch("kk");//get from session %>
-                               
-                              <select  id="rno" name="rno"  class="form-control col-md-7 col-xs-12">
+                           <div class="form-group">
+                        
+                        <div class="col-md-6">
+                            <label >Room No</label>
+                          <select  id="rno" name="rno"  class="form-control col-md-7 col-xs-12">
                                      <option value='0'>Select Room</option>
                                       <%  
 
@@ -120,33 +125,41 @@
                                          <option value='<%=x.Id %>'><%= x.room_no %></option>
                                        <%} %>
                                   </select>
-                          </div>
-                              <div class="form-group col-md-6">
-                                    <label class="control-label col-md-4 " for="room no">Label <span class="required">*</span> </label>
-                                    <div class="col-md-8">
-                                      <input type="text" id="alabel" name="alabel" placeholder="Label" class="form-control "/>
-                                    </div>
-                              </div>
-                     
+                        </div>
+                      </div>   
 
-                               <div class="form-group col-md-6">
-                        <label class="control-label col-md-4 " for="room type">Item Description <span class="required">*</span>
-                        </label>
-                        <div class="col-md-8">
+
+                        <div class="form-group">
+                        
+                        <div class="col-md-6">
+                            <label >Label</label>
+                          <input type="text" id="alabel" name="alabel" placeholder="Label" class="form-control "/>
+                        </div>
+                      </div>
+
+                    
+                    <div class="form-group">
+                        
+                        <div class="col-md-6">
+                            <label >Item Description</label>
                           <input type="text" id="adescription" name="adescription"  placeholder="Description" class="form-control "/>
                         </div>
                       </div>
-                               <div class="form-group col-md-6">
-                        <label class="control-label col-md-4" for="room size">Number of Item <span class="required">*</span>
-                        </label>
-                        <div class="col-md-8">
+                              
+                     
+                <div class="form-group">
+                        
+                        <div class="col-md-6">
+                            <label >Number of Item</label>
                           <input type="number" id="aitemno" name="insertaitemno"  placeholder="Number Of Items" class="form-control "/>
                         </div>
                       </div>
+                            
+                             
                            
                               <div class="form-group">
-                        <div class="col-md-6 col-md-offset-11">
-                        <asp:Button ID="SaveAssets" runat="server" OnClick="saveAssets_click" Text="SaveAssets" />
+                        <div class="col-md-6">
+                        <asp:Button ID="SaveAssets" runat="server" OnClick="saveAssets_click" Text="Save" class="btn btn-success"/>
                         </div>
                       </div>
                             </div>

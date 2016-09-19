@@ -136,14 +136,17 @@
                           <!-- end add activity -->
                           <!-- start update activity-->
                         <div role="tabpanel" class="tab-pane fade" id="tab_update" aria-labelledby="profile-tab">
-                            <div class="col-md-9 col-xs-12">
+                            <div class="col-md-12">
                 <div class="x_panel">
                  
                   <div class="x_content">
-                    <br />
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Select type</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
+                  
+                   <div class="row">
+                        <div class="col-md-6">
+                       <div class="form-group">
+                        
+                       
+                            <label>Select type</label>
                           <select class="form-control">
                             <option>Breakfast</option>
                             <option>Soups</option>
@@ -159,34 +162,57 @@
                           </select>
                         </div>
                       </div>
+                       <div class="col-md-6">
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Select Item</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
+                        
+                        
+                            <label >Select Item</label>
                           <select class="form-control">
                             <option>choose item</option>
                             
                           </select>
                         </div>
                       </div>
+                       </div>
+               
+                       <div class="row">
+                           <div class="col-md-6">
+                           <div class="form-group">
+                       
+                        
+                             <label >Edit type (optional)</label>
+                          <input type="text" class="form-control" placeholder="Enter type"/>
+                        </div>
+                      </div>
+                           <div class="col-md-6">
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Edit item (optional)</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
+                       
+                        
+                             <label >Edit item (optional)</label>
                           <input type="text" class="form-control" placeholder="Enter item name"/>
                         </div>
                       </div>
+                           </div>
+                      <div class="row">
+                          <div class="col-md-6">
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Price</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
+                        
+                        
+                            <label >Price</label>
                           <input type="number" class="form-control" placeholder="Enter Price" min="0"/>
                         </div>
                       </div>
-                     <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Quantity</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <div class="col-md-6">
+                    <div class="form-group">
+                        
+                        
+                            <label ">Quantity</label>
                           <input type="text" class="form-control" placeholder="Enter Quantity" min="0"/>
                         </div>
 
                       </div>
+                           </div>
+                     
                       <br />
                       <div class="form-group">
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
