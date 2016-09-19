@@ -155,7 +155,8 @@
                               <tbody>
                                   <% guestBookingAttributes[] fbooking = gusetRegistrationClass.getforignerClientData();
                                       foreach (guestBookingAttributes fb in fbooking)
-                                      { %>
+                                      { 
+                                          %>
                                  <tr>
                                      <td><a href="employeguestpayment.aspx?booking=<%=fb.b_id%>"><label>Check Out</label></a></td>
                                       <td><label id="fimage"><%="not yet"%></label></td>

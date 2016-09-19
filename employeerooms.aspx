@@ -1,6 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EmployePanel.master" AutoEventWireup="true" CodeFile="employeerooms.aspx.cs" Inherits="employeerooms" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+   <style>
+       .tbl{
+           margin-left:-20px;
+       }
+   </style>
 </asp:Content>
 
 
@@ -8,15 +13,14 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
-
-     <head>
+ <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Gentellela Alela! | </title>
+    <title></title>
 
     <!-- Bootstrap -->
     <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -27,13 +31,15 @@
 
     <!-- Custom Theme Style -->
     <link href="../custom/custom.min.css" rel="stylesheet">
-  </head>
+    </head>
+     
       <div class="right_col" role="main">
     <div class="row">
      <div class="col-md-12 col-sm-12 col-xs-12">
      <div class="x_content">
      <div class="col-md-9 col-sm-9 col-xs-12">
          <h3>Rooms</h3>
+          <div class="container">
     <div class="" role="tabpanel" data-example-id="togglable-tabs">
                         <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
                           <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Rooms</a></li>
@@ -57,8 +63,9 @@
 
 
                             <!-- start recent activity -->
-                           <table class="data table table-striped no-margin">
-                              <thead>
+                           
+                           <table class="table tbl">
+                              <thead class="thead-inverse">
                                 <tr>
                                   <th>Room No</th>
                                   <th>Room Type</th>
@@ -92,6 +99,7 @@
                               </tbody>
                             </table>
                             <!-- end recent activity -->
+                              
 
                  </div>
                          
@@ -169,7 +177,7 @@
          </div>
         </div>
           </div>
-    
+    </div>
 
 
       <!-- jQuery -->
