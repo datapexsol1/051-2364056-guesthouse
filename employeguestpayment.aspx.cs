@@ -33,7 +33,6 @@ public partial class employeguestpayment : System.Web.UI.Page
             TableCell tCell6 = new TableCell();
             tCell6.Text = "Checkout";
             tRow1.Cells.Add(tCell6);
-            
             foreach (bookingRoomAttr x in data)
             {
                 TableRow tRow = new TableRow();
@@ -57,15 +56,17 @@ public partial class employeguestpayment : System.Web.UI.Page
                tCellbtotal.Text = totalcost(Double.Parse(x.r_rent), x.b_check_in_date).ToString();
                 tRow.Cells.Add(tCellbtotal);
                 TableCell checkoutbtn = new TableCell();
-                checkoutbtn.Text = "<a href='#' style='color:blue;' >Checkout</a>";
+                if (x.r_checkout != null)
+                {
+                    checkoutbtn.Text = "<h5 style='color:red'>"+x.r_checkout+"</h5>";
+                }
+                else
+                {
+                    checkoutbtn.Text = "<a style='color:blue' href='adminsingleroomcheckout.aspx?roomid=" + x.r_roomid.ToString()+"&&booking="+bid+"'>Checkout</a>";
+                }
                 tRow.Cells.Add(checkoutbtn);
 
             }
-
-        }
-        else
-        {
-            
         }
     }
     double totalcost(double costperday,DateTime d1)

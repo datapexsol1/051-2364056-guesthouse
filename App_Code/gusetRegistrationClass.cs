@@ -131,7 +131,6 @@ public class gusetRegistrationClass
                       });
         guestBookingAttributes[] bookingguestdata = new guestBookingAttributes[result.Count()];
         int i = 0;
-        int z = 0;
         foreach (var x in result)
         {
             if (i == 0)
