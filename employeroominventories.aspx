@@ -14,7 +14,7 @@
          <h3>Room Assets</h3>
     <div class="" role="tabpanel" data-example-id="togglable-tabs">
                         <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-                          <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Room Assets</a>
+                          <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="false">Room Assets</a>
                           </li>
                           <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Update Assets</a>
                           </li>
@@ -24,9 +24,9 @@
                           
                         </ul>
 
+        </div>
 
-
-     <div id="myTabContent" class="tab-content">
+   <div id="myTabContent" class="tab-content">
                           <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
      <div style="overflow:auto;">
       
@@ -50,7 +50,7 @@
                       </div>
 
 
-      <asp:Button ID="Button1" runat="server" Text="Save" OnClick="Button1_Click" class="btn btn-success" />   
+      <asp:Button ID="Button1" runat="server" Text="View" OnClick="Button1_Click" class="btn btn-success" />   
                                       </div>
                              
                            <asp:Table class="data table table-striped no-margin" ID="assetsViewTable"  runat="server">

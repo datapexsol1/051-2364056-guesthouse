@@ -9,7 +9,8 @@ public partial class employeroominventories : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        if (!IsPostBack)
+        {
             int bid = employeeProfile.getEmployeBranch("kk");//get from session
             IQueryable<room> r = roomsclass.getAllRooms(bid);
             string[] rooms = new string[r.Count()];
@@ -22,8 +23,10 @@ public partial class employeroominventories : System.Web.UI.Page
             }
             uroomno.DataSource = rooms;
             uroomno.DataBind();
-        branch.Value = bid.ToString();
-        
+            branch.Value = bid.ToString();
+            
+          //  Response.Redirect("#tab_add");
+        }
 
     }
     protected void roomSelectedIndexChange(object sender,EventArgs e)
@@ -40,13 +43,16 @@ public partial class employeroominventories : System.Web.UI.Page
         }
         roombranch.DataSource = rooms;
         roombranch.DataBind();
+        Page.MaintainScrollPositionOnPostBack = true;
+        roombranch.Focus();
     }
     protected void inventorySelectedIndexChange(object sender,EventArgs e)
     {
-        
-       
-        
-   // ulabel.Value = ;
+
+        var selectedValue = ((DropDownList)sender).SelectedValue;
+
+         ulabel.Value = selectedValue;
+        Page.MaintainScrollPositionOnPostBack = true;
     }
   protected void saveAssets_click(object sender, EventArgs e)
     {
@@ -79,7 +85,7 @@ public partial class employeroominventories : System.Web.UI.Page
         tRow1.Cells.Add(tCell4);
         // }
         int roomid=int.Parse(Request["rnovxxxx"].ToString());
-        int branchid = int.Parse(Request["branch"]);
+        int branchid = int.Parse(branch.Value);
        
         
         IQueryable<room_asset> rom = roomassetclass.getAllRoomAssets(branchid, roomid);
