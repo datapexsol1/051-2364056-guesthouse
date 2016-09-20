@@ -9,20 +9,45 @@ public partial class employeroominventories : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        int bid = employeeProfile.getEmployeBranch("kk");//get from session
-        IQueryable<room> r = roomsclass.getAllRooms(bid);
-        string[] rooms = new string[r.Count()];
+
+            int bid = employeeProfile.getEmployeBranch("kk");//get from session
+            IQueryable<room> r = roomsclass.getAllRooms(bid);
+            string[] rooms = new string[r.Count()];
+            int i = 0;
+            foreach (var x in r)
+            {
+
+                rooms[i] = x.room_no;
+                i++;
+            }
+            uroomno.DataSource = rooms;
+            uroomno.DataBind();
+        branch.Value = bid.ToString();
+        
+
+    }
+    protected void roomSelectedIndexChange(object sender,EventArgs e)
+    {
+        int roomId = roomsclass.getRoomID(uroomno.SelectedItem.ToString(), int.Parse(branch.Value));
+        IQueryable<room_asset> r = roomassetclass.getinventry(roomId);
+      string[] rooms = new string[r.Count()];
         int i = 0;
-        foreach(var x in r)
+           foreach (var x in r)
         {
-           
-            rooms[i] = x.room_no;
+
+            rooms[i] = x.label;
             i++;
         }
-        uroomno.DataSource = rooms;
-        uroomno.DataBind();
+        roombranch.DataSource = rooms;
+        roombranch.DataBind();
     }
-    
+    protected void inventorySelectedIndexChange(object sender,EventArgs e)
+    {
+        
+       
+        
+   // ulabel.Value = ;
+    }
   protected void saveAssets_click(object sender, EventArgs e)
     {
         room_asset r = new room_asset();

@@ -36,7 +36,7 @@
                         
                         
                              <%  int bid = employeeProfile.getEmployeBranch("kk");//get from session %>
-                                   <input type="hidden" name="branch" id="branch" value=<%= bid%> />
+                                   <input type="hidden" name="branch" id="branch"  runat="server"/>
                                   <select  id="rnovxxxx" name="rnovxxxx"  class="form-control col-md-7 col-xs-12" >
                                          <option value="0">Select Room</option>
                                           <%  
@@ -83,7 +83,7 @@
                                 <tr>
                                   <td>
                                         
-                                                 <asp:DropDownList  runat="server" class="form-control" ID="uroomno" name="aroomno">
+                                                 <asp:DropDownList  runat="server" class="form-control" ID="uroomno" name="aroomno" AutoPostBack="True" OnSelectedIndexChanged="roomSelectedIndexChange">
                                                       
                                                    
                                          
@@ -91,10 +91,17 @@
                                   
                                      </td>
 
-                                    <td><select class="form-control" name="roombranch">
-                                        <option value="0">Select</option>
-                                        </select></td>
-                                  <td> <input type="text" id="ulabel" name="alabel"  placeholder="Label" class="form-control "/></td>
+                                    <td>
+                                        <asp:DropDownList  runat="server" class="form-control" ID="roombranch" name="roombranch" AutoPostBack="True"  OnSelectedIndexChanged="inventorySelectedIndexChange">
+                                                      
+                                                   
+                                         
+                                               </asp:DropDownList> 
+                                        
+                                        
+                                        
+                                        </td>
+                                  <td> <input type="text" id="ulabel" name="alabel"  placeholder="Label" class="form-control " runat="server"/></td>
                                   <td>  <input type="text" id="udescription" name="adescription"  placeholder="Description" class="form-control "/></td>
                                   <td>   <input type="number" id="uitemno" name="aitemno"  placeholder="Number Of Items" class="form-control "/></td>
                                   <td>  <asp:Button ID="send" runat="server" Text="Update"  class="btn btn-success" /></td>
