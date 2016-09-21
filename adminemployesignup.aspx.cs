@@ -28,8 +28,8 @@ public partial class adminemployesignup : System.Web.UI.Page
         emp.dateofjoining = DateTime.Now;
         emp.login_type = "Employe";
         //if(imageuploaded.hasfile)then do this
-        HttpPostedFile postedfile = image.PostedFile;
-        emp.image = imageToByteArray(postedfile);
+   //     HttpPostedFile postedfile = image.PostedFile;
+       // emp.image = imageToByteArray(postedfile);
         emp.address = Request.Form["address"].ToString(); ;
 
         bool result=employeeProfile.employeSignUp(emp);

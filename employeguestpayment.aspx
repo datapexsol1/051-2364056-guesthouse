@@ -16,28 +16,18 @@
          <h3>Guest Payment</h3>
          <hr style="border:dashed;" />
          <div>
+             <asp:HiddenField ID="roomCheckout" runat="server" />
              <h3>Room Payment</h3>
                <div style="overflow:auto;white-space:nowrap;">
-                               <table class="table table-bordered table-striped" <%-- class="data table table-striped no-margin"--%> >
-                              <thead>
-                                <tr >
-                                    <th>Room No</th>
-                                    <th>Room Rent</th>
-                                    <th>Check In Date</th>
-                                    <th>Check Out Date</th>
-                                    <th>Total</th>
-                                    </tr>
-                                  </thead>
-                                   <tbody>
-                                       <tr>
-                                           <td><label id="roomno"></label></td>
-                                           <td><label id="roomrent"></label></td>
-                                           <td><label id="checkin"></label></td>
-                                           <td><label id="checkout"></label></td>
-                                           <td><label id="total"></label></td>
-                                     </tr>
-                                   </tbody>
-                                   </table>
+    <asp:Table ID="bookingtable" runat="server" class="table table-bordered table-striped">
+
+
+
+    </asp:Table>
+                              
+                                    
+                                    
+                                 
         </div>
          </div>
 

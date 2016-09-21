@@ -9,9 +9,59 @@ public partial class employeroominventories : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (!IsPostBack)
+        {
+            int bid = employeeProfile.getEmployeBranch("kk");//get from session
+            IQueryable<room> r = roomsclass.getAllRooms(bid);
+            string[] rooms = new string[r.Count()];
+            int i = 0;
+            foreach (var x in r)
+            {
+
+                rooms[i] = x.room_no;
+                i++;
+            }
+            uroomno.DataSource = rooms;
+            uroomno.DataBind();
+            branch.Value = bid.ToString();
+            
+          //  Response.Redirect("#tab_add");
+        }
 
     }
-    
+    protected void roomSelectedIndexChange(object sender,EventArgs e)
+    {
+        int roomId = roomsclass.getRoomID(uroomno.SelectedItem.ToString(), int.Parse(branch.Value));
+        IQueryable<room_asset> r = roomassetclass.getinventry(roomId);
+      string[] rooms = new string[r.Count()];
+        int i = 0;
+           foreach (var x in r)
+        {
+
+            rooms[i] = x.label;
+            i++;
+        }
+        roombranch.DataSource = rooms;
+        roombranch.DataBind();
+        ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "activaTab('tab_content2');", true);
+
+    }
+    protected void inventorySelectedIndexChange(object sender,EventArgs e)
+    {
+        ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "activaTab('tab_content2');", true);
+        int roomId = roomsclass.getRoomID(uroomno.SelectedItem.ToString(), int.Parse(branch.Value));
+        var selectedValue = ((DropDownList)sender).SelectedValue;
+        room_asset r = roomassetclass.getRoomAssetsInfo(roomId,selectedValue);
+        ulabel.Value = r.label;
+        udescription.Value = r.description;
+        uitemno.Value = r.total_item.ToString();
+        inventoryId.Value = r.id.ToString();
+        //     string itemDescription = roomassetclass.getdecriptionItem();
+
+        // ulabel.Value = selectedValue;
+
+        //    udescription.Value = ;
+    }
   protected void saveAssets_click(object sender, EventArgs e)
     {
         room_asset r = new room_asset();
@@ -20,6 +70,16 @@ public partial class employeroominventories : System.Web.UI.Page
         r.description = Request.Form["adescription"].ToString();
         r.total_item =int.Parse(Request.Form["insertaitemno"].ToString());
         roomassetclass.addinventry(r);
+    }
+    protected void updateAssets_click(object sender, EventArgs e)
+    {
+        
+        room_asset r = new room_asset();
+        r.room_id = roomsclass.getRoomID(uroomno.Text, int.Parse(branch.Value));
+        r.label = ulabel.Value;
+        r.description = udescription.Value;
+        r.total_item = int.Parse(uitemno.Value);
+        roomassetclass.updateInventory(r, int.Parse(inventoryId.Value));
     }
 
     protected void Button1_Click(object sender, EventArgs e)
@@ -43,7 +103,7 @@ public partial class employeroominventories : System.Web.UI.Page
         tRow1.Cells.Add(tCell4);
         // }
         int roomid=int.Parse(Request["rnovxxxx"].ToString());
-        int branchid = int.Parse(Request["branch"]);
+        int branchid = int.Parse(branch.Value);
        
         
         IQueryable<room_asset> rom = roomassetclass.getAllRoomAssets(branchid, roomid);

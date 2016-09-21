@@ -9,9 +9,15 @@ public partial class employeguestregistration : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (IsPostBack)
+        
+        if (!IsPostBack)
         {
-           // Save_Click(sender, e);
+
+           string value =Request.QueryString["id"].ToString();
+            selectedrooms.Text = value;
+          
+            // Save_Click(sender, e);
+            
         }
 
     }
@@ -93,13 +99,32 @@ public partial class employeguestregistration : System.Web.UI.Page
         booking b = new booking();
         b.branch_id = int.Parse(Request.Form["branch"].ToString());
         b.check_in_date = DateTime.Now;
-        b.room_id = roomsclass.getRoomID(Request.Form["rno"].ToString(), int.Parse(Request.Form["branch"].ToString()));
+      //  b.room_id = roomsclass.getRoomID(Request.Form["rno"].ToString(), int.Parse(Request.Form["branch"].ToString()));
         b.employee_id = employeeProfile.getEmployeid("kk");//get employe username from sessions
         b.guest_id = gusetRegistrationClass.insertGuestinfo(g);//will insert guest data to db and return the id of the guest
         b.check_out_date = null;
-        b.booking_rent = Request.Form["rrent"].ToString();
+     //   b.booking_rent = Request.Form["rrent"].ToString();
         b.guest_reg_card_arr_date = "111";
         b.no_of_pax = Request.Form["noofpax"].ToString();
-        gusetRegistrationClass.bookRoom(b);
+        //  gusetRegistrationClass.bookRoom(b);
+        int bid=gusetRegistrationClass.roomBooking(b);
+        if (bid != 0)
+        {
+            string[] roomsbooked = selectedrooms.Text.Split(',');
+            booking_Room[] r = new booking_Room[roomsbooked.Length];
+
+            for (int i = 0; i < roomsbooked.Length; i++)
+            {
+                r[i] = new booking_Room();
+                r[i].roomid = roomsclass.getRoomID(roomsbooked[i], int.Parse(Request.Form["branch"].ToString()));
+                r[i].booking_rent = Request.Form["rrent"].ToString();
+                r[i].checkout = null;
+                r[i].bookingId = bid;//.Parse(Request.Form["branch"].ToString());
+
+            }
+            gusetRegistrationClass.bookRooms(r);
+        }
+          
+
     }
 }
