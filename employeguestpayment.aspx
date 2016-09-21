@@ -16,6 +16,7 @@
          <h3>Guest Payment</h3>
          <hr style="border:dashed;" />
          <div>
+             <asp:HiddenField ID="roomCheckout" runat="server" />
              <h3>Room Payment</h3>
                <div style="overflow:auto;white-space:nowrap;">
     <asp:Table ID="bookingtable" runat="server" class="table table-bordered table-striped">

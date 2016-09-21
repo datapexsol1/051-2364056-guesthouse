@@ -1,5 +1,4 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EmployePanel.master" AutoEventWireup="true" CodeFile="employebranchinventory.aspx.cs" Inherits="employebranchinventory" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 
@@ -23,53 +22,61 @@
                             
                           
                         </ul>
-       
-         <div id="myTabContent" class="tab-content">
+
+
+
+     <div id="myTabContent" class="tab-content">
                           <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
-                                <div style="overflow:auto;">
-       <!-- start recent activity -->
-                        <table class="data table table-striped no-margin">
-                              <thead>
-                                <tr>
-                                  <th>Branch No</th>
-                                  <th>Asset Tittle</th>
-                                  <th>Asset Description</th>
+     <div style="overflow:auto;">                                              
+                         <div class="form-group col-md-6">
+
+                        
+                        
+                             <%  int bid = employeeProfile.getEmployeBranch("kk");//get from session
+                                  %>
+                                   <input type="hidden" name="branch" id="branch" value=<%= bid%> />
                                  
-                                </tr>
-                              </thead>
-                              <tbody>
-                                
+                      </div>
+
+        
+      
+                                      </div>
+                             
+                           <asp:Table class="data table table-striped no-margin" ID="assetsViewTable"  runat="server">
+                             
+                            
+                             
                                
-                              </tbody>
-                            </table>
-                            <!-- end recent activity -->
-
-                 </div>
-                              </div>
+                             
+                           </asp:Table>
+      </div>
+                              
 
 
+                                <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
 
 
-              <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
-
-
-                                     <div style="overflow:auto;">
+                                     <div style="overflow:auto;white-space:nowrap;">
        <table class="data table table-striped no-margin">
                               <thead>
                                 <tr>
-                                  <th>Branch No</th>
-                                  <th>Title</th>
+                                  <th>Room No</th>
+                                    <th>Select Inventory</th>
+                                  <th>Label</th>
                                   <th>Item Description</th>
-                                
+                                  <th>Number Of Item</th>
                                  
                                 </tr>
                               </thead>
                               <tbody>
                                 <tr>
-                                  <td> <input type="number" id="uroomno" name="ubranchno" required="required" placeholder="Branch No" class="form-control "/></td>
-                                  <td> <input type="text" id="ulabel" name="utitle" required="required" placeholder="Title" class="form-control "/></td>
-                                  <td>  <input type="text" id="udescription" name="adescription" required="required" placeholder="Description" class="form-control "/></td>
-                                 
+                                  <td> <input type="number" id="uroomno" name="aroomno"  placeholder="Room No Xyz" class="form-control "/></td>
+                                    <td><select class="form-control" name="roombranch">
+                                        <option value="0">Select</option>
+                                        </select></td>
+                                  <td> <input type="text" id="ulabel" name="alabel"  placeholder="Label" class="form-control "/></td>
+                                  <td>  <input type="text" id="udescription" name="adescription"  placeholder="Description" class="form-control "/></td>
+                                  <td>   <input type="number" id="uitemno" name="aitemno"  placeholder="Number Of Items" class="form-control "/></td>
                                   <td>  <asp:Button ID="send" runat="server" Text="Update"  class="btn btn-success" /></td>
                                 </tr>
                                
@@ -82,58 +89,60 @@
                               </div>
 
 
-             <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
+           <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
+                             
+                              
+                        <div class="form-group col-md-6">
 
-
-
-
-                                        <div class="form-group col-md-6">
-                        <label class="control-label col-md-4 " for="room no">Branch No <span class="required">*</span>
+                        <label class="control-label col-md-4 " for="room no">Room No <span class="required">*</span>
                         </label>
-                        <div class="col-md-8">
-                          <input type="number" id="bno" name="bno" required="required" placeholder="Branch No" class="form-control "/>
-                        </div>
-                      </div>
+                         <% // int bid = employeeProfile.getEmployeBranch("kk");//get from session 
+                            string bname = employeeProfile.getEmployeBranchname("kk");%>
+                                <div class="col-md-8">
+                                      <input type="text" id="alabel" name="alabel" value="<%=bname %>" class="form-control "/>
+                                    </div>
+                             
+                          </div>
                               <div class="form-group col-md-6">
-                               <label class="control-label col-md-4 " for="room no">Asset Tittle <span class="required">*</span>
-                        </label>
-                        <div class="col-md-8">
-                          <input type="text" id="batitle" name="batitle" required="required" placeholder="Asset Tittle" class="form-control "/>
-                        </div>
-                                  </div>
+                                    <label class="control-label col-md-4 " for="room no">Label <span class="required">*</span> </label>
+                                    <div class="col-md-8">
+                                      <input type="text" id="alabel1" name="alabel1" placeholder="Label" class="form-control "/>
+                                    </div>
+                              </div>
                      
 
                                <div class="form-group col-md-6">
-                        <label class="control-label col-md-4 " for="room type">Asset Description<span class="required">*</span>
+                        <label class="control-label col-md-4 " for="room type">Item Description <span class="required">*</span>
                         </label>
                         <div class="col-md-8">
-                          <input type="text" id="badiscription" name="badiscription" required="required" placeholder="Description" class="form-control "/>
+                          <input type="text" id="adescription" name="adescription1"  placeholder="Description" class="form-control "/>
                         </div>
                       </div>
-
-                 
+                               <div class="form-group col-md-6">
+                        <label class="control-label col-md-4" for="room size">Number of Item <span class="required">*</span>
+                        </label>
+                        <div class="col-md-8">
+                          <input type="number" id="aitemno" name="insertaitemno"  placeholder="Number Of Items" class="form-control "/>
+                        </div>
+                      </div>
+                           
                               <div class="form-group">
                         <div class="col-md-6 col-md-offset-11">
-                          <asp:Button ID="Button1" runat="server" Text="Submit"  class="btn btn-success" />
+                        <asp:Button ID="SaveAssets" runat="server" OnClick="saveBAssets_click"  Text="SaveAssets" />
                         </div>
                       </div>
+                            </div>
+         </div>
 
-                 </div>
-
-
-
-
-
-
-
-             </div>
+         </div>
         </div>
          </div>
          </div>
          </div>
         </div>
-         </div>
-    
+        
+
+
 
 </asp:Content>
 

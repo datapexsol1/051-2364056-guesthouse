@@ -64,6 +64,16 @@ public class employeeProfile
                    select b.Id).First();
         return bid;
     }
+    public static string getEmployeBranchname(string username)
+    {
+        ctownDataContext db = new ctownDataContext();
+
+        string bname = (from x in db.GetTable<employee>()
+                   join b in db.branches on x.branch_id equals b.Id
+                   where x.username == username
+                   select b.name).First();
+        return bname;
+    }
     public static int getEmployeid(string username)
     {
         ctownDataContext db = new ctownDataContext();
