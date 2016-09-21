@@ -43,16 +43,24 @@ public partial class employeroominventories : System.Web.UI.Page
         }
         roombranch.DataSource = rooms;
         roombranch.DataBind();
-        Page.MaintainScrollPositionOnPostBack = true;
-        roombranch.Focus();
+        ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "activaTab('tab_content2');", true);
+
     }
     protected void inventorySelectedIndexChange(object sender,EventArgs e)
     {
-
+        ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "activaTab('tab_content2');", true);
+        int roomId = roomsclass.getRoomID(uroomno.SelectedItem.ToString(), int.Parse(branch.Value));
         var selectedValue = ((DropDownList)sender).SelectedValue;
+        room_asset r = roomassetclass.getRoomAssetsInfo(roomId,selectedValue);
+        ulabel.Value = r.label;
+        udescription.Value = r.description;
+        uitemno.Value = r.total_item.ToString();
+        inventoryId.Value = r.id.ToString();
+        //     string itemDescription = roomassetclass.getdecriptionItem();
 
-         ulabel.Value = selectedValue;
-        Page.MaintainScrollPositionOnPostBack = true;
+        // ulabel.Value = selectedValue;
+
+        //    udescription.Value = ;
     }
   protected void saveAssets_click(object sender, EventArgs e)
     {
@@ -62,6 +70,16 @@ public partial class employeroominventories : System.Web.UI.Page
         r.description = Request.Form["adescription"].ToString();
         r.total_item =int.Parse(Request.Form["insertaitemno"].ToString());
         roomassetclass.addinventry(r);
+    }
+    protected void updateAssets_click(object sender, EventArgs e)
+    {
+        
+        room_asset r = new room_asset();
+        r.room_id = roomsclass.getRoomID(uroomno.Text, int.Parse(branch.Value));
+        r.label = ulabel.Value;
+        r.description = udescription.Value;
+        r.total_item = int.Parse(uitemno.Value);
+        roomassetclass.updateInventory(r, int.Parse(inventoryId.Value));
     }
 
     protected void Button1_Click(object sender, EventArgs e)

@@ -1,6 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EmployePanel.master" AutoEventWireup="true" CodeFile="employeroominventories.aspx.cs" Inherits="employeroominventories" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+    <script>
+        function activaTab(tab) {
+            $('.nav-tabs a[href="#' + tab + '"]').tab('show');
+            //alert("working");
+        };
+    </script>
 </asp:Content>
 
 
@@ -53,6 +59,7 @@
       <asp:Button ID="Button1" runat="server" Text="View" OnClick="Button1_Click" class="btn btn-success" />   
                                       </div>
                              
+                             
                            <asp:Table class="data table table-striped no-margin" ID="assetsViewTable"  runat="server">
                              
                             
@@ -73,7 +80,7 @@
                                 <tr>
                                   <th>Room No</th>
                                     <th>Select Inventory</th>
-                                  <th>Label</th>
+                                  <th>Edit inventory item (optional)</th>
                                   <th>Item Description</th>
                                   <th>Number Of Item</th>
                                  
@@ -83,7 +90,7 @@
                                 <tr>
                                   <td>
                                         
-                                                 <asp:DropDownList  runat="server" class="form-control" ID="uroomno" name="aroomno" AutoPostBack="True" OnSelectedIndexChanged="roomSelectedIndexChange">
+                                                 <asp:DropDownList  runat="server" class="form-control" ID="uroomno" name="aroomno" AutoPostBack="True" OnSelectedIndexChanged="roomSelectedIndexChange" >
                                                       
                                                    
                                          
@@ -101,14 +108,15 @@
                                         
                                         
                                         </td>
-                                  <td> <input type="text" id="ulabel" name="alabel"  placeholder="Label" class="form-control " runat="server"/></td>
-                                  <td>  <input type="text" id="udescription" name="adescription"  placeholder="Description" class="form-control "/></td>
-                                  <td>   <input type="number" id="uitemno" name="aitemno"  placeholder="Number Of Items" class="form-control "/></td>
-                                  <td>  <asp:Button ID="send" runat="server" Text="Update"  class="btn btn-success" /></td>
+                                  <td> <input type="text" id="ulabel" name="alabel"  placeholder="Edit inventory name" class="form-control " runat="server"/></td>
+                                  <td>  <input type="text" id="udescription" name="adescription"  placeholder="Description" class="form-control " runat="server"/></td>
+                                  <td>   <input type="number" id="uitemno" name="aitemno"  placeholder = "Number Of Items" class="form-control " runat="server"/></td>
+                                  <td>  <asp:Button ID="send" runat="server" Text="Update"  class="btn btn-success" OnClick="updateAssets_click" /></td>
                                 </tr>
                                
                               </tbody>
                             </table>
+   <input type="hidden" id="inventoryId" name="inventoryId"   runat="server"/>
 
       </div>
 
@@ -177,7 +185,7 @@
          </div>
          </div>
          </div>
-        </div>
+      
         
 
 
