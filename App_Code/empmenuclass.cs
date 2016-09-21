@@ -14,16 +14,27 @@ public class empmenuclass
         // TODO: Add constructor logic here
         //
     }
-    public static void addMenuItem(room_service_menu r)
+    public static bool addMenuItem(room_service_menu r)
     {
         try
         {
+            
             ctownDataContext db = new ctownDataContext();
-            db.room_service_menus.InsertOnSubmit(r);
-            db.SubmitChanges(); 
+            int count = (from x in db.room_service_menus
+                         where r.item_name == x.item_name && r.price == x.price
+                         select x).Count();
+            if (count == 0)
+            {
+                db.room_service_menus.InsertOnSubmit(r);
+                db.SubmitChanges();
+                return true;
+            }else
+            {
+                return false;
+            }
         }catch(Exception ex)
         {
-
+            return false;
         }
     }
     public static IQueryable<room_service_menu> getMenuItem()

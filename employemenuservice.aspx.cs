@@ -12,9 +12,9 @@ public partial class employemenuservice : System.Web.UI.Page
         
         TableRow tRow1 = new TableRow();
         menuview.Rows.Add(tRow1);
-        TableCell tCell1 = new TableCell();
-        tCell1.Text = "Menu type ";
-        tRow1.Cells.Add(tCell1);
+        //TableCell tCell1 = new TableCell();
+        //tCell1.Text = "Menu type ";
+        //tRow1.Cells.Add(tCell1);
         TableCell tCell2 = new TableCell();
         tCell2.Text = "Item name";
         tRow1.Cells.Add(tCell2);
@@ -37,9 +37,9 @@ public partial class employemenuservice : System.Web.UI.Page
             {
                 TableRow tRow = new TableRow();
                 menuview.Rows.Add(tRow);
-                TableCell tCellr = new TableCell();
-                tCellr.Text = x.type.ToString();
-                tRow.Cells.Add(tCellr);
+                //TableCell tCellr = new TableCell();
+                //tCellr.Text = x.type.ToString();
+                //tRow.Cells.Add(tCellr);
                 TableCell tCellrn = new TableCell();
                 tCellrn.Text = x.item_name;
                 tRow.Cells.Add(tCellrn);
@@ -56,13 +56,16 @@ public partial class employemenuservice : System.Web.UI.Page
                 menuview.Rows.Add(hRow);
                 TableCell hCellr = new TableCell();
                 hCellr.Text = x.type.ToString();
-                hCellr.BackColor = System.Drawing.Color.Azure;
+                hCellr.BackColor = System.Drawing.ColorTranslator.FromHtml("#800000");
+                hCellr.ForeColor = System.Drawing.Color.White;
+                hCellr.ColumnSpan = 3;
                 hRow.Cells.Add(hCellr);
+
                 TableRow tRow = new TableRow();
                 menuview.Rows.Add(tRow);
-                TableCell tCellr = new TableCell();
-                tCellr.Text = x.type.ToString();
-                tRow.Cells.Add(tCellr);
+                //TableCell tCellr = new TableCell();
+                //tCellr.Text = x.type.ToString();
+                //tRow.Cells.Add(tCellr);
                 TableCell tCellrn = new TableCell();
                 tCellrn.Text = x.item_name;
                 tRow.Cells.Add(tCellrn);
