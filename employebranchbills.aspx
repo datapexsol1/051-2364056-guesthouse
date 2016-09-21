@@ -44,14 +44,18 @@
                                 </tr>
                               </thead>
                               <tbody>
+                                     <%  bill b = new bill();
+                                         IQueryable<bill> bill=billclass.getAllbills(b.Id);
+                                         foreach (var r in bill)
+                                         { %>
                                 <tr>
-                                  <td><label id="bilid"></label></td>
-                                  <td><label id="bilamount"></label></td>
-                                  <td><label id="biltype"></label></td>
-                                  <td> <label id="bildate"></label></td>
+                                  <td><label id="bilid"><%=r.Id %></label></td>
+                                  <td><label id="bilamount"><%=r.BillAmount%></label></td>
+                                  <td><label id="biltype"><%=r.BillType%></label></td>
+                                  <td> <label id="bildate"><%=r.Date%></label></td>
                                   
                                 </tr>
-                               
+                               <%} %>
                               </tbody>
                             </table>
 
@@ -75,13 +79,13 @@
                               </thead>
                               <tbody>
                                 <tr>
-                                  <td> <input type="number" id="ubno" name="ubno" required="required" placeholder="Bill Id" class="form-control "/></td>
+                                  <td> <input type="number" id="ubno" name="ubno"  placeholder="Bill Id" class="form-control "/></td>
                                    
-                                  <td> <input type="text" id="ubamount" name="ubamount" required="required" placeholder="Bill Amount" class="form-control "/></td>
+                                  <td> <input type="text" id="ubamount" name="ubamount"  placeholder="Bill Amount" class="form-control "/></td>
                                 <td><select class="form-control" id="ubtype" name="ubtype">
                                         <option value="0">Select</option>
                                         </select></td>
-                                  <td>   <input type="date" id="ubdate" name="ubdate" required="required" placeholder="Date" class="form-control "/></td>
+                                  <td>   <input type="date" id="ubdate" name="ubdate"  placeholder="Date" class="form-control "/></td>
                                   <td>  <asp:Button ID="send" runat="server" Text="Update"  class="btn btn-success" /></td>
                                 </tr>
                                
@@ -101,14 +105,14 @@
                         <label class="control-label col-md-4 " >Bill Id <span class="required">*</span>
                         </label>
                         <div class="col-md-8">
-                          <input type="number" id="abid" name="abid" required="required" placeholder="Bill Id" class="form-control "/>
+                          <input type="number" id="abid" name="abid" placeholder="Bill Id" class="form-control "/>
                         </div>
                       </div>
                               <div class="form-group col-md-6">
                                <label class="control-label col-md-4 " >Bil Amount <span class="required">*</span>
                         </label>
                         <div class="col-md-8">
-                          <input type="number" id="abamount" name="abamount" required="required" placeholder="Amount" class="form-control "/>
+                          <input type="number" id="abamount" name="abamount"  placeholder="Amount" class="form-control "/>
                         </div>
                                   </div>
                      
@@ -117,8 +121,19 @@
                         <label class="control-label col-md-4 ">Bill Type <span class="required">*</span>
                         </label>
                         <div class="col-md-8">
-                         <select class="form-control" id="abtype" name="ubtype">
+
+
+                            
+
+
+
+
+                         <select class="form-control" id="abtype" name="abtype" runat="server">
                                         <option value="0">Select</option>
+                              <option value="1" id="abtype1">Electricity</option>
+                              <option value="2" id="abtype2">Gas</option>
+                              <option value="3" id="abtype3">Water</option>
+
                                         </select>
                         </div>
                       </div>
@@ -126,13 +141,13 @@
                         <label class="control-label col-md-4" >Date <span class="required">*</span>
                         </label>
                         <div class="col-md-8">
-                          <input type="date" id="abdate" name="abdate" required="required" placeholder="Date" class="form-control "/>
+                          <input type="date" id="abdate" name="abdate"  placeholder="Date" class="form-control "/>
                         </div>
                       </div>
                            
                               <div class="form-group">
                         <div class="col-md-6 col-md-offset-11">
-                          <asp:Button ID="Button1" runat="server" Text="Submit"  class="btn btn-success" />
+                          <asp:Button ID="Button1" runat="server" Text="Submit"  class="btn btn-success" OnClick="Button1_Click" />
                         </div>
                       </div>
                             </div>
