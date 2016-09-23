@@ -79,14 +79,19 @@
                               </thead>
                               <tbody>
                                 <tr>
-                                  <td> <input type="number" id="ubno" name="ubno"  placeholder="Bill Id" class="form-control "/></td>
+                                  <td> <input type="number" id="ubno" name="ubno"  placeholder="Bill Id" class="form-control" /></td>
                                    
                                   <td> <input type="text" id="ubamount" name="ubamount"  placeholder="Bill Amount" class="form-control "/></td>
-                                <td><select class="form-control" id="ubtype" name="ubtype">
+                                <td><select class="form-control" id="ubtype" name="ubtype" runat="server">
                                         <option value="0">Select</option>
+                                    <option value="Electricity" id="ubtype1">Electricity</option>
+                              <option value="Gas" id="ubtype2">Gas</option>
+                              <option value="Water" id="ubtype3">Water</option>
+
+
                                         </select></td>
                                   <td>   <input type="date" id="ubdate" name="ubdate"  placeholder="Date" class="form-control "/></td>
-                                  <td>  <asp:Button ID="send" runat="server" Text="Update"  class="btn btn-success" /></td>
+                                  <td>  <asp:Button ID="send" runat="server" Text="Update"  class="btn btn-success" OnClick="Update_bills" /></td>
                                 </tr>
                                
                               </tbody>
@@ -130,9 +135,9 @@
 
                          <select class="form-control" id="abtype" name="abtype" runat="server">
                                         <option value="0">Select</option>
-                              <option value="1" id="abtype1">Electricity</option>
-                              <option value="2" id="abtype2">Gas</option>
-                              <option value="3" id="abtype3">Water</option>
+                              <option value="Electricity" id="abtype1">Electricity</option>
+                              <option value="Gas" id="abtype2">Gas</option>
+                              <option value="Water" id="abtype3">Water</option>
 
                                         </select>
                         </div>
