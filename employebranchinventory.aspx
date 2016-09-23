@@ -1,5 +1,19 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EmployePanel.master" AutoEventWireup="true" CodeFile="employebranchinventory.aspx.cs" Inherits="employebranchinventory" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+     <script>
+         function activaTab(tab) {
+             
+             $('.nav-tabs a[href="#' + tab + '"]').tab('show');
+            
+            //alert("working");
+         };
+         function myFunction() {
+             document.getElementById('ddbranchname').selectedIndex = 0;
+             document.getElementById('dditemname').selectedIndex = 0;
+             
+            
+         }
+    </script>
 </asp:Content>
 
 
@@ -13,11 +27,11 @@
          <h3>Branch Assets</h3>
     <div class="" role="tabpanel" data-example-id="togglable-tabs">
                         <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-                          <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Branch Assets</a>
+                          <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true" onclick="myFunction()" >Branch Assets</a>
                           </li>
-                          <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Update Assets</a>
+                          <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false" >Update Assets</a>
                           </li>
-                          <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Add Assets</a>
+                          <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false"  onclick="myFunction()">Add Assets</a>
                           </li>
                             
                           
@@ -32,10 +46,10 @@
 
                         
                         
-                             <%  int bid = employeeProfile.getEmployeBranch("kk");//get from session
+                             <%--<%  //get from session
                                   %>
                                    <input type="hidden" name="branch" id="branch" value=<%= bid%> />
-                                 
+                             --%>    
                       </div>
 
         
@@ -52,7 +66,7 @@
       </div>
                               
 
-
+         <!--start of update activity-->
                                 <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
 
 
@@ -60,9 +74,9 @@
        <table class="data table table-striped no-margin">
                               <thead>
                                 <tr>
-                                  <th>Room No</th>
-                                    <th>Select Inventory</th>
-                                  <th>Label</th>
+                                  <th>Branch name</th>
+                                    <th>Select Item</th>
+                                  <th>Edit Item (Optional)</th>
                                   <th>Item Description</th>
                                   <th>Number Of Item</th>
                                  
@@ -70,25 +84,38 @@
                               </thead>
                               <tbody>
                                 <tr>
-                                  <td> <input type="number" id="uroomno" name="aroomno"  placeholder="Room No Xyz" class="form-control "/></td>
-                                    <td><select class="form-control" name="roombranch">
+                                  <td>
+                                      <asp:DropDownList  runat="server" class="form-control" clientIdMode="static" ID="ddbranchname" name="ddbranchname" AutoPostBack="True" OnSelectedIndexChanged="branchNameSelectedIndexChange">
+                                      <Items>
+                                           <asp:ListItem Text="Select" Value="" />
+                                       </Items>
+                                      </asp:DropDownList>
+                                  </td>
+                                  <td>
+                                      <asp:DropDownList  runat="server" clientIdMode="static" class="form-control" ID="dditemname" name="dditemname" AutoPostBack="True" OnSelectedIndexChanged="itemNameSelectedIndexChange">
+                                          <Items>
+                                           <asp:ListItem Text="Select" Value="" />
+                                       </Items>
+                                      </asp:DropDownList>
+                                      <!--<select class="form-control" name="roombranch">
                                         <option value="0">Select</option>
-                                        </select></td>
-                                  <td> <input type="text" id="ulabel" name="alabel"  placeholder="Label" class="form-control "/></td>
-                                  <td>  <input type="text" id="udescription" name="adescription"  placeholder="Description" class="form-control "/></td>
-                                  <td>   <input type="number" id="uitemno" name="aitemno"  placeholder="Number Of Items" class="form-control "/></td>
-                                  <td>  <asp:Button ID="send" runat="server" Text="Update"  class="btn btn-success" /></td>
+                                        </select>-->
+                                  </td>
+                                  <td> <input type="text" id="itemname" name="itemname"  placeholder="Label" class="form-control " runat="server"/></td>
+                                  <td>  <input type="text" id="itemdescription" name="itemdescription"  placeholder="Description" class="form-control " runat="server"/></td>
+                                  <td>   <input type="number" id="totalitem" name="totalitem" min="0"  placeholder="Number Of Items" class="form-control " runat="server"/></td>
+                                  <td>  <asp:Button ID="send" runat="server" Text="Update"  class="btn btn-success" OnClick="updateBranchAssets_click" /></td>
                                 </tr>
                                
                               </tbody>
                             </table>
-
+<input type="hidden" id="branchassets" name="branchassets" runat="server"/>
       </div>
 
 
                               </div>
 
-
+         <!--end of update activity-->
            <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
                              
                               

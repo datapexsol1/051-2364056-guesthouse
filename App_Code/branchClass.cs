@@ -43,4 +43,13 @@ public class branchClass
         return branches;
                 
     }
+    public static int getBranchID(string branchName)
+    {
+        ctownDataContext db = new ctownDataContext();
+        int branchID = (from b in db.GetTable<branch>()
+                     where b.name == branchName 
+                     select b.Id).First();
+
+        return branchID;
+    }
 }
