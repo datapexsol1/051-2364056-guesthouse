@@ -20,7 +20,7 @@ public class billclass
     public static bool Addbill(bill b)
     {
         ctownDataContext db = new ctownDataContext();
-        int count = (from x in db.bills
+        int count = (from x in db.bills 
                      where x.Id == b.Id     //for checking already existance
                      select x).Count();
         if (count == 0)

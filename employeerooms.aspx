@@ -6,6 +6,7 @@
            margin-left:-20px;
        }
    </style>
+   
 </asp:Content>
 
 
@@ -112,7 +113,8 @@
                         <label class="control-label col-md-4 " for="room no">Room No <span class="required">*</span>
                         </label>
                         <div class="col-md-8">
-                          <input type="text" id="roomno" name="roomno" required="required" placeholder="Room No" class="form-control "/>
+                          <input type="text" id="roomno" name="roomno"  placeholder="Room No" class="form-control "  data-validation="required" 
+		 data-validation-error-msg="Room no is required !"/>
                         </div>
                       </div>
 
@@ -120,36 +122,43 @@
                         <label class="control-label col-md-4 " for="room type">Room Type <span class="required">*</span>
                         </label>
                         <div class="col-md-8">
-                          <input type="text" id="roomtype" name="roomtype" required="required" placeholder="Room type" class="form-control "/>
+                          <input type="text" id="roomtype" name="roomtype" data-validation="required" 
+		 data-validation-error-msg="Room Type is required !" placeholder="Room type" class="form-control "/>
                         </div>
                       </div>
                                <div class="form-group col-md-6">
                         <label class="control-label col-md-4 " for="room size">Room Size <span class="required">*</span>
                         </label>
                         <div class="col-md-8">
-                          <input type="text" id="roomsize" name="roomsize" required="required" placeholder="Room size" class="form-control "/>
+                          <input type="text" id="roomsize" name="roomsize"  placeholder="Room size" class="form-control " data-validation="length alphanumeric" 
+		 data-validation-length="3-12" 
+		 data-validation-error-msg="Room size is not in correct format"/>
                         </div>
                       </div>
                                <div class="form-group col-md-6">
                         <label class="control-label col-md-4 " for="room rent">Max Room Rent <span class="required">*</span>
                         </label>
                         <div class="col-md-8">
-                          <input type="number" id="roommaxrent" name="roommaxrent" required="required" placeholder="Room rent max" class="form-control "/>
+                          <input type="number" id="roommaxrent" name="roommaxrent"  placeholder="Room rent max" class="form-control "
+                              min="0" data-validation="required" 
+		 data-validation-error-msg="Maximum room rent is required !"/>
                         </div>
                       </div>
                                <div class="form-group col-md-6">
                         <label class="control-label col-md-4 " for="room rent">Min Room Rent <span class="required">*</span>
                         </label>
                         <div class="col-md-8">
-                          <input type="number" id="roomminrent" name="roomminrent" required="required" placeholder="Room Rent" class="form-control "/>
+                          <input type="number" id="roomminrent" name="roomminrent"  placeholder="Room Rent" class="form-control "
+                              min="0" data-validation="required" 
+		 data-validation-error-msg="Minimum room rent is required !"/>
                         </div>
                       </div>
                                <div class="form-group col-md-6">
                         <label class="control-label col-md-4 " for="branch no">Branch <span class="required">*</span>
                         </label>
                         <div class="col-md-8">
-                        <select class="form-control" name="roombranch">
-                             <option value="0">Select</option>
+                        <select class="form-control" name="roombranch" required="required">
+                             <option value="">Select</option>
                              <% IQueryable<branch> brachdata=branchClass.getBrachesinfo();
                                           foreach (var b in brachdata)
                                           {%>
@@ -178,7 +187,21 @@
         </div>
           </div>
     </div>
+     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+<script>
 
+  $.validate({
+    modules : 'location, date, security, file',
+    onModulesLoaded : function() {
+      $('#country').suggestCountry();
+    }
+  });
+
+  // Restrict presentation length
+  $('#presentation').restrictLength( $('#pres-max-length') );
+
+</script>
 
       <!-- jQuery -->
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
