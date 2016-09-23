@@ -6,12 +6,6 @@
             $('.nav-tabs a[href="#' + tab + '"]').tab('show');
             //alert("working");
         };
-        function myFunction() {
-            document.getElementById('uroomno').selectedIndex = 0;
-            document.getElementById('roombranch').selectedIndex = 0;
-
-
-        }
     </script>
 </asp:Content>
 
@@ -26,11 +20,11 @@
          <h3>Room Assets</h3>
     <div class="" role="tabpanel" data-example-id="togglable-tabs">
                         <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-                          <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="false" onclick="myFunction()">Room Assets</a>
+                          <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="false">Room Assets</a>
                           </li>
                           <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Update Assets</a>
                           </li>
-                          <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false" onclick="myFunction()">Add Assets</a>
+                          <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Add Assets</a>
                           </li>
                             
                           
@@ -96,22 +90,18 @@
                                 <tr>
                                   <td>
                                         
-                                                 <asp:DropDownList  runat="server" class="form-control" ClientIDMode="Static" ID="uroomno" name="aroomno" AutoPostBack="True" OnSelectedIndexChanged="roomSelectedIndexChange" >
+                                                 <asp:DropDownList  runat="server" class="form-control" ID="uroomno" name="aroomno" AutoPostBack="True" OnSelectedIndexChanged="roomSelectedIndexChange" >
                                                       
-                                                   <Items>
-                                                       <asp:ListItem Text="Select" Value="" />
-                                                   </Items>
+                                                   
                                          
                                                </asp:DropDownList>  
                                   
                                      </td>
 
                                     <td>
-                                        <asp:DropDownList  runat="server" class="form-control" ID="roombranch" ClientIDMode="Static" name="roombranch" AutoPostBack="True"  OnSelectedIndexChanged="inventorySelectedIndexChange">
+                                        <asp:DropDownList  runat="server" class="form-control" ID="roombranch" name="roombranch" AutoPostBack="True"  OnSelectedIndexChanged="inventorySelectedIndexChange">
                                                       
-                                                   <Items>
-                                                       <asp:ListItem Text="Select" Value="" />
-                                                   </Items>
+                                                   
                                          
                                                </asp:DropDownList> 
                                         
