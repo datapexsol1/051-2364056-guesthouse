@@ -20,7 +20,7 @@
                 alert("id of item :" + value + "Value of item :" + x);
             }
             else {
-               
+                var mystr = $('#<%=itemid.ClientID%>').val();
                     var avoid = value + ',';
                    
 
@@ -83,7 +83,14 @@
                       <div id="myTabContent" class="tab-content">
                         <div role="tabpanel" class="tab-pane fade active in" id="tab_view" aria-labelledby="home-tab">
                             <asp:Button ID="getsummary" runat="server" Text="Button" OnClick="getsummary_click" />
-                           <asp:Table class="data table table-striped no-margin" ID="menuview"  runat="server">
+                           <asp:Table class="data table table-striped no-margin"  ID="menuview"  runat="server">
+                             
+                            
+                             
+                               
+                             
+                           </asp:Table>
+                             <asp:Table class="data table table-striped no-margin" ID="ordersummery"  runat="server">
                              
                             
                              

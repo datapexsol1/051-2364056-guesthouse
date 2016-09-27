@@ -17,7 +17,7 @@ public class empmenuclass
     public static bool addMenuItem(room_service_menu r)
     {
         try
-        {
+        {//add branch id in rom service menu
             
             ctownDataContext db = new ctownDataContext();
             int count = (from x in db.room_service_menus
@@ -46,4 +46,5 @@ public class empmenuclass
                                                  select x);
             return rsm;
     }
+
 }
