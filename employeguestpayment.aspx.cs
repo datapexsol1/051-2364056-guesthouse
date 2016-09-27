@@ -9,10 +9,10 @@ public partial class employeguestpayment : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!IsPostBack && Request.QueryString["booking"].ToString()!=null)
+        if (!IsPostBack && Request.QueryString["booking"].ToString() != null)
         {
             int bid = int.Parse(Request.QueryString["booking"]);
-           bookingRoomAttr[] data= bookingclass.getBookingDetail(bid);
+            bookingRoomAttr[] data = bookingclass.getBookingDetail(bid);
             TableRow tRow1 = new TableRow();
             bookingtable.Rows.Add(tRow1);
             TableCell tCell1 = new TableCell();
@@ -53,23 +53,23 @@ public partial class employeguestpayment : System.Web.UI.Page
                 tRow.Cells.Add(tCellri);
                 //multiply now days between dates with roomrent ;
                 TableCell tCellbtotal = new TableCell();
-               tCellbtotal.Text = totalcost(Double.Parse(x.r_rent), x.b_check_in_date).ToString();
+                tCellbtotal.Text = totalcost(Double.Parse(x.r_rent), x.b_check_in_date).ToString();
                 tRow.Cells.Add(tCellbtotal);
                 TableCell checkoutbtn = new TableCell();
                 if (x.r_checkout != null)
                 {
-                    checkoutbtn.Text = "<h5 style='color:red'>"+x.r_checkout+"</h5>";
+                    checkoutbtn.Text = "<h5 style='color:red'>" + x.r_checkout + "</h5>";
                 }
                 else
                 {
-                    checkoutbtn.Text = "<a style='color:blue' href='adminsingleroomcheckout.aspx?roomid=" + x.r_roomid.ToString()+"&&booking="+bid+"'>Checkout</a>";
+                    checkoutbtn.Text = "<a style='color:blue' href='adminsingleroomcheckout.aspx?roomid=" + x.r_roomid.ToString() + "&&booking=" + bid + "'>Checkout</a>";
                 }
                 tRow.Cells.Add(checkoutbtn);
 
             }
         }
     }
-    double totalcost(double costperday,DateTime d1)
+    double totalcost(double costperday, DateTime d1)
     {
 
         //if checkout on same day the check hour nd get cancel registration time from guest house 

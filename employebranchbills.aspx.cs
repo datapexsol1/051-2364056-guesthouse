@@ -24,4 +24,15 @@ public partial class employebranchbills : System.Web.UI.Page
         b.Date = Convert.ToDateTime(Request.Form["abdate"]);
         billclass.Addbill(b);
     }
+
+    protected void Update_bills(object sender, EventArgs e)
+    {
+        bill b = new bill();
+        b.Id= Convert.ToInt32(Request.Form["ubno"]);
+        b.BranchId = employeeProfile.getEmployeBranch("kk");//get from session
+        b.BillAmount = Convert.ToInt32(Request.Form["ubamount"]);
+        b.BillType = ubtype.Value.ToString();
+        b.Date = Convert.ToDateTime(Request.Form["ubdate"]);
+        billclass.updateBills(b,b.Id);
+    }
 }

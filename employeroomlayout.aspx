@@ -10,7 +10,7 @@
     <script>
         imgseaterArr = new Array();
         for (var i = 0; i < 100; i++) {
-            imgseaterArr[i] = new Array('layoutimg/images/volo_sleeper_vertical_vacant.jpg', 'images/ac_sleeper_selected.jpg');
+            imgseaterArr[i] = new Array('layoutimg/images/open_door.png', 'layoutimg/images/closed_door.png');
             
           
         }
@@ -21,25 +21,42 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-       <div class="right_col" role="main">
+       <div class="right_col" role="main" align="center">
     <div class="row">
      <div class="col-md-12 col-sm-12 col-xs-12">
      <div class="x_content">
      <div class="col-md-9 col-sm-9 col-xs-12">
-         <h3>Room Selection</h3>
-    <div class="" role="tabpanel" data-example-id="togglable-tabs">
+         <h1 >Room Selection</h1>
+         <hr  style="width:50%;border-color:#800000;border-width: 4px;"/>
+         <br /><br />
+    <div class="" role="tabpanel" data-example-id="togglable-tabs" >
   
-
-    <div id="form1">
+        
+    <div id="form1" >
     <table frame='box'>
   <%   IQueryable<room> rooms = roomsclass.getAvailableRooms(2); %>
-    
-    <tr>
+    <h2 > Available Rooms</h2>
+    <tr style="min-width: 400px;border:none"> 
       <%foreach (var r in rooms)
         {  %>
               <% if (r.availbilty == "yes")
-    { %>
-                    <td><div id='c_b'class='container'><label ><img name='img' id='imge<%=r.room_no %>' src='layoutimg/images/non_ac_vertical_sleeper_ladies.jpg' onclick='swapImage("imge<%=r.room_no %>","layoutimg/images/non_ac_vertical_sleeper_ladies.jpg","layoutimg/images/volvo_sleeper_vertical_selected.jpg") '  class='imagehover'/><input type='checkbox' class='checkbox' name='chkchk[]' id='' value="<%=r.room_no %>"  style='visibility:hidden'/></label></div></td> 
+                  {
+                     %>
+                    <td style="    padding: 0;float: left;padding: 22px;">
+                        <div class="container">
+                            <div class="row">
+                                
+                        <div id='c_b'  >
+                            <label style="text-align:center" >
+                                <img name='img' id='imge<%=r.room_no %>'  src='layoutimg/images/open_door.png' onclick='swapImage("imge<%=r.room_no %>","layoutimg/images/open_door.png","layoutimg/images/closed_door.png") 'width="45"  class='  imagehover'/>
+                       <input type='checkbox' class='checkbox' name='chkchk[]' id='' value="<%=r.room_no %>"  style='visibility:hidden'/>
+                                <%=r.room_no %>
+                            </label>
+                            </div>
+                                    </div>
+                        </div>
+                            
+        </td> 
                    <%} %>
 
                    <%else
@@ -49,17 +66,23 @@
 
                    <%}
     }%>
-             <div>Selected Rooms</div>
-<textarea id='t' name='roomselected' class='input'>Seats:</textarea><br><br>
-
-<div style='bold'> Available Rooms</div>
+        </tr>
+        <tr>
+             
       
        
-      
+     
     </tr>
    
 </table>
-   <a id="linktopage" name="linktopage" >Book Room</a>
+        <br /><br />
+        <h2>Selected Rooms</h2>
+<textarea id='t' name='roomselected' class='input' >Seats:</textarea><br>
+
+
+        </div></div>
+         <br />
+   <a id="linktopage" name="linktopage" class="btn btn-success" >Book Room</a>
     </div></div></div></div></div></div></div>
     <script>
         $(document).ready(function () {

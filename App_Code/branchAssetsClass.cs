@@ -48,4 +48,27 @@ public class branchAssetsClass
                                     select x;
         return ra;
     }
+    public static Branch_asset getBranchAssets(int bid, string val)
+    {
+        ctownDataContext db = db = new ctownDataContext();
+        Branch_asset ra = (from x in db.Branch_assets
+                               //  join r in db.rooms on new { X1 = x.room_id, X2 = bid } equals new { X1 = r.Id, X2 = r.branch_id }   //and in linq 
+                           where x.bid == bid && x.title==val
+                           select x).First();
+        return ra;
+    }
+    public static void updateBranchAssets(Branch_asset r, int id)
+    {
+        ctownDataContext db = new ctownDataContext();
+        var ra = (from x in db.Branch_assets
+                  where x.id == id
+                  select x).First();
+        ra.title = r.title;
+        ra.description = r.description;
+        ra.no_item = r.no_item;
+       
+       
+            db.SubmitChanges();
+        
+    }
 }

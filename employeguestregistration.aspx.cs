@@ -7,6 +7,11 @@ using System.Web.UI.WebControls;
 
 public partial class employeguestregistration : System.Web.UI.Page
 {
+    public enum MessageType { Success, Error, Info, Warning };
+    protected void ShowMessage(string Message, MessageType type)
+    {
+        ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "ShowMessage('" + Message + "','" + type + "');", true);
+    }
     protected void Page_Load(object sender, EventArgs e)
     {
         
@@ -51,6 +56,8 @@ public partial class employeguestregistration : System.Web.UI.Page
              g.departure_date = null;
              g.flight_no = null;*/
             g.guest_type = "local";
+            ShowMessage("Information has been saved successfully ! ", MessageType.Success);
+
         }
         else if (Request.Form["guestType"].ToString() == "foriegner")
         {
@@ -79,10 +86,13 @@ public partial class employeguestregistration : System.Web.UI.Page
            // g.departure_date = dt;
             g.flight_no = Request.Form["fflightno"];
             g.guest_type = "forigner";
+            ShowMessage("Information has been saved successfully ! ", MessageType.Success);
+
 
         }
         else
         {
+            ShowMessage("Invalid Information ! ", MessageType.Warning);
 
         }
 

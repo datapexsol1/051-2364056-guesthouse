@@ -13,8 +13,9 @@ public partial class employeroominventories : System.Web.UI.Page
         {
             int bid = employeeProfile.getEmployeBranch("kk");//get from session
             IQueryable<room> r = roomsclass.getAllRooms(bid);
-            string[] rooms = new string[r.Count()];
-            int i = 0;
+            string[] rooms = new string[r.Count()+1];
+            rooms[0] = "Select";
+            int i = 1;
             foreach (var x in r)
             {
 
@@ -33,8 +34,9 @@ public partial class employeroominventories : System.Web.UI.Page
     {
         int roomId = roomsclass.getRoomID(uroomno.SelectedItem.ToString(), int.Parse(branch.Value));
         IQueryable<room_asset> r = roomassetclass.getinventry(roomId);
-      string[] rooms = new string[r.Count()];
-        int i = 0;
+      string[] rooms = new string[r.Count()+1];
+        rooms[0] = "Select";
+        int i = 1;
            foreach (var x in r)
         {
 

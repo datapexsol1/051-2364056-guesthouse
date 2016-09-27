@@ -20,7 +20,7 @@ public class billclass
     public static bool Addbill(bill b)
     {
         ctownDataContext db = new ctownDataContext();
-        int count = (from x in db.bills
+        int count = (from x in db.bills 
                      where x.Id == b.Id     //for checking already existance
                      select x).Count();
         if (count == 0)
@@ -57,5 +57,29 @@ public class billclass
                              select b;
         return bil;
     }
+
+
+
+
+    public static void updateBills(bill b, int billid)
+    {
+
+        ctownDataContext db = new ctownDataContext();
+        var ra = (from x in db.bills
+                  where x.Id == billid
+                  select x).First();
+       
+        ra.BillAmount = b.BillAmount;
+        ra.BillType = b.BillType;
+        ra.Date = b.Date;
+   //     int check = (from y in db.bills
+    //                 where y.Id == ra.Id
+     //                select y).Count();
+     //   if (check == 0)
+     //   {
+            db.SubmitChanges();
+        //}
+    }
+
 
 }

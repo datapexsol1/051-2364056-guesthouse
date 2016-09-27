@@ -43,8 +43,8 @@
                         
                              <%  int bid = employeeProfile.getEmployeBranch("kk");//get from session %>
                                    <input type="hidden" name="branch" id="branch"  runat="server"/>
-                                  <select  id="rnovxxxx" name="rnovxxxx"  class="form-control col-md-7 col-xs-12" >
-                                         <option value="0">Select Room</option>
+                                  <select  id="rnovxxxx" name="rnovxxxx"  class="form-control col-md-7 col-xs-12" required="required" >
+                                         <option value="">Select Room</option>
                                           <%  
 
                                               IQueryable<room> r = roomsclass.getAllRooms(bid);
@@ -90,8 +90,8 @@
                                 <tr>
                                   <td>
                                         
-                                                 <asp:DropDownList  runat="server" class="form-control" ID="uroomno" name="aroomno" AutoPostBack="True" OnSelectedIndexChanged="roomSelectedIndexChange" >
-                                                      
+                                                 <asp:DropDownList  runat="server" class="form-control" ID="uroomno" name="aroomno" AutoPostBack="True" OnSelectedIndexChanged="roomSelectedIndexChange" required="required">
+                                                    
                                                    
                                          
                                                </asp:DropDownList>  
@@ -99,7 +99,7 @@
                                      </td>
 
                                     <td>
-                                        <asp:DropDownList  runat="server" class="form-control" ID="roombranch" name="roombranch" AutoPostBack="True"  OnSelectedIndexChanged="inventorySelectedIndexChange">
+                                        <asp:DropDownList  runat="server" class="form-control" ID="roombranch" name="roombranch" AutoPostBack="True"  OnSelectedIndexChanged="inventorySelectedIndexChange" required="required">
                                                       
                                                    
                                          
@@ -108,8 +108,10 @@
                                         
                                         
                                         </td>
-                                  <td> <input type="text" id="ulabel" name="alabel"  placeholder="Edit inventory name" class="form-control " runat="server"/></td>
-                                  <td>  <input type="text" id="udescription" name="adescription"  placeholder="Description" class="form-control " runat="server"/></td>
+                                  <td> <input type="text" id="ulabel" name="alabel"  placeholder="Edit inventory name" class="form-control " runat="server" /></td>
+                                  <td>  <input type="text" id="udescription" name="adescription"  placeholder="Description" class="form-control " runat="server" data-validation="length alphanumeric" 
+		 data-validation-length="3-100" 
+		 data-validation-error-msg="Item description is required"/></td>
                                   <td>   <input type="number" id="uitemno" name="aitemno"  placeholder = "Number Of Items" class="form-control " runat="server"/></td>
                                   <td>  <asp:Button ID="send" runat="server" Text="Update"  class="btn btn-success" OnClick="updateAssets_click" /></td>
                                 </tr>
