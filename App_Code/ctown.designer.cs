@@ -71,6 +71,9 @@ public partial class ctownDataContext : System.Data.Linq.DataContext
   partial void InsertBranch_asset(Branch_asset instance);
   partial void UpdateBranch_asset(Branch_asset instance);
   partial void DeleteBranch_asset(Branch_asset instance);
+  partial void Insertbill(bill instance);
+  partial void Updatebill(bill instance);
+  partial void Deletebill(bill instance);
   #endregion
 	
 	public ctownDataContext() : 
@@ -212,6 +215,14 @@ public partial class ctownDataContext : System.Data.Linq.DataContext
 		get
 		{
 			return this.GetTable<Branch_asset>();
+		}
+	}
+	
+	public System.Data.Linq.Table<bill> bills
+	{
+		get
+		{
+			return this.GetTable<bill>();
 		}
 	}
 }
@@ -3339,6 +3350,164 @@ public partial class Branch_asset : INotifyPropertyChanging, INotifyPropertyChan
 				this._bid = value;
 				this.SendPropertyChanged("bid");
 				this.OnbidChanged();
+			}
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+		}
+	}
+}
+
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.bill")]
+public partial class bill : INotifyPropertyChanging, INotifyPropertyChanged
+{
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private int _Id;
+	
+	private int _BillAmount;
+	
+	private string _BillType;
+	
+	private System.DateTime _Date;
+	
+	private int _BranchId;
+	
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnBillAmountChanging(int value);
+    partial void OnBillAmountChanged();
+    partial void OnBillTypeChanging(string value);
+    partial void OnBillTypeChanged();
+    partial void OnDateChanging(System.DateTime value);
+    partial void OnDateChanged();
+    partial void OnBranchIdChanging(int value);
+    partial void OnBranchIdChanged();
+    #endregion
+	
+	public bill()
+	{
+		OnCreated();
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+	public int Id
+	{
+		get
+		{
+			return this._Id;
+		}
+		set
+		{
+			if ((this._Id != value))
+			{
+				this.OnIdChanging(value);
+				this.SendPropertyChanging();
+				this._Id = value;
+				this.SendPropertyChanged("Id");
+				this.OnIdChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BillAmount", DbType="Int NOT NULL")]
+	public int BillAmount
+	{
+		get
+		{
+			return this._BillAmount;
+		}
+		set
+		{
+			if ((this._BillAmount != value))
+			{
+				this.OnBillAmountChanging(value);
+				this.SendPropertyChanging();
+				this._BillAmount = value;
+				this.SendPropertyChanged("BillAmount");
+				this.OnBillAmountChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BillType", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+	public string BillType
+	{
+		get
+		{
+			return this._BillType;
+		}
+		set
+		{
+			if ((this._BillType != value))
+			{
+				this.OnBillTypeChanging(value);
+				this.SendPropertyChanging();
+				this._BillType = value;
+				this.SendPropertyChanged("BillType");
+				this.OnBillTypeChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Date", DbType="Date NOT NULL")]
+	public System.DateTime Date
+	{
+		get
+		{
+			return this._Date;
+		}
+		set
+		{
+			if ((this._Date != value))
+			{
+				this.OnDateChanging(value);
+				this.SendPropertyChanging();
+				this._Date = value;
+				this.SendPropertyChanged("Date");
+				this.OnDateChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BranchId", DbType="Int NOT NULL")]
+	public int BranchId
+	{
+		get
+		{
+			return this._BranchId;
+		}
+		set
+		{
+			if ((this._BranchId != value))
+			{
+				this.OnBranchIdChanging(value);
+				this.SendPropertyChanging();
+				this._BranchId = value;
+				this.SendPropertyChanged("BranchId");
+				this.OnBranchIdChanged();
 			}
 		}
 	}

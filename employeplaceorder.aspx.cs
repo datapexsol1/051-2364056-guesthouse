@@ -9,12 +9,14 @@ public partial class employemenuservice : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+        if (!IsPostBack)
+        {
+            ordersummery.Visible = false;
+        }
         TableRow tRow1 = new TableRow();
         menuview.Rows.Add(tRow1);
-        //TableCell tCell1 = new TableCell();
-        //tCell1.Text = "Menu type ";
-        //tRow1.Cells.Add(tCell1);
+        tRow1.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
+        tRow1.ForeColor = System.Drawing.Color.White;
         TableCell tCell2 = new TableCell();
         tCell2.Text = "Item name";
         tRow1.Cells.Add(tCell2);
@@ -43,6 +45,7 @@ public partial class employemenuservice : System.Web.UI.Page
 
         IQueryable < room_service_menu >assets= empmenuclass.getMenuItem();
         string checkin = "";
+         
         foreach (var x in assets)
         {
             if (x.type == checkin)
@@ -54,20 +57,26 @@ public partial class employemenuservice : System.Web.UI.Page
                 //tRow.Cells.Add(tCellr);
                 TableCell tCellrn = new TableCell();
                 tCellrn.Text = x.item_name;
+                tCellrn.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
                 tRow.Cells.Add(tCellrn);
                 TableCell tCellrd = new TableCell();
                 tCellrd.Text = x.price.ToString();
+                tCellrd.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
                 tRow.Cells.Add(tCellrd);
                 TableCell tCellri = new TableCell();
                 tCellri.Text = x.quantity.ToString();
+                tCellri.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
                 tRow.Cells.Add(tCellri);
 
                 TableCell checkbox = new TableCell();
                 checkbox.Text = "<input type='checkbox' name='tbbox' id='tbox"+x.Id+"' value=" + x.Id + " onclick='xyz(this.value)'";
+                checkbox.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
                 tRow.Cells.Add(checkbox);
                 TableCell quan = new TableCell();
-                quan.Text = "<input type = 'number' id=noitem" + x.Id + " value='1' min='1'/>";
+                quan.Text = "<input type = 'number' id='noitem" + x.Id + "' name='noitem" + x.Id + "' value='1' min='1'/>";
+               quan.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
                 tRow.Cells.Add(quan);
+
                 checkin = x.type;
             }else
             {
@@ -82,25 +91,28 @@ public partial class employemenuservice : System.Web.UI.Page
 
                 TableRow tRow = new TableRow();
                 menuview.Rows.Add(tRow);
-                //TableCell tCellr = new TableCell();
-                //tCellr.Text = x.type.ToString();
-                //tRow.Cells.Add(tCellr);
+                tRow.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
                 TableCell tCellrn = new TableCell();
                 tCellrn.Text = x.item_name;
+                tCellrn.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
                 tRow.Cells.Add(tCellrn);
                 TableCell tCellrd = new TableCell();
                 tCellrd.Text = x.price.ToString();
+                tCellrd.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
                 tRow.Cells.Add(tCellrd);
                 TableCell tCellri = new TableCell();
                 tCellri.Text = x.quantity.ToString();
+               tCellri.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
                 tRow.Cells.Add(tCellri);
 
                 TableCell checkbox = new TableCell();
                 checkbox.Text = "<input type='checkbox' name='tbbox' id='tbox" + x.Id + "' value=" + x.Id + " onclick='xyz(this.value)'";
+                checkbox.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
                 tRow.Cells.Add(checkbox);
 
                 TableCell quan = new TableCell();
-                quan.Text = "<input type = 'number' id=noitem"+x.Id+" value='1' min='1'/>";
+                quan.Text = "<input type = 'number' id='noitem"+x.Id+ "' name='noitem" + x.Id + "' value='1' min='1' />";
+                quan.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
                 tRow.Cells.Add(quan);
                 checkin = x.type;
 
@@ -114,8 +126,102 @@ public partial class employemenuservice : System.Web.UI.Page
     }
     protected void getsummary_click(object sender ,EventArgs e)
     {
+        double totalprice = 0;
         string str = itemid.Value;
-        Response.Write(itemid.Value);
+        string[] words = str.Split(',');
+        string[] value= new string[words.Length];
+        int i = 0;
+        foreach(string w in words)
+        {
+            value[i] = null;  
+            value[i] = Request.Form["noitem" + w].ToString();
+            i++;
+        }
+
+        menuview.Visible = false;
+        ordersummery.Visible = true;
+
+        TableRow hrow = new TableRow();
+        hrow.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
+        ordersummery.Rows.Add(hrow);
+        TableCell date = new TableCell();
+        date.Text ="<h4>Date"+ DateTime.Now.ToString()+"</h4>";
+        date.ColumnSpan = 2;
+
+        hrow.Cells.Add(date);
+        TableCell roomno = new TableCell();
+        roomno.Text = "Room_no :101";
+        roomno.ColumnSpan = 2;
+        hrow.Cells.Add(roomno);
+
+
+
+
+        TableRow tRow1 = new TableRow();
+        tRow1.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
+        ordersummery.Rows.Add(tRow1);
+        TableCell tCell2 = new TableCell();
+        tCell2.Text = "Item name";
+        tRow1.Cells.Add(tCell2);
+        TableCell tCell4 = new TableCell();
+        tCell4.Text = "Item Quantity";
+        tRow1.Cells.Add(tCell4);
+        TableCell tCell3 = new TableCell();
+        tCell3.Text = "Item price";
+        tRow1.Cells.Add(tCell3);
+        TableCell tCell5 = new TableCell();
+        tCell5.Text = "Total Price";
+        tRow1.Cells.Add(tCell5);
+
+
+
+        IQueryable<room_service_menu> menu = empmenuclass.getMenuItem();
+        int l = 0;
+        foreach (room_service_menu x in menu){
+          
+            foreach (string k in words)
+            {
+                if (x.Id == int.Parse(k))
+                {
+                    TableRow tRow = new TableRow();
+                    ordersummery.Rows.Add(tRow);
+                    //TableCell tCellr = new TableCell();
+                    //tCellr.Text = x.type.ToString();
+                    //tRow.Cells.Add(tCellr);
+                    TableCell tCellrn = new TableCell();
+                    tCellrn.Text = x.item_name;
+                    //  tCellrn.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
+                    tRow.Cells.Add(tCellrn);
+                    TableCell tCellri = new TableCell();
+                    tCellri.Text = value[l];
+                    // tCellri.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
+                    tRow.Cells.Add(tCellri);
+                    TableCell tCellrd = new TableCell();
+                    tCellrd.Text = x.price.ToString();
+                    //  tCellrd.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
+                    tRow.Cells.Add(tCellrd);
+                    TableCell tCelltoalp = new TableCell();
+                    tCelltoalp.Text = (x.price * int.Parse(value[l])).ToString();
+                    totalprice += x.price * int.Parse(value[l]);
+                    // tCelltoalp.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
+                    tRow.Cells.Add(tCelltoalp);
+                    l++;
+                   
+                }
+            }
+           
+        }
+        TableRow totalbill= new TableRow();
+        totalbill.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
+        totalbill.ForeColor = System.Drawing.Color.Cyan;
+        ordersummery.Rows.Add(totalbill);
+
+        TableCell tb = new TableCell();
+        tb.Text = "Total BIll:"+totalprice;
+        tb.ColumnSpan = 5;
+        totalbill.Cells.Add(tb);
+
+        // Response.Write(itemid.Value);
     }
     protected void saveitem_click(object sender,EventArgs e)
     {
