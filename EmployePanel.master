@@ -73,14 +73,21 @@
                       <li><a href="employeguests.aspx">Guests</a></li>
                       <li><a href="employeroominventories.aspx">Room Inventories</a></li>
                       <li><a href="employebranchinventory.aspx">Branch Inventories</a></li>
-                        <li><a href="employeplaceorder.aspx">Order Menu</a></li>
+                      <!--  <li><a href="employeplaceorder.aspx">Order Menu</a></li>-->
                         <li><a href="employebranchbills.aspx">Branch Bills</a></li>
                         <li><a href="employeguestpayment.aspx">Guests Total Bill</a></li>
                     </ul>
                   </li>
-                 <li><a href="employemenuservice.aspx"><i class="fa fa-file-text-o"></i> Guest house menu</a>
-                 
-                 
+
+
+
+
+                 <li><a ><i class="fa fa-file-text-o"></i> Restaurant Services<span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                      <li><a href="employemenuservice.aspx">Menu Detail</a></li>
+                      <li><a href="employeplaceorder.aspx">Order menu</a></li>
+                    </ul>
+                 </li>
                
                   
                 

@@ -90,7 +90,7 @@
                                 <tr>
                                   <td>
                                         
-                                                 <asp:DropDownList  runat="server" class="form-control" ID="uroomno" name="aroomno" AutoPostBack="True" OnSelectedIndexChanged="roomSelectedIndexChange" required="required">
+                                                 <asp:DropDownList  runat="server" class="form-control" ID="uroomno" name="aroomno" AutoPostBack="True" OnSelectedIndexChanged="roomSelectedIndexChange" required="required" >
                                                     
                                                    
                                          
@@ -132,8 +132,8 @@
                         
                         <div class="col-md-6">
                             <label >Room No</label>
-                          <select  id="rno" name="rno"  class="form-control col-md-7 col-xs-12">
-                                     <option value='0'>Select Room</option>
+                          <select  id="rno" name="rno"  class="form-control col-md-7 col-xs-12" required="required">
+                                     <option value=''>Select Room</option>
                                       <%  
 
                                         //  IQueryable<room> r = roomsclass.getAllRooms(bid);
@@ -149,8 +149,10 @@
                         <div class="form-group">
                         
                         <div class="col-md-6">
-                            <label >Label</label>
-                          <input type="text" id="alabel" name="alabel" placeholder="Label" class="form-control "/>
+                            <label >Item</label>
+                          <input type="text" id="alabel" name="alabel" placeholder="Label" class="form-control " data-validation="length alphanumeric" 
+		 data-validation-length="2-25" 
+		 data-validation-error-msg="Enter item name "/>
                         </div>
                       </div>
 
@@ -159,7 +161,9 @@
                         
                         <div class="col-md-6">
                             <label >Item Description</label>
-                          <input type="text" id="adescription" name="adescription"  placeholder="Description" class="form-control "/>
+                          <input type="text" id="adescription" name="adescription"  placeholder="Description" class="form-control " data-validation="length alphanumeric" 
+		 data-validation-length="3-25" 
+		 data-validation-error-msg="Enter item description"/>
                         </div>
                       </div>
                               
@@ -168,7 +172,7 @@
                         
                         <div class="col-md-6">
                             <label >Number of Item</label>
-                          <input type="number" id="aitemno" name="insertaitemno"  placeholder="Number Of Items" class="form-control "/>
+                          <input type="number" id="aitemno" name="insertaitemno"  placeholder="Number Of Items" class="form-control " min="1" required="required"/>
                         </div>
                       </div>
                             
@@ -188,9 +192,22 @@
          </div>
          </div>
       
-        
+     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+<script>
+
+  $.validate({
+    modules : 'location, date, security, file',
+    onModulesLoaded : function() {
+      $('#country').suggestCountry();
+    }
+  });
+
+  // Restrict presentation length
+  $('#presentation').restrictLength( $('#pres-max-length') );
+
+</script>     
 
 
 
 </asp:Content>
-
