@@ -92,5 +92,17 @@
         <elementListCompartment Id="59e8b988-06fd-49e3-8d16-716f6a611e94" absoluteBounds="1.3900000000000001, 11.835, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
+    <classShape Id="1ecb3921-03eb-4bea-bf97-5be4081f0e1b" absoluteBounds="4.375, 5.5, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/ctownDataContext/placed_order" />
+      <nestedChildShapes>
+        <elementListCompartment Id="4e8abed3-cb41-4792-9e94-3d223e764075" absoluteBounds="4.39, 5.96, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="49c4d09f-68e0-4c92-9305-e4f46a0c398f" absoluteBounds="0.875, 6.875, 2, 1.9631982421875">
+      <DataClassMoniker Name="/ctownDataContext/event_calender" />
+      <nestedChildShapes>
+        <elementListCompartment Id="aaac0de3-77d8-4757-a0fb-4606cad91415" absoluteBounds="0.89, 7.335, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>
