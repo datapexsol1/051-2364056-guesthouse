@@ -18,14 +18,16 @@
     <link href="../vendors/nprogress/nprogress.css" rel="stylesheet"/>
     <!-- bootstrap-progressbar -->
     <link href="../vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet"/>
-    
+      <!-- FullCalendar -->
+    <link href="../vendors/fullcalendar/dist/fullcalendar.min.css" rel="stylesheet"/>
+    <link href="../vendors/fullcalendar/dist/fullcalendar.print.css" rel="stylesheet" media="print"/>
     <!-- Custom Theme Style -->
     <link href="../custom/custom.min.css" rel="stylesheet"/>
     <asp:ContentPlaceHolder id="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body class="nav-md">
-      <form id="form1" runat="server" method="post">
+      <form id="antoform2" runat="server" method="post" role="form" >
     
 
                  <!--starting tag-->
@@ -59,8 +61,11 @@
               <div class="menu_section">
                 <h3>General</h3>
                 <ul class="nav side-menu">
-                  <li><a href="employeindex.aspx"><i class="fa fa-home"></i> Home </a>
+                  <li><a href="employeindex.aspx"><i class="fa fa-home"></i> Home  </a>
                     
+                  </li>
+                    <li><a href="employeevents.aspx"><i class="fa fa-home"></i> Events  </a>
+
                   </li>
                  <li><a href="#"><i class="fa fa-edit"></i> Employee Information</a></li>
 
@@ -233,8 +238,8 @@
     </div></div>
         <!-- /footer content -->
       
-
-   <!-- jQuery -->
+     
+    <!-- jQuery -->
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
     <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -242,6 +247,18 @@
     <script src="../vendors/fastclick/lib/fastclick.js"></script>
     <!-- NProgress -->
     <script src="../vendors/nprogress/nprogress.js"></script>
+    <!-- FullCalendar -->
+    <script src="../vendors/moment/min/moment.min.js"></script>
+    <script src="../vendors/fullcalendar/dist/fullcalendar.min.js"></script>
+<script src="vendors/fullcalendar/dist/fullcalendar.js"></script>
+    <!-- Custom Theme Scripts -->
+    <script src="../build/js/custom.min.js"></script>
+
+    <!-- FullCalendar -->
+   
+    <!-- /FullCalendar -->
+   <!-- jQuery -->
+   
     <!-- Chart.js -->
     <script src="../vendors/Chart.js/dist/Chart.min.js"></script>
     <!-- gauge.js -->
@@ -273,16 +290,7 @@
     <script src="js/datepicker/daterangepicker.js"></script>
 
     <!-- Custom Theme Scripts -->
-    <script src="../build/js/custom.min.js"></script>
-
-
-
-
-
-    
-  
-
-    <!-- Flot -->
+    <script src="../build/js/custom.min.js"></script> 
     <script>
         $(document).ready(function () {
             var data1 = [
