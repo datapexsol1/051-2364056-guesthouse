@@ -18,6 +18,7 @@ public partial class employeevents : System.Web.UI.Page
         ev.event_description = eventdesc.Value;
         ev.event_start_date = DateTime.Parse(Request.Form["eventstartdate"].ToString());
         ev.event_end_date = DateTime.Parse(Request.Form["eventenddate"].ToString());
+        ev.event_color = eventcolor.Value;
         events.addEvent(ev);
     }
 }
