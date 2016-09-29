@@ -98,5 +98,11 @@
         <elementListCompartment Id="be8f6d61-61e6-4f43-943a-c16307327c22" absoluteBounds="1.1400000000000001, 3.71, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
+    <classShape Id="79c2de39-456c-4946-a0e6-1d24134f41fa" absoluteBounds="5.75, 4.5, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/ctownDataContext/event_calender" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d9f038e0-9b87-4197-aae4-768ae372533b" absoluteBounds="5.765, 4.96, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>
