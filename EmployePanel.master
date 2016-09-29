@@ -289,8 +289,7 @@
     <script src="js/moment/moment.min.js"></script>
     <script src="js/datepicker/daterangepicker.js"></script>
 
-    <!-- Custom Theme Scripts -->
-    <script src="../build/js/custom.min.js"></script> 
+    
     <script>
         $(document).ready(function () {
             var data1 = [

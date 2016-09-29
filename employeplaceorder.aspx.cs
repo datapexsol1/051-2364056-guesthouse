@@ -15,6 +15,27 @@ public partial class employemenuservice : System.Web.UI.Page
             savetodb.Visible = false;
            
         }
+
+        int bid = employeeProfile.getEmployeBranch("kk");//get from session
+        IQueryable<room> r = roomsclass.getAvailableRooms(bid);
+        string[] rooms = new string[r.Count() + 1];
+        rooms[0] = "Select";
+        int i = 1;
+        foreach (var x in r)
+        {
+
+            rooms[i] = x.room_no;
+            i++;
+        }
+       roombranch.DataSource = rooms;
+       roombranch.DataBind();
+
+
+
+
+
+
+
         TableRow tRow1 = new TableRow();
         menuview.Rows.Add(tRow1);
         tRow1.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
@@ -44,7 +65,7 @@ public partial class employemenuservice : System.Web.UI.Page
         // int roomid = int.Parse(Request["rnovxxxx"].ToString());
         // int branchid = int.Parse(Request["branch"]);
          int bbid= employeeProfile.getEmployeBranch("kk");//get from session
-        bid.Value = bbid.ToString();
+      // bid.Value = bbid.ToString();
         IQueryable < room_service_menu >assets= empmenuclass.getMenuItem(bbid);
         string checkin = "";
          
@@ -209,6 +230,7 @@ public partial class employemenuservice : System.Web.UI.Page
                     totalprice += x.price * int.Parse(value[l]);
                     // tCelltoalp.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
                     tRow.Cells.Add(tCelltoalp);
+                
 
 
 
@@ -241,20 +263,6 @@ public partial class employemenuservice : System.Web.UI.Page
         savetodb.Visible = true;
        
        
-    }
-    
-    protected void savetodb_click(object sender, EventArgs e)
-    {
-        string x = "";
-        foreach (TableRow tr in ordersummery.Rows)
-        {
-
-            foreach (TableCell tc in tr.Cells)
-            {
-               x+= tc.Text;
-                Response.Write(x);
-            }
-        }
     }
     protected void saveitem_click(object sender,EventArgs e)
     {

@@ -80,5 +80,28 @@ public class empmenuclass
         }
         return order_detail;
     }
+    public static orderdetail_attr[] get(int bid)
+    {
 
+        ctownDataContext db = new ctownDataContext();
+        var orders = from x in db.placed_orders
+                     join orderdetail in db.room_service_menus on x.item_id equals orderdetail.Id
+                     where x.booking_id == bid
+                     select new
+                     {
+                         placed_order = x,
+                         room_service_menu = orderdetail
+                     };
+        orderdetail_attr[] order_detail = new orderdetail_attr[orders.Count()];
+        int i = 0;
+        foreach (var od in orders)
+        {
+            order_detail[i] = new orderdetail_attr();
+            order_detail[i].order = od.placed_order;
+            order_detail[i].rs_orde_menu = od.room_service_menu;
+            i++;
+
+        }
+        return order_detail;
+    }
 }
