@@ -64,9 +64,7 @@
                   <li><a href="employeindex.aspx"><i class="fa fa-home"></i> Home  </a>
                     
                   </li>
-                    <li><a href="employeevents.aspx"><i class="fa fa-home"></i> Events  </a>
-
-                  </li>
+                   
                  <li><a href="#"><i class="fa fa-edit"></i> Employee Information</a></li>
 
                   <li><a href="employeroomlayout.aspx"><i class="fa fa-edit"></i> Book Room</a>
@@ -76,11 +74,19 @@
                     <ul class="nav child_menu">
                       <li><a href="employeerooms.aspx">Rooms</a></li>
                       <li><a href="employeguests.aspx">Guests</a></li>
-                      <li><a href="employeroominventories.aspx">Room Inventories</a></li>
-                      <li><a href="employebranchinventory.aspx">Branch Inventories</a></li>
+
                       <!--  <li><a href="employeplaceorder.aspx">Order Menu</a></li>-->
                         <li><a href="employebranchbills.aspx">Branch Bills</a></li>
                         <li><a href="employeguestpayment.aspx">Guests Total Bill</a></li>
+                    </ul>
+                  </li>
+                    <li><a><i class="fa fa-building"></i> Inventory <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+
+                      <li><a href="employeroominventories.aspx">Room Inventories</a></li>
+                      <li><a href="employebranchinventory.aspx">Branch Inventories</a></li>
+                      <!--  <li><a href="employeplaceorder.aspx">Order Menu</a></li>-->
+
                     </ul>
                   </li>
 
@@ -289,8 +295,13 @@
     <script src="js/moment/moment.min.js"></script>
     <script src="js/datepicker/daterangepicker.js"></script>
 
-    <!-- Custom Theme Scripts -->
-    <script src="../build/js/custom.min.js"></script> 
+        <!-- Ion.RangeSlider -->
+    <script src="../vendors/ion.rangeSlider/js/ion.rangeSlider.min.js"></script>
+    <!-- Bootstrap Colorpicker -->
+    <script src="../vendors/mjolnic-bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
+
+   
+
     <script>
         $(document).ready(function () {
             var data1 = [
@@ -406,6 +417,33 @@
         gauge.set(3200);
         gauge.setTextField(document.getElementById("gauge-text"));
     </script>
+
+
+
+
+  
+
+   
+
+    <!-- Bootstrap Colorpicker -->
+    <script>
+      $(document).ready(function() {
+        $('.demo1').colorpicker();
+        $('.demo2').colorpicker();
+
+        $('#demo_forceformat').colorpicker({
+            format: 'rgba',
+            horizontal: true
+        });
+
+        $('#demo_forceformat3').colorpicker({
+            format: 'rgba',
+        });
+
+        $('.demo-auto').colorpicker();
+      });
+    </script>
+    <!-- /Bootstrap Colorpicker -->
   </form> 
 </body>
 </html>

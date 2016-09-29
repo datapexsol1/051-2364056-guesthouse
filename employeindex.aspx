@@ -22,16 +22,14 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Calendar <small>Click to add/edit events</small></h3>
+                <h3>Calendar </h3>
               </div>
 
               <div class="title_right">
-                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                <div style="float:right">
                   <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for...">
-                    <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Go!</button>
-                    </span>
+                      <u><b><a href="employeevents.aspx" style="font:x-larger">Add/Edit/Delete Events</a></b></u>
+                   
                   </div>
                 </div>
               </div>
@@ -179,17 +177,17 @@
             var eventDisc=[];
             var startDate=[];
             var endDate=[];
-            
+            var color=[];
             <% foreach(event_calender ec in eve)
         {%>
             eventTitle [<%=i%>]=  "<%=ec.event_name %>";
             eventDisc [<%=i%>]=  "<%=ec.event_description %>";
             startDate [<%=i%>]=  "<%=ec.event_start_date%>";
             endDate [<%=i%>]=  "<%=ec.event_end_date %>";
-           
+            color [<%=i%>]=  "<%=ec.event_color %>";
             <% i++;}%>
          //   alert(eventTitle[1]);
-            alert(eventDisc[1]);
+           // alert(eventDisc[1]);
           
             //my code*********
 
@@ -202,6 +200,7 @@
                 var release_Date = startDate[i];
                 var end_Date = endDate[i];
                 var eve_desc = eventDisc[i];
+                var eve_color = color[i];
                 // array of events
                 //var getEvent = [];  <-- move it out of loop
                 // inserting data from database to getEvent array
@@ -213,7 +212,7 @@
                     // description:eve_desc,
                     start: release_Date,
                     end:end_Date,
-                    color:hue
+                    color:eve_color
 
                 }
                 
