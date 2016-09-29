@@ -18,7 +18,14 @@
     <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <!-- NProgress -->
     <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+            <!-- Ion.RangeSlider -->
+    <link href="../vendors/normalize-css/normalize.css" rel="stylesheet">
+    <link href="../vendors/ion.rangeSlider/css/ion.rangeSlider.css" rel="stylesheet">
+    <link href="../vendors/ion.rangeSlider/css/ion.rangeSlider.skinFlat.css" rel="stylesheet">
+    <!-- Bootstrap Colorpicker -->
+    <link href="../vendors/mjolnic-bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css" rel="stylesheet">
 
+    <link href="../vendors/cropper/dist/cropper.min.css" rel="stylesheet">
     <!-- Custom Theme Style -->
     <link href="../custom/custom.min.css" rel="stylesheet">
     </head>
@@ -83,11 +90,10 @@
                                             <input  type="date" id="eventenddate" name="eventenddate"  placeholder="Select date..." class="form-control"/>
                                          </div>
                                 </div>
-                                <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Styled</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                <div class="row">
+                        <div class="col-md-5">
                           <div class="input-group demo2">
-                            <input type="text" value="#e01ab5" class="form-control" />
+                            <input type="text" value="#e01ab5" class="form-control" runat="server" id="eventcolor" name="eventcolor"/>
                             <span class="input-group-addon"><i></i></span>
                           </div>
                         </div>
@@ -173,5 +179,46 @@
         </div>
           </div>
     </div>
+    
+    <!-- jQuery -->
+    <script src="../vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="../vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="../vendors/nprogress/nprogress.js"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="js/moment/moment.min.js"></script>
+    <script src="js/datepicker/daterangepicker.js"></script>
+    <!-- Ion.RangeSlider -->
+    <script src="../vendors/ion.rangeSlider/js/ion.rangeSlider.min.js"></script>
+    <!-- Bootstrap Colorpicker -->
+    <script src="../vendors/mjolnic-bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
+
+
+    <!-- Custom Theme Scripts -->
+    <script src="../build/js/custom.min.js"></script>
+
+   
+    <!-- Bootstrap Colorpicker -->
+    <script>
+      $(document).ready(function() {
+        $('.demo1').colorpicker();
+        $('.demo2').colorpicker();
+
+        $('#demo_forceformat').colorpicker({
+            format: 'rgba',
+            horizontal: true
+        });
+
+        $('#demo_forceformat3').colorpicker({
+            format: 'rgba',
+        });
+
+        $('.demo-auto').colorpicker();
+      });
+    </script>
+    <!-- /Bootstrap Colorpicker -->
 </asp:Content>
 
