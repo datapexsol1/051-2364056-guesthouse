@@ -39,6 +39,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <input type="hidden" id="itemid" runat="server" />
     <input type="hidden" id="nofitem" runat="server" />
+    <input type="hidden" id="bid" runat="server" />
      <div class="right_col" role="main">
           <div class="">
             <div class="page-title">
@@ -82,7 +83,8 @@
                          <!-- start view activity -->
                       <div id="myTabContent" class="tab-content">
                         <div role="tabpanel" class="tab-pane fade active in" id="tab_view" aria-labelledby="home-tab">
-                            <asp:Button ID="getsummary" runat="server" Text="Button" OnClick="getsummary_click" />
+                            <asp:Button ID="getsummary" runat="server" Text="Place Order" OnClick="getsummary_click" />
+                             <asp:Button ID="savetodb" runat="server" Text="PrintBill" OnClick="savetodb_click" />
                            <asp:Table class="data table table-striped no-margin"  ID="menuview"  runat="server">
                              
                             

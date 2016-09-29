@@ -66,6 +66,59 @@ public partial class employeguestpayment : System.Web.UI.Page
                 }
                 tRow.Cells.Add(checkoutbtn);
 
+
+                // itemname item price item quantity quantity
+                //create orderdetail table\
+                 orderdetail_attr[] oders = empmenuclass.getOrderPLaced(bid);
+                TableRow horderitem = new TableRow();
+                facilites.Rows.Add(horderitem);
+                TableCell hitemname = new TableCell();
+                tCell1.Text = "Item";
+                tRow1.Cells.Add(hitemname);
+                TableCell hitemprice = new TableCell();
+                tCell2.Text = "item price";
+                tRow1.Cells.Add(hitemprice);
+                TableCell hquantity = new TableCell();
+                tCell4.Text = "Quantity";
+                tRow1.Cells.Add(hquantity);
+                TableCell hitemquantity = new TableCell();
+                tCell3.Text = "#Item";
+                tRow1.Cells.Add(hitemquantity);
+                TableCell htotalprice = new TableCell();
+                tCell4.Text = "Total Price";
+                tRow1.Cells.Add(htotalprice);
+                TableCell hdate = new TableCell();
+                tCell4.Text = "Date";
+                tRow1.Cells.Add(hdate);
+
+                foreach (orderdetail_attr or in oders)
+                {
+                    TableRow orderitem = new TableRow();
+                    facilites.Rows.Add(orderitem);
+                    TableCell itemname = new TableCell();
+                    tCell1.Text = or.rs_orde_menu.item_name;
+                    tRow1.Cells.Add(itemname);
+                    TableCell itemprice = new TableCell();
+                    tCell2.Text = or.rs_orde_menu.price.ToString();
+                    tRow1.Cells.Add(itemprice);
+                    TableCell quantity = new TableCell();
+                    tCell4.Text = or.rs_orde_menu.quantity;
+                    tRow1.Cells.Add(quantity);
+                    TableCell itemquantity = new TableCell();
+                    tCell3.Text = or.order.quantity.ToString();
+                    tRow1.Cells.Add(itemquantity);
+                    TableCell totalprice = new TableCell();
+                    tCell4.Text = (or.order.quantity*or.rs_orde_menu.price).ToString();
+                    tRow1.Cells.Add(totalprice);
+                    TableCell date = new TableCell();
+                    tCell4.Text = or.order.date.ToString();
+                    tRow1.Cells.Add(date);
+                }
+               
+
+
+
+
             }
         }
     }

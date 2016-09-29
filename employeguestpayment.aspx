@@ -34,18 +34,25 @@
 
           <div>
              <h3>Facilities</h3>
-               <div style="overflow:auto;white-space:nowrap;">
-                               <table class="table table-bordered table-striped" <%-- class="data table table-striped no-margin"--%> >
-                              <thead>
-                                <tr >
-                                    <th>Item</th>
-                                    <th>Name</th>
-                                    <th>Description</th>
-                                    <th>Date</th>
-                                    <th>Cost</th>
+               <asp:Table ID="facilites" runat="server" class="table table-bordered table-striped">
+
+
+
+    </asp:Table>
+          <%--     <div style="overflow:auto;white-space:nowrap;">
+
+                               <table class="table table-bordered table-striped" <%-- class="data table table-striped no-margin"-- >
+                                 <thead>
+                                    <tr >
+                                            <th>Item</th>
+                                            <th>Name</th>
+                                            <th>Description</th>
+                                            <th>Date</th>
+                                            <th>Cost</th>
                                     </tr>
                                   </thead>
                                    <tbody>
+                                     
                                        <tr>
                                            <td><label id="item"></label></td>
                                            <td><label id="name"></label></td>
@@ -60,7 +67,7 @@
                    <br />
                    <label id="itemtotal" style="float:right;">1000 etc</label>
                        </div>
-        </div>
+        </div>--%>
          </div>
           <hr style="border:dashed;" />
 
