@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="guest_house_database" Class="ctownDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=DESKTOP-ET1M3I1;Initial Catalog=guest_house_database;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="guest_house_databaseConnectionString1" Provider="System.Data.SqlClient" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=DESKTOP-PLPMAOO;Initial Catalog=guest_house_database;Integrated Security=True;Encrypt=False;TrustServerCertificate=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="guest_house_databaseConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.bill" Member="bills">
     <Type Name="bill">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -127,14 +127,6 @@
       <Column Name="image" Member="image1" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
     </Type>
   </Table>
-  <Table Name="dbo.other_requirement" Member="other_requirements">
-    <Type Name="other_requirement">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="newspaper" Type="System.String" DbType="NVarChar(25)" CanBeNull="true" />
-      <Column Name="other_facilities" Type="System.String" DbType="NVarChar(25)" CanBeNull="true" />
-      <Column Name="booking_id" Type="System.String" DbType="NVarChar(25) NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
   <Table Name="dbo.room_assets" Member="room_assets">
     <Type Name="room_asset">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -142,15 +134,6 @@
       <Column Name="label" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="description" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="total_item" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
-  <Table Name="dbo.room_service_menu" Member="room_service_menus">
-    <Type Name="room_service_menu">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="type" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="item_name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="price" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="quantity" Type="System.String" DbType="NVarChar(25)" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.rooms" Member="rooms">
@@ -172,6 +155,34 @@
       <Column Name="total_rent" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
       <Column Name="facility_total_payment" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
       <Column Name="total_bill" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.placed_order" Member="placed_orders">
+    <Type Name="placed_order">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="booking_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="item_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="delivery" Type="System.String" DbType="NChar(3) NOT NULL" CanBeNull="false" />
+      <Column Name="date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.room_service_menu" Member="room_service_menus">
+    <Type Name="room_service_menu">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="type" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="item_name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="price" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="quantity" Type="System.String" DbType="NVarChar(25)" CanBeNull="true" />
+      <Column Name="bid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.other_requirement" Member="other_requirements">
+    <Type Name="other_requirement">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="newspaper" Type="System.String" DbType="NVarChar(25)" CanBeNull="true" />
+      <Column Name="other_facilities" Type="System.String" DbType="NVarChar(25)" CanBeNull="true" />
+      <Column Name="booking_id" Type="System.String" DbType="NVarChar(25) NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
 </Database>

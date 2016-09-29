@@ -277,7 +277,7 @@
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                  <label >Arrival Date <span class="required">*</span>
                             </label>
-                              <input type="date" id="Arrival" name="arrivaldate"  class="form-control col-md-7 col-xs-12" required="required"/>
+                              <input type="date" id="Arrival" name="arrivaldate" class="form-control col-md-7 col-xs-12" required="required"/>
                             </div>
                           </div>
 

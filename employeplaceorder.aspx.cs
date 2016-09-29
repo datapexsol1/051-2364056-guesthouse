@@ -12,6 +12,8 @@ public partial class employemenuservice : System.Web.UI.Page
         if (!IsPostBack)
         {
             ordersummery.Visible = false;
+            savetodb.Visible = false;
+           
         }
         TableRow tRow1 = new TableRow();
         menuview.Rows.Add(tRow1);
@@ -41,9 +43,9 @@ public partial class employemenuservice : System.Web.UI.Page
 
         // int roomid = int.Parse(Request["rnovxxxx"].ToString());
         // int branchid = int.Parse(Request["branch"]);
-
-
-        IQueryable < room_service_menu >assets= empmenuclass.getMenuItem();
+         int bbid= employeeProfile.getEmployeBranch("kk");//get from session
+        bid.Value = bbid.ToString();
+        IQueryable < room_service_menu >assets= empmenuclass.getMenuItem(bbid);
         string checkin = "";
          
         foreach (var x in assets)
@@ -174,9 +176,10 @@ public partial class employemenuservice : System.Web.UI.Page
         tRow1.Cells.Add(tCell5);
 
 
-
-        IQueryable<room_service_menu> menu = empmenuclass.getMenuItem();
+        int bidx = int.Parse(bid.Value);
+        IQueryable<room_service_menu> menu = empmenuclass.getMenuItem(bidx);
         int l = 0;
+        placed_order p = new placed_order();
         foreach (room_service_menu x in menu){
           
             foreach (string k in words)
@@ -190,6 +193,7 @@ public partial class employemenuservice : System.Web.UI.Page
                     //tRow.Cells.Add(tCellr);
                     TableCell tCellrn = new TableCell();
                     tCellrn.Text = x.item_name;
+                    
                     //  tCellrn.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
                     tRow.Cells.Add(tCellrn);
                     TableCell tCellri = new TableCell();
@@ -205,6 +209,17 @@ public partial class employemenuservice : System.Web.UI.Page
                     totalprice += x.price * int.Parse(value[l]);
                     // tCelltoalp.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
                     tRow.Cells.Add(tCelltoalp);
+
+
+
+
+                    p.booking_id = x.bid;
+                    p.item_id = x.Id;
+                    p.quantity = int.Parse(value[l]);
+                    p.date = DateTime.Now;
+                    p.delivery = "no";
+                    empmenuclass.placeOrder(p);
+
                     l++;
                    
                 }
@@ -221,7 +236,25 @@ public partial class employemenuservice : System.Web.UI.Page
         tb.ColumnSpan = 5;
         totalbill.Cells.Add(tb);
 
-        // Response.Write(itemid.Value);
+       
+        getsummary.Visible = false;
+        savetodb.Visible = true;
+       
+       
+    }
+    
+    protected void savetodb_click(object sender, EventArgs e)
+    {
+        string x = "";
+        foreach (TableRow tr in ordersummery.Rows)
+        {
+
+            foreach (TableCell tc in tr.Cells)
+            {
+               x+= tc.Text;
+                Response.Write(x);
+            }
+        }
     }
     protected void saveitem_click(object sender,EventArgs e)
     {
@@ -230,6 +263,7 @@ public partial class employemenuservice : System.Web.UI.Page
             rm.item_name= Request.Form["additemname"].ToString();
         rm.price=int.Parse(Request.Form["additemprice"].ToString());
         rm.quantity=Request.Form["additemquantity"].ToString();
+        rm.bid= employeeProfile.getEmployeBranch("kk");//get from session
         empmenuclass.addMenuItem(rm);
     }
 }
