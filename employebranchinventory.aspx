@@ -85,14 +85,14 @@
                               <tbody>
                                 <tr>
                                   <td>
-                                      <asp:DropDownList  runat="server" class="form-control" clientIdMode="static" ID="ddbranchname" name="ddbranchname" AutoPostBack="True" OnSelectedIndexChanged="branchNameSelectedIndexChange">
+                                      <asp:DropDownList  runat="server" class="form-control" clientIdMode="static" ID="ddbranchname" name="ddbranchname" AutoPostBack="True" OnSelectedIndexChanged="branchNameSelectedIndexChange" required>
                                       <Items>
                                            <asp:ListItem Text="Select" Value="" />
                                        </Items>
                                       </asp:DropDownList>
                                   </td>
                                   <td>
-                                      <asp:DropDownList  runat="server" clientIdMode="static" class="form-control" ID="dditemname" name="dditemname" AutoPostBack="True" OnSelectedIndexChanged="itemNameSelectedIndexChange">
+                                      <asp:DropDownList  runat="server" clientIdMode="static" class="form-control" ID="dditemname" name="dditemname" AutoPostBack="True" OnSelectedIndexChanged="itemNameSelectedIndexChange" required>
                                           <Items>
                                            <asp:ListItem Text="Select" Value="" />
                                        </Items>
@@ -103,7 +103,7 @@
                                   </td>
                                   <td> <input type="text" id="itemname" name="itemname"  placeholder="Label" class="form-control " runat="server"/></td>
                                   <td>  <input type="text" id="itemdescription" name="itemdescription"  placeholder="Description" class="form-control " runat="server"/></td>
-                                  <td>   <input type="number" id="totalitem" name="totalitem" min="0"  placeholder="Number Of Items" class="form-control " runat="server"/></td>
+                                  <td>   <input type="number" id="totalitem" name="totalitem" min="1"  placeholder="Number Of Items" class="form-control " runat="server"/></td>
                                   <td>  <asp:Button ID="send" runat="server" Text="Update"  class="btn btn-success" OnClick="updateBranchAssets_click" /></td>
                                 </tr>
                                
@@ -133,7 +133,9 @@
                               <div class="form-group col-md-6">
                                     <label class="control-label col-md-4 " for="room no">Label <span class="required">*</span> </label>
                                     <div class="col-md-8">
-                                      <input type="text" id="alabel1" name="alabel1" placeholder="Label" class="form-control "/>
+                                      <input type="text" id="alabel1" name="alabel1" placeholder="Label" class="form-control " data-validation="length alphanumeric" 
+		 data-validation-length="3-25" 
+		 data-validation-error-msg="Enter item name"/>
                                     </div>
                               </div>
                      
@@ -142,20 +144,22 @@
                         <label class="control-label col-md-4 " for="room type">Item Description <span class="required">*</span>
                         </label>
                         <div class="col-md-8">
-                          <input type="text" id="adescription" name="adescription1"  placeholder="Description" class="form-control "/>
+                          <input type="text" id="adescription" name="adescription1"  placeholder="Description" class="form-control " data-validation="length alphanumeric" 
+		 data-validation-length="3-25" 
+		 data-validation-error-msg="Enter item description"/>
                         </div>
                       </div>
                                <div class="form-group col-md-6">
                         <label class="control-label col-md-4" for="room size">Number of Item <span class="required">*</span>
                         </label>
                         <div class="col-md-8">
-                          <input type="number" id="aitemno" name="insertaitemno"  placeholder="Number Of Items" class="form-control "/>
+                          <input type="number" id="aitemno" name="insertaitemno"  placeholder="Number Of Items" class="form-control " required="required"/>
                         </div>
                       </div>
                            
                               <div class="form-group">
                         <div class="col-md-6 col-md-offset-11">
-                        <asp:Button ID="SaveAssets" runat="server" OnClick="saveBAssets_click"  Text="SaveAssets" />
+                        <asp:Button ID="SaveAssets" runat="server" OnClick="saveBAssets_click"  Text="SaveAssets" CssClass="btn btn-success" />
                         </div>
                       </div>
                             </div>
@@ -168,6 +172,21 @@
          </div>
         </div>
         
+       <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+<script>
+
+  $.validate({
+    modules : 'location, date, security, file',
+    onModulesLoaded : function() {
+      $('#country').suggestCountry();
+    }
+  });
+
+  // Restrict presentation length
+  $('#presentation').restrictLength( $('#pres-max-length') );
+
+</script>     
 
 
 
