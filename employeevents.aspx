@@ -205,9 +205,6 @@
     <script src="../vendors/mjolnic-bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
 
 
-    <!-- Custom Theme Scripts -->
-    <script src="../build/js/custom.min.js"></script>
-
    
     <!-- Bootstrap Colorpicker -->
     <script>
