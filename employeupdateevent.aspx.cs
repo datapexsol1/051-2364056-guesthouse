@@ -9,9 +9,8 @@ public partial class employeupdateevent : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        string eventid = Request.QueryString["id"].ToString();
-        updatehiddenid.Value = eventid;
-    }
+       
+   } 
 
     protected void eventsubmit_Click(object sender, EventArgs e)
     {

@@ -20,9 +20,28 @@
     
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <%  string eventid = Request.QueryString["id"].ToString();
+    <%  
+        event_calender eventInfo = new event_calender();
+        if (!string.IsNullOrEmpty(Request.QueryString["id"]))
+        {
+            string eventid = Request.QueryString["id"].ToString();
+            updatehiddenid.Value = eventid;
+            if (!string.IsNullOrEmpty(Request.QueryString["del"]))
+            {
+                if (Request.QueryString["del"].ToString() == "true")
+                {
+                    event_calender eve = new event_calender();
+                    events.deleteEvent(eve, int.Parse(eventid));
+                    Response.Redirect("employeevents.aspx?msg=done");
+                }
+            }
+            else
+            {
+                eventInfo = events.retrieveSelectedEvent(int.Parse(eventid));
+            }
 
-        event_calender eventInfo = events.retrieveSelectedEvent(int.Parse(eventid));
+        }
+
         %>
 
     <div class="right_col" role="main">

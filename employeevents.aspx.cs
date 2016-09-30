@@ -28,4 +28,11 @@ public partial class employeevents : System.Web.UI.Page
         //  ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "activaTab('tab_content2');", true);
 
     }
+    //protected void delete_CLick(object sender, EventArgs e)
+    //{
+       
+    //    //   int id = int.Parse((sender as Control).ID.ToString());// int.Parse(Request.Form["id"].ToString());
+    //    //do something with roomId
+
+    //}
 }
