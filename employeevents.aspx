@@ -33,14 +33,15 @@
             //alert("working");
         };
         function changeValue(val) {
+      
             document.getElementById('testingeventid').value = val;
-             <%Session["updateEventID"] = "'+val+'";%>   
+            
             
         }
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-
+            <%--<%Session["updateEventID"] = id;%> --%>  
      
       <div class="right_col" role="main">
     <div class="row">
@@ -88,7 +89,6 @@
                     <table class="table table-striped projects">
                       <thead>
                         <tr>
-                          <th style="width:1%;visibility:hidden ">Id</th>
                           <th style="width: 20%">Event Name</th>
                           
                          
@@ -101,7 +101,6 @@
                                %>
                       <tbody>
                         <tr>
-                          <td><%=ec.Id %></td>
                           <td>
                             <a><%=ec.event_name %></a>
                             <br />
@@ -112,20 +111,21 @@
                           <td>
                              
                             <a href="?id=<%=ec.Id %>" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
-                            <a href="employeupdateevent.aspx" onclick="changeValue(<%=ec.Id %>)" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+                            <a href="employeupdateevent.aspx?id=<%=ec.Id %>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
                             <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
                           </td>
                         </tr>
-                            
-                      
                          
                   <% 
                       } %>
+                            
                     
-                        <input type="text" value="" id="testingeventid" />
-                          <%--<%Session["updateEventID"] = Request.Form["testingeventid"].ToString(); %>--%>
+                       
                       </tbody>
-                    </table>
+                    </table>                       
+
+                      
+
                       
                     <!-- end project list -->
 

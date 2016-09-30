@@ -10,21 +10,11 @@ public partial class employeevents : System.Web.UI.Page
     bool IsPageRefresh ;
     protected void Page_Load(object sender, EventArgs e)
     {
-        
-       // Session["updateEventID"] = Request.Form["testingeventid"].ToString();// testingeventid.Value;
-
-        //if (!IsPostBack)
-        //{
-        //    IsPageRefresh = true;
-        //}
-        //else
-        //{
-        //    IsPageRefresh = false;
-        //}
 
     }
     protected void eventsubmit_Click(object sender, EventArgs e)
     {
+        
         //if (IsPageRefresh==true)
         //{
             event_calender ev = new event_calender();
