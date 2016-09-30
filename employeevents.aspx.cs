@@ -7,18 +7,35 @@ using System.Web.UI.WebControls;
 
 public partial class employeevents : System.Web.UI.Page
 {
+    bool IsPageRefresh ;
     protected void Page_Load(object sender, EventArgs e)
     {
+        
+       // Session["updateEventID"] = Request.Form["testingeventid"].ToString();// testingeventid.Value;
+
+        //if (!IsPostBack)
+        //{
+        //    IsPageRefresh = true;
+        //}
+        //else
+        //{
+        //    IsPageRefresh = false;
+        //}
 
     }
     protected void eventsubmit_Click(object sender, EventArgs e)
     {
-        event_calender ev = new event_calender();
-        ev.event_name = eventname.Value;
-        ev.event_description = eventdesc.Value;
-        ev.event_start_date = DateTime.Parse(Request.Form["eventstartdate"].ToString());
-        ev.event_end_date = DateTime.Parse(Request.Form["eventenddate"].ToString());
-        ev.event_color = eventcolor.Value;
-        events.addEvent(ev);
+        //if (IsPageRefresh==true)
+        //{
+            event_calender ev = new event_calender();
+            ev.event_name = eventname.Value;
+            ev.event_description = eventdesc.Value;
+            ev.event_start_date = DateTime.Parse(eventstartdate.Value);// DateTime.Parse(Request.Form["eventstartdate"].ToString());
+            ev.event_end_date = DateTime.Parse(eventenddate.Value);//Request.Form["eventenddate"].ToString());
+            ev.event_color = eventcolor.Value;
+           bool check = events.addEvent(ev);
+        
+        //  ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "activaTab('tab_content2');", true);
+
     }
 }

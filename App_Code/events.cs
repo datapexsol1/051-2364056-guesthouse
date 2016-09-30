@@ -19,8 +19,11 @@ public class events
         try
         {
             ctownDataContext db = db = new ctownDataContext();
+            //db.event_calenders.InsertOnSubmit(ev);
+            //db.SubmitChanges();
+            //return true;
             int count = (from x in db.event_calenders
-                         where x.Id == ev.Id
+                         where x.event_description== ev.event_description && x.event_color == ev.event_color && x.event_start_date == ev.event_start_date
                          select x).Count();
             if (count == 0)
             {
@@ -39,6 +42,15 @@ public class events
             return false;
         }
     }
+    public static event_calender retrieveSelectedEvent(int id)
+    {
+        ctownDataContext db = new ctownDataContext();
+        event_calender getInfo = (from x in db.event_calenders
+                                  where x.Id == id
+                                  select x).First();
+        return getInfo;
+    }
+
     public static IQueryable<event_calender> retrieveAllEvents()
     {
         ctownDataContext db = new ctownDataContext();
