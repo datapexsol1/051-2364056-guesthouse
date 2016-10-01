@@ -1,9 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EmployePanel.master" AutoEventWireup="true" CodeFile="employeevents.aspx.cs" Inherits="employeevents" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
@@ -28,21 +25,39 @@
     <link href="../vendors/cropper/dist/cropper.min.css" rel="stylesheet">
     <!-- Custom Theme Style -->
     <link href="../custom/custom.min.css" rel="stylesheet">
-    </head>
+    <script>
+        function activaTab(tab) {
+
+            $('.nav-tabs a[href="#' + tab + '"]').tab('show');
+
+            //alert("working");
+        };
+        function delFunction(val) {
+      
+            alert("Are you sure you want to delete the event ? ");
+           
+            
+        }
+        function deleteRow(obj) {
+            $(obj).closest('tr').remove();
+        }
+    </script>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+            <%--<%Session["updateEventID"] = id;%> --%>  
      
       <div class="right_col" role="main">
     <div class="row">
      <div class="col-md-12 col-sm-12 col-xs-12">
      <div class="x_content">
      <div class="col-md-9 col-sm-9 col-xs-12">
-         <h3>Rooms</h3>
-          <div class="container">
+         <h3>Events</h3>
+         
     <div class="" role="tabpanel" data-example-id="togglable-tabs">
                         <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
                           <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">View Events</a></li>
                           <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab1" data-toggle="tab" aria-expanded="false">Add Event</a></li>
 
-                          <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Update Event</a></li>
                             
                           
                         </ul>
@@ -61,12 +76,72 @@
 
 
                             <!-- start recent activity -->
-                           
+                             <!-- page content -->
+     
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="x_panel">
+                  
+                  <div class="x_content">
+
+                   
+
+                    <!-- start project list -->
+                     
+                    <table class="table table-striped projects">
+                      <thead>
+                        <tr>
+                          <th style="width: 20%">Event Name</th>
+                          
+                         
+                          <th style="width: 20%"></th>
+                        </tr>
+                      </thead>
+                         <% IQueryable<event_calender> evecal = events.retrieveAllEvents();
+                          foreach (event_calender ec in evecal)
+                          {
+                               %>
+                      <tbody>
+                        <tr>
+                          <td>
+                            <a><%=ec.event_name %></a>
+                            <br />
+                            <small><%=ec.event_description %><br /><%=ec.event_start_date %></small>
+                          </td>
+                            
+                         
+                          <td>
+                             
+                            <a href="?id=<%=ec.Id %>" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
+                            <a href="employeupdateevent.aspx?id=<%=ec.Id %>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+                               <a href="employeupdateevent.aspx?id=<%=ec.Id %>&del=true" class="btn btn-danger btn-xs"><i class="fa fa-pencil"></i> Delete </a>
+                            <%--<a href="employeupdateevent.aspx?id=<%=ec.Id %>"  class="btn btn-danger btn-xs" runat="server"><i class="fa fa-trash-o"></i> Delete </a>--%>
+                          </td>
+                        </tr>
+                         
+                  <% 
+                      } %>
+                     
+                       
+                      </tbody>
+                    </table>                       
+                      
+
+                      
+                    <!-- end project list -->
+
+                  </div>
+                </div>
+              </div>
+           </div>
+ 
+        <!-- /page content -->
                           
                             <!-- end recent activity -->
                               
-
-                 </div>
+</div>
+                
                          
                             <!--start add event-->
                             <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
@@ -82,95 +157,30 @@
                                 </div>
                                 <div class="row">
                                      <div class="col-md-5">
-                                            <input  type="date" id="eventstartdate" name="eventstartdate"  class="form-control"/>
+                                            <input  type="date" id="eventstartdate" name="eventstartdate"  class="form-control" runat="server"/>
                                          </div>
                                 </div>
                                 <div class="row">
                                      <div class="col-md-5">
-                                            <input  type="date" id="eventenddate" name="eventenddate"  placeholder="Select date..." class="form-control"/>
+                                            <input  type="date" id="eventenddate" name="eventenddate"  placeholder="Select date..." class="form-control" runat="server"/>
                                          </div>
                                 </div>
                                 <div class="row">
                         <div class="col-md-5">
                           <div class="input-group demo2">
-                            <input type="text" value="#e01ab5" class="form-control" runat="server" id="eventcolor" name="eventcolor"/>
+                            <input type="text"  placeholder="Select color.." class="form-control" runat="server" id="eventcolor" name="eventcolor"/>
                             <span class="input-group-addon"><i></i></span>
                           </div>
                         </div>
                       </div>
-                              <asp:Button ID="eventsubmit" runat="server" Text="Submit" class="btn btn-success" OnClick="eventsubmit_Click"/>
+                              <asp:Button ID="eventsubmit" runat="server" Text="Submit" class="btn btn-success" OnClick="eventsubmit_Click" AutoPostBack="false" CausesValidation="true" />
                               
                               
                               
                               
                           </div>
                             <!--end add event-->
-                            
-                          <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
-                             
-                              
-                                   <div class="form-group col-md-6">
-                        <label class="control-label col-md-4 " for="room no">Room No <span class="required">*</span>
-                        </label>
-                        <div class="col-md-8">
-                          <input type="text" id="roomno" name="roomno"  placeholder="Room No" class="form-control "  data-validation="required" 
-		 data-validation-error-msg="Room no is required !"/>
-                        </div>
-                      </div>
-
-                               <div class="form-group col-md-6">
-                        <label class="control-label col-md-4 " for="room type">Room Type <span class="required">*</span>
-                        </label>
-                        <div class="col-md-8">
-                          <input type="text" id="roomtype" name="roomtype" data-validation="required" 
-		 data-validation-error-msg="Room Type is required !" placeholder="Room type" class="form-control "/>
-                        </div>
-                      </div>
-                               <div class="form-group col-md-6">
-                        <label class="control-label col-md-4 " for="room size">Room Size <span class="required">*</span>
-                        </label>
-                        <div class="col-md-8">
-                          <input type="text" id="roomsize" name="roomsize"  placeholder="Room size" class="form-control " data-validation="length alphanumeric" 
-		 data-validation-length="3-12" 
-		 data-validation-error-msg="Room size is not in correct format"/>
-                        </div>
-                      </div>
-                               <div class="form-group col-md-6">
-                        <label class="control-label col-md-4 " for="room rent">Max Room Rent <span class="required">*</span>
-                        </label>
-                        <div class="col-md-8">
-                          <input type="number" id="roommaxrent" name="roommaxrent"  placeholder="Room rent max" class="form-control "
-                              min="0" data-validation="required" 
-		 data-validation-error-msg="Maximum room rent is required !"/>
-                        </div>
-                      </div>
-                               <div class="form-group col-md-6">
-                        <label class="control-label col-md-4 " for="room rent">Min Room Rent <span class="required">*</span>
-                        </label>
-                        <div class="col-md-8">
-                          <input type="number" id="roomminrent" name="roomminrent"  placeholder="Room Rent" class="form-control "
-                              min="0" data-validation="required" 
-		 data-validation-error-msg="Minimum room rent is required !"/>
-                        </div>
-                      </div>
-                               <div class="form-group col-md-6">
-                        <label class="control-label col-md-4 " for="branch no">Branch <span class="required">*</span>
-                        </label>
-                        <div class="col-md-8">
                        
-                        </div>
-                      </div>
-                              <div class="form-group">
-                        <div class="col-md-6 col-md-offset-11">
-                        </div>
-                      </div>
-                              
-                              
-                              
-                              
-                              
-                              
-                          </div>
                         </div>
                       </div>
          </div>
@@ -178,8 +188,8 @@
          </div>
         </div>
           </div>
-    </div>
     
+  
     <!-- jQuery -->
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
@@ -196,9 +206,6 @@
     <!-- Bootstrap Colorpicker -->
     <script src="../vendors/mjolnic-bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
 
-
-    <!-- Custom Theme Scripts -->
-    <script src="../build/js/custom.min.js"></script>
 
    
     <!-- Bootstrap Colorpicker -->

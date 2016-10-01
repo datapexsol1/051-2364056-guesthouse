@@ -215,7 +215,7 @@
                     color:eve_color
 
                 }
-                
+                allDay:true,
                 
                 getEvent.push(insertEvents);
 
