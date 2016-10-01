@@ -74,12 +74,12 @@ public partial class ctownDataContext : System.Data.Linq.DataContext
   partial void Insertother_requirement(other_requirement instance);
   partial void Updateother_requirement(other_requirement instance);
   partial void Deleteother_requirement(other_requirement instance);
-  partial void Insertevent_calender(event_calender instance);
-  partial void Updateevent_calender(event_calender instance);
-  partial void Deleteevent_calender(event_calender instance);
   partial void Insertplaced_order(placed_order instance);
   partial void Updateplaced_order(placed_order instance);
   partial void Deleteplaced_order(placed_order instance);
+  partial void Insertevent_calender(event_calender instance);
+  partial void Updateevent_calender(event_calender instance);
+  partial void Deleteevent_calender(event_calender instance);
   #endregion
 	
 	public ctownDataContext() : 
@@ -232,19 +232,19 @@ public partial class ctownDataContext : System.Data.Linq.DataContext
 		}
 	}
 	
-	public System.Data.Linq.Table<event_calender> event_calenders
-	{
-		get
-		{
-			return this.GetTable<event_calender>();
-		}
-	}
-	
 	public System.Data.Linq.Table<placed_order> placed_orders
 	{
 		get
 		{
 			return this.GetTable<placed_order>();
+		}
+	}
+	
+	public System.Data.Linq.Table<event_calender> event_calenders
+	{
+		get
+		{
+			return this.GetTable<event_calender>();
 		}
 	}
 }
@@ -3579,164 +3579,6 @@ public partial class other_requirement : INotifyPropertyChanging, INotifyPropert
 	}
 }
 
-[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.event_calender")]
-public partial class event_calender : INotifyPropertyChanging, INotifyPropertyChanged
-{
-	
-	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-	
-	private int _Id;
-	
-	private string _event_name;
-	
-	private string _event_description;
-	
-	private System.DateTime _event_start_date;
-	
-	private System.Nullable<System.DateTime> _event_end_date;
-	
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void Onevent_nameChanging(string value);
-    partial void Onevent_nameChanged();
-    partial void Onevent_descriptionChanging(string value);
-    partial void Onevent_descriptionChanged();
-    partial void Onevent_start_dateChanging(System.DateTime value);
-    partial void Onevent_start_dateChanged();
-    partial void Onevent_end_dateChanging(System.Nullable<System.DateTime> value);
-    partial void Onevent_end_dateChanged();
-    #endregion
-	
-	public event_calender()
-	{
-		OnCreated();
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-	public int Id
-	{
-		get
-		{
-			return this._Id;
-		}
-		set
-		{
-			if ((this._Id != value))
-			{
-				this.OnIdChanging(value);
-				this.SendPropertyChanging();
-				this._Id = value;
-				this.SendPropertyChanged("Id");
-				this.OnIdChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_event_name", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-	public string event_name
-	{
-		get
-		{
-			return this._event_name;
-		}
-		set
-		{
-			if ((this._event_name != value))
-			{
-				this.Onevent_nameChanging(value);
-				this.SendPropertyChanging();
-				this._event_name = value;
-				this.SendPropertyChanged("event_name");
-				this.Onevent_nameChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_event_description", DbType="NVarChar(50)")]
-	public string event_description
-	{
-		get
-		{
-			return this._event_description;
-		}
-		set
-		{
-			if ((this._event_description != value))
-			{
-				this.Onevent_descriptionChanging(value);
-				this.SendPropertyChanging();
-				this._event_description = value;
-				this.SendPropertyChanged("event_description");
-				this.Onevent_descriptionChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_event_start_date", DbType="Date NOT NULL")]
-	public System.DateTime event_start_date
-	{
-		get
-		{
-			return this._event_start_date;
-		}
-		set
-		{
-			if ((this._event_start_date != value))
-			{
-				this.Onevent_start_dateChanging(value);
-				this.SendPropertyChanging();
-				this._event_start_date = value;
-				this.SendPropertyChanged("event_start_date");
-				this.Onevent_start_dateChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_event_end_date", DbType="Date")]
-	public System.Nullable<System.DateTime> event_end_date
-	{
-		get
-		{
-			return this._event_end_date;
-		}
-		set
-		{
-			if ((this._event_end_date != value))
-			{
-				this.Onevent_end_dateChanging(value);
-				this.SendPropertyChanging();
-				this._event_end_date = value;
-				this.SendPropertyChanged("event_end_date");
-				this.Onevent_end_dateChanged();
-			}
-		}
-	}
-	
-	public event PropertyChangingEventHandler PropertyChanging;
-	
-	public event PropertyChangedEventHandler PropertyChanged;
-	
-	protected virtual void SendPropertyChanging()
-	{
-		if ((this.PropertyChanging != null))
-		{
-			this.PropertyChanging(this, emptyChangingEventArgs);
-		}
-	}
-	
-	protected virtual void SendPropertyChanged(String propertyName)
-	{
-		if ((this.PropertyChanged != null))
-		{
-			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-		}
-	}
-}
-
 [global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.placed_order")]
 public partial class placed_order : INotifyPropertyChanging, INotifyPropertyChanged
 {
@@ -3755,7 +3597,7 @@ public partial class placed_order : INotifyPropertyChanging, INotifyPropertyChan
 	
 	private System.DateTime _date;
 	
-	private int _room_no;
+	private string _room_no;
 	
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -3773,7 +3615,7 @@ public partial class placed_order : INotifyPropertyChanging, INotifyPropertyChan
     partial void OndeliveryChanged();
     partial void OndateChanging(System.DateTime value);
     partial void OndateChanged();
-    partial void Onroom_noChanging(int value);
+    partial void Onroom_noChanging(string value);
     partial void Onroom_noChanged();
     #endregion
 	
@@ -3902,8 +3744,8 @@ public partial class placed_order : INotifyPropertyChanging, INotifyPropertyChan
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_room_no", DbType="Int NOT NULL")]
-	public int room_no
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_room_no", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+	public string room_no
 	{
 		get
 		{
@@ -3918,6 +3760,188 @@ public partial class placed_order : INotifyPropertyChanging, INotifyPropertyChan
 				this._room_no = value;
 				this.SendPropertyChanged("room_no");
 				this.Onroom_noChanged();
+			}
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+		}
+	}
+}
+
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.event_calender")]
+public partial class event_calender : INotifyPropertyChanging, INotifyPropertyChanged
+{
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private int _Id;
+	
+	private string _event_name;
+	
+	private string _event_description;
+	
+	private System.DateTime _event_start_date;
+	
+	private System.DateTime _event_end_date;
+	
+	private string _event_color;
+	
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void Onevent_nameChanging(string value);
+    partial void Onevent_nameChanged();
+    partial void Onevent_descriptionChanging(string value);
+    partial void Onevent_descriptionChanged();
+    partial void Onevent_start_dateChanging(System.DateTime value);
+    partial void Onevent_start_dateChanged();
+    partial void Onevent_end_dateChanging(System.DateTime value);
+    partial void Onevent_end_dateChanged();
+    partial void Onevent_colorChanging(string value);
+    partial void Onevent_colorChanged();
+    #endregion
+	
+	public event_calender()
+	{
+		OnCreated();
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+	public int Id
+	{
+		get
+		{
+			return this._Id;
+		}
+		set
+		{
+			if ((this._Id != value))
+			{
+				this.OnIdChanging(value);
+				this.SendPropertyChanging();
+				this._Id = value;
+				this.SendPropertyChanged("Id");
+				this.OnIdChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_event_name", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+	public string event_name
+	{
+		get
+		{
+			return this._event_name;
+		}
+		set
+		{
+			if ((this._event_name != value))
+			{
+				this.Onevent_nameChanging(value);
+				this.SendPropertyChanging();
+				this._event_name = value;
+				this.SendPropertyChanged("event_name");
+				this.Onevent_nameChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_event_description", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+	public string event_description
+	{
+		get
+		{
+			return this._event_description;
+		}
+		set
+		{
+			if ((this._event_description != value))
+			{
+				this.Onevent_descriptionChanging(value);
+				this.SendPropertyChanging();
+				this._event_description = value;
+				this.SendPropertyChanged("event_description");
+				this.Onevent_descriptionChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_event_start_date", DbType="Date NOT NULL")]
+	public System.DateTime event_start_date
+	{
+		get
+		{
+			return this._event_start_date;
+		}
+		set
+		{
+			if ((this._event_start_date != value))
+			{
+				this.Onevent_start_dateChanging(value);
+				this.SendPropertyChanging();
+				this._event_start_date = value;
+				this.SendPropertyChanged("event_start_date");
+				this.Onevent_start_dateChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_event_end_date", DbType="Date NOT NULL")]
+	public System.DateTime event_end_date
+	{
+		get
+		{
+			return this._event_end_date;
+		}
+		set
+		{
+			if ((this._event_end_date != value))
+			{
+				this.Onevent_end_dateChanging(value);
+				this.SendPropertyChanging();
+				this._event_end_date = value;
+				this.SendPropertyChanged("event_end_date");
+				this.Onevent_end_dateChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_event_color", DbType="NVarChar(20) NOT NULL", CanBeNull=false)]
+	public string event_color
+	{
+		get
+		{
+			return this._event_color;
+		}
+		set
+		{
+			if ((this._event_color != value))
+			{
+				this.Onevent_colorChanging(value);
+				this.SendPropertyChanging();
+				this._event_color = value;
+				this.SendPropertyChanged("event_color");
+				this.Onevent_colorChanged();
 			}
 		}
 	}

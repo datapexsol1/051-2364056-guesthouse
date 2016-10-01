@@ -46,7 +46,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <input type="hidden" id="itemid" runat="server" />
     <input type="hidden" id="nofitem" runat="server" />
-    <input type="hidden" id="bid" runat="server" />
+    <input type="hidden" id="bookingid" runat="server" />
      <input type="hidden" id="roomno" runat="server" />
      <div class="right_col" role="main">
           <div class="">
@@ -110,39 +110,6 @@
                                
                              
                            </asp:Table>
-                      <!--     <table class="table tbl">
-                              <thead class="thead-inverse">
-                                <tr>
-                                  <th>Menu type</th>
-                                  <th>Item name</th>
-                                  <th>Item price</th>
-                                  <th>Item Quantity</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                  
-                                <tr>
-                                  <td><label id="lbtype"></label></td>
-                                  <td><label id="lbitemname"></label></td>
-                                  <td><label id="lbitemprice"></label></td>
-                                  <td> <label id="lbitemqty"></label></td>
-                               
-                                              
-                                </tr>
-                                
-                               
-                              </tbody>
-                            </table>-->
-                            
-                        </div>
-                          <!-- end view activity -->
-                        
-                            <!-- start add activity -->
-                       
-                          <!-- end add activity -->
-                          <!-- start update activity-->
-                 
-                          <!--end update activity-->
                           <div role="tabpanel" class="tab-pane fade" id="tab_delete" aria-labelledby="profile-tab">
                           <p>delete content</p>
                         </div>

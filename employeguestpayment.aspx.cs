@@ -11,6 +11,7 @@ public partial class employeguestpayment : System.Web.UI.Page
     {
         if (!IsPostBack && Request.QueryString["booking"].ToString() != null)
         {
+            double grand_totalbill = 0.0;
             int bid = int.Parse(Request.QueryString["booking"]);
             bookingRoomAttr[] data = bookingclass.getBookingDetail(bid);
             TableRow tRow1 = new TableRow();
@@ -40,7 +41,7 @@ public partial class employeguestpayment : System.Web.UI.Page
 
 
                 TableCell tCellr = new TableCell();
-                tCellr.Text = x.r_roomid.ToString();
+                tCellr.Text = roomsclass.getRoomNo(int.Parse(x.r_roomid.ToString()),x.b_branch_id);
                 tRow.Cells.Add(tCellr);
                 TableCell tCellrn = new TableCell();
                 tCellrn.Text = x.r_rent;
@@ -53,7 +54,8 @@ public partial class employeguestpayment : System.Web.UI.Page
                 tRow.Cells.Add(tCellri);
                 //multiply now days between dates with roomrent ;
                 TableCell tCellbtotal = new TableCell();
-                tCellbtotal.Text = totalcost(Double.Parse(x.r_rent), x.b_check_in_date).ToString();
+                grand_totalbill = totalcost(Double.Parse(x.r_rent), x.b_check_in_date);
+                tCellbtotal.Text =grand_totalbill.ToString() ;
                 tRow.Cells.Add(tCellbtotal);
                 TableCell checkoutbtn = new TableCell();
                 if (x.r_checkout != null)
@@ -72,47 +74,54 @@ public partial class employeguestpayment : System.Web.UI.Page
                  orderdetail_attr[] oders = empmenuclass.getOrderPLaced(bid);
                 TableRow horderitem = new TableRow();
                 facilites.Rows.Add(horderitem);
+                TableCell hroomno = new TableCell();
+                hroomno.Text = "RoomNo ";
+                horderitem.Cells.Add(hroomno);
                 TableCell hitemname = new TableCell();
-                tCell1.Text = "Item";
-                tRow1.Cells.Add(hitemname);
+                hitemname.Text = "Item";
+                horderitem.Cells.Add(hitemname);
                 TableCell hitemprice = new TableCell();
-                tCell2.Text = "item price";
-                tRow1.Cells.Add(hitemprice);
+                hitemprice.Text = "item price";
+                horderitem.Cells.Add(hitemprice);
                 TableCell hquantity = new TableCell();
-                tCell4.Text = "Quantity";
-                tRow1.Cells.Add(hquantity);
+                hquantity.Text = "Quantity";
+                horderitem.Cells.Add(hquantity);
                 TableCell hitemquantity = new TableCell();
-                tCell3.Text = "#Item";
-                tRow1.Cells.Add(hitemquantity);
+                hitemquantity.Text = "#Item";
+                horderitem.Cells.Add(hitemquantity);
                 TableCell htotalprice = new TableCell();
-                tCell4.Text = "Total Price";
-                tRow1.Cells.Add(htotalprice);
+                htotalprice.Text = "Total Price";
+                horderitem.Cells.Add(htotalprice);
                 TableCell hdate = new TableCell();
-                tCell4.Text = "Date";
-                tRow1.Cells.Add(hdate);
+                hdate.Text = "Date";
+                horderitem.Cells.Add(hdate);
 
                 foreach (orderdetail_attr or in oders)
                 {
                     TableRow orderitem = new TableRow();
                     facilites.Rows.Add(orderitem);
+                    TableCell roono = new TableCell();
+                    roono.Text = roomsclass.getRoomNo(int.Parse(x.r_roomid.ToString()), x.b_branch_id);
+                    orderitem.Cells.Add(roono);
                     TableCell itemname = new TableCell();
-                    tCell1.Text = or.rs_orde_menu.item_name;
-                    tRow1.Cells.Add(itemname);
+                    itemname.Text = or.rs_orde_menu.item_name;
+                    orderitem.Cells.Add(itemname);
                     TableCell itemprice = new TableCell();
-                    tCell2.Text = or.rs_orde_menu.price.ToString();
-                    tRow1.Cells.Add(itemprice);
+                    itemprice.Text = or.rs_orde_menu.price.ToString();
+                    orderitem.Cells.Add(itemprice);
                     TableCell quantity = new TableCell();
-                    tCell4.Text = or.rs_orde_menu.quantity;
-                    tRow1.Cells.Add(quantity);
+                    quantity.Text = or.rs_orde_menu.quantity;
+                    orderitem.Cells.Add(quantity);
                     TableCell itemquantity = new TableCell();
-                    tCell3.Text = or.order.quantity.ToString();
-                    tRow1.Cells.Add(itemquantity);
+                    itemquantity.Text = or.order.quantity.ToString();
+                    orderitem.Cells.Add(itemquantity);
                     TableCell totalprice = new TableCell();
-                    tCell4.Text = (or.order.quantity*or.rs_orde_menu.price).ToString();
-                    tRow1.Cells.Add(totalprice);
+                    grand_totalbill += or.order.quantity * or.rs_orde_menu.price; //grand total 
+                    totalprice.Text = (or.order.quantity*or.rs_orde_menu.price).ToString();
+                    orderitem.Cells.Add(totalprice);
                     TableCell date = new TableCell();
-                    tCell4.Text = or.order.date.ToString();
-                    tRow1.Cells.Add(date);
+                    date.Text = or.order.date.ToString();
+                    orderitem.Cells.Add(date);
                 }
                
 
@@ -120,6 +129,7 @@ public partial class employeguestpayment : System.Web.UI.Page
 
 
             }
+            Gtotal.Text = grand_totalbill.ToString();
         }
     }
     double totalcost(double costperday, DateTime d1)
@@ -131,7 +141,10 @@ public partial class employeguestpayment : System.Web.UI.Page
         double total = 0.0;
         if (nodays == 0)
         {
-            total = costperday * 1;
+            total = costperday;
+        }else
+        {
+            total += costperday * nodays;
         }
         return total;
     }

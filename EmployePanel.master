@@ -97,6 +97,7 @@
                   <ul class="nav child_menu">
                       <li><a href="employemenuservice.aspx">Menu Detail</a></li>
                       <li><a href="employeplaceorder.aspx">Order menu</a></li>
+                       <li><a href="employevieworders.aspx">View Guests Orders</a></li>
                     </ul>
                  </li>
                

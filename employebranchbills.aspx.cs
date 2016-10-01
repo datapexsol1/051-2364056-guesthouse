@@ -20,7 +20,7 @@ public partial class employebranchbills : System.Web.UI.Page
        b.BranchId= employeeProfile.getEmployeBranch("kk");//get from session
         b.BillAmount = Convert.ToInt32(Request.Form["abamount"]);
         b.BillType = abtype.Value.ToString();
-       
+        DateTime dt=
         b.Date = Convert.ToDateTime(Request.Form["abdate"]);
         billclass.Addbill(b);
     }

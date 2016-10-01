@@ -36,7 +36,7 @@
        <table class="data table table-striped no-margin">
                               <thead>
                                 <tr>
-                                  <th>Bill Id</th>
+                                <%--  <th>Bill Id</th>--%>
                                   <th>Bill Amount</th>
                                   <th>Bill Type</th>
                                   <th>Bill Date</th>
@@ -44,12 +44,12 @@
                                 </tr>
                               </thead>
                               <tbody>
-                                     <%  bill b = new bill();
-                                         IQueryable<bill> bill=billclass.getAllbills(b.Id);
+                                     <%  int bid=employeeProfile.getEmployeBranch("kk");//get from session
+                                         IQueryable<bill> bill=billclass.getBranchbills(bid);
                                          foreach (var r in bill)
                                          { %>
                                 <tr>
-                                  <td><label id="bilid"><%=r.Id %></label></td>
+                                 <%-- <td><label id="bilid"><%=r.Id %></label></td>--%>
                                   <td><label id="bilamount"><%=r.BillAmount%></label></td>
                                   <td><label id="biltype"><%=r.BillType%></label></td>
                                   <td> <label id="bildate"><%=r.Date%></label></td>
@@ -106,27 +106,11 @@
            <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
                              
                               
-                                   <div class="form-group col-md-6">
-                        <label class="control-label col-md-4 " >Bill Id <span class="required">*</span>
+                               <div class="form-group col-md-4">
+                       
+                        <div class="col-md-12">
+                             <label class="control-label">Bill Type <span class="required">*</span>
                         </label>
-                        <div class="col-md-8">
-                          <input type="number" id="abid" name="abid" placeholder="Bill Id" class="form-control "/>
-                        </div>
-                      </div>
-                              <div class="form-group col-md-6">
-                               <label class="control-label col-md-4 " >Bil Amount <span class="required">*</span>
-                        </label>
-                        <div class="col-md-8">
-                          <input type="number" id="abamount" name="abamount"  placeholder="Amount" class="form-control "/>
-                        </div>
-                                  </div>
-                     
-
-                               <div class="form-group col-md-6">
-                        <label class="control-label col-md-4 ">Bill Type <span class="required">*</span>
-                        </label>
-                        <div class="col-md-8">
-
 
                             
 
@@ -142,10 +126,22 @@
                                         </select>
                         </div>
                       </div>
-                               <div class="form-group col-md-6">
-                        <label class="control-label col-md-4" >Date <span class="required">*</span>
+                                
+                              <div class="form-group col-md-4">
+                            
+                        <div class="col-md-12">
+                               <label class="control-label" >Bil Amount <span class="required">*</span>
                         </label>
-                        <div class="col-md-8">
+                          <input type="number" id="abamount" name="abamount"  placeholder="Amount" class="form-control "/>
+                        </div>
+                                  </div>
+                     
+
+                               <div class="form-group col-md-4">
+                       
+                        <div class="col-md-12">
+                             <label class="control-label" >Date <span class="required">*</span>
+                        </label>
                           <input type="date" id="abdate" name="abdate"  placeholder="Date" class="form-control "/>
                         </div>
                       </div>

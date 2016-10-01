@@ -13,139 +13,142 @@ public partial class employemenuservice : System.Web.UI.Page
         {
             ordersummery.Visible = false;
             savetodb.Visible = false;
-           
-        }
-
-        int bid = employeeProfile.getEmployeBranch("kk");//get from session
-        IQueryable<room> r = roomsclass.getAvailableRooms(bid);
-        string[] rooms = new string[r.Count() + 1];
-        rooms[0] = "Select";
-        int i = 1;
-        foreach (var x in r)
-        {
-
-            rooms[i] = x.room_no;
-            i++;
-        }
-       roombranch.DataSource = rooms;
-       roombranch.DataBind();
-
-
-
-
-
-
-
-        TableRow tRow1 = new TableRow();
-        menuview.Rows.Add(tRow1);
-        tRow1.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
-        tRow1.ForeColor = System.Drawing.Color.White;
-        TableCell tCell2 = new TableCell();
-        tCell2.Text = "Item name";
-        tRow1.Cells.Add(tCell2);
-        TableCell tCell3 = new TableCell();
-        tCell3.Text = "Item price";
-        tRow1.Cells.Add(tCell3);
-        TableCell tCell4 = new TableCell();
-        tCell4.Text = "Item Quantity";
-        tRow1.Cells.Add(tCell4);
-
-        TableCell cbox = new TableCell();
-        cbox.Text = "Select";
-        tRow1.Cells.Add(cbox);
-
-        TableCell qu = new TableCell();
-        qu.Text = "Value";
-        tRow1.Cells.Add(cbox);
-
-        TableCell dd = new TableCell();
-        dd.Text = "Quantity";
-        tRow1.Cells.Add(dd);
-
-        // int roomid = int.Parse(Request["rnovxxxx"].ToString());
-        // int branchid = int.Parse(Request["branch"]);
-         int bbid= employeeProfile.getEmployeBranch("kk");//get from session
-      // bid.Value = bbid.ToString();
-        IQueryable < room_service_menu >assets= empmenuclass.getMenuItem(bbid);
-        string checkin = "";
-         
-        foreach (var x in assets)
-        {
-            if (x.type == checkin)
+            int bid = employeeProfile.getEmployeBranch("kk");//get from session
+            bookingid.Value = bid.ToString();
+            IQueryable<room> r = roomsclass.getBookedROoms(bid);
+            string[] rooms = new string[r.Count() + 1];
+            rooms[0] = "Select";
+            int i = 1;
+            foreach (var x in r)
             {
-                TableRow tRow = new TableRow();
-                menuview.Rows.Add(tRow);
-                //TableCell tCellr = new TableCell();
-                //tCellr.Text = x.type.ToString();
-                //tRow.Cells.Add(tCellr);
-                TableCell tCellrn = new TableCell();
-                tCellrn.Text = x.item_name;
-                tCellrn.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
-                tRow.Cells.Add(tCellrn);
-                TableCell tCellrd = new TableCell();
-                tCellrd.Text = x.price.ToString();
-                tCellrd.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
-                tRow.Cells.Add(tCellrd);
-                TableCell tCellri = new TableCell();
-                tCellri.Text = x.quantity.ToString();
-                tCellri.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
-                tRow.Cells.Add(tCellri);
 
-                TableCell checkbox = new TableCell();
-                checkbox.Text = "<input type='checkbox' name='tbbox' id='tbox"+x.Id+"' value=" + x.Id + " onclick='xyz(this.value)'";
-                checkbox.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
-                tRow.Cells.Add(checkbox);
-                TableCell quan = new TableCell();
-                quan.Text = "<input type = 'number' id='noitem" + x.Id + "' name='noitem" + x.Id + "' value='1' min='1'/>";
-               quan.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
-                tRow.Cells.Add(quan);
+                rooms[i] = x.room_no;
+                i++;
+            }
+            roombranch.DataSource = rooms;
+            roombranch.DataBind();
 
-                checkin = x.type;
-            }else
+
+
+
+
+
+
+            TableRow tRow1 = new TableRow();
+            menuview.Rows.Add(tRow1);
+            tRow1.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
+            tRow1.ForeColor = System.Drawing.Color.White;
+            TableCell tCell2 = new TableCell();
+            tCell2.Text = "Item name";
+            tRow1.Cells.Add(tCell2);
+            TableCell tCell3 = new TableCell();
+            tCell3.Text = "Item price";
+            tRow1.Cells.Add(tCell3);
+            TableCell tCell4 = new TableCell();
+            tCell4.Text = "Item Quantity";
+            tRow1.Cells.Add(tCell4);
+
+            TableCell cbox = new TableCell();
+            cbox.Text = "Select";
+            tRow1.Cells.Add(cbox);
+
+            TableCell qu = new TableCell();
+            qu.Text = "Value";
+            tRow1.Cells.Add(cbox);
+
+            TableCell dd = new TableCell();
+            dd.Text = "Quantity";
+            tRow1.Cells.Add(dd);
+
+            // int roomid = int.Parse(Request["rnovxxxx"].ToString());
+            // int branchid = int.Parse(Request["branch"]);
+            int bbid = employeeProfile.getEmployeBranch("kk");//get from session
+                                                              // bid.Value = bbid.ToString();
+            IQueryable<room_service_menu> assets = empmenuclass.getMenuItem(bbid);
+            string checkin = "";
+
+            foreach (var x in assets)
             {
-                TableRow hRow = new TableRow();
-                menuview.Rows.Add(hRow);
-                TableCell hCellr = new TableCell();
-                hCellr.Text = x.type.ToString();
-                hCellr.BackColor = System.Drawing.ColorTranslator.FromHtml("#800000");
-                hCellr.ForeColor = System.Drawing.Color.White;
-                hCellr.ColumnSpan = 5;
-                hRow.Cells.Add(hCellr);
+                if (x.type == checkin)
+                {
+                    TableRow tRow = new TableRow();
+                    menuview.Rows.Add(tRow);
+                    //TableCell tCellr = new TableCell();
+                    //tCellr.Text = x.type.ToString();
+                    //tRow.Cells.Add(tCellr);
+                    TableCell tCellrn = new TableCell();
+                    tCellrn.Text = x.item_name;
+                    tCellrn.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
+                    tRow.Cells.Add(tCellrn);
+                    TableCell tCellrd = new TableCell();
+                    tCellrd.Text = x.price.ToString();
+                    tCellrd.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
+                    tRow.Cells.Add(tCellrd);
+                    TableCell tCellri = new TableCell();
+                    tCellri.Text = x.quantity.ToString();
+                    tCellri.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
+                    tRow.Cells.Add(tCellri);
 
-                TableRow tRow = new TableRow();
-                menuview.Rows.Add(tRow);
-                tRow.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
-                TableCell tCellrn = new TableCell();
-                tCellrn.Text = x.item_name;
-                tCellrn.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
-                tRow.Cells.Add(tCellrn);
-                TableCell tCellrd = new TableCell();
-                tCellrd.Text = x.price.ToString();
-                tCellrd.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
-                tRow.Cells.Add(tCellrd);
-                TableCell tCellri = new TableCell();
-                tCellri.Text = x.quantity.ToString();
-               tCellri.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
-                tRow.Cells.Add(tCellri);
+                    TableCell checkbox = new TableCell();
+                    checkbox.Text = "<input type='checkbox' name='tbbox' id='tbox" + x.Id + "' value=" + x.Id + " onclick='xyz(this.value)'";
+                    checkbox.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
+                    tRow.Cells.Add(checkbox);
+                    TableCell quan = new TableCell();
+                    quan.Text = "<input type = 'number' id='noitem" + x.Id + "' name='noitem" + x.Id + "' value='1' min='1'/>";
+                    quan.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
+                    tRow.Cells.Add(quan);
 
-                TableCell checkbox = new TableCell();
-                checkbox.Text = "<input type='checkbox' name='tbbox' id='tbox" + x.Id + "' value=" + x.Id + " onclick='xyz(this.value)'";
-                checkbox.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
-                tRow.Cells.Add(checkbox);
+                    checkin = x.type;
+                }
+                else
+                {
+                    TableRow hRow = new TableRow();
+                    menuview.Rows.Add(hRow);
+                    TableCell hCellr = new TableCell();
+                    hCellr.Text = x.type.ToString();
+                    hCellr.BackColor = System.Drawing.ColorTranslator.FromHtml("#800000");
+                    hCellr.ForeColor = System.Drawing.Color.White;
+                    hCellr.ColumnSpan = 5;
+                    hRow.Cells.Add(hCellr);
 
-                TableCell quan = new TableCell();
-                quan.Text = "<input type = 'number' id='noitem"+x.Id+ "' name='noitem" + x.Id + "' value='1' min='1' />";
-                quan.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
-                tRow.Cells.Add(quan);
-                checkin = x.type;
+                    TableRow tRow = new TableRow();
+                    menuview.Rows.Add(tRow);
+                    tRow.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
+                    TableCell tCellrn = new TableCell();
+                    tCellrn.Text = x.item_name;
+                    tCellrn.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
+                    tRow.Cells.Add(tCellrn);
+                    TableCell tCellrd = new TableCell();
+                    tCellrd.Text = x.price.ToString();
+                    tCellrd.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
+                    tRow.Cells.Add(tCellrd);
+                    TableCell tCellri = new TableCell();
+                    tCellri.Text = x.quantity.ToString();
+                    tCellri.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
+                    tRow.Cells.Add(tCellri);
+
+                    TableCell checkbox = new TableCell();
+                    checkbox.Text = "<input type='checkbox' name='tbbox' id='tbox" + x.Id + "' value=" + x.Id + " onclick='xyz(this.value)'";
+                    checkbox.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
+                    tRow.Cells.Add(checkbox);
+
+                    TableCell quan = new TableCell();
+                    quan.Text = "<input type = 'number' id='noitem" + x.Id + "' name='noitem" + x.Id + "' value='1' min='1' />";
+                    quan.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
+                    tRow.Cells.Add(quan);
+                    checkin = x.type;
 
 
-                 
 
-                checkin = x.type;
+
+                    checkin = x.type;
+                }
+
             }
 
         }
+
+       
     }
     protected void getsummary_click(object sender ,EventArgs e)
     {
@@ -163,7 +166,6 @@ public partial class employemenuservice : System.Web.UI.Page
 
         menuview.Visible = false;
         ordersummery.Visible = true;
-
         TableRow hrow = new TableRow();
         hrow.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
         ordersummery.Rows.Add(hrow);
@@ -176,10 +178,6 @@ public partial class employemenuservice : System.Web.UI.Page
         roomno.Text = "Room_no :101";
         roomno.ColumnSpan = 2;
         hrow.Cells.Add(roomno);
-
-
-
-
         TableRow tRow1 = new TableRow();
         tRow1.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
         ordersummery.Rows.Add(tRow1);
@@ -195,9 +193,7 @@ public partial class employemenuservice : System.Web.UI.Page
         TableCell tCell5 = new TableCell();
         tCell5.Text = "Total Price";
         tRow1.Cells.Add(tCell5);
-
-
-        int bidx = int.Parse(bid.Value);
+        int bidx = int.Parse(bookingid.Value);//BRANCHID
         IQueryable<room_service_menu> menu = empmenuclass.getMenuItem(bidx);
         int l = 0;
         placed_order p = new placed_order();
@@ -230,12 +226,14 @@ public partial class employemenuservice : System.Web.UI.Page
                     totalprice += x.price * int.Parse(value[l]);
                     // tCelltoalp.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
                     tRow.Cells.Add(tCelltoalp);
-                
+
+                    //code to get booking id
+                    
 
 
 
-
-                    p.booking_id = x.bid;
+                    p.booking_id = bookingRoomClass.getbookingid(roombranch.Text);
+                    p.room_no = roombranch.Text;
                     p.item_id = x.Id;
                     p.quantity = int.Parse(value[l]);
                     p.date = DateTime.Now;

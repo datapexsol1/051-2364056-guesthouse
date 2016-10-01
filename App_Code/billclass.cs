@@ -19,41 +19,36 @@ public class billclass
 
     public static bool Addbill(bill b)
     {
+        bool return_ = false;
         ctownDataContext db = new ctownDataContext();
         int count = (from x in db.bills 
-                     where x.Id == b.Id     //for checking already existance
+                     where x.Id == b.Id && x.Date==b.Date && x.BillType==b.BillType     //for checking already existance
                      select x).Count();
         if (count == 0)
         {
-            db.bills.InsertOnSubmit(b);
+            
             try
             {
+                db.bills.InsertOnSubmit(b);
                 db.SubmitChanges();
+                return_ = true;
             }
             catch (ChangeConflictException e)
             {
-                //report error, log error whatever...
+                return_ = false;
             }
-            return true;
+          
         }
-        else
-        {
-            return true;
-        }
-
-
-
-
-
-
+        return return_;
     }
 
 
 
-    public static IQueryable<bill> getAllbills(int pid)
+    public static IQueryable<bill> getBranchbills(int bid)
     {
         ctownDataContext db = new ctownDataContext();
         IQueryable<bill> bil = from b in db.bills
+                               where b.BranchId==bid
                              select b;
         return bil;
     }
