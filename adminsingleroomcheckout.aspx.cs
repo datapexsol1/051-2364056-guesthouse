@@ -17,8 +17,7 @@ public partial class adminsingleroomcheckout : System.Web.UI.Page
                        where x.roomid == rid 
                        select x).First();
             data.checkout = DateTime.Now.ToString();
-           // db.booking_Rooms.InsertOnSubmit(data);
-           // db.SubmitChanges();
+          
 
             room r = (from y in db.rooms
                       where y.Id == rid
@@ -26,6 +25,11 @@ public partial class adminsingleroomcheckout : System.Web.UI.Page
             r.availbilty = "yes";
            
             db.SubmitChanges();
+
+
+
+
+            //update details off paymenthere 
             Response.Redirect("employeguestpayment.aspx?booking=" + Request.QueryString["booking"].ToString());
         }
     }

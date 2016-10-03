@@ -87,4 +87,13 @@ public class roomsclass
 
         return romid;
     }
+    public static string checkroomAvalbilty(int rid, int bid)
+    {
+        ctownDataContext db = new ctownDataContext();
+        string availbity = (from r in db.GetTable<room>()
+                        where r.Id == rid && r.branch_id == bid
+                        select r.availbilty).First();
+
+        return availbity;
+    }
 }

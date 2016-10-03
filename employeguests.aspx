@@ -79,6 +79,7 @@
 
                               </thead>
                               <tbody>
+                                  <%--should get bid and get element with that bid --%>
                                   <% guestBookingAttributes[] bookings=gusetRegistrationClass.getlocalClientData();
                                       foreach (guestBookingAttributes b in bookings)
                                       {
@@ -88,7 +89,7 @@
                                               {
                                        %>
                                 <tr>
-                                    <td><a href="employeguestpayment.aspx?booking=<%=b.b_id%>"<label>Check Out</label></a></td>
+                                    <td><a href="employeguestpayment.aspx?booking=<%=b.b_id%>"<label style="color:red">Check Out</label></a></td>
                                       <td><label id="image">"Not added yet"</label></td>
                                       <td><label id="checkin"><%=b.b_checkinDate%> </label></td>
                                       <td><label id="checkout"><%=b.b_checkoutdate%> </label></td>

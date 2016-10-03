@@ -11,8 +11,11 @@ public partial class employeguestpayment : System.Web.UI.Page
     {
         if (!IsPostBack && Request.QueryString["booking"].ToString() != null)
         {
+            double roombill = 0.0;
+            double facilitiesbill = 0.0;
             double grand_totalbill = 0.0;
             int bid = int.Parse(Request.QueryString["booking"]);
+            tbbid.Value = bid.ToString();
             bookingRoomAttr[] data = bookingclass.getBookingDetail(bid);
             TableRow tRow1 = new TableRow();
             bookingtable.Rows.Add(tRow1);
@@ -54,8 +57,9 @@ public partial class employeguestpayment : System.Web.UI.Page
                 tRow.Cells.Add(tCellri);
                 //multiply now days between dates with roomrent ;
                 TableCell tCellbtotal = new TableCell();
-                grand_totalbill = totalcost(Double.Parse(x.r_rent), x.b_check_in_date);
-                tCellbtotal.Text =grand_totalbill.ToString() ;
+                double currentbill= totalcost(Double.Parse(x.r_rent), x.b_check_in_date);
+                roombill += currentbill; // totalcost(Double.Parse(x.r_rent), x.b_check_in_date);
+                tCellbtotal.Text=currentbill.ToString() ;//roombill.ToString() ;
                 tRow.Cells.Add(tCellbtotal);
                 TableCell checkoutbtn = new TableCell();
                 if (x.r_checkout != null)
@@ -116,7 +120,7 @@ public partial class employeguestpayment : System.Web.UI.Page
                     itemquantity.Text = or.order.quantity.ToString();
                     orderitem.Cells.Add(itemquantity);
                     TableCell totalprice = new TableCell();
-                    grand_totalbill += or.order.quantity * or.rs_orde_menu.price; //grand total 
+                    facilitiesbill += or.order.quantity * or.rs_orde_menu.price; //grand total 
                     totalprice.Text = (or.order.quantity*or.rs_orde_menu.price).ToString();
                     orderitem.Cells.Add(totalprice);
                     TableCell date = new TableCell();
@@ -129,7 +133,9 @@ public partial class employeguestpayment : System.Web.UI.Page
 
 
             }
-            Gtotal.Text = grand_totalbill.ToString();
+            tbfacilitebill.Value = facilitiesbill.ToString();
+            tbroombill.Value = roombill.ToString();
+            Gtotal.Text = (roombill+facilitiesbill).ToString();
         }
     }
     double totalcost(double costperday, DateTime d1)
@@ -147,5 +153,42 @@ public partial class employeguestpayment : System.Web.UI.Page
             total += costperday * nodays;
         }
         return total;
+    }
+
+    protected void btnpaid_Click(object sender, EventArgs e)
+    {
+        bookingRoomAttr[] data = bookingclass.getBookingDetail(int.Parse(tbbid.Value));
+        int counter = 0;
+        int branchid = employeeProfile.getEmployeBranch("kk");
+        foreach (bookingRoomAttr r in data)
+        {
+            if (roomsclass.checkroomAvalbilty(r.r_roomid,branchid) == "yes")
+            {
+                counter++;
+            }
+            else
+            {
+                break;
+            }
+        }
+        if (counter == data.Count())
+        {
+            if (tbbid.Value != "" && tbroombill.Value != null && tbfacilitebill.Value != "" && Gtotal.Text != "" && tbpaidamount.Text != "")
+            {
+                total_payment tp = new total_payment();
+                tp.booking_id = int.Parse(tbbid.Value);
+                tp.total_rent = tbroombill.Value;
+                tp.facility_total_payment = tbfacilitebill.Value;
+                tp.total_bill = Gtotal.Text;
+                tp.paid_amount = tbpaidamount.Text;
+                guestpayment.addPayment(tp);
+            }
+            else
+            {
+                Page_Load(this, e);
+                //display msg of error 
+            }
+        }
+
     }
 }

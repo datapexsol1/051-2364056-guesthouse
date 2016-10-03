@@ -91,7 +91,8 @@ public class empmenuclass
                     join orderdetail in db.placed_orders on x.Id equals orderdetail.booking_id
                      join items in db.room_service_menus on orderdetail.item_id equals items.Id
                      join broom in db.booking_Rooms on x.Id equals broom.bookingId
-                    where broom.roomid == rid && x.branch_id==bid
+                     orderby x.Id descending
+                    where broom.roomid == rid && x.branch_id==bid && broom.checkout==null
                     select new
                     {
                         placed_order = orderdetail,

@@ -65,9 +65,6 @@ public partial class ctownDataContext : System.Data.Linq.DataContext
   partial void Insertroom(room instance);
   partial void Updateroom(room instance);
   partial void Deleteroom(room instance);
-  partial void Inserttotal_payment(total_payment instance);
-  partial void Updatetotal_payment(total_payment instance);
-  partial void Deletetotal_payment(total_payment instance);
   partial void Insertroom_service_menu(room_service_menu instance);
   partial void Updateroom_service_menu(room_service_menu instance);
   partial void Deleteroom_service_menu(room_service_menu instance);
@@ -80,6 +77,9 @@ public partial class ctownDataContext : System.Data.Linq.DataContext
   partial void Insertevent_calender(event_calender instance);
   partial void Updateevent_calender(event_calender instance);
   partial void Deleteevent_calender(event_calender instance);
+  partial void Inserttotal_payment(total_payment instance);
+  partial void Updatetotal_payment(total_payment instance);
+  partial void Deletetotal_payment(total_payment instance);
   #endregion
 	
 	public ctownDataContext() : 
@@ -208,14 +208,6 @@ public partial class ctownDataContext : System.Data.Linq.DataContext
 		}
 	}
 	
-	public System.Data.Linq.Table<total_payment> total_payments
-	{
-		get
-		{
-			return this.GetTable<total_payment>();
-		}
-	}
-	
 	public System.Data.Linq.Table<room_service_menu> room_service_menus
 	{
 		get
@@ -245,6 +237,14 @@ public partial class ctownDataContext : System.Data.Linq.DataContext
 		get
 		{
 			return this.GetTable<event_calender>();
+		}
+	}
+	
+	public System.Data.Linq.Table<total_payment> total_payments
+	{
+		get
+		{
+			return this.GetTable<total_payment>();
 		}
 	}
 }
@@ -3105,164 +3105,6 @@ public partial class room : INotifyPropertyChanging, INotifyPropertyChanged
 	}
 }
 
-[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.total_payment")]
-public partial class total_payment : INotifyPropertyChanging, INotifyPropertyChanged
-{
-	
-	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-	
-	private int _Id;
-	
-	private string _booking_id;
-	
-	private string _total_rent;
-	
-	private string _facility_total_payment;
-	
-	private string _total_bill;
-	
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void Onbooking_idChanging(string value);
-    partial void Onbooking_idChanged();
-    partial void Ontotal_rentChanging(string value);
-    partial void Ontotal_rentChanged();
-    partial void Onfacility_total_paymentChanging(string value);
-    partial void Onfacility_total_paymentChanged();
-    partial void Ontotal_billChanging(string value);
-    partial void Ontotal_billChanged();
-    #endregion
-	
-	public total_payment()
-	{
-		OnCreated();
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-	public int Id
-	{
-		get
-		{
-			return this._Id;
-		}
-		set
-		{
-			if ((this._Id != value))
-			{
-				this.OnIdChanging(value);
-				this.SendPropertyChanging();
-				this._Id = value;
-				this.SendPropertyChanged("Id");
-				this.OnIdChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_booking_id", DbType="NVarChar(25) NOT NULL", CanBeNull=false)]
-	public string booking_id
-	{
-		get
-		{
-			return this._booking_id;
-		}
-		set
-		{
-			if ((this._booking_id != value))
-			{
-				this.Onbooking_idChanging(value);
-				this.SendPropertyChanging();
-				this._booking_id = value;
-				this.SendPropertyChanged("booking_id");
-				this.Onbooking_idChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_rent", DbType="NChar(10) NOT NULL", CanBeNull=false)]
-	public string total_rent
-	{
-		get
-		{
-			return this._total_rent;
-		}
-		set
-		{
-			if ((this._total_rent != value))
-			{
-				this.Ontotal_rentChanging(value);
-				this.SendPropertyChanging();
-				this._total_rent = value;
-				this.SendPropertyChanged("total_rent");
-				this.Ontotal_rentChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_facility_total_payment", DbType="NChar(10) NOT NULL", CanBeNull=false)]
-	public string facility_total_payment
-	{
-		get
-		{
-			return this._facility_total_payment;
-		}
-		set
-		{
-			if ((this._facility_total_payment != value))
-			{
-				this.Onfacility_total_paymentChanging(value);
-				this.SendPropertyChanging();
-				this._facility_total_payment = value;
-				this.SendPropertyChanged("facility_total_payment");
-				this.Onfacility_total_paymentChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_bill", DbType="NChar(10) NOT NULL", CanBeNull=false)]
-	public string total_bill
-	{
-		get
-		{
-			return this._total_bill;
-		}
-		set
-		{
-			if ((this._total_bill != value))
-			{
-				this.Ontotal_billChanging(value);
-				this.SendPropertyChanging();
-				this._total_bill = value;
-				this.SendPropertyChanged("total_bill");
-				this.Ontotal_billChanged();
-			}
-		}
-	}
-	
-	public event PropertyChangingEventHandler PropertyChanging;
-	
-	public event PropertyChangedEventHandler PropertyChanged;
-	
-	protected virtual void SendPropertyChanging()
-	{
-		if ((this.PropertyChanging != null))
-		{
-			this.PropertyChanging(this, emptyChangingEventArgs);
-		}
-	}
-	
-	protected virtual void SendPropertyChanged(String propertyName)
-	{
-		if ((this.PropertyChanged != null))
-		{
-			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-		}
-	}
-}
-
 [global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.room_service_menu")]
 public partial class room_service_menu : INotifyPropertyChanging, INotifyPropertyChanged
 {
@@ -3942,6 +3784,188 @@ public partial class event_calender : INotifyPropertyChanging, INotifyPropertyCh
 				this._event_color = value;
 				this.SendPropertyChanged("event_color");
 				this.Onevent_colorChanged();
+			}
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+		}
+	}
+}
+
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.total_payment")]
+public partial class total_payment : INotifyPropertyChanging, INotifyPropertyChanged
+{
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private int _Id;
+	
+	private int _booking_id;
+	
+	private string _total_rent;
+	
+	private string _facility_total_payment;
+	
+	private string _total_bill;
+	
+	private string _paid_amount;
+	
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void Onbooking_idChanging(int value);
+    partial void Onbooking_idChanged();
+    partial void Ontotal_rentChanging(string value);
+    partial void Ontotal_rentChanged();
+    partial void Onfacility_total_paymentChanging(string value);
+    partial void Onfacility_total_paymentChanged();
+    partial void Ontotal_billChanging(string value);
+    partial void Ontotal_billChanged();
+    partial void Onpaid_amountChanging(string value);
+    partial void Onpaid_amountChanged();
+    #endregion
+	
+	public total_payment()
+	{
+		OnCreated();
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+	public int Id
+	{
+		get
+		{
+			return this._Id;
+		}
+		set
+		{
+			if ((this._Id != value))
+			{
+				this.OnIdChanging(value);
+				this.SendPropertyChanging();
+				this._Id = value;
+				this.SendPropertyChanged("Id");
+				this.OnIdChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_booking_id", DbType="Int NOT NULL")]
+	public int booking_id
+	{
+		get
+		{
+			return this._booking_id;
+		}
+		set
+		{
+			if ((this._booking_id != value))
+			{
+				this.Onbooking_idChanging(value);
+				this.SendPropertyChanging();
+				this._booking_id = value;
+				this.SendPropertyChanged("booking_id");
+				this.Onbooking_idChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_rent", DbType="NChar(10) NOT NULL", CanBeNull=false)]
+	public string total_rent
+	{
+		get
+		{
+			return this._total_rent;
+		}
+		set
+		{
+			if ((this._total_rent != value))
+			{
+				this.Ontotal_rentChanging(value);
+				this.SendPropertyChanging();
+				this._total_rent = value;
+				this.SendPropertyChanged("total_rent");
+				this.Ontotal_rentChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_facility_total_payment", DbType="NChar(10) NOT NULL", CanBeNull=false)]
+	public string facility_total_payment
+	{
+		get
+		{
+			return this._facility_total_payment;
+		}
+		set
+		{
+			if ((this._facility_total_payment != value))
+			{
+				this.Onfacility_total_paymentChanging(value);
+				this.SendPropertyChanging();
+				this._facility_total_payment = value;
+				this.SendPropertyChanged("facility_total_payment");
+				this.Onfacility_total_paymentChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_bill", DbType="NChar(10) NOT NULL", CanBeNull=false)]
+	public string total_bill
+	{
+		get
+		{
+			return this._total_bill;
+		}
+		set
+		{
+			if ((this._total_bill != value))
+			{
+				this.Ontotal_billChanging(value);
+				this.SendPropertyChanging();
+				this._total_bill = value;
+				this.SendPropertyChanged("total_bill");
+				this.Ontotal_billChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_paid_amount", DbType="NChar(10) NOT NULL", CanBeNull=false)]
+	public string paid_amount
+	{
+		get
+		{
+			return this._paid_amount;
+		}
+		set
+		{
+			if ((this._paid_amount != value))
+			{
+				this.Onpaid_amountChanging(value);
+				this.SendPropertyChanging();
+				this._paid_amount = value;
+				this.SendPropertyChanged("paid_amount");
+				this.Onpaid_amountChanged();
 			}
 		}
 	}

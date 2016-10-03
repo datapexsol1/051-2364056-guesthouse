@@ -7,7 +7,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
-
+    <asp:HiddenField ID="tbbid" runat="server" />
        <div class="right_col" role="main">
     <div class="row">
      <div class="col-md-12 col-sm-12 col-xs-12">
@@ -46,12 +46,20 @@
 
          <div style="float:right;">
              
-             <h3>Grand Total</h3>
+             
              <br />
-             <label id="gtotal" style="float:right;">
-                 <asp:TextBox ID="Gtotal" runat="server"></asp:TextBox></label>
+             <div style="float:right;">
+                 <asp:HiddenField ID="tbroombill" runat="server" />
+                 <asp:HiddenField ID="tbfacilitebill" runat="server" />
+             <label id="gtotal" ><h3>Grand Total</h3></label>
+                 <asp:TextBox ID="Gtotal" runat="server"></asp:TextBox>
+                  <label id="gtotal1"><h3>Paid Amount</h3></label>
+                 <asp:TextBox ID="tbpaidamount" runat="server"></asp:TextBox>
+                       <asp:Button ID="btnpaid" runat="server" Text="Paid" OnClick="btnpaid_Click" />
+               </div>
 
              </div>
+
 
 
 

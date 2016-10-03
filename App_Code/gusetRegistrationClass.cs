@@ -122,7 +122,7 @@ public class gusetRegistrationClass
                       // join r in db.rooms on b.room_id equals r.Id
                       join r in db.booking_Rooms on b.Id equals r.bookingId
                       join room in db.rooms on r.roomid equals room.Id
-                      where g.guest_type == "local" && b.check_out_date == null
+                      where g.guest_type == "local" && r.checkout == null
                       select new
                       {
                           booking = b,
