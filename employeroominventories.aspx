@@ -6,6 +6,7 @@
             $('.nav-tabs a[href="#' + tab + '"]').tab('show');
             //alert("working");
         };
+       
     </script>
 </asp:Content>
 

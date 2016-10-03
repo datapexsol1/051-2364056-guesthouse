@@ -50,6 +50,15 @@ public class roomsclass
                    select r;
         return rom;
     }
+    public static IQueryable<room> getBookedROoms(int bid)
+    {
+        ctownDataContext db = new ctownDataContext();
+        IQueryable<room> rom = from r in db.rooms
+
+                               where r.availbilty == "no" && r.branch_id == bid
+                               select r;
+        return rom;
+    }
     public static IQueryable<room> getAllRooms(int bid)
     {
         ctownDataContext db = new ctownDataContext();
@@ -68,5 +77,23 @@ public class roomsclass
                      select r.Id).First();
                     
         return romid;
+    }
+    public static string getRoomNo(int rid, int bid)
+    {
+        ctownDataContext db = new ctownDataContext();
+        string romid = (from r in db.GetTable<room>()
+                     where r.Id == rid && r.branch_id == bid
+                     select r.room_no).First();
+
+        return romid;
+    }
+    public static string checkroomAvalbilty(int rid, int bid)
+    {
+        ctownDataContext db = new ctownDataContext();
+        string availbity = (from r in db.GetTable<room>()
+                        where r.Id == rid && r.branch_id == bid
+                        select r.availbilty).First();
+
+        return availbity;
     }
 }

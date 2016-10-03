@@ -21,4 +21,17 @@ public class bookingRoomClass
             db.SubmitChanges();
         }
     }
+    public static int getbookingid(string roomno)
+    {
+
+        ctownDataContext db = new ctownDataContext();
+        int orders = (from x in db.booking_Rooms
+                      join room in db.rooms on x.roomid equals room.Id
+                      join bookingid in db.bookings on x.bookingId equals bookingid.Id
+                      where room.room_no == roomno
+                      select bookingid.Id).First();
+                     
+
+        return orders;
+    }
 }
