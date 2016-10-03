@@ -122,11 +122,17 @@ public partial class employebranchinventory : System.Web.UI.Page
     {
 
         Branch_asset ba = new Branch_asset();
-        ba.bid = branchClass.getBranchID(ddbranchname.Text);
+
+        int getBranchId = branchClass.getBranchID(ddbranchname.Text);
+        int getAssetsID = branchAssetsClass.getBranchAssetsId(getBranchId,dditemname.SelectedValue.ToString());
+       // ba.bid =
+
         ba.title = itemname.Value;
         ba.description = itemdescription.Value;
         ba.no_item = int.Parse(totalitem.Value);
-        branchAssetsClass.updateBranchAssets(ba, int.Parse(branchassets.Value));
+        branchAssetsClass.updateBranchAssets(ba, getAssetsID);
    
     }
+    
+
 }

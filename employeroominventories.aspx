@@ -54,9 +54,9 @@
                                            <%} %>
                                 </select>
                       </div>
+         <a href="#" runat="server" onserverclick="Button1_Click" class="btn btn-success">View</a>
 
-
-      <asp:Button ID="Button1" runat="server" Text="View" OnClick="Button1_Click" class="btn btn-success" />   
+      <%--<asp:Button ID="Button1" runat="server" Text="View" OnClick="Button1_Click" class="btn btn-success" />--%>   
                                       </div>
                              
                              
@@ -113,7 +113,11 @@
 		 data-validation-length="3-100" 
 		 data-validation-error-msg="Item description is required"/></td>
                                   <td>   <input type="number" id="uitemno" name="aitemno"  placeholder = "Number Of Items" class="form-control " runat="server"/></td>
-                                  <td>  <asp:Button ID="send" runat="server" Text="Update"  class="btn btn-success" OnClick="updateAssets_click" /></td>
+                                  <td>
+                                      <a href="#" class="btn btn-success" onserverclick="updateAssets_click" runat="server">Update</a>
+                                        <%--<asp:Button ID="send" runat="server" Text="Update"  class="btn btn-success" OnClick="updateAssets_click" />--%>
+
+                                  </td>
                                 </tr>
                                
                               </tbody>
@@ -180,7 +184,8 @@
                            
                               <div class="form-group">
                         <div class="col-md-6">
-                        <asp:Button ID="SaveAssets" runat="server" OnClick="saveAssets_click" Text="Save" class="btn btn-success"/>
+                            <a href="#" onserverclick="saveAssets_click" class="btn btn-success" runat="server">Save</a>
+                        <%--<asp:Button ID="SaveAssets" runat="server" OnClick="saveAssets_click" Text="Save" class="btn btn-success"/>--%>
                         </div>
                       </div>
                             </div>

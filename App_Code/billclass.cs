@@ -15,7 +15,16 @@ public class billclass
         // TODO: Add constructor logic here
         //
     }
+    public static bill getBills(int id, DateTime date, string type, int branchID)
+    {
 
+        ctownDataContext db = db = new ctownDataContext();
+        bill b = (from x in db.bills
+                      //  join r in db.rooms on new { X1 = x.room_id, X2 = bid } equals new { X1 = r.Id, X2 = r.branch_id }   //and in linq 
+                  where x.Id == id && x.Date == date && x.BillType == type && x.BranchId == branchID
+                  select x).First();
+        return b;
+    }
 
     public static bool Addbill(bill b)
     {
@@ -80,6 +89,46 @@ public class billclass
             db.SubmitChanges();
         //}
     }
+    public static IQueryable<bill> getAllBills( int bid)
+    {
+        ctownDataContext db = db = new ctownDataContext();
+        IQueryable<bill> ra = from x in db.bills
+                                  //  join r in db.rooms on new { X1 = x.room_id, X2 = bid } equals new { X1 = r.Id, X2 = r.branch_id }   //and in linq 
+                             where x.BranchId == bid
+                              select x;
+        return ra;
+    }
+    public static IQueryable<DateTime> getBillItem(string val ,int branchId)
+    {
+       
+        ctownDataContext db = db = new ctownDataContext();
+        IQueryable<DateTime> billid = from b in db.GetTable<bill>()
+                      where b.BillType == val && b.BranchId==branchId
+                      select b.Date  ;
 
+        return billid;
+
+    }
+    public static int retrieveBillItem(string val, int branchId)
+    {
+
+        ctownDataContext db = db = new ctownDataContext();
+        int billid = (from b in db.GetTable<bill>()
+                                      where b.BillType == val && b.BranchId == branchId
+                                      select b.Id).First();
+
+        return billid;
+
+    }
+    public static IQueryable<bill> getBillDInfo()
+    {
+
+        ctownDataContext db = db = new ctownDataContext();
+        IQueryable<bill> ra = from x in db.bills
+                                  //where x.Id == id
+                              select x;
+        return ra;
+
+    }
 
 }

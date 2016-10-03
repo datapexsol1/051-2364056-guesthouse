@@ -39,6 +39,15 @@ public class branchAssetsClass
             return false;
         }
     }
+    public static int getBranchAssetsId(int id, string val)
+    {
+        ctownDataContext db = new ctownDataContext();
+        int assetsId = (from b in db.GetTable<Branch_asset>()
+                        where b.bid == id && b.title == val
+                        select b.id).First();
+
+        return assetsId;
+    }
     public static IQueryable<Branch_asset> getAllBranchAssets(int bid)
     {
         ctownDataContext db = db = new ctownDataContext();

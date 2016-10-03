@@ -13,6 +13,22 @@
              
             
          }
+         $(document).ready(function () {
+
+             alert("hello");
+
+
+
+         });
+         //submitting temporary values in add panel 
+         function submitTempValue(){
+             alert("update panel");
+        
+
+             
+         }
+
+         
     </script>
 </asp:Content>
 
@@ -29,7 +45,7 @@
                         <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
                           <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true" onclick="myFunction()" >Branch Assets</a>
                           </li>
-                          <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false" >Update Assets</a>
+                          <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false" onclick="submitTempValue()" >Update Assets</a>
                           </li>
                           <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false"  onclick="myFunction()">Add Assets</a>
                           </li>
@@ -104,7 +120,10 @@
                                   <td> <input type="text" id="itemname" name="itemname"  placeholder="Label" class="form-control " runat="server"/></td>
                                   <td>  <input type="text" id="itemdescription" name="itemdescription"  placeholder="Description" class="form-control " runat="server"/></td>
                                   <td>   <input type="number" id="totalitem" name="totalitem" min="1"  placeholder="Number Of Items" class="form-control " runat="server"/></td>
-                                  <td>  <asp:Button ID="send" runat="server" Text="Update"  class="btn btn-success" OnClick="updateBranchAssets_click" /></td>
+                                  <td><a href="#" onserverclick="updateBranchAssets_click" runat="server" class="btn btn-success">Update</a>
+                                        <%--<asp:Button ID="send" runat="server" Text="Update" CausesValidation="false"  class="btn btn-success" OnClick="updateBranchAssets_click" />--%>
+
+                                  </td>
                                 </tr>
                                
                               </tbody>
@@ -144,22 +163,24 @@
                         <label class="control-label col-md-4 " for="room type">Item Description <span class="required">*</span>
                         </label>
                         <div class="col-md-8">
-                          <input type="text" id="adescription" name="adescription1"  placeholder="Description" class="form-control " data-validation="length alphanumeric" 
+                          <input type="text" id="adescription" name="adescription"  placeholder="Description" class="form-control " data-validation="length alphanumeric" 
 		 data-validation-length="3-25" 
 		 data-validation-error-msg="Enter item description"/>
                         </div>
                       </div>
+               
                                <div class="form-group col-md-6">
                         <label class="control-label col-md-4" for="room size">Number of Item <span class="required">*</span>
                         </label>
                         <div class="col-md-8">
-                          <input type="number" id="aitemno" name="insertaitemno"  placeholder="Number Of Items" class="form-control " required="required"/>
+                          <input type="number" id="aitemno" name="aitemno"  placeholder="Number Of Items" class="form-control " required="required"/>
                         </div>
                       </div>
                            
                               <div class="form-group">
                         <div class="col-md-6 col-md-offset-11">
-                        <asp:Button ID="SaveAssets" runat="server" OnClick="saveBAssets_click"  Text="SaveAssets" CssClass="btn btn-success" />
+                            <a href="#" onserverclick="saveBAssets_click" runat="server" class="btn btn-success">Add</a>
+                        <%--<asp:Button ID="SaveAssets" runat="server" OnClick="saveBAssets_click"  Text="SaveAssets" CssClass="btn btn-success" />--%>
                         </div>
                       </div>
                             </div>

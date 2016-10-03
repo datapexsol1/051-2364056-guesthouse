@@ -1,6 +1,15 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EmployePanel.master" AutoEventWireup="true" CodeFile="employebranchbills.aspx.cs" Inherits="employebranchbills" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+    <script>
+        function activaTab(tab) {
+
+            $('.nav-tabs a[href="#' + tab + '"]').tab('show');
+
+            //alert("working");
+        };
+    </script>
+     
 </asp:Content>
 
 
@@ -36,7 +45,7 @@
        <table class="data table table-striped no-margin">
                               <thead>
                                 <tr>
-                                  <th>Bill Id</th>
+<%--                                  <th>Bill Id</th>--%>
                                   <th>Bill Amount</th>
                                   <th>Bill Type</th>
                                   <th>Bill Date</th>
@@ -49,7 +58,7 @@
                                          foreach (var r in bill)
                                          { %>
                                 <tr>
-                                  <td><label id="bilid"><%=r.Id %></label></td>
+<%--                                  <td><label id="bilid"><%=r.Id %></label></td>--%>
                                   <td><label id="bilamount"><%=r.BillAmount%></label></td>
                                   <td><label id="biltype"><%=r.BillType%></label></td>
                                   <td> <label id="bildate"><%=r.Date%></label></td>
@@ -70,7 +79,7 @@
        <table class="data table table-striped no-margin">
                               <thead>
                                  <tr>
-                                  <th>Bill Id</th>
+<%--                                  <th>Bill Id</th>--%>
                                   <th>Bill Amount</th>
                                   <th>Bill Type</th>
                                   <th>Bill Date</th>
@@ -79,19 +88,36 @@
                               </thead>
                               <tbody>
                                 <tr>
-                                  <td> <input type="number" id="ubno" name="ubno"  placeholder="Bill Id" class="form-control" /></td>
+<%--                                  <td> <input type="number" id="ubno" name="ubno"  placeholder="Bill Id" class="form-control" /></td>--%>
                                    
-                                  <td> <input type="text" id="ubamount" name="ubamount"  placeholder="Bill Amount" class="form-control "/></td>
-                                <td><select class="form-control" id="ubtype" name="ubtype" runat="server">
+                                  <td> <input type="text" id="ubamount" name="ubamount" runat="server" placeholder="Bill Amount" class="form-control "/></td>
+                                <td> <asp:DropDownList  runat="server" class="form-control" clientIdMode="static" ID="ddBillType" name="ddBillType" AutoPostBack="True" OnSelectedIndexChanged="billTypeSelectedIndexChange" required>
+                                      <Items>
+                                           <asp:ListItem Text="Select" Value="" />
+                                       </Items>
+                                      </asp:DropDownList>
+                                    
+                                    <%--<select class="form-control" id="ddBillType" name="ubtype" runat="server">
                                         <option value="0">Select</option>
                                     <option value="Electricity" id="ubtype1">Electricity</option>
                               <option value="Gas" id="ubtype2">Gas</option>
                               <option value="Water" id="ubtype3">Water</option>
 
 
-                                        </select></td>
-                                  <td>   <input type="date" id="ubdate" name="ubdate"  placeholder="Date" class="form-control "/></td>
-                                  <td>  <asp:Button ID="send" runat="server" Text="Update"  class="btn btn-success" OnClick="Update_bills" /></td>
+                                        </select>--%></td>
+                                  <td>
+
+                                      <asp:DropDownList  runat="server" class="form-control" clientIdMode="static" ID="ddDate" name="ddDate" OnSelectedIndexChanged="branchBillSelectedIndexChange" AutoPostBack="True"  required>
+                                      <Items>
+                                           <asp:ListItem Text="Select" Value="" />
+                                       </Items>
+                                      </asp:DropDownList>
+                                      
+                                      
+                                      
+                                         <%--<input type="date" id="ubdate" name="ubdate"  placeholder="Date" class="form-control "/>--%></td>
+                                  <td>
+                                        <asp:Button ID="send" runat="server" Text="Update"  class="btn btn-success" OnClick="Update_bills" /></td>
                                 </tr>
                                
                               </tbody>
@@ -105,43 +131,37 @@
 
            <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
                              
-                              
-                                   <div class="form-group col-md-6">
-                        <label class="control-label col-md-4 " >Bill Id <span class="required">*</span>
-                        </label>
-                        <div class="col-md-8">
-                          <input type="number" id="abid" name="abid" placeholder="Bill Id" class="form-control "/>
-                        </div>
-                      </div>
+ 
                               <div class="form-group col-md-6">
-                               <label class="control-label col-md-4 " >Bil Amount <span class="required">*</span>
-                        </label>
-                        <div class="col-md-8">
-                          <input type="number" id="abamount" name="abamount"  placeholder="Amount" class="form-control "/>
-                        </div>
+                                <label class="control-label col-md-4 " >Bill Amount <span class="required">*</span></label>
+                            <div class="col-md-8">
+                              <input type="number" id="abamount" name="abamount"  placeholder="Amount" class="form-control "/>
+                            </div>
                                   </div>
                      
 
                                <div class="form-group col-md-6">
-                        <label class="control-label col-md-4 ">Bill Type <span class="required">*</span>
-                        </label>
+                                <label class="control-label col-md-4 ">Bill Type <span class="required">*</span>
+                                </label>
                         <div class="col-md-8">
 
+                             <select class="form-control" id="abtype" name="abtype" runat="server">
+                                            <option value="0">Select</option>
+                                              <option value="Electricity" id="abtype1">Electricity</option>
+                                              <option value="Gas" id="abtype2">Gas</option>
+                                              <option value="Water" id="abtype3">Water</option>
+                                             <option value="Water" id="abtype4">Other</option>
 
-                            
-
-
-
-
-                         <select class="form-control" id="abtype" name="abtype" runat="server">
-                                        <option value="0">Select</option>
-                              <option value="Electricity" id="abtype1">Electricity</option>
-                              <option value="Gas" id="abtype2">Gas</option>
-                              <option value="Water" id="abtype3">Water</option>
-
-                                        </select>
+                            </select>
                         </div>
                       </div>
+                <div class="form-group col-md-6">
+                               <label class="control-label col-md-4 " >Bill Description <span class="required">*</span>
+                        </label>
+                        <div class="col-md-8">
+                          <input type="text" id="desc" name="desc"  placeholder="Description" style="height:100px" class="form-control "/>
+                        </div>
+                 </div>
                                <div class="form-group col-md-6">
                         <label class="control-label col-md-4" >Date <span class="required">*</span>
                         </label>
@@ -152,7 +172,8 @@
                            
                               <div class="form-group">
                         <div class="col-md-6 col-md-offset-11">
-                          <asp:Button ID="Button1" runat="server" Text="Submit"  class="btn btn-success" OnClick="Button1_Click" />
+                            <a href="#" onserverclick="Button1_Click" runat="server" class="btn btn-success" >Submit</a>
+                          <%--<asp:Button ID="Button1" runat="server" Text="Submit"  class="btn btn-success" OnClick="Button1_Click" />--%>
                         </div>
                       </div>
                             </div>

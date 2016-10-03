@@ -19,8 +19,25 @@
                 $("#s3").hide();
                 $("#guestType").val("pakistani") ;
                 alert($("#guestType").val());
-                    //    $('input[name=regno]').val("0") ;
-
+                //    $('input[name=regno]').val("0") ;
+                $("input[name=regno]").val("");
+                $("input[name=arrivaldate]").val("");
+                $("input[name=atime]").val("");
+                $("input[name=gname]").val("");
+                $("input[name=cnicno]").val("");
+                $("input[name=dob]").val("");
+                $("input[name=cname]").val("");
+                $("input[name=proffesion]").val("");
+                $("input[name=designation]").val("");
+                $("input[name=poffice]").val("");
+                $("input[name=presidence]").val("");
+                $("input[name=pcell]").val("");
+                $("input[name=departure]").val("");
+                $("input[name=dtime]").val("");
+                $("input[name=flightno]").val("");
+                $("input[name=caddress]").val("");
+                $("input[name=paddress]").val("");
+                // foreigner info
                 $("input[name=fregno]").val("000");
                 $("input[name=farrivaldate]").val("2016-01-01");
                 $("input[name=fatime]").val("18:01");
@@ -55,6 +72,44 @@
                 $("#s2").hide();
                 $("#guestType").val("foriegner");
                 
+                $("input[name=fregno]").val("");
+                $("input[name=farrivaldate]").val("");
+                $("input[name=fatime]").val("");
+                $("input[name=fgname]").val("");
+                $("input[name=fcnicno]").val("");
+                $("input[name=fdob]").val("");
+                $("input[name=fcname]").val("");
+                $("input[name=fproffesion]").val("");
+                $("input[name=fdesignation]").val("");
+                $("input[name=fpoffice]").val("");
+                $("input[name=fpresidence]").val("");
+                $("input[name=fpcell]").val("");
+                $("input[name=fdeparture]").val("");
+                $("input[name=fdtime]").val("");
+                $("input[name=fflightno]").val("");
+                $("input[name=fcaddress]").val("");
+                $("input[name=fpaddress]").val("");
+                $("input[name=fpassno]").val("");
+                $("input[name=nationality]").val("");
+                $("input[name=placeofissue]").val("");
+                $("input[name=fdateofissue]").val("");
+                $("input[name=visano]").val("");
+                $("input[name=validupto]").val("");
+                $("input[name=fcfrom]").val("");
+                $("input[name=fgoto]").val("");
+
+
+
+
+
+
+
+
+
+
+
+
+
                 alert($("#guestType").val());
                 $("input[name=regno]").val("00");
                 $("input[name=arrivaldate]").val("2016-01-01");
