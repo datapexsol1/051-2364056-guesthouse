@@ -72,7 +72,14 @@
 
                             <!-- start recent activity -->
                            <div>
-                           <table class="table tbl">
+                               <asp:Table class="data table table-striped no-margin" ID="empInfoViewTable"  runat="server">
+                             
+                            
+                             
+                               
+                             
+                           </asp:Table>
+                         <%--  <table class="table tbl">
                               <thead class="thead-inverse">
                                 <tr>
                                   <th>Image</th>
@@ -91,7 +98,7 @@
                               <tbody>
                                
                                 <tr>
-                                  <td><label id="image"></label></td>
+                                  <td><label id="image"><img src="images/user.png" class="avatar" alt="Avatar"></label></td>
                                   <td><label id="name"></label></td>
                                   <td><label id="email"></label></td>
                                   <td><label id="employe no"> </label></td>
@@ -109,7 +116,7 @@
                                  
                                
                               </tbody>
-                            </table>
+                            </table>--%>
                                </div>
                             <!-- end recent activity -->
                               

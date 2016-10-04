@@ -54,6 +54,17 @@ public class employeeProfile
            
         
     }
+    public static IQueryable<employee> getAllEmployee(int branchId)
+    {
+        ctownDataContext db = new ctownDataContext();
+
+        IQueryable<employee> emp = from x in db.GetTable<employee>()
+
+                                   where x.branch_id == branchId
+                                   select x;
+        return emp;
+
+    }
     public static int getEmployeBranch(string username)
     {
         ctownDataContext db = new ctownDataContext();
