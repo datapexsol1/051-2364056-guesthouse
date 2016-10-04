@@ -62,10 +62,16 @@
                 <h3>General</h3>
                 <ul class="nav side-menu">
                   <li><a href="employeindex.aspx"><i class="fa fa-home"></i> Home  </a>
-                    
+                   
                   </li>
                    
-                 <li><a href="#"><i class="fa fa-edit"></i> Employee Information</a></li>
+                 <li><a href="#"><i class="fa fa-edit"></i> Employee Information<span class="fa fa-chevron-down"></span></a>
+                      <ul class="nav child_menu">
+                        <li><a href="employeeviewemployeeinfo.aspx">Employee Info</a></li>
+                      <li><a href="employepaysalary.aspx">Salary</a></li>
+                        
+                        </ul>
+                 </li>
 
                   <li><a href="employeroomlayout.aspx"><i class="fa fa-edit"></i> Book Room</a>
                     
