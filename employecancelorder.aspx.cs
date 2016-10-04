@@ -69,8 +69,8 @@ public partial class employevieworders : System.Web.UI.Page
                     TableRow orderitem = new TableRow();
                     viewOrder.Rows.Add(orderitem);
                     TableCell roono = new TableCell();
-                    roono.Text = or.order.room_no; //ddrooms.Text;
-                    temproomno = or.order.room_no;
+                    roono.Text = or.order.room_no.ToString(); //ddrooms.Text;
+                    temproomno = or.order.room_no.ToString();
                     orderitem.Cells.Add(roono);
                     TableCell itemname = new TableCell();
                     itemname.Text = or.rs_orde_menu.item_name;
@@ -98,13 +98,13 @@ public partial class employevieworders : System.Web.UI.Page
                 }
                 else
                 {
-                    if (temproomno == or.order.room_no)
+                    if (temproomno == or.order.room_no.ToString())
                     {
                         TableRow orderitem = new TableRow();
                         viewOrder.Rows.Add(orderitem);
                         TableCell roono = new TableCell();
-                        roono.Text = or.order.room_no; //ddrooms.Text;
-                        temproomno = or.order.room_no;
+                        roono.Text = or.order.room_no.ToString(); //ddrooms.Text;
+                        temproomno = or.order.room_no.ToString();
                         orderitem.Cells.Add(roono);
                         TableCell itemname = new TableCell();
                         itemname.Text = or.rs_orde_menu.item_name;
@@ -146,8 +146,8 @@ public partial class employevieworders : System.Web.UI.Page
                         TableRow orderitem = new TableRow();
                         viewOrder.Rows.Add(orderitem);
                         TableCell roono = new TableCell();
-                        roono.Text = or.order.room_no; //ddrooms.Text;
-                        temproomno = or.order.room_no;
+                        roono.Text = or.order.room_no.ToString(); //ddrooms.Text;
+                        temproomno = or.order.room_no.ToString();
                         orderitem.Cells.Add(roono);
                         TableCell itemname = new TableCell();
                         itemname.Text = or.rs_orde_menu.item_name;

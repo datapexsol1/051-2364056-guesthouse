@@ -104,6 +104,7 @@
                       <li><a href="employemenuservice.aspx">Menu Detail</a></li>
                       <li><a href="employeplaceorder.aspx">Order menu</a></li>
                        <li><a href="employevieworders.aspx">View Guests Orders</a></li>
+                       <li><a href="employecancelorder.aspx">Cancel Order</a></li>
                     </ul>
                  </li>
                
