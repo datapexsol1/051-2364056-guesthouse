@@ -82,7 +82,7 @@
                         </div>
                       </div>
                               <asp:Button ID="eventsubmit" runat="server" Text="Update" class="btn btn-success"  AutoPostBack="false" CausesValidation="true" OnClick="eventsubmit_Click" />
-              <input  type="text" id="updatehiddenid"  runat="server"/>
+              <input  type="hidden" id="updatehiddenid"  runat="server"/>
 
                               
      </div>

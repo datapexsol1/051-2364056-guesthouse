@@ -90,7 +90,8 @@
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Select type</label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                          <select class="form-control" name="addtype">
+                          <select class="form-control" name="addtype" data-validation="required" data-validation-error-msg="Select item type">
+                              <option value="">Select</option>
                             <option>Breakfast</option>
                             <option>Soups</option>
                             <option>BBQ special</option>
@@ -108,19 +109,23 @@
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Item name</label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="text" class="form-control" name="additemname" placeholder="Enter item name"/>
+                          <input type="text" class="form-control" name="additemname" data-validation="length alphanumeric" 
+		 data-validation-length="3-25" 
+		 data-validation-error-msg="Enter item name" placeholder="Enter item name"/>
                         </div>
                       </div>
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Price</label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="number" class="form-control" name="additemprice" placeholder="Enter Price" min="0"/>
+                          <input type="number" class="form-control" name="additemprice" placeholder="Enter Price" min="0" data-validation="required" 
+		 data-validation-error-msg="Enter item price"/>
                         </div>
                       </div>
                      <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Quantity</label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="text" class="form-control" name="additemquantity" placeholder="Enter Quantity" min="0"/>
+                          <input type="text" class="form-control" name="additemquantity" data-validation="required" 
+		 data-validation-error-msg="Enter quantity" placeholder="Enter Quantity" min="0"/>
                         </div>
 
                       </div>
@@ -149,7 +154,9 @@
                         
                        
                             <label>Select type</label>
-                          <select class="form-control">
+                          <select class="form-control" data-validation="required" 
+		 data-validation-error-msg="Select type">
+                              <option value="">Select</option>
                             <option>Breakfast</option>
                             <option>Soups</option>
                             <option>BBQ special</option>
@@ -169,8 +176,9 @@
                         
                         
                             <label >Select Item</label>
-                          <select class="form-control">
-                            <option>choose item</option>
+                          <select class="form-control" data-validation="required" 
+		 data-validation-error-msg="Select item">
+                            <option value="">choose item</option>
                             
                           </select>
                         </div>
@@ -191,6 +199,7 @@
                        
                         
                              <label >Edit item (optional)</label>
+
                           <input type="text" class="form-control" placeholder="Enter item name"/>
                         </div>
                       </div>
@@ -201,7 +210,8 @@
                         
                         
                             <label >Price</label>
-                          <input type="number" class="form-control" placeholder="Enter Price" min="0"/>
+                          <input type="number" class="form-control" placeholder="Enter Price" min="0" data-validation="required" 
+		 data-validation-error-msg="Enter price"/>
                         </div>
                       </div>
                           <div class="col-md-6">
@@ -209,7 +219,8 @@
                         
                         
                             <label ">Quantity</label>
-                          <input type="text" class="form-control" placeholder="Enter Quantity" min="0"/>
+                          <input type="text" class="form-control" placeholder="Enter Quantity" min="0" data-validation="required" 
+		 data-validation-error-msg="Enter quantity"/>
                         </div>
 
                       </div>
@@ -245,5 +256,53 @@
               
 
          </div></div>   </div>
+      <!-- validator -->
+    <script src="../vendors/validator/validator.js"></script>
+     <!-- validator -->
+    <script>
+      // initialize the validator function
+      validator.message.date = 'not a real date';
+
+      // validate a field on "blur" event, a 'select' on 'change' event & a '.reuired' classed multifield on 'keyup':
+      $('form')
+        .on('blur', 'input[required], input.optional, select.required', validator.checkField)
+        .on('change', 'select.required', validator.checkField)
+        .on('keypress', 'input[required][pattern]', validator.keypress);
+
+      $('.multi.required').on('keyup blur', 'input', function() {
+        validator.checkField.apply($(this).siblings().last()[0]);
+      });
+
+      $('form').submit(function(e) {
+        e.preventDefault();
+        var submit = true;
+
+        // evaluate the form using generic validaing
+        if (!validator.checkAll($(this))) {
+          submit = false;
+        }
+
+        if (submit)
+          this.submit();
+
+        return false;
+      });
+    </script>
+    <!-- /validator -->
+         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+<script>
+
+  $.validate({
+    modules : 'location, date, security, file',
+    onModulesLoaded : function() {
+      $('#country').suggestCountry();
+    }
+  });
+
+  // Restrict presentation length
+  $('#presentation').restrictLength( $('#pres-max-length') );
+
+</script>   
 </asp:Content>
 
