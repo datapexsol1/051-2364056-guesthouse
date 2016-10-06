@@ -104,6 +104,7 @@
                       <li><a href="employemenuservice.aspx">Menu Detail</a></li>
                       <li><a href="employeplaceorder.aspx">Order menu</a></li>
                        <li><a href="employevieworders.aspx">View Guests Orders</a></li>
+                       <li><a href="employecancelorder.aspx">Cancel Order</a></li>
                     </ul>
                  </li>
                
@@ -266,7 +267,6 @@
 <script src="vendors/fullcalendar/dist/fullcalendar.js"></script>
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
-              <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 
     <!-- FullCalendar -->
    
@@ -307,9 +307,7 @@
     <script src="../vendors/ion.rangeSlider/js/ion.rangeSlider.min.js"></script>
     <!-- Bootstrap Colorpicker -->
     <script src="../vendors/mjolnic-bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
-             <!-- validator -->
-    <script src="../vendors/validator/validator.js"></script>
-     <!-- validator -->
+
    
 
     <script>
