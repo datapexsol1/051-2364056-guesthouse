@@ -27,6 +27,7 @@ public partial class adminemployesignup : System.Web.UI.Page
         emp.block_client = 0;
         emp.dateofjoining = DateTime.Now;
         emp.login_type = "Employe";
+        emp.salary = int.Parse(Request.Form["salary"].ToString());
         //if(imageuploaded.hasfile)then do this
    //     HttpPostedFile postedfile = image.PostedFile;
        // emp.image = imageToByteArray(postedfile);
