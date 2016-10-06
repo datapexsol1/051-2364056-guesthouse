@@ -147,28 +147,39 @@
                             <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
                                 <div class="row">
                                      <div class="col-md-5">
-                                            <input runat="server" type="text" id="eventname" name="eventname" placeholder="Event name..." class="form-control"/>
+                                         <b>Event name</b>
+                                            <input runat="server" type="text" id="eventname" name="eventname" placeholder="Event name..." data-validation="length alphanumeric" 
+		 data-validation-length="3-25" 
+		 data-validation-error-msg="Enter event" class="form-control"/>
                                          </div>
-                                </div>
-                                <div class="row">
+                                
                                      <div class="col-md-5">
+                                         <b>Event description</b>
                                             <input runat="server" type="text" id="eventdesc" name="eventdesc" placeholder="Event description..." class="form-control"/>
                                          </div>
                                 </div>
                                 <div class="row">
                                      <div class="col-md-5">
-                                            <input  type="date" id="eventstartdate" name="eventstartdate"  class="form-control" runat="server"/>
+                                         <b>Event start date</b>
+                                            <input  type="date" id="eventstartdate" data-validation="required" 
+
+		 data-validation-error-msg="Select date" name="eventstartdate"  class="form-control" runat="server"/>
                                          </div>
-                                </div>
-                                <div class="row">
+                               
                                      <div class="col-md-5">
-                                            <input  type="date" id="eventenddate" name="eventenddate"  placeholder="Select date..." class="form-control" runat="server"/>
+                                         <b>Event end date</b>
+                                            <input  type="date" id="eventenddate"  name="eventenddate" data-validation="required" 
+
+		 data-validation-error-msg="Select date"  placeholder="Select date..." class="form-control" runat="server"/>
                                          </div>
                                 </div>
                                 <div class="row">
                         <div class="col-md-5">
                           <div class="input-group demo2">
-                            <input type="text"  placeholder="Select color.." class="form-control" runat="server" id="eventcolor" name="eventcolor"/>
+                              <b>Event color</b>
+                            <input type="text"  placeholder="Select color.." class="form-control" runat="server" id="eventcolor" data-validation="required" 
+
+		 data-validation-error-msg="Enter event color" name="eventcolor"/>
                             <span class="input-group-addon"><i></i></span>
                           </div>
                         </div>
@@ -205,7 +216,22 @@
     <script src="../vendors/ion.rangeSlider/js/ion.rangeSlider.min.js"></script>
     <!-- Bootstrap Colorpicker -->
     <script src="../vendors/mjolnic-bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+<script>
 
+  $.validate({
+    modules : 'location, date, security, file',
+    onModulesLoaded : function() {
+      $('#country').suggestCountry();
+    }
+  });
+
+  // Restrict presentation length
+  $('#presentation').restrictLength( $('#pres-max-length') );
+
+</script> 
 
    
     <!-- Bootstrap Colorpicker -->

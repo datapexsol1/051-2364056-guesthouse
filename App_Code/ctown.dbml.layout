@@ -1,113 +1,107 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11.625, 16.75" name="ctown">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 14.375" name="ctown">
   <DataContextMoniker Name="/ctownDataContext" />
   <nestedChildShapes>
-    <classShape Id="7e53d22d-ef2e-4a72-8b01-4fa02b734571" absoluteBounds="7.75, 5.625, 2, 2.3478011067708335">
+    <classShape Id="41a22cba-63a9-4dea-bd64-8958353de08e" absoluteBounds="0.5, 0.875, 2, 2.3478011067708335">
       <DataClassMoniker Name="/ctownDataContext/booking" />
       <nestedChildShapes>
-        <elementListCompartment Id="4d01841a-e9a3-43c3-bf85-9c6b8222e774" absoluteBounds="7.7650000000000006, 6.0850000000000009, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="2c822cea-1be2-42b0-baae-b17890febb64" absoluteBounds="0.515, 1.335, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="fb82ea64-2f85-4318-bb22-8ed39314cfe5" absoluteBounds="1.25, 9.375, 2, 1.7708968098958331">
+    <classShape Id="87779496-0715-4d6a-b156-f3ebfdaf23e3" absoluteBounds="3, 0.875, 2, 1.7708968098958331">
       <DataClassMoniker Name="/ctownDataContext/booking_Room" />
       <nestedChildShapes>
-        <elementListCompartment Id="03402492-87d2-4476-8520-6e0fd1d78b3a" absoluteBounds="1.2650000000000001, 9.835, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="53721ccf-b186-478c-8b92-d2c07c920663" absoluteBounds="3.015, 1.335, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="20519e07-1614-41fa-b752-26c59179ce42" absoluteBounds="4.25, 9, 2, 1.9631982421875">
+    <classShape Id="9ec90732-4ef3-44d6-b705-588c7243eb7d" absoluteBounds="0.5, 3.5, 2, 1.9631982421875">
       <DataClassMoniker Name="/ctownDataContext/branch" />
       <nestedChildShapes>
-        <elementListCompartment Id="cc631ad2-06f7-42b4-99a8-e4d2a31a09d9" absoluteBounds="4.265, 9.46, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="3a2e8d8b-eb37-45a0-801d-2f678c7d58b9" absoluteBounds="0.515, 3.96, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="597585fa-1d22-4d0a-9606-e75ad64bddec" absoluteBounds="4.25, 8.625, 2, 1.7708968098958331">
+    <classShape Id="5a37353a-ae11-4492-8438-dac18daf4159" absoluteBounds="2.875, 2.875, 2, 1.7708968098958331">
       <DataClassMoniker Name="/ctownDataContext/Branch_asset" />
       <nestedChildShapes>
-        <elementListCompartment Id="b792ddda-16d0-41f6-ba72-fbe5962b3022" absoluteBounds="4.265, 9.085, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="9c139036-0d35-4e0a-ab32-4997aeb13327" absoluteBounds="2.89, 3.335, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="2189763a-83a6-4f64-9867-784e2892bc6f" absoluteBounds="7.125, 9.125, 2, 1.7708968098958331">
-      <DataClassMoniker Name="/ctownDataContext/facility_payment" />
-      <nestedChildShapes>
-        <elementListCompartment Id="c3bab5f6-7755-4d66-a03c-b3f54c112206" absoluteBounds="7.14, 9.585, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="6c78ea7d-4ccb-40cd-9636-8fa4cb9b7f4b" absoluteBounds="4.125, 11.125, 2, 2.7324039713541666">
-      <DataClassMoniker Name="/ctownDataContext/foreigner" />
-      <nestedChildShapes>
-        <elementListCompartment Id="5b1e6e16-2dfc-48ce-9cc3-04e91892f7c3" absoluteBounds="4.14, 11.585, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="1d687fc8-d39e-4916-aebb-48e83a6a58de" absoluteBounds="6.625, 10.75, 2, 5.8092268880208326">
-      <DataClassMoniker Name="/ctownDataContext/guest" />
-      <nestedChildShapes>
-        <elementListCompartment Id="1e228954-a16d-485a-a58c-dc576fb5aac7" absoluteBounds="6.64, 11.21, 1.9700000000000002, 5.249226888020833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="2b863e7e-be2e-4369-9819-f079e898cb2f" absoluteBounds="7, 8.5, 2, 1.3862939453125">
-      <DataClassMoniker Name="/ctownDataContext/image" />
-      <nestedChildShapes>
-        <elementListCompartment Id="b7f88ad9-8adc-4545-98e9-c621b6c29395" absoluteBounds="7.015, 8.96, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="0c4f11fb-82b1-4d79-8465-badbe04b2b5b" absoluteBounds="3.125, 5.75, 2, 1.5785953776041666">
-      <DataClassMoniker Name="/ctownDataContext/other_requirement" />
-      <nestedChildShapes>
-        <elementListCompartment Id="62616daf-90b8-475c-be34-85c1c49ea9a3" absoluteBounds="3.14, 6.2100000000000009, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="53e82831-682a-40b6-ab14-1c6cdd555b6e" absoluteBounds="2, 11.5, 2, 1.7708968098958331">
-      <DataClassMoniker Name="/ctownDataContext/room_asset" />
-      <nestedChildShapes>
-        <elementListCompartment Id="4466c63b-e44c-4757-b2ad-81cded29037a" absoluteBounds="2.015, 11.96, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="98186a3f-b3f1-460e-95b2-76ab0e90fa89" absoluteBounds="6.875, 8, 2, 2.3478011067708335">
-      <DataClassMoniker Name="/ctownDataContext/room" />
-      <nestedChildShapes>
-        <elementListCompartment Id="10356002-7f50-4bc3-95aa-35c6ab911364" absoluteBounds="6.89, 8.46, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="49c4d09f-68e0-4c92-9305-e4f46a0c398f" absoluteBounds="0.875, 6.875, 2, 1.9631982421875">
+    <classShape Id="66427055-7a09-40c8-8e15-25a02d39fe7b" absoluteBounds="5.5, 4.125, 2, 1.9631982421875">
       <DataClassMoniker Name="/ctownDataContext/event_calender" />
       <nestedChildShapes>
-        <elementListCompartment Id="aaac0de3-77d8-4757-a0fb-4606cad91415" absoluteBounds="0.89, 7.335, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="1b8193d5-7553-4857-964f-035269cffb54" absoluteBounds="5.515, 4.585, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="eb359ace-094d-4704-a681-2ee70d938355" absoluteBounds="0.875, 13.5, 2, 1.9631982421875">
-      <DataClassMoniker Name="/ctownDataContext/room_service_menu" />
+    <classShape Id="7cbf3fad-113c-4853-944d-989e11672519" absoluteBounds="0.5, 5.625, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/ctownDataContext/facility_payment" />
       <nestedChildShapes>
-        <elementListCompartment Id="af107d34-c3a3-4e5c-8d77-543373135dbb" absoluteBounds="0.89, 13.96, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="e37344f8-acb6-47e5-a69a-7c5b3a0ab9c0" absoluteBounds="0.515, 6.085, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="1ba4fde1-0a46-4ebc-a760-70ef84933433" absoluteBounds="9.375, 8.375, 2, 1.9631982421875">
-      <DataClassMoniker Name="/ctownDataContext/bill" />
+    <classShape Id="2a8f37ba-ce2b-4cf9-ba4d-24ee6921f398" absoluteBounds="2.875, 5.25, 2, 2.7324039713541666">
+      <DataClassMoniker Name="/ctownDataContext/foreigner" />
       <nestedChildShapes>
-        <elementListCompartment Id="5bd01b7a-78bc-4d9b-a70a-f02025e321e0" absoluteBounds="9.39, 8.835, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="e9b0b048-e574-42d3-ae29-8b1886523d10" absoluteBounds="2.89, 5.71, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="3862d4ab-356b-4650-ab65-7def24a70324" absoluteBounds="0.625, 11.5, 2, 1.9631982421875">
-      <DataClassMoniker Name="/ctownDataContext/total_payment" />
+    <classShape Id="a934fb8e-9ed9-4e25-ab3f-6dc2efb748d7" absoluteBounds="5.25, 6.375, 2, 5.8092268880208326">
+      <DataClassMoniker Name="/ctownDataContext/guest" />
       <nestedChildShapes>
-        <elementListCompartment Id="ca6aaa50-3021-426e-bca8-e4a91aecd8f3" absoluteBounds="0.64, 11.96, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="1c3db675-3bef-4c4e-bcee-cd94979152b7" absoluteBounds="5.265, 6.835, 1.9700000000000002, 5.249226888020833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="31ad098b-6c24-4243-8c06-aaf272017649" absoluteBounds="2.375, 1.625, 2, 2.1554996744791666">
+    <classShape Id="dfbfb04d-3eea-4f56-b855-414bd5a45a61" absoluteBounds="0.5, 7.625, 2, 1.3862939453125">
+      <DataClassMoniker Name="/ctownDataContext/image" />
+      <nestedChildShapes>
+        <elementListCompartment Id="bdbaea34-928f-4bf1-b3ea-129881d7cd0a" absoluteBounds="0.515, 8.085, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="9e294514-5dac-4372-9df0-35041c652277" absoluteBounds="2.875, 8.375, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/ctownDataContext/other_requirement" />
+      <nestedChildShapes>
+        <elementListCompartment Id="27862e24-0f20-4d7a-af4d-b87146004f0d" absoluteBounds="2.89, 8.835, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="aff5e971-c2ae-4173-a21e-bd480f19408f" absoluteBounds="0.5, 9.25, 2, 2.1554996744791666">
       <DataClassMoniker Name="/ctownDataContext/placed_order" />
       <nestedChildShapes>
-        <elementListCompartment Id="8d3e40ca-9fd9-49a4-97b0-c91ba8431081" absoluteBounds="2.39, 2.085, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="d32cabe1-b293-44ec-9594-01c356cc5a74" absoluteBounds="0.515, 9.71, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="bb98bf2c-4ce5-4e56-bbf3-09bfb3fe01b7" absoluteBounds="0.625, 2.125, 2, 1.5785953776041666">
-      <DataClassMoniker Name="/ctownDataContext/employesalary" />
+    <classShape Id="7c6fc417-55ac-4c19-8616-c5239debf648" absoluteBounds="3.125, 10.25, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/ctownDataContext/room_asset" />
       <nestedChildShapes>
-        <elementListCompartment Id="4cef009b-9c6e-4b9f-a0a5-6379102481e4" absoluteBounds="0.64, 2.585, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="8fb46470-9bf4-4e41-8740-b6c384a3a2c5" absoluteBounds="3.14, 10.71, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="b52c8674-dded-4f2c-a547-69b48ec27c26" absoluteBounds="5.75, 5.25, 2, 3.6939111328124996">
+    <classShape Id="34e8e8dd-d72d-40ee-9017-a2578ecb6dd9" absoluteBounds="0.5, 12.125, 2, 1.9631982421875">
+      <DataClassMoniker Name="/ctownDataContext/room_service_menu" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b992ee70-9092-4c4a-8cae-1e165ccc7afb" absoluteBounds="0.515, 12.585, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="8ee23ec6-9791-4148-8be2-0dfe990ed53a" absoluteBounds="2.5, 11.75, 2, 2.3478011067708335">
+      <DataClassMoniker Name="/ctownDataContext/room" />
+      <nestedChildShapes>
+        <elementListCompartment Id="4b7a4f1e-a263-4266-96ac-51104561c763" absoluteBounds="2.515, 12.21, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="5426f76a-ee6b-4778-91d6-848c13889b37" absoluteBounds="0.5, 11.625, 2, 1.9631982421875">
+      <DataClassMoniker Name="/ctownDataContext/total_payment" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c952bb1e-700e-4219-8ee1-839f6c443c48" absoluteBounds="0.515, 12.085, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="29de042b-3a1a-4438-95f9-2e01d5905bee" absoluteBounds="2.25, 0.5, 2, 1.9631982421875">
+      <DataClassMoniker Name="/ctownDataContext/bill" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9f8f125b-8ad5-4ce3-9843-3fb2ddd68a4f" absoluteBounds="2.265, 0.96, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="0510adf2-c8c2-4f00-a2cf-83d802d4328c" absoluteBounds="6.125, 0.875, 2, 3.6939111328124996">
       <DataClassMoniker Name="/ctownDataContext/employee" />
       <nestedChildShapes>
-        <elementListCompartment Id="40471e11-2c03-4af1-a12d-4ca81990f2d3" absoluteBounds="5.765, 5.71, 1.9700000000000002, 3.1339111328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="acde28c2-ae7e-4f4b-93a9-3786e48903f7" absoluteBounds="6.14, 1.335, 1.9700000000000002, 3.1339111328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

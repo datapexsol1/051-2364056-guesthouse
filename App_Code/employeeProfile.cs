@@ -37,22 +37,22 @@ public class employeeProfile
         }
         else
         {
-            return false;
+            return false; 
         }
     }
-    public static string employeSignin(string username, string password)
+    public static string employeSignin(string username,string password)
     {
         ctownDataContext Database = new ctownDataContext();
-        string emp = (from x in Database.employees
-                      where x.username == username && x.password == password && x.login_type == "Employe"   //for checking already existance of client
-                      select x.username).First();
+       string emp = (from x in Database.employees
+                     where x.username == username && x.password == password && x.login_type == "Employe"   //for checking already existance of client
+                     select x.username).First();
         return emp;
-
-
-
-
-
-
+        
+            
+        
+        
+           
+        
     }
     public static IQueryable<employee> getAllEmployee(int branchId)
     {
@@ -65,77 +65,15 @@ public class employeeProfile
         return emp;
 
     }
-    public static bool checklatestDate(int employeid)
+    public static employee getSelectedEmployeeInfo(int empid, int branchid)
     {
         ctownDataContext db = new ctownDataContext();
 
-       employesalary ex = (from x in db.employees
-                                       join y in db.employesalaries on x.Id equals y.employe_id
-                                       orderby y.payment_date descending
-                                       where x.Id == employeid
-                                       select y).First();
-        if (ex.payment_date.Month == DateTime.Now.Month)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-    public static List<employee>getunpaidemploye (int branchId)
-    {
-        ctownDataContext db = new ctownDataContext();
+        employee emp = (from x in db.GetTable<employee>()
 
-
-         List<employee> emp = db.employees.Where(a => !db.employesalaries.Select(b => b.employe_id).Contains(a.Id)).ToList();//get first e
-        List<employee> emp1 = new List<employee>();
-        foreach(employee ee in emp)
-        {
-            if (ee.branch_id == branchId)
-            {
-                emp1.Add(ee);
-            }
-        }
-
-
-
-
-      int empcount = emp1.Count();
-
-        List<employee> employe = (from x in db.employees
-                                       where x.branch_id == branchId
-                                       select x).ToList();
-
-        List<employee> ex = new List<employee>();//(IQueryable<employee>)null;
-        foreach (employee e in employe)
-        {
-            if (emp1.Contains(e) == false)
-            {
-                bool x = checklatestDate(e.Id);
-                if (x == false)
-                {
-                    ex.Add(e);
-                   // ex.Concat((List<employee>)e).ToList();
-                }
-            }
-            
-  
-        }    
-        if (ex != null)
-        {
-           return ex.Concat(emp1).ToList();
-        }else
-        {
-            return emp1;
-        }
-    }
-    public static void addemployesalary(employesalary es)
-    {
-        ctownDataContext db = new ctownDataContext();
-        db.employesalaries.InsertOnSubmit(es);
-        db.SubmitChanges();
-        
+                        where x.Id == empid && x.branch_id == branchid
+                        select x).First();
+        return emp;
     }
     public static int getEmployeBranch(string username)
     {
@@ -166,6 +104,30 @@ public class employeeProfile
                    where x.username == username
                    select x.Id).First();
         return bid;
+    }
+
+    public static void updateEmployeeInfo(employee emp, int val, int branchid)
+    {
+        ctownDataContext db = new ctownDataContext();
+        var ra = (from x in db.employees
+                  where x.Id == val && x.branch_id == branchid
+                  select x).First();
+        ra.name = emp.name;
+        ra.email = emp.email;
+        ra.employee_no = emp.employee_no;
+        ra.cnic = emp.cnic;
+        ra.designation = emp.designation;
+        ra.dateofjoining = emp.dateofjoining;
+        ra.address = emp.address;
+        ra.salary = emp.salary;
+        ra.image = emp.image;
+        int check = (from y in db.employees
+                     where y.Id == ra.Id
+                     select y).Count();
+        if (check == 1)
+        {
+            db.SubmitChanges();
+        }
     }
 
 }
