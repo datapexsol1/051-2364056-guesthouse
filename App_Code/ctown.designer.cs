@@ -80,10 +80,13 @@ public partial class ctownDataContext : System.Data.Linq.DataContext
   partial void Insertemployee(employee instance);
   partial void Updateemployee(employee instance);
   partial void Deleteemployee(employee instance);
+  partial void Insertemployesalary(employesalary instance);
+  partial void Updateemployesalary(employesalary instance);
+  partial void Deleteemployesalary(employesalary instance);
   #endregion
 	
 	public ctownDataContext() : 
-			base(global::System.Configuration.ConfigurationManager.ConnectionStrings["guest_house_databaseConnectionString1"].ConnectionString, mappingSource)
+			base(global::System.Configuration.ConfigurationManager.ConnectionStrings["guest_house_databaseConnectionString"].ConnectionString, mappingSource)
 	{
 		OnCreated();
 	}
@@ -245,6 +248,14 @@ public partial class ctownDataContext : System.Data.Linq.DataContext
 		get
 		{
 			return this.GetTable<employee>();
+		}
+	}
+	
+	public System.Data.Linq.Table<employesalary> employesalaries
+	{
+		get
+		{
+			return this.GetTable<employesalary>();
 		}
 	}
 }
@@ -2216,7 +2227,7 @@ public partial class guest : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_image", DbType="VarBinary(MAX)", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_image", DbType="VarBinary(MAX)", UpdateCheck=UpdateCheck.Never)]
 	public System.Data.Linq.Binary image
 	{
 		get
@@ -3838,7 +3849,7 @@ public partial class employee : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_image", DbType="VarBinary(MAX)", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_image", DbType="VarBinary(MAX)", UpdateCheck=UpdateCheck.Never)]
 	public System.Data.Linq.Binary image
 	{
 		get
@@ -4014,6 +4025,140 @@ public partial class employee : INotifyPropertyChanging, INotifyPropertyChanged
 				this._salary = value;
 				this.SendPropertyChanged("salary");
 				this.OnsalaryChanged();
+			}
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+		}
+	}
+}
+
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.employesalary")]
+public partial class employesalary : INotifyPropertyChanging, INotifyPropertyChanged
+{
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private int _Id;
+	
+	private int _employe_id;
+	
+	private System.DateTime _payment_date;
+	
+	private string _amount;
+	
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void Onemploye_idChanging(int value);
+    partial void Onemploye_idChanged();
+    partial void Onpayment_dateChanging(System.DateTime value);
+    partial void Onpayment_dateChanged();
+    partial void OnamountChanging(string value);
+    partial void OnamountChanged();
+    #endregion
+	
+	public employesalary()
+	{
+		OnCreated();
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+	public int Id
+	{
+		get
+		{
+			return this._Id;
+		}
+		set
+		{
+			if ((this._Id != value))
+			{
+				this.OnIdChanging(value);
+				this.SendPropertyChanging();
+				this._Id = value;
+				this.SendPropertyChanged("Id");
+				this.OnIdChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_employe_id", DbType="Int NOT NULL")]
+	public int employe_id
+	{
+		get
+		{
+			return this._employe_id;
+		}
+		set
+		{
+			if ((this._employe_id != value))
+			{
+				this.Onemploye_idChanging(value);
+				this.SendPropertyChanging();
+				this._employe_id = value;
+				this.SendPropertyChanged("employe_id");
+				this.Onemploye_idChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_payment_date", DbType="DateTime NOT NULL")]
+	public System.DateTime payment_date
+	{
+		get
+		{
+			return this._payment_date;
+		}
+		set
+		{
+			if ((this._payment_date != value))
+			{
+				this.Onpayment_dateChanging(value);
+				this.SendPropertyChanging();
+				this._payment_date = value;
+				this.SendPropertyChanged("payment_date");
+				this.Onpayment_dateChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_amount", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+	public string amount
+	{
+		get
+		{
+			return this._amount;
+		}
+		set
+		{
+			if ((this._amount != value))
+			{
+				this.OnamountChanging(value);
+				this.SendPropertyChanging();
+				this._amount = value;
+				this.SendPropertyChanged("amount");
+				this.OnamountChanged();
 			}
 		}
 	}

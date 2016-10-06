@@ -104,5 +104,11 @@
         <elementListCompartment Id="acde28c2-ae7e-4f4b-93a9-3786e48903f7" absoluteBounds="6.14, 1.335, 1.9700000000000002, 3.1339111328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
+    <classShape Id="9e8f64f2-e753-4e87-890f-6a2d20a09ee9" absoluteBounds="5.375, 0.5, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/ctownDataContext/employesalary" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b5138380-038f-4cc4-8d61-97b73e3e446c" absoluteBounds="5.39, 0.96, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>
