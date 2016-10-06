@@ -160,16 +160,6 @@
       <Column Name="availbilty" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.total_payment" Member="total_payments">
-    <Type Name="total_payment">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="booking_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="total_rent" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
-      <Column Name="facility_total_payment" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
-      <Column Name="total_bill" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
-      <Column Name="paid_amount" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
   <Table Name="dbo.bill" Member="bills">
     <Type Name="bill">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -205,6 +195,17 @@
       <Column Name="employe_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="payment_date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="amount" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.total_payment" Member="total_payments">
+    <Type Name="total_payment">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="booking_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="total_rent" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="facility_total_payment" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="total_bill" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="paid_amount" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="paymentdate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
 </Database>

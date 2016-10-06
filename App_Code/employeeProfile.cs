@@ -139,8 +139,6 @@ public class employeeProfile
     public static List<employee> getunpaidemploye(int branchId)
     {
         ctownDataContext db = new ctownDataContext();
-
-
         List<employee> emp = db.employees.Where(a => !db.employesalaries.Select(b => b.employe_id).Contains(a.Id)).ToList();//get first e
         List<employee> emp1 = new List<employee>();
         foreach (employee ee in emp)
@@ -150,10 +148,6 @@ public class employeeProfile
                 emp1.Add(ee);
             }
         }
-
-
-
-
         int empcount = emp1.Count();
 
         List<employee> employe = (from x in db.employees
@@ -172,8 +166,6 @@ public class employeeProfile
                     // ex.Concat((List<employee>)e).ToList();
                 }
             }
-
-
         }
         if (ex != null)
         {

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 14.375" name="ctown">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 16.125" name="ctown">
   <DataContextMoniker Name="/ctownDataContext" />
   <nestedChildShapes>
     <classShape Id="41a22cba-63a9-4dea-bd64-8958353de08e" absoluteBounds="0.5, 0.875, 2, 2.3478011067708335">
@@ -86,12 +86,6 @@
         <elementListCompartment Id="4b7a4f1e-a263-4266-96ac-51104561c763" absoluteBounds="2.515, 12.21, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="5426f76a-ee6b-4778-91d6-848c13889b37" absoluteBounds="0.5, 11.625, 2, 1.9631982421875">
-      <DataClassMoniker Name="/ctownDataContext/total_payment" />
-      <nestedChildShapes>
-        <elementListCompartment Id="c952bb1e-700e-4219-8ee1-839f6c443c48" absoluteBounds="0.515, 12.085, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
     <classShape Id="29de042b-3a1a-4438-95f9-2e01d5905bee" absoluteBounds="2.25, 0.5, 2, 1.9631982421875">
       <DataClassMoniker Name="/ctownDataContext/bill" />
       <nestedChildShapes>
@@ -108,6 +102,12 @@
       <DataClassMoniker Name="/ctownDataContext/employesalary" />
       <nestedChildShapes>
         <elementListCompartment Id="b5138380-038f-4cc4-8d61-97b73e3e446c" absoluteBounds="5.39, 0.96, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="ee881842-1dc0-405a-879e-d19a631347f1" absoluteBounds="4.625, 13.75, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/ctownDataContext/total_payment" />
+      <nestedChildShapes>
+        <elementListCompartment Id="8d537141-a4fe-400f-8328-638d02c266de" absoluteBounds="4.64, 14.21, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>
