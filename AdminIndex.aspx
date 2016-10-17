@@ -1,9 +1,196 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AdminPanel.master" AutoEventWireup="true" CodeFile="adminIndex.aspx.cs" Inherits="AdminIndex" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+    <link href="build/css/style.css" rel="stylesheet" />
+     <script src="js/canvasjs.js"></script>
+     <script>
+   <%
+
+         int[] exp = admingraphclass.getTotalExpendeture();
+         int[] income = admingraphclass.getTotalIncome();
+
+
+          %>
+	
+//*******************RecruiterDataBinding***************************
+        window.onload=function myfucntion(){
+
+             var jan=[2];
+ 	    var feb=[2];
+ 	    var march=[2];
+ 	    var april=[2];
+ 	    var may=[2];
+ 	    var june=[2];
+ 	    var july=[2];
+ 	    var augest=[2];
+ 	    var september=[2];
+ 	    var october=[2];
+ 	    var november=[2];
+ 	    var december=[2];
+            //*********************************RecruiterBindin
+	  jan[0]= <%=exp[0]%>;
+ 	  feb[0]= <%=exp[1] %>;
+ 	  march[0]= <%=exp[2]%>;
+ 	  april[0]=<%=exp[3]%>;
+ 	  may[0]=<%=exp[4]%>;
+ 	  june[0]= <%=exp[5]%>;
+ 	  july[0]=  <%=exp[6]%>;
+ 	  augest[0]= <%=exp[7]%>;
+ 	  september[0]= <%=exp[8]%>;
+ 	  october[0]= <%=exp[9]%>;
+ 	  november[0]= <%=exp[10]%>;
+ 	  december[0]=<%=exp[11]%>;
+ 	    //***************************************JobSeekerdata binding
+
+ 	     jan[1]= <%=income[0]%>;
+ 	     feb[1]= <%=income[1] %>;
+ 	     march[1]= <%=income[2]%>;
+ 	     april[1]=<%=income[3]%>;
+ 	     may[1]=<%=income[4]%>;
+ 	     june[1]= <%=income[5]%>;
+ 	     july[1]=  <%=income[6]%>;
+ 	     augest[1]= <%=income[7]%>;
+ 	     september[1]= <%=income[8]%>;
+ 	     october[1]= <%=income[9]%>;
+ 	     november[1]= <%=income[10]%>;
+            december[1]=<%=income[11]%>;
+           
+
+            var chart = new CanvasJS.Chart("chartContainer");
+  chart.options.animationEnabled= true;
+    
+    chart.options.toolTip={
+    		
+    		content: function(e){
+    	          var body ;
+    	          var head ;
+    	          head = "<span style= 'color:"+e.entries[0].dataSeries.color + "'> <strong>"+e.entries[0].dataSeries.name +"</strong></span><br/>";
+
+    	          body = " <strong>New <strong>"+e.entries[0].dataSeries.name +":</strong>"+  e.entries[0].dataPoint.y + "</strong><br/>";
+
+    	          return (head.concat(body));
+    	        }
+          };
+     chart.options.theme= "theme4";
+    chart.options.axisX = { title: "Month",titleFontSize: 30,interval: 1};
+    chart.options.axisY = { title: "Income", includeZero: false,interval: 10000,titleFontSize: 20};
+    /* chart.options.axisY2 = { prefix: "$", suffix: "K",title: "Price"}; */
+    chart.options.title = { text: "Income & Expenditure" };
+    var series=[];
+  
+    
+    series[0]={ //dataSeries - first quarter
+        type: "splineArea",         //area ,spline,scatter
+        name: "Expenditure",
+        color:"red",
+        fillOpacity:0.1,
+            showInLegend: true,
+           
+    };
+    series[1]={ //dataSeries - first quarter
+        type: "splineArea",   
+        name: "Income",
+        color:"Orange",
+        fillOpacity:0.2,
+        showInLegend: true,
+           
+    };
+   
+   
+    chart.options.data = [];
+    for(var z=0;z<2;z++){ 
+        chart.options.data.push(series[z]);
+      }
+    for(var y=0;y<2;y++){
+        series[y].dataPoints = [
+                { label:"Jan", y: jan[y] },
+               { label:"Feb", y: feb[y] },
+               { label:"March", y: march[y] },
+               { label:"April", y: april[y] },
+               { label:"May", y: may[y] },
+               { label:"June", y: june[y]},
+               { label:"July", y: july[y] },
+               { label:"Aug", y: augest[y] },
+                { label:"Sep", y: september[y] },
+                 { label:"Oct", y: october[y] },
+                  { label:"Nov", y: november[y] },
+                  { label:"Dec", y: december[y] },        
+        ];
+
+        }
+        chart.render();
+        }
+        //////////////////////////////////////////////////////////////////        
+  </script>
+
+    <script src="js/ajax.js"></script>
+
+    <script>
+
+        function changevaluebincome(val){
+
+            $('#bincome').val(val);
+            var xyz=  getbranchweeklyincome($('#bincome').val());
+            var chart = new CanvasJS.Chart("chartContainer1");
+  chart.options.animationEnabled= true;
+    
+    chart.options.toolTip={
+    		
+    		content: function(e){
+    	          var body ;
+    	          var head ;
+    	          head = "<span style= 'color:"+e.entries[0].dataSeries.color + "'> <strong>"+e.entries[0].dataSeries.name +"</strong></span><br/>";
+
+    	          body = " <strong>New <strong>"+e.entries[0].dataSeries.name +":</strong>"+  e.entries[0].dataPoint.y + "</strong><br/>";
+
+    	          return (head.concat(body));
+    	        }
+          };
+     chart.options.theme= "theme4";
+    chart.options.axisX = { title: "This Week",titleFontSize: 30,interval: 1};
+    chart.options.axisY = { title: "Income", includeZero: false,interval: 10000,titleFontSize: 20};
+    /* chart.options.axisY2 = { prefix: "$", suffix: "K",title: "Price"}; */
+    chart.options.title = { text: "Income & Expenditure" };
+    var series=[];
+  
+    
+    series[0]={ //dataSeries - first quarter
+        type: "bar",         //area ,spline,scatter
+        name: "Expenditure",
+        color:"red",
+        fillOpacity:1,
+            showInLegend: true,
+           
+    };
+    
+   
+   
+    chart.options.data = [];
+    for(var z=0;z<1;z++){ 
+        chart.options.data.push(series[z]);
+      }
+    for(var y=0;y<1;y++){
+        series[y].dataPoints = [
+                { label:"Mon", y: xyz[0]},
+               { label:"Tue", y: xyz[1] },
+               { label:"Wed", y: xyz[2]},
+               { label:"Thu", y: xyz[3] },
+               { label:"Fri", y:  xyz[4]},
+               { label:"Sat", y: xyz[5]},
+               { label:"sun", y:  xyz[6]}, 
+        ];
+
+        }
+        chart.render();
+        }
+        
+
+
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
  <!-- page content-->
+       
     <div class="right_col" role="main">
           <div class="">
             <div class="row top_tiles" style="margin: 10px 0;">
@@ -38,8 +225,35 @@
             </div>
             <br />
 
-
+              
             <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="dashboard_graph x_panel">
+                 <%-- <div class="row x_title">
+                    <div class="col-md-6">
+                      <h3>Network Activities <small>Graph title sub-title</small></h3>
+                    </div>
+                    <div class="col-md-6">
+                      <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
+                        <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+                        <span>December 30, 2014 - January 28, 2015</span> <b class="caret"></b>
+                      </div>
+                    </div>
+                  </div>--%>
+                  
+                  <div class="x_content">
+                      <div id="chartContainer" style="height: 400px; width: 100%;"></div>
+                    <div class="demo-container" style="height:0px">
+                        
+                      <div id="placeholder3xx3" class="demo-placeholder" style="width: 100%; height:250px;"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+           <%-- <div class="row">
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="dashboard_graph x_panel">
                   <div class="row x_title">
@@ -60,12 +274,12 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div>--%>
 
-
+              <input id="bincome" type="hidden" />
             <div class="row">
               <div class="col-md-4 col-sm-6 col-xs-12">
-                <div class="x_panel fixed_height_320">
+                <div class="x_panel graphheight">
                   <div class="x_title">
                     <h2>App Devices <small>Sessions</small></h2>
                     <ul class="nav navbar-right panel_toolbox">
@@ -74,107 +288,29 @@
                       <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
                         <ul class="dropdown-menu" role="menu">
-                          <li><a href="#">Settings 1</a>
-                          </li>
-                          <li><a href="#">Settings 2</a>
-                          </li>
+                            <%  IQueryable<branch> br = admingraphclass.getAllbranches();
+                                foreach (branch x in br)
+                                { %>
+                          <li><a href="#" onclick="changevaluebincome('<%=x.name %>');"><%=x.name %></a></li>
+                            <%} %>
+                         
                         </ul>
                       </li>
                       <li><a class="close-link"><i class="fa fa-close"></i></a>
                       </li>
                     </ul>
                     <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
+                       <div class="x_content">
                     <h4>App Versions</h4>
-                    <div class="widget_summary">
-                      <div class="w_left w_25">
-                        <span>1.5.2</span>
-                      </div>
-                      <div class="w_center w_55">
-                        <div class="progress">
-                          <div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 66%;">
-                            <span class="sr-only">60% Complete</span>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="w_right w_20">
-                        <span>123k</span>
-                      </div>
-                      <div class="clearfix"></div>
-                    </div>
-
-                    <div class="widget_summary">
-                      <div class="w_left w_25">
-                        <span>1.5.3</span>
-                      </div>
-                      <div class="w_center w_55">
-                        <div class="progress">
-                          <div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 45%;">
-                            <span class="sr-only">60% Complete</span>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="w_right w_20">
-                        <span>53k</span>
-                      </div>
-                      <div class="clearfix"></div>
-                    </div>
-                    <div class="widget_summary">
-                      <div class="w_left w_25">
-                        <span>1.5.4</span>
-                      </div>
-                      <div class="w_center w_55">
-                        <div class="progress">
-                          <div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 25%;">
-                            <span class="sr-only">60% Complete</span>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="w_right w_20">
-                        <span>23k</span>
-                      </div>
-                      <div class="clearfix"></div>
-                    </div>
-                    <div class="widget_summary">
-                      <div class="w_left w_25">
-                        <span>1.5.5</span>
-                      </div>
-                      <div class="w_center w_55">
-                        <div class="progress">
-                          <div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 5%;">
-                            <span class="sr-only">60% Complete</span>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="w_right w_20">
-                        <span>3k</span>
-                      </div>
-                      <div class="clearfix"></div>
-                    </div>
-                    <div class="widget_summary">
-                      <div class="w_left w_25">
-                        <span>0.1.5.6</span>
-                      </div>
-                      <div class="w_center w_55">
-                        <div class="progress">
-                          <div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 2%;">
-                            <span class="sr-only">60% Complete</span>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="w_right w_20">
-                        <span>1k</span>
-                      </div>
-                      <div class="clearfix"></div>
-                    </div>
+                     <div id="chartContainer1" ></div>
 
                   </div>
+                  </div>
+                 
                 </div>
               </div>
-
-              <div class="col-md-4 col-sm-6 col-xs-12">
-                <div class="x_panel fixed_height_320">
+              <div class="col-md-4 col-sm-12 col-xs-12">
+                <div class="x_panel graphheight">
                   <div class="x_title">
                     <h2>Daily users <small>Sessions</small></h2>
                     <ul class="nav navbar-right panel_toolbox">
@@ -254,7 +390,7 @@
               </div>
 
               <div class="col-md-4 col-sm-6 col-xs-12">
-                <div class="x_panel fixed_height_320">
+                <div class="x_panel graphheight">
                   <div class="x_title">
                     <h2>Profile Settings <small>Sessions</small></h2>
                     <ul class="nav navbar-right panel_toolbox">

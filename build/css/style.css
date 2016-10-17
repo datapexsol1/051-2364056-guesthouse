@@ -33,3 +33,6 @@ p {
 		border: 1px solid #ccc; 
 		text-align: left; 
 	}
+    .graphheight{
+        height:510px;
+    }

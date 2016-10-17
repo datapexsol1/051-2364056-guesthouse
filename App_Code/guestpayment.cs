@@ -14,6 +14,7 @@ public class guestpayment
         db = new ctownDataContext();
         if (tp.paid_amount != "")
         {
+
             db.total_payments.InsertOnSubmit(tp);
             db.SubmitChanges();
             return true;
