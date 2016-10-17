@@ -153,21 +153,17 @@ public class empmenuclass
         }
         return order_detail;
     }
-    public static bool deleteplacedorders(int[] orderid)
+    public static void deleteplacedorders(int[] orderid)
     {
-        bool return_ = false;
         ctownDataContext db = new ctownDataContext();
         foreach(int x in orderid)
         {
             placed_order item = (from o in db.placed_orders
                        where o.Id == x
                        select o).First();
-            return_ = true;
             db.placed_orders.DeleteOnSubmit(item);
             db.SubmitChanges();
-            return return_;
         }
-        return return_;
     }
 
     public static bool ordercanelation_maxtime(DateTime ordertime)

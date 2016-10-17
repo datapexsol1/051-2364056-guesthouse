@@ -7,21 +7,10 @@ using System.Web.UI.WebControls;
 
 public partial class employeevents : System.Web.UI.Page
 {
-    public enum MessageType { Success, Error, Info, Warning };
-    protected void ShowMessage(string Message, MessageType type)
-    {
-        
-        ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "ShowMessage('" + Message + "','" + type + "');", true);
-    }
     bool IsPageRefresh ;
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (IsPostBack)
-        {
 
-            //ShowMessage("Successfully updated information", MessageType.Success);
-        }
-            
     }
     protected void eventsubmit_Click(object sender, EventArgs e)
     {
@@ -35,14 +24,7 @@ public partial class employeevents : System.Web.UI.Page
             ev.event_end_date = DateTime.Parse(eventenddate.Value);//Request.Form["eventenddate"].ToString());
             ev.event_color = eventcolor.Value;
            bool check = events.addEvent(ev);
-        if (check == true)
-        {
-            ShowMessage("Successfully updated information", MessageType.Success);
-        }
-        else
-        {
-            ShowMessage("Error", MessageType.Warning);
-        }
+        
         //  ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "activaTab('tab_content2');", true);
 
     }

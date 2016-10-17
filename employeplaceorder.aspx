@@ -44,12 +44,11 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
- 
-     <div class="right_col" role="main">
-            <input type="hidden" id="itemid" runat="server" />
+    <input type="hidden" id="itemid" runat="server" />
     <input type="hidden" id="nofitem" runat="server" />
     <input type="hidden" id="bookingid" runat="server" />
      <input type="hidden" id="roomno" runat="server" />
+     <div class="right_col" role="main">
           <div class="">
             <div class="page-title">
               <div class="title_left">

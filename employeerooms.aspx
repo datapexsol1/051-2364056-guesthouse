@@ -105,7 +105,7 @@
                  </div>
                          
                             
-                          
+                            
                           <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
                              
                               
@@ -113,7 +113,7 @@
                         <label class="control-label col-md-4 " for="room no">Room No <span class="required">*</span>
                         </label>
                         <div class="col-md-8">
-                          <input type="text" id="roomno" name="roomno"  placeholder="Room No" class="form-control " autofocus="autofocus"  data-validation="required" 
+                          <input type="text" id="roomno" name="roomno"  placeholder="Room No" class="form-control "  data-validation="required" 
 		 data-validation-error-msg="Room no is required !"/>
                         </div>
                       </div>
@@ -132,7 +132,7 @@
                         <div class="col-md-8">
                           <input type="text" id="roomsize" name="roomsize"  placeholder="Room size" class="form-control " data-validation="length alphanumeric" 
 		 data-validation-length="3-12" 
-		 data-validation-error-msg="Room size is not in correct format" required="required" />
+		 data-validation-error-msg="Room size is not in correct format"/>
                         </div>
                       </div>
                                <div class="form-group col-md-6">
@@ -141,7 +141,7 @@
                         <div class="col-md-8">
                           <input type="number" id="roommaxrent" name="roommaxrent"  placeholder="Room rent max" class="form-control "
                               min="0" data-validation="required" 
-		 data-validation-error-msg="Maximum room rent is required !" required="required" />
+		 data-validation-error-msg="Maximum room rent is required !"/>
                         </div>
                       </div>
                                <div class="form-group col-md-6">
@@ -149,7 +149,7 @@
                         </label>
                         <div class="col-md-8">
                           <input type="number" id="roomminrent" name="roomminrent"  placeholder="Room Rent" class="form-control "
-                              min="0" data-validation="required" required="required" 
+                              min="0" data-validation="required" 
 		 data-validation-error-msg="Minimum room rent is required !"/>
                         </div>
                       </div>
@@ -169,7 +169,7 @@
                       </div>
                               <div class="form-group">
                         <div class="col-md-6 col-md-offset-11">
-                          <asp:Button ID="saveroom" runat="server" CssClass="btn btn-success" Text="Save Room" CausesValidation="false" OnClick="saveroom_click" />
+                          <asp:Button ID="saveroom" runat="server" Text="Save Room" OnClick="saveroom_click" />
                         </div>
                       </div>
                               
@@ -220,7 +220,8 @@
     <script src="js/moment/moment.min.js"></script>
     <script src="js/datepicker/daterangepicker.js"></script>
     
-  
+    <!-- Custom Theme Scripts -->
+    <script src="../build/js/custom.min.js"></script>
 
     <script>
         $(function () {

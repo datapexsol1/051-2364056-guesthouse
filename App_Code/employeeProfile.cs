@@ -57,7 +57,7 @@ public class employeeProfile
     {
         ctownDataContext Database = new ctownDataContext();
        string emp = (from x in Database.employees
-                     where x.username == username && x.password == password && x.login_type == "Employe"   
+                     where x.username == username && x.password == password && x.login_type == "Employe"   //for checking already existance of client
                      select x.username).First();
         return emp;
         
@@ -190,10 +190,7 @@ public class employeeProfile
         ra.dateofjoining = emp.dateofjoining;
         ra.address = emp.address;
         ra.salary = emp.salary;
-        if (emp.image != null)
-        {
-            ra.image = emp.image;
-        }
+        ra.image = emp.image;
         int check = (from y in db.employees
                      where y.Id == ra.Id
                      select y).Count();
@@ -203,101 +200,4 @@ public class employeeProfile
         }
     }
 
-    public static bool updateEmployeeSalary(employesalary emp, int id)
-    {
-        ctownDataContext db = new ctownDataContext();
-        var ra = (from x in db.employesalaries
-                  where x.Id == id
-                  select x).First();
-        ra.amount = emp.amount;
-        ra.payment_date = emp.payment_date;
-
-        int check = (from y in db.employesalaries
-                     where y.Id == ra.Id
-                     select y).Count();
-      
-            db.SubmitChanges();
-            return true;
-       
-
-    }
-    public static int getEmployeeId(string name)
-    {
-        ctownDataContext db = new ctownDataContext();
-
-        int id = (from x in db.employees
-                  where x.name == name
-                  select x.Id).First();
-        return id;
-
-    }
-    public static int getEmployeeIdSalaryID(int id)
-    {
-        ctownDataContext db = new ctownDataContext();
-
-        int Id = (from x in db.employesalaries
-                  where x.employe_id == id && x.payment_date.Month == DateTime.Now.Month
-                  select x.Id).First();
-
-        return Id;
-
-
-
-    }
-    public static int update(int id)
-    {
-        ctownDataContext db = new ctownDataContext();
-
-        int Id = (from x in db.employesalaries
-                  where x.employe_id == id
-                  select x.Id).First();
-        return Id;
-
-    }
-
-
-
-    public static employesalary getInfo(int salaryId)
-    {
-        ctownDataContext db = db = new ctownDataContext();
-        employesalary ra = (from x in db.employesalaries
-
-                                       where x.Id == salaryId                                        
-                                       select x).First();
-
-
-        return ra;
-    }
-    public static employee getEmpInfo(int id)
-    {
-        ctownDataContext db = db = new ctownDataContext();
-        employee ra = (from x in db.employees
-
-                       where x.Id == id
-                       select x).First();
-
-
-        return ra;
-    }
-    public static employesalary retrieveSalaryInfo(int id)
-    {
-        ctownDataContext db = db = new ctownDataContext();
-        employesalary ra = (from x in db.employesalaries
-
-                            where x.Id == id
-                            select x).First();
-
-
-        return ra;
-    }
-    public static int getEmpID(string name, string pass, int branch_id)
-    {
-        ctownDataContext db = new ctownDataContext();
-
-        int bid = (from x in db.GetTable<employee>()
-
-                   where x.username == name && x.password == pass && x.branch_id == branch_id && x.login_type == "Employe"
-                   select x.Id).First();
-        return bid;
-    }
 }

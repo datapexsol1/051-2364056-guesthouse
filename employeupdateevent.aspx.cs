@@ -7,11 +7,6 @@ using System.Web.UI.WebControls;
 
 public partial class employeupdateevent : System.Web.UI.Page
 {
-    public enum MessageType { Success, Error, Info, Warning };
-    protected void ShowMessage(string Message, MessageType type)
-    {
-        ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "ShowMessage('" + Message + "','" + type + "');", true);
-    }
     protected void Page_Load(object sender, EventArgs e)
     {
        
@@ -26,12 +21,6 @@ public partial class employeupdateevent : System.Web.UI.Page
         ev.event_start_date =  DateTime.Parse(Request.Form["eventstartdate"].ToString());
         ev.event_end_date = DateTime.Parse(Request.Form["eventenddate"].ToString());
         ev.event_color = Request.Form["eventcolor"].ToString();
-        
-        bool check = events.updateEvent(ev,id);
-        if (check == true)
-        {
-            ShowMessage("Successfully updated information", MessageType.Success);
-            Response.Redirect("employeindex.aspx");
-        }
+        events.updateEvent(ev,id);
     }
 }

@@ -38,7 +38,7 @@ public class roomassetclass
             return false;
         }
     }
-    public static bool updateInventory(room_asset r ,int inventryid )
+    public static void updateInventory(room_asset r ,int inventryid )
     {
         ctownDataContext db =  new ctownDataContext();
         var ra = (from x in db.room_assets
@@ -53,11 +53,6 @@ public class roomassetclass
         if (check == 0)
         {
             db.SubmitChanges();
-            return true;
-        }
-        else
-        {
-            return false;
         }
     }
     public static IQueryable<room_asset> getinventry( int roomid)

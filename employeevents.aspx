@@ -41,35 +41,7 @@
         function deleteRow(obj) {
             $(obj).closest('tr').remove();
         }
-
-        function ShowMessage(message, messagetype) {
-            var cssclass;
-            switch (messagetype) {
-                case 'Success':
-                    cssclass = 'alert-success'
-                    break;
-                case 'Error':
-                    cssclass = 'alert-danger'
-                    break;
-                case 'Warning':
-                    cssclass = 'alert-warning'
-                    break;
-                default:
-                    cssclass = 'alert-info'
-            }
-            $('#alert_container').append('<div id="alert_div" style="margin-top:40px;margin-left:100px;width:50%; -webkit-box-shadow: 3px 4px 6px #999;" class="alert fade in ' + cssclass + '"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>' + messagetype + '!</strong> <span>' + message + '</span></div>');
-        }
     </script>
-    <style>
-    .messagealert {
-            width: 100%;
-            position: fixed;
-             top:0px;
-            z-index: 100000;
-            padding: 0;
-            font-size: 15px;
-        }
-    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
             <%--<%Session["updateEventID"] = id;%> --%>  
@@ -77,7 +49,6 @@
       <div class="right_col" role="main">
     <div class="row">
      <div class="col-md-12 col-sm-12 col-xs-12">
-                 <div class="messagealert" id="alert_container">  </div>	
      <div class="x_content">
      <div class="col-md-9 col-sm-9 col-xs-12">
          <h3>Events</h3>
@@ -142,6 +113,7 @@
                          
                           <td>
                              
+                            <a href="?id=<%=ec.Id %>" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
                             <a href="employeupdateevent.aspx?id=<%=ec.Id %>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
                                <a href="employeupdateevent.aspx?id=<%=ec.Id %>&del=true" class="btn btn-danger btn-xs"><i class="fa fa-pencil"></i> Delete </a>
                             <%--<a href="employeupdateevent.aspx?id=<%=ec.Id %>"  class="btn btn-danger btn-xs" runat="server"><i class="fa fa-trash-o"></i> Delete </a>--%>

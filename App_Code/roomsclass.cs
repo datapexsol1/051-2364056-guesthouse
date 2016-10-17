@@ -15,13 +15,6 @@ public class roomsclass
         // TODO: Add constructor logic here
         //
     }
-    public static room getRoomInfo(string selectRoomNo, int branchID) {
-        ctownDataContext db = new ctownDataContext();
-        room getInfo = (from x in db.rooms
-                                  where x.room_no == selectRoomNo && x.branch_id == branchID
-                                  select x).First();
-        return getInfo;
-    }
     public  static bool Addroom(room r)
     {
         ctownDataContext db = new ctownDataContext();

@@ -6,13 +6,7 @@
             $('.nav-tabs a[href="#' + tab + '"]').tab('show');
             //alert("working");
         };
-        function addval() {
-           // rno, alabel, adescription, aitemno;
-            document.getElementById("rno").value = "101";
-            document.getElementById("alabel").value = "101";
-            document.getElementById("adescription").value = "101";
-            document.getElementById("aitemno").value = "101";
-        }
+       
     </script>
 </asp:Content>
 
@@ -29,7 +23,7 @@
                         <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
                           <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="false">Room Assets</a>
                           </li>
-                          <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false" onclick="addval()" >Update Assets</a>
+                          <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Update Assets</a>
                           </li>
                           <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Add Assets</a>
                           </li>
@@ -50,7 +44,7 @@
                         
                              <%  int bid = employeeProfile.getEmployeBranch("kk");//get from session %>
                                    <input type="hidden" name="branch" id="branch"  runat="server"/>
-                                  <select  id="rnovxxxx" name="rnovxxxx"  class="form-control col-md-7 col-xs-12"  required="required" >
+                                  <select  id="rnovxxxx" name="rnovxxxx"  class="form-control col-md-7 col-xs-12" required="required" >
                                          <option value="">Select Room</option>
                                           <%  
 
@@ -97,7 +91,7 @@
                                 <tr>
                                   <td>
                                         
-                                                 <asp:DropDownList  runat="server" class="form-control" ID="aroomno" name="aroomno" AutoPostBack="True" OnSelectedIndexChanged="roomSelectedIndexChange" required="required" >
+                                                 <asp:DropDownList  runat="server" class="form-control" ID="uroomno" name="aroomno" AutoPostBack="True" OnSelectedIndexChanged="roomSelectedIndexChange" required="required" >
                                                     
                                                    
                                          
@@ -115,15 +109,15 @@
                                         
                                         
                                         </td>
-                                  <td> <input type="text" id="ulabel" name="ulabel"  placeholder="Edit inventory name" class="form-control " runat="server" /></td>
-                                  <td>  <input type="text" id="udescription" name="udescription"  placeholder="Description" class="form-control " runat="server" data-validation="length alphanumeric" 
+                                  <td> <input type="text" id="ulabel" name="alabel"  placeholder="Edit inventory name" class="form-control " runat="server" /></td>
+                                  <td>  <input type="text" id="udescription" name="adescription"  placeholder="Description" class="form-control " runat="server" data-validation="length alphanumeric" 
 		 data-validation-length="3-100" 
 		 data-validation-error-msg="Item description is required"/></td>
-                                  <td>   <input type="number" id="uitemno" name="uitemno"  placeholder = "Number Of Items" class="form-control " runat="server"/></td>
+                                  <td>   <input type="number" id="uitemno" name="aitemno"  placeholder = "Number Of Items" class="form-control " runat="server"/></td>
                                   <td>
-                                      <a href="#" class="btn btn-success"  onserverclick="updateAssets_click" runat="server">Update</a>
-                                        <%--<asp:Button ID="send" runat="server" Text="Update" CausesValidation="false" EnableViewState="true"  class="btn btn-success"  OnClick="updateAssets_click" />--%>
-                                      <%--<input type="submit" runat="server" onserverclick="updateAssets_click"/>--%>
+                                      <a href="#" class="btn btn-success" onserverclick="updateAssets_click" runat="server">Update</a>
+                                        <%--<asp:Button ID="send" runat="server" Text="Update"  class="btn btn-success" OnClick="updateAssets_click" />--%>
+
                                   </td>
                                 </tr>
                                
@@ -143,7 +137,7 @@
                         
                         <div class="col-md-6">
                             <label >Room No</label>
-                          <select  id="rno" name="rno"  class="form-control col-md-7 col-xs-12" >
+                          <select  id="rno" name="rno"  class="form-control col-md-7 col-xs-12" required="required">
                                      <option value=''>Select Room</option>
                                       <%  
 
@@ -183,7 +177,7 @@
                         
                         <div class="col-md-6">
                             <label >Number of Item</label>
-                          <input type="number" id="aitemno" name="aitemno"  placeholder="Number Of Items" class="form-control " min="1" required="required"/>
+                          <input type="number" id="aitemno" name="insertaitemno"  placeholder="Number Of Items" class="form-control " min="1" required="required"/>
                         </div>
                       </div>
                             
