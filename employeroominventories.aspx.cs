@@ -22,8 +22,8 @@ public partial class employeroominventories : System.Web.UI.Page
                 rooms[i] = x.room_no;
                 i++;
             }
-            uroomno.DataSource = rooms;
-            uroomno.DataBind();
+           aroomno.DataSource = rooms;
+            aroomno.DataBind();
             branch.Value = bid.ToString();
             
           //  Response.Redirect("#tab_add");
@@ -32,7 +32,8 @@ public partial class employeroominventories : System.Web.UI.Page
     }
     protected void roomSelectedIndexChange(object sender,EventArgs e)
     {
-        int roomId = roomsclass.getRoomID(uroomno.SelectedItem.ToString(), int.Parse(branch.Value));
+        
+        int roomId = roomsclass.getRoomID(aroomno.SelectedItem.ToString(), int.Parse(branch.Value));
         IQueryable<room_asset> r = roomassetclass.getinventry(roomId);
       string[] rooms = new string[r.Count()+1];
         rooms[0] = "Select";
@@ -51,7 +52,7 @@ public partial class employeroominventories : System.Web.UI.Page
     protected void inventorySelectedIndexChange(object sender,EventArgs e)
     {
         ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "activaTab('tab_content2');", true);
-        int roomId = roomsclass.getRoomID(uroomno.SelectedItem.ToString(), int.Parse(branch.Value));
+        int roomId = roomsclass.getRoomID(aroomno.SelectedItem.ToString(), int.Parse(branch.Value));
         var selectedValue = ((DropDownList)sender).SelectedValue;
         room_asset r = roomassetclass.getRoomAssetsInfo(roomId,selectedValue);
         ulabel.Value = r.label;
@@ -77,7 +78,7 @@ public partial class employeroominventories : System.Web.UI.Page
     {
         
         room_asset r = new room_asset();
-        r.room_id = roomsclass.getRoomID(uroomno.Text, int.Parse(branch.Value));
+        r.room_id = roomsclass.getRoomID(aroomno.Text, int.Parse(branch.Value));
         r.label = ulabel.Value;
         r.description = udescription.Value;
         r.total_item = int.Parse(uitemno.Value);

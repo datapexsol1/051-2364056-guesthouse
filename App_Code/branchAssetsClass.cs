@@ -66,7 +66,7 @@ public class branchAssetsClass
                            select x).First();
         return ra;
     }
-    public static void updateBranchAssets(Branch_asset r, int id)
+    public static bool updateBranchAssets(Branch_asset r, int id)
     {
         ctownDataContext db = new ctownDataContext();
         var ra = (from x in db.Branch_assets
@@ -75,9 +75,20 @@ public class branchAssetsClass
         ra.title = r.title;
         ra.description = r.description;
         ra.no_item = r.no_item;
-       
-       
+
+        int count = (from y in db.Branch_assets
+                     where y.id == ra.id
+                     select y).Count();
+        if (count == 1)
+        {
             db.SubmitChanges();
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+            
         
     }
 }

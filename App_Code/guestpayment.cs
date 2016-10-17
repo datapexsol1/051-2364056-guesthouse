@@ -9,13 +9,18 @@ using System.Web;
 public class guestpayment
 {
      static ctownDataContext db;
-    public static void addPayment(total_payment tp)
+    public static bool addPayment(total_payment tp)
     {
         db = new ctownDataContext();
         if (tp.paid_amount != "")
         {
             db.total_payments.InsertOnSubmit(tp);
             db.SubmitChanges();
+            return true;
+        }
+        else
+        {
+            return false;
         }
 
     }

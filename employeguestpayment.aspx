@@ -51,16 +51,22 @@
              <div style="float:right;">
                  <asp:HiddenField ID="tbroombill" runat="server" />
                  <asp:HiddenField ID="tbfacilitebill" runat="server" />
-             <label id="gtotal" ><h3>Grand Total</h3></label>
-                 <asp:TextBox ID="Gtotal" runat="server"></asp:TextBox>
-                  <label id="gtotal1"><h3>Paid Amount</h3></label>
-                 <asp:TextBox ID="tbpaidamount" runat="server"></asp:TextBox>
-                       <asp:Button ID="btnpaid" runat="server" Text="Paid" OnClick="btnpaid_Click" />
+                 <!-- if stay hours is less than 6 hours-->
+                <asp:CheckBox ID="cbtax" runat="server" Text="Discount" AutoPostBack="true" OnCheckedChanged="checkedchange"  />
+                 <br />
+             <label id="gtotal" ><h3>Total Bill : </h3></label>
+                 <asp:Label Font-Bold="true" ID="Gtotal" runat="server"></asp:Label>
+                 <br />
+                  <label id="gtotal1"><h3>Grand Total : </h3></label>
+                 <asp:label ID="tbpaidamount" runat="server"></asp:label>
+                 <br />
+                       <asp:Button ID="btnpaid" CssClass="btn btn-success" runat="server" Text="Paid" OnClick="btnpaid_Click" />
                </div>
 
              </div>
 
-
+          <input id="input" type="hidden" runat="server"/>
+         <input id="hrs" type="hidden" runat="server"/>
 
 
 

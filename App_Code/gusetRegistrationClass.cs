@@ -14,14 +14,14 @@ public class gusetRegistrationClass
         // TODO: Add constructor logic here
         //
     }
-    public static void guestRoomBooking(booking b)
+    public static bool guestRoomBooking(booking b)
     {
         ctownDataContext db = new ctownDataContext();
 
 
         db.bookings.InsertOnSubmit(b);
         db.SubmitChanges();
-
+        return true;
 
 
 
