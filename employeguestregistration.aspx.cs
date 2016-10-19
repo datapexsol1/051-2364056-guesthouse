@@ -14,8 +14,12 @@ public partial class employeguestregistration : System.Web.UI.Page
     }
     protected void Page_Load(object sender, EventArgs e)
     {
-        
-        if (!IsPostBack)
+        if (Session["loginId"] == null)
+        {
+            Response.Redirect("employelogin.aspx");
+        }
+
+        else if (!IsPostBack)
         {
 
            string value =Request.QueryString["id"].ToString();

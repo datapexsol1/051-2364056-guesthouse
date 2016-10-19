@@ -9,7 +9,11 @@ public partial class employeguestpayment : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!IsPostBack && Request.QueryString["booking"].ToString() != null)
+        if (Session["loginId"] == null)
+        {
+            Response.Redirect("employelogin.aspx");
+        }
+        else if (!IsPostBack && Request.QueryString["booking"].ToString() != null)
         {
             double roombill = 0.0;
             double facilitiesbill = 0.0;

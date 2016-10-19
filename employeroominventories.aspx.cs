@@ -9,7 +9,11 @@ public partial class employeroominventories : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!IsPostBack)
+        if (Session["loginId"] == null)
+        {
+            Response.Redirect("employelogin.aspx");
+        }
+        else if (!IsPostBack)
         {
             int bid = employeeProfile.getEmployeBranch("kk");//get from session
             IQueryable<room> r = roomsclass.getAllRooms(bid);

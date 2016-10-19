@@ -10,7 +10,10 @@ public partial class employeeupdateemployeeinfo : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-       
+        if (Session["loginId"] == null)
+        {
+            Response.Redirect("employelogin.aspx");
+        }
 
     }
     protected void update_Click(object sender, EventArgs e)

@@ -11,7 +11,11 @@ public partial class employepaysalary : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!IsPostBack)
+        if (Session["loginId"] == null)
+        {
+            Response.Redirect("employelogin.aspx");
+        }
+        else if (!IsPostBack)
         {
             int bid = employeeProfile.getEmployeBranch("kk");
             List<employee> emp = employeeProfile.getunpaidemploye(bid);

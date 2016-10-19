@@ -9,7 +9,11 @@ public partial class employebranchbills : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!IsPostBack)
+        if (Session["loginId"] == null)
+        {
+            Response.Redirect("employelogin.aspx");
+        }
+        else if (!IsPostBack)
         {
             int branchID = employeeProfile.getEmployeBranch("kk");
             IQueryable<bill> bs = billclass.getAllBills(branchID);

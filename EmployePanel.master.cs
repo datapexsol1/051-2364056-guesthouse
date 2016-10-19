@@ -11,4 +11,10 @@ public partial class EmployePanel : System.Web.UI.MasterPage
     {
       
     }
+    protected void logout_click(object sender, EventArgs e)
+    {
+        Session["loginId"]= null;
+        Response.Redirect("employelogin.aspx");
+        
+    }
 }

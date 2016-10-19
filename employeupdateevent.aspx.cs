@@ -14,8 +14,11 @@ public partial class employeupdateevent : System.Web.UI.Page
     }
     protected void Page_Load(object sender, EventArgs e)
     {
-       
-   } 
+        if (Session["loginId"] == null)
+        {
+            Response.Redirect("employelogin.aspx");
+        }
+    } 
 
     protected void eventsubmit_Click(object sender, EventArgs e)
     {

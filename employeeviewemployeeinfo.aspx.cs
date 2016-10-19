@@ -15,7 +15,7 @@ public partial class employeeviewemployeeinfo : System.Web.UI.Page
     }
     protected void Page_Load(object sender, EventArgs e)
     {
-   
+
         //TableRow tRow1 = new TableRow();
         //empInfoViewTable.Rows.Add(tRow1);
         //TableCell tCell1 = new TableCell();
@@ -53,7 +53,7 @@ public partial class employeeviewemployeeinfo : System.Web.UI.Page
 
 
         //IQueryable<employee> em = employeeProfile.getAllEmployee(branchid);//branchAssetsClass.getAllBranchAssets(branchid);
-        
+
         ////employee emp = new employee();
         //foreach (var x in em)
         //{ 
@@ -98,22 +98,23 @@ public partial class employeeviewemployeeinfo : System.Web.UI.Page
         //    TableCell tCellsalary = new TableCell();
         //    tCellsalary.Text = x.salary.ToString();
         //    tRow.Cells.Add(tCellsalary);
-           
+
         //    TableCell tCellupdate = new TableCell();
         //    tCellupdate.Text = string.Format("<a href='employeeupdateemployeeinfo.aspx?id=" + x.Id+ "'  style='background-color:green;' onserverclick='update_Click' class='btn btn-success' >" + "Update" + "</ a >");
         //    tRow.Cells.Add(tCellupdate);
         //   // int
         //    string.Format("<input type='text' id='val' value='"+"hello"+"' runat='server'>");
-      
+
         //    divTitle.InnerHtml = "<input type='hidden' class='input_Text' id='Title' runat='server'  name='Title' value='" + Request.QueryString["id"] + "' />";
-           
+
         //    //    ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "activaTab('tab_content3');", true);
-            
+
         //}
 
 
-        if (IsPostBack)
+        if (Session["loginId"] == null)
         {
+            Response.Redirect("employelogin.aspx");
         }
     }
     
