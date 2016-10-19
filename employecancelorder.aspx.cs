@@ -195,7 +195,7 @@ public partial class employevieworders : System.Web.UI.Page
 
     protected void Button1_Click(object sender, EventArgs e)
     {
-        string str = cancelids.Text;
+        string str = cancelids.Value;
         string[] words = str.Split(',');
         if (words != null)
         {
@@ -207,6 +207,7 @@ public partial class employevieworders : System.Web.UI.Page
                 
             }
             empmenuclass.deleteplacedorders(value);
+            cancelids.Value = "";
         }
     }
   

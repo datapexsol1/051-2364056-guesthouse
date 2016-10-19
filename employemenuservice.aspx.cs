@@ -90,6 +90,7 @@ public partial class employemenuservice : System.Web.UI.Page
             rm.item_name= Request.Form["additemname"].ToString();
         rm.price=int.Parse(Request.Form["additemprice"].ToString());
         rm.quantity=Request.Form["additemquantity"].ToString();
+        rm.employee_id = int.Parse(Session["loginId"].ToString());
         empmenuclass.addMenuItem(rm);
     }
 }

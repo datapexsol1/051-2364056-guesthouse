@@ -49,10 +49,10 @@
                            <%-- <asp:Button ID="getsummary" runat="server" Text="Place Order" OnClick="getsummary_click" />
                              <asp:Button ID="savetodb" runat="server" Text="PrintBill"  />--%>
 
-                             <asp:DropDownList ID="ddrooms" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddrooms_SelectedIndexChanged"></asp:DropDownList>
+                             <asp:DropDownList ID="ddrooms" runat="server" CssClass="form-group col-md-5" AutoPostBack="True" OnSelectedIndexChanged="ddrooms_SelectedIndexChanged"></asp:DropDownList>
                                         
                             <asp:Table ID="viewOrder" runat="server"  class="table table-bordered table-striped"></asp:Table>
-                            <asp:Label ID="grandtotal" runat="server" Text="Label"></asp:Label>
+                            <asp:Label ID="grandtotal" runat="server"  Text="Amount"></asp:Label>
     
                           <div role="tabpanel" class="tab-pane fade" id="tab_delete" aria-labelledby="profile-tab">
                           <p>delete content</p>

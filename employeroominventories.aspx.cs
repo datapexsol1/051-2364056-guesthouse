@@ -71,12 +71,14 @@ public partial class employeroominventories : System.Web.UI.Page
         r.label = Request.Form["alabel"].ToString();
         r.description = Request.Form["adescription"].ToString();
         r.total_item =int.Parse(Request.Form["insertaitemno"].ToString());
+        r.employee_id = int.Parse(Session["loginId"].ToString());
         roomassetclass.addinventry(r);
     }
     protected void updateAssets_click(object sender, EventArgs e)
     {
         
         room_asset r = new room_asset();
+        r.employee_id = int.Parse(Session["loginId"].ToString());
         r.room_id = roomsclass.getRoomID(uroomno.Text, int.Parse(branch.Value));
         r.label = ulabel.Value;
         r.description = udescription.Value;
