@@ -10,7 +10,7 @@ public class adminexpencesreport
 {
     public adminexpencesreport()
     {
-        //
+        //,jkjkjk
         // TODO: Add constructor logic here
         //
     }
