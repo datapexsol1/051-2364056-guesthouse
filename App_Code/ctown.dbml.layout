@@ -104,5 +104,11 @@
         <elementListCompartment Id="6de4e2d8-551b-4842-addb-186f6a7ddb33" absoluteBounds="3.015, 14.585, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
+    <classShape Id="60e8fb8d-c643-4c2d-a784-d59257c6f1ca" absoluteBounds="7.625, 2.25, 2, 3.1170068359375">
+      <DataClassMoniker Name="/ctownDataContext/online_guest_booking" />
+      <nestedChildShapes>
+        <elementListCompartment Id="dd457f85-832e-49d7-b822-d0aaa63750d6" absoluteBounds="7.64, 2.71, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

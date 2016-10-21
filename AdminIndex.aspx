@@ -1014,7 +1014,7 @@
           };
      chart.options.theme= "theme4";
     chart.options.axisX = { title: "Month",titleFontSize: 30,interval: 1};
-    chart.options.axisY = { title: "Income", includeZero: false,interval: 10000,titleFontSize: 20};
+    chart.options.axisY = { title: "Income", includeZero: false,interval: 1000000,titleFontSize: 20};
     /* chart.options.axisY2 = { prefix: "$", suffix: "K",title: "Price"}; */
     chart.options.title = { text: "Income & Expenditure" };
     var series=[];

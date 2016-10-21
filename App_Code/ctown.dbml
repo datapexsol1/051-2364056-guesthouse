@@ -206,4 +206,20 @@
       <Column Name="employee_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.online_guest_booking" Member="online_guest_bookings">
+    <Type Name="online_guest_booking">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="branch_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="check_in_date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="check_out_date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="no_of_guest" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="request_time" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="guest_name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="guest_cnic_passport" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="guest_phone" Type="System.String" DbType="NVarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="guest_email" Type="System.String" DbType="NVarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="no_of_room" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="room_type" Type="System.String" DbType="NVarChar(15) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
 </Database>
