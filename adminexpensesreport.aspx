@@ -1,7 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AdminPanel.master" AutoEventWireup="true" CodeFile="adminexpensesreport.aspx.cs" Inherits="adminexpensesreport" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
-     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+    <link href="css/jquery-ui.css" rel="stylesheet" />
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
@@ -48,7 +49,7 @@
          datetime
        
       <input id="datewincome" />
-         <<%--asp:Button ID="Button1"  Text="Search" OnClick="Button1_Click"  />--%>
+         <%--asp:Button ID="Button1"  Text="Search" OnClick="Button1_Click"  />--%>
          <div class="table-responsive">
                       <asp:Table ID="expance" class="table" runat="server"></asp:Table>
 

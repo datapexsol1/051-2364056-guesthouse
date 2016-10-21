@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -62,8 +63,12 @@ public partial class adminexpensesreport : System.Web.UI.Page
 
     protected void Button1_Click(object sender, EventArgs e)
     {
+
         string ds = date.Value;
-        DateTime dat = DateTime.Parse(date.Value);
+       
+        
+        DateTime dat = DateTime.ParseExact(date.Value, "MM/dd/yyyy",
+                                       System.Globalization.CultureInfo.InvariantCulture);
         string bname = "";
         string empname = "";
         if (branches.SelectedIndex != 0)
