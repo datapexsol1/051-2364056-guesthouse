@@ -7,7 +7,8 @@
     <link href="../vendors/fullcalendar/dist/fullcalendar.print.css" rel="stylesheet" media="print">
 
     <!-- Custom styling plus plugins -->
-    
+    <!-- Custom Theme Style -->
+    <link href="../custom/custom.min.css" rel="stylesheet"/>
 
     
 </asp:Content>
@@ -149,7 +150,8 @@
         
     <!-- jQuery -->
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
-    
+    <!-- Bootstrap -->
+    <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- FastClick -->
     <script src="../vendors/fastclick/lib/fastclick.js"></script>
     <!-- NProgress -->

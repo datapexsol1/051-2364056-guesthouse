@@ -17,7 +17,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title></title>
+    <title>Gentellela Alela! | </title>
 
     <!-- Bootstrap -->
     <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -45,7 +45,8 @@
                           </li>
                           <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Foriegn Guests</a>
                           </li>
-                         
+                          <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">lists</a>
+                          </li>
                         </ul>
                         <div id="myTabContent" class="tab-content">
                           <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
@@ -158,7 +159,6 @@
                                       { 
                                           %>
                                  <tr>
-
                                      <td><a href="employeguestpayment.aspx?booking=<%=fb.b_id%>"><label>Check Out</label></a></td>
                                       <td><label id="fimage"><%="not yet"%></label></td>
                                       <td><label id="fcheckin"><%=fb.b_checkinDate %></label></td>
@@ -196,7 +196,7 @@
                             <!-- end user projects -->
 
                           </div>
-                          <%--<div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
+                          <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
                                <table class="data table table-striped no-margin">
                               <thead>
                                 <tr>
@@ -254,7 +254,7 @@
                                 </tr>
                               </tbody>
                             </table>
-                          </div>--%>
+                          </div>
                         </div>
                       </div>
          </div>

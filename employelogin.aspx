@@ -10,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title></title>
+    <title>Gentellela Alela! | </title>
 
     <!-- Bootstrap -->
     <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -36,19 +36,28 @@
             <form runat="server" method="post">
               <h1>Employe Login</h1>
               <div>
-                <input type="text" class="form-control" id="username" name="username" placeholder="Username" required="" />
+                <input type="text" class="form-control" id="username" placeholder="Username" required="" />
               </div>
               <div>
-                <input type="password" class="form-control" id="password" name="password" placeholder="Password" required="" />
+                <input type="password" class="form-control" id="password" placeholder="Password" required="" />
               </div>
               <div>
-                  <asp:Button ID="login" runat="server" OnClick="login_Click" Text="Log in" class="btn btn-default submit"  />
+                  <asp:Button ID="login" runat="server" Text="Log in" class="btn btn-default submit"  />
                 <a class="reset_pass" href="#">Lost your password?</a>
               </div>
 
               <div class="clearfix"></div>
 
-            
+              <div class="separator">
+                <p class="change_link">New to site?
+                  <a href="#signup" class="to_register"> Create Account </a>
+                </p>
+
+                <div class="clearfix"></div>
+                <br />
+
+               
+              </div>
             </form>
           </section>
         </div>

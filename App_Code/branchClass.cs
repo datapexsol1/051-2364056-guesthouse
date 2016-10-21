@@ -52,13 +52,4 @@ public class branchClass
 
         return branchID;
     }
-    public static int getBranchIDbyCity(string city)
-    {
-        ctownDataContext db = new ctownDataContext();
-        int branchID = (from b in db.GetTable<branch>()
-                        where b.city == city
-                        select b.Id).First();
-
-        return branchID;
-    }
 }
