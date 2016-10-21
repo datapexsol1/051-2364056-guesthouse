@@ -30,8 +30,14 @@ public partial class Index : System.Web.UI.Page
             ogb.no_of_room = int.Parse(Request.Form["noofrooms"]);
             ogb.room_type = Request.Form["roomtype"];
             ogb.request_time = DateTime.Now;
-
-            onlineguestbooking.register_guest_booking(ogb);
+            if (ogb.check_in_date.Day >= DateTime.Now.Day && ogb.check_out_date.Day>=DateTime.Now.Day)
+            {
+                if (ogb.check_in_date.Day <= ogb.check_out_date.Day && ogb.check_in_date.Month <= ogb.check_out_date.Month && ogb.check_in_date.Year <= ogb.check_out_date.Year)
+                {
+                    onlineguestbooking.register_guest_booking(ogb);
+                }
+            }
+                
         }
     }
   
