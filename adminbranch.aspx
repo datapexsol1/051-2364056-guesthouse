@@ -1,10 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AdminPanel.master" AutoEventWireup="true" CodeFile="adminbranch.aspx.cs" Inherits="adminbranch" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
-</asp:Content>
-
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-      <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
@@ -22,7 +18,10 @@
 
     <!-- Custom Theme Style -->
     <link href="../build/css/custom.min.css" rel="stylesheet">
-  </head>
+</asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+      
       <div class="right_col" role="main">
     <div class="row">
      <div class="col-md-12 col-sm-12 col-xs-12">
@@ -109,7 +108,7 @@
          </div>
         </div>
         </div>
-    
+    </div>
                           
                               <
 </asp:Content>

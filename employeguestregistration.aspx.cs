@@ -14,12 +14,8 @@ public partial class employeguestregistration : System.Web.UI.Page
     }
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["loginId"] == null)
-        {
-            Response.Redirect("employelogin.aspx");
-        }
-
-        else if (!IsPostBack)
+        
+        if (!IsPostBack)
         {
 
            string value =Request.QueryString["id"].ToString();
@@ -33,7 +29,6 @@ public partial class employeguestregistration : System.Web.UI.Page
    
     protected void Save_Click(object sender, EventArgs e)
     {
-        int employID = int.Parse(Session["loginId"].ToString());
         guest g = new guest();
         if (Request.Form["guestType"].ToString() == "pakistani")
         {
@@ -116,7 +111,6 @@ public partial class employeguestregistration : System.Web.UI.Page
         b.check_in_date = DateTime.Now;
       //  b.room_id = roomsclass.getRoomID(Request.Form["rno"].ToString(), int.Parse(Request.Form["branch"].ToString()));
         b.employee_id = employeeProfile.getEmployeid("kk");//get employe username from sessions
-        g.employee_id = employID;
         b.guest_id = gusetRegistrationClass.insertGuestinfo(g);//will insert guest data to db and return the id of the guest
         b.check_out_date = null;
      //   b.booking_rent = Request.Form["rrent"].ToString();
@@ -138,7 +132,6 @@ public partial class employeguestregistration : System.Web.UI.Page
                 r[i].bookingId = bid;//.Parse(Request.Form["branch"].ToString());
 
             }
-           
             gusetRegistrationClass.bookRooms(r);
         }
           

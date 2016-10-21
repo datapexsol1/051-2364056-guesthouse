@@ -478,7 +478,6 @@ public static class admingraphclass
         foreach (var b in roombill)
         {
             DateTime date = b.paymentdate;
-           
             string month = date.ToString("MMMM");
             if (month == "January")
             {

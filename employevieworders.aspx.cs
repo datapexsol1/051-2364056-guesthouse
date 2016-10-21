@@ -9,11 +9,7 @@ public partial class employevieworders : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["loginId"] == null)
-        {
-            Response.Redirect("employelogin.aspx");
-        }
-        else if (!IsPostBack)
+        if (!IsPostBack)
         {
             int bid = employeeProfile.getEmployeBranch("kk");//get from session
             brachid.Value = bid.ToString();

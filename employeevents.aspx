@@ -113,7 +113,7 @@
                          
                           <td>
                              
-<%--                            <a href="?id=<%=ec.Id %>" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>--%>
+                            <a href="?id=<%=ec.Id %>" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
                             <a href="employeupdateevent.aspx?id=<%=ec.Id %>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
                                <a href="employeupdateevent.aspx?id=<%=ec.Id %>&del=true" class="btn btn-danger btn-xs"><i class="fa fa-pencil"></i> Delete </a>
                             <%--<a href="employeupdateevent.aspx?id=<%=ec.Id %>"  class="btn btn-danger btn-xs" runat="server"><i class="fa fa-trash-o"></i> Delete </a>--%>

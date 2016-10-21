@@ -1,110 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MainMaster.master" AutoEventWireup="true" CodeFile="Index.aspx.cs" Inherits="Index" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
-    <style>
-        @import url(http://fonts.googleapis.com/css?family=Roboto);
-
-/****** LOGIN MODAL ******/
-.loginmodal-container {
-  padding: 30px;
-  max-width: 350px;
-  width: 100% !important;
-  background-color: #F7F7F7;
-  margin: 0 auto;
-  border-radius: 2px;
-  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-  overflow: hidden;
-  font-family: roboto;
-}
-
-.loginmodal-container h1 {
-  text-align: center;
-  font-size: 1.8em;
-  font-family: roboto;
-}
-
-.loginmodal-container input[type=submit] {
-  width: 100%;
-  display: block;
-  margin-bottom: 10px;
-  position: relative;
-}
-
-.loginmodal-container input[type=text], input[type=password] {
-  height: 44px;
-  font-size: 16px;
-  width: 100%;
-  margin-bottom: 10px;
-  -webkit-appearance: none;
-  background: #fff;
-  border: 1px solid #d9d9d9;
-  border-top: 1px solid #c0c0c0;
-  /* border-radius: 2px; */
-  padding: 0 8px;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-}
-
-.loginmodal-container input[type=text]:hover, input[type=password]:hover {
-  border: 1px solid #b9b9b9;
-  border-top: 1px solid #a0a0a0;
-  -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
-  -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
-  box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
-}
-
-.loginmodal {
-  text-align: center;
-  font-size: 14px;
-  font-family: 'Arial', sans-serif;
-  font-weight: 700;
-  height: 36px;
-  padding: 0 8px;
-/* border-radius: 3px; */
-/* -webkit-user-select: none;
-  user-select: none; */
-}
-
-.loginmodal-submit {
-  /* border: 1px solid #3079ed; */
-  border: 0px;
-  color: #fff;
-  text-shadow: 0 1px rgba(0,0,0,0.1); 
-  background-color: #4d90fe;
-  padding: 17px 0px;
-  font-family: roboto;
-  font-size: 14px;
-  /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#4787ed)); */
-}
-
-.loginmodal-submit:hover {
-  /* border: 1px solid #2f5bb7; */
-  border: 0px;
-  text-shadow: 0 1px rgba(0,0,0,0.3);
-  background-color: #357ae8;
-  /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#357ae8)); */
-}
-
-.loginmodal-container a {
-  text-decoration: none;
-  color: #666;
-  font-weight: 400;
-  text-align: center;
-  display: inline-block;
-  opacity: 0.6;
-  transition: opacity ease 0.5s;
-} 
-
-.login-help{
-  font-size: 12px;
-}
-    </style>
 </asp:Content>
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
-    <div class="tm-gray-bg">
+    <body class="tm-gray-bg">
     <!-- Banner -->
 	<section class="tm-banner">
 		<!-- Flexslider -->
@@ -149,38 +51,28 @@
 					    	<a href="#hotel" aria-controls="hotel" role="tab" data-toggle="tab">Guest house</a>
 					    </li>
 					    <li role="presentation">
-					    	<a href="#comingsoonpanel" aria-controls="car" role="tab" data-toggle="tab">Coming soon</a>
+					    	<a href="#car" aria-controls="car" role="tab" data-toggle="tab">Car Rental</a>
 					    </li>
 					</ul>
 
 					<!-- Tab panes -->
 					<div class="tab-content">
-                        <%
-                            IQueryable<branch> br = branchClass.getBrachesinfo() ;
-                             %>
 					    <div role="tabpanel" class="tab-pane fade in active tm-white-bg" id="hotel">
 					    	<div class="tm-search-box effect2">
-								<div class="hotel-search-form">
+								<form action="#" method="post" class="hotel-search-form">
 									<div class="tm-form-inner">
 										<div class="form-group">
-
-							            	 <select class="form-control" id="branchcity" name="branchcity">
-                                                 
-							            	 	<option value="">Select Branch</option>
-							            	 	<%
-                                                     foreach (var x in br)
-                                                     {
-                                                      %>
-                                                 <option value="<%=x.city %>" ><%=x.city %></option>
-
-                                                 <%
-                                                     }
-                                                      %>
+							            	 <select class="form-control">
+							            	 	<option value="">-- Select Room Type -- </option>
+							            	 	<option value="shangrila">Shangri-La</option>
+												<option value="chatrium">Chatrium</option>
+												<option value="fourseasons">Four Seasons</option>
+												<option value="hilton">Hilton</option>
 											</select> 
 							          	</div>
 							          	<div class="form-group">
 							                <div class='input-group date' id='datetimepicker1'>
-							                    <input type='text' class="form-control" name="gcheckindate" id="gcheckindate" placeholder="Check-in Date" />
+							                    <input type='text' class="form-control" placeholder="Check-in Date" />
 							                    <span class="input-group-addon">
 							                        <span class="fa fa-calendar"></span>
 							                    </span>
@@ -188,15 +80,15 @@
 							            </div>
 							          	<div class="form-group">
 							                <div class='input-group date' id='datetimepicker2'>
-							                    <input type='text' class="form-control" name="gcheckoutdate" id="gcheckoutdate" placeholder="Check-out Date" />
+							                    <input type='text' class="form-control" placeholder="Check-out Date" />
 							                    <span class="input-group-addon">
 							                        <span class="fa fa-calendar"></span>
 							                    </span>
 							                </div>
 							            </div>
 							            <div class="form-group margin-bottom-0">
-							                <select class="form-control" name="gnoofguest" id="gnoofguest">
-							            	 	<option value=""> Select no of Guests</option>
+							                <select class="form-control">
+							            	 	<option value="">-- Guests -- </option>
 							            	 	<option value="1">1</option>
 												<option value="2">2</option>
 												<option value="3">3</option>
@@ -206,59 +98,16 @@
 							            </div>
 									</div>							
 						            <div class="form-group tm-yellow-gradient-bg text-center">
-						            	<%--<button type="submit" name="submit" class="tm-yellow-btn" >Check Now</button>--%>
-                                        <a href="#" data-toggle="modal" data-target="#login-modal" style="display: block; padding-top: 15px; text-align: center;line-height: 1em;" class="tm-yellow-btn">Check Now</a>
+						            	<button type="submit" name="submit" class="tm-yellow-btn">Check Now</button>
 						            </div>  
-								</div>
+								</form>
 							</div>
 					    </div>
-                      <!--popup start-->
-                          <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-    	  <div class="modal-dialog">
-				<div class="loginmodal-container">
-					<h1>Online Booking</h1><br>
-				  <div>
-					<input type="text" name="gname" id="gname" placeholder="Enter name..." class="form-control"/>
-					<input type="text" name="gcnic" id="gcnic" placeholder="Enter Cnic/ Passport no..." class="form-control"/>
-                      <input type="number" name="gcontact" id="gcontact" placeholder="Enter Contact no..." class="form-control"/>
-                      <br />
-                      <input type="email" name="gemail" id="gemail" placeholder="Enter Email..." class="form-control"/>
-                      <br />
-                      <select class="form-control" name="noofrooms" id="noofrooms">
-							            	 	<option value="">Select no. of rooms</option>
-							            	 	<option value="1">1</option>
-												<option value="2">2</option>
-												<option value="3">3</option>
-												<option value="4">4</option>
-												<option value="5p">5+</option>
-					    </select>
-                      <br />
-                      <select class="form-control" name="roomtype" id="roomtype">
-						    <option value="">Select Room Type</option>
-							<option value="S.G.L">S.G.L</option>
-                          <option value="B.D.L">B.D.L</option>
-                          <option value="JR SUITE">JR SUITE</option>
-                          <option value="EXEC. SUITE">EXEC. SUITE</option>
-                          <option value="ROYAL SUITE">ROYAL SUITE</option>
-												
-					    </select> 
-                      <br />
-                      
-                      <input type="checkbox" id="termcheck" name="termcheck"/><a href="#" style="color: black" ><u> I accept all the terms and conditions !</u></a>
-                      <asp:Button runat="server" ID="gbooking" OnClick="gbooking_click" Text="Book Room" class="tm-yellow-btn"/>
-					<%--<input type="submit" name="gbook" class="tm-yellow-btn" value="Book room">--%>
-				  </div>
-				</div>
-			</div>
-		  </div>
-                         <!--popup end-->
-					    <div role="tabpanel" class="tab-pane fade tm-white-bg" id="comingsoonpanel">
+					    <div role="tabpanel" class="tab-pane fade tm-white-bg" id="car">
 							<div class="tm-search-box effect2">
-								<div class="hotel-search-form">
+								<form action="#" method="post" class="hotel-search-form">
 									<div class="tm-form-inner">
-                                         <h2  class="form-group" style="text-align:center;color:red;min-height:100px">Coming soon ! </h2>
-									<%--	<div class="form-group">
-                                           
+										<div class="form-group">
 							            	 <select class="form-control">
 							            	 	<option value="">-- Select Model -- </option>
 							            	 	<option value="shangrila">BMW</option>
@@ -290,12 +139,12 @@
 												<option value="">GPS Navigator</option>
 												<option value="">Insurance</option>
 											</select> 
-							          	</div>--%>							           
+							          	</div>							           
 									</div>							
 						            <div class="form-group tm-yellow-gradient-bg text-center">
 						            	<button type="submit" name="submit" class="tm-yellow-btn">Check Now</button>
 						            </div>  
-								</div>
+								</form>
 							</div>
 					    </div>				    
 					</div>
@@ -424,7 +273,7 @@
 	        })
 
 	        $('.date').datetimepicker({
-	            format: 'DD/MM/YYYY'
+	            format: 'MM/DD/YYYY'
 	        });
 	        $('.date-time').datetimepicker();
 
@@ -502,13 +351,7 @@
 	</script>
 
 
-        </div>
-
-
-
-
-
-
+        </body>
 
 </asp:Content>
 

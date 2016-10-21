@@ -9,11 +9,7 @@ public partial class employevieworders : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["loginId"] == null)
-        {
-            Response.Redirect("employelogin.aspx");
-        }
-       else if (!IsPostBack)
+        if (!IsPostBack)
         {
                 int bid = employeeProfile.getEmployeBranch("kk");//get from session
             //    brachid.Value = bid.ToString();
@@ -199,7 +195,7 @@ public partial class employevieworders : System.Web.UI.Page
 
     protected void Button1_Click(object sender, EventArgs e)
     {
-        string str = cancelids.Value;
+        string str = cancelids.Text;
         string[] words = str.Split(',');
         if (words != null)
         {
@@ -211,7 +207,6 @@ public partial class employevieworders : System.Web.UI.Page
                 
             }
             empmenuclass.deleteplacedorders(value);
-            cancelids.Value = "";
         }
     }
   
