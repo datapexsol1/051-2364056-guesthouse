@@ -9,7 +9,8 @@
         $(document).ready(function () {
             $("#datewincome").datepicker();
             $("#datewincome").datepicker('setDate', new Date());
-             $('#<%=date.ClientID%>').val($("#datewincome").val()); 
+            $('#<%=date.ClientID%>').val($("#datewincome").val()); 
+            <%-- __doPostBack('<%=date.ClientID%>');--%>
             $("#datewincome").change(function () {
                 $('#<%=date.ClientID%>').val($("#datewincome").val()); 
                 __doPostBack('<%=date.ClientID%>');
