@@ -9,12 +9,17 @@ public partial class employeerooms : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
 
-    { 
-       //get braches and assign branch name to drop down and asssign value as id
+    {
+        if (Session["loginId"] == null)
+        {
+            Response.Redirect("employelogin.aspx");
+        }
+        //get braches and assign branch name to drop down and asssign value as id
     }
     protected void saveroom_click(object sender, EventArgs e)
     {
         room r = new room();
+        r.employee_id = int.Parse(Session["loginId"].ToString());
         r.room_no = Request.Form["roomno"].ToString();
         r.room_type= Request.Form["roomtype"].ToString();
         r.room_size = Request.Form["roomsize"].ToString();

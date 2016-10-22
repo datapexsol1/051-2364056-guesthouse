@@ -83,11 +83,10 @@
                            <%-- <asp:Button ID="getsummary" runat="server" Text="Place Order" OnClick="getsummary_click" />
                              <asp:Button ID="savetodb" runat="server" Text="PrintBill"  />--%>
 
-                            
-                                 <asp:TextBox ID="cancelids" runat="server"></asp:TextBox>
+                            <input type="hidden"  runat="server" id="cancelids"/>
            
                             <asp:Table ID="viewOrder" runat="server"  class="table table-bordered table-striped"></asp:Table>
-                            <asp:Button ID="Button1" runat="server" Text="Button" OnClick="Button1_Click" />
+                            <asp:Button ID="Button1" runat="server" Text="Delete" OnClick="Button1_Click" CssClass="btn btn-danger" />
     
                           <div role="tabpanel" class="tab-pane fade" id="tab_delete" aria-labelledby="profile-tab">
                           <p>delete content</p>
