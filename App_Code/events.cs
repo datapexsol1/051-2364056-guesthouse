@@ -79,14 +79,26 @@ public class events
                                select x;
         return ec;
     }
-    public static void deleteEvent(event_calender ec,int id)
+    public static bool deleteEvent(event_calender ec, int id)
     {
         ctownDataContext db = new ctownDataContext();
         event_calender eventcal = (from x in db.event_calenders
-                                    where x.Id == id
-                                    select x).First();
-        db.event_calenders.DeleteOnSubmit(eventcal);
-        db.SubmitChanges();
-       // return isDeleted;
+                                   where x.Id == id
+                                   select x).First();
+        int count = (from y in db.event_calenders
+                     where y.Id == eventcal.Id
+                     select y).Count();
+        if (count == 1)
+        {
+            db.event_calenders.DeleteOnSubmit(eventcal);
+            db.SubmitChanges();
+
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
     }
 }
