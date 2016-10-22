@@ -9,9 +9,13 @@ public partial class employebranchinventory : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-       // viewBranchAssets();
+        if (Session["loginId"] == null)
+        {
+            Response.Redirect("employelogin.aspx");
+        }
+        // viewBranchAssets();
 
-        if (!IsPostBack)
+       else if (!IsPostBack)
         {
             
 
