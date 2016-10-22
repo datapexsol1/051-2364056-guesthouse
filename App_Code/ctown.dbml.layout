@@ -122,10 +122,10 @@
         <elementListCompartment Id="e276a2bf-48d7-4927-b93c-97322ecf0703" absoluteBounds="7.015, 17.46, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="76454bb1-3b8e-4390-97b2-bd753b93f6f1" absoluteBounds="0.5, 7.75, 2, 2.1554996744791666">
+    <classShape Id="331f6c94-9fbb-4aee-adfc-314aad0b3d63" absoluteBounds="1, 7.125, 2, 2.1554996744791666">
       <DataClassMoniker Name="/ctownDataContext/bill" />
       <nestedChildShapes>
-        <elementListCompartment Id="29ad4657-c64f-40ef-a82d-f610eb822aca" absoluteBounds="0.515, 8.21, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="3422b77d-13b2-41be-8b41-cc9d379727d0" absoluteBounds="1.0150000000000001, 7.585, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

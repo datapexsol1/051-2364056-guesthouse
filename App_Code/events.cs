@@ -42,9 +42,10 @@ public class events
             return false;
         }
     }
-    public static void updateEvent(event_calender ec, int id)
+    public static bool updateEvent(event_calender ec, int id)
     {
         ctownDataContext db = new ctownDataContext();
+        bool checkbool = false;
         var updatedEvent = (from x in db.event_calenders
                   where x.Id == id
                   select x).First();
@@ -59,7 +60,9 @@ public class events
         if (check == 0)
         {
             db.SubmitChanges();
+            checkbool = true;
         }
+        return checkbool;
     }
     public static event_calender retrieveSelectedEvent(int id)
     {
