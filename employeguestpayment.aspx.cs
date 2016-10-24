@@ -238,6 +238,8 @@ public partial class employeguestpayment : System.Web.UI.Page
                 tp.facility_total_payment = tbfacilitebill.Value;
                 tp.total_bill = Gtotal.Text;
                 tp.paid_amount = tbpaidamount.Text;
+                tp.paymentdate = DateTime.Now;
+                tp.employee_id =employeeProfile.getEmployeeIdfromusername("kk");
                 guestpayment.addPayment(tp);
             }
             else

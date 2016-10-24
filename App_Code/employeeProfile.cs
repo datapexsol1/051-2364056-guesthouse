@@ -78,6 +78,29 @@ public class employeeProfile
         return emp;
 
     }
+    public static IQueryable<employee> getAllEmployee(string branchname)
+    {
+        ctownDataContext db = new ctownDataContext();
+
+        IQueryable<employee> emp = from y in db.branches
+                                  join  x in db.employees on y.Id equals x.branch_id
+
+                                   where y.name == branchname
+                                   select x;
+        return emp;
+
+    }
+    public static IQueryable<employee> getAllEmployee()
+    {
+        ctownDataContext db = new ctownDataContext();
+
+        IQueryable<employee> emp = from x in db.GetTable<employee>()
+
+                                   
+                                   select x;
+        return emp;
+
+    }
     public static IQueryable<employee> getAllEmployee_allbranch(int branchId)
     {
         ctownDataContext db = new ctownDataContext();
@@ -238,6 +261,16 @@ public class employeeProfile
 
         int id = (from x in db.employees
                   where x.name == name
+                  select x.Id).First();
+        return id;
+
+    }
+    public static int getEmployeeIdfromusername(string uname)
+    {
+        ctownDataContext db = new ctownDataContext();
+
+        int id = (from x in db.employees
+                  where x.username == uname
                   select x.Id).First();
         return id;
 

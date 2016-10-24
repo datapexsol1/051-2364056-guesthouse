@@ -50,4 +50,13 @@ public class bookingclass
         }
         return data;
     }
+    public static string  getbookbranchname(int bookingid)
+    {
+        ctownDataContext db = new ctownDataContext();
+        string bname = (from x in db.bookings
+                        join b in db.branches on x.branch_id equals b.Id
+                        where x.Id == bookingid
+                        select b.name).First();
+        return bname;
+    }
 }
