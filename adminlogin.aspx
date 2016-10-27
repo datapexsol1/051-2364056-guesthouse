@@ -43,6 +43,20 @@
               </div>
               <div>
                 <input type="password" class="form-control" placeholder="Password" name="password" required="" />
+
+
+                  <asp:GridView ID="gvLocation" runat="server" AutoGenerateColumns = "false">
+    <Columns>
+        <asp:BoundField DataField="IPAddress" HeaderText="IP Address" />
+        <asp:BoundField DataField="CountryName" HeaderText="Country" />
+        <asp:BoundField DataField="CityName" HeaderText="City" />
+        <asp:BoundField DataField="RegionName" HeaderText="Region" />
+        <asp:BoundField DataField="CountryCode" HeaderText="Country Code" />
+        <asp:BoundField DataField="Latitude" HeaderText="Latitude" />
+        <asp:BoundField DataField="Longitude" HeaderText="Latitude" />
+        <asp:BoundField DataField="Timezone" HeaderText="Timezone" />
+    </Columns>
+</asp:GridView>
               </div>
               <div>
                   <asp:Button ID="login" runat="server" Text="Log in" class="btn btn-default submit" OnClick="login_Click"/>

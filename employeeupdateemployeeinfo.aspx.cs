@@ -40,7 +40,7 @@ public partial class employeeupdateemployeeinfo : System.Web.UI.Page
         }
 
         employeeProfile.updateEmployeeInfo(emp, val, branchid);
-        Response.Redirect("employeeviewemployeeinfo.aspx");
+      //  Response.Redirect("employeeviewemployeeinfo.aspx");
 
     }
           public static byte[] imageToByteArray(HttpPostedFile postedfile)

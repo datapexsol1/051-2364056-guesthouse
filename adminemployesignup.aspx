@@ -5,7 +5,8 @@
     
   
  
-<style>.abc{
+<style>
+    .abc{
     background-color:red
 }</style>
 </asp:Content>
@@ -222,7 +223,6 @@
     <script src="../vendors/validator/validator.js"></script>
 
     <!-- Custom Theme Scripts -->
-    <script src="../build/js/custom.min.js"></script>
 
 
 

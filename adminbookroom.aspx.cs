@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class EmployeeInfo : System.Web.UI.Page
+public partial class adminbookroom : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -19,10 +19,5 @@ public partial class EmployeeInfo : System.Web.UI.Page
                 branch.Items.Add(b.name);
             }
         }
-    }
-   public void sranchSelected_Indexchange(object sender,EventArgs e)
-    {
-
-       
     }
 }

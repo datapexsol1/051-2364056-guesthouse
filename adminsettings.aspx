@@ -1,16 +1,6 @@
 ﻿ <%@ Page Title="" Language="C#" MasterPageFile="~/AdminPanel.master" AutoEventWireup="true" CodeFile="adminsettings.aspx.cs" Inherits="adminsettings" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
-</asp:Content>
-
-
-
-
-
-
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-
-     <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
@@ -28,7 +18,17 @@
     
     <!-- Custom Theme Style -->
     <link href="../build/css/custom.min.css" rel="stylesheet">
-  </head>
+  
+</asp:Content>
+
+
+
+
+
+
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+
+  
      <!-- page content -->
         <div class="right_col" role="main">
           <div class="">

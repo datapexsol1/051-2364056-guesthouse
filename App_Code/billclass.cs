@@ -86,6 +86,7 @@ public class billclass
     {
         ctownDataContext db = new ctownDataContext();
         IQueryable<bill> bil = from b in db.bills
+                               where b.BranchId == pid
                                select b;
         return bil;
     }

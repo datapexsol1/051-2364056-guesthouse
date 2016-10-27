@@ -85,9 +85,8 @@ public partial class adminexpensesreport : System.Web.UI.Page
         //{
         //    dat = DateTime.Parse(date.Value);
         //}
-       empbillandsalclass emp= adminexpencesreport.getexpenditures(bname, empname, dat);
-        IQueryable<bill> bill = emp.bills;
-        IQueryable<employesalary> sal = emp.salary;
+       IQueryable<total_payment> emp_payments= adminexpencesreport.gettotalPayments(bname, empname, dat);
+        
         expance.Rows.Clear();
         TableRow tRow1 = new TableRow();
         expance.Rows.Add(tRow1);
@@ -100,28 +99,36 @@ public partial class adminexpensesreport : System.Web.UI.Page
         tCell3.Text = "Employe";
         tRow1.Cells.Add(tCell3);
         TableCell tCell4 = new TableCell();
-        tCell4.Text = "Bill Type";
+        tCell4.Text = "TotalRent";
         tRow1.Cells.Add(tCell4);
-
         TableCell cbox = new TableCell();
-        cbox.Text = "BillAmount";
+        cbox.Text = "Facilites Total";
         tRow1.Cells.Add(cbox);
         TableCell d = new TableCell();
-        d.Text = "Date";
+        d.Text = "Total Bill";
         tRow1.Cells.Add(d);
         TableCell qu = new TableCell();
-        qu.Text = "Description";
+        qu.Text = "Paid Amount";
         tRow1.Cells.Add(qu);
+        TableCell gst = new TableCell();
+        gst.Text = "Paid GST";
+        tRow1.Cells.Add(gst);
+        TableCell pd = new TableCell();
+        pd.Text = "Payment Date";
+        tRow1.Cells.Add(pd);
+        //TableCell bid = new TableCell();
+        //bid.Text = "Booking ID";
+        //tRow1.Cells.Add(bid);
 
-       
-        foreach (var x in bill)
+
+        foreach (var x in emp_payments)
         {
 
             TableRow tRow = new TableRow();
             expance.Rows.Add(tRow);
 
 
-            string branchname = branchClass.getBranchname(x.BranchId);
+            string branchname = bookingclass.getbookbranchname(x.booking_id);
             TableCell tCellrn = new TableCell();
             tCellrn.Text = branchname;
             tCellrn.BackColor = System.Drawing.ColorTranslator.FromHtml("#312121");
@@ -131,91 +138,35 @@ public partial class adminexpensesreport : System.Web.UI.Page
             tCellrd.BackColor = System.Drawing.ColorTranslator.FromHtml("#312121");
             tRow.Cells.Add(tCellrd);
             TableCell tCellri = new TableCell();
-            tCellri.Text = x.BillType;
+            tCellri.Text = x.total_rent;
             tCellri.BackColor = System.Drawing.ColorTranslator.FromHtml("#312121");
             tRow.Cells.Add(tCellri);
 
             TableCell checkbox = new TableCell();
-            checkbox.Text = x.BillAmount.ToString();
+            checkbox.Text = x.facility_total_payment;
             checkbox.BackColor = System.Drawing.ColorTranslator.FromHtml("#312121");
             tRow.Cells.Add(checkbox);
 
 
 
-            TableCell date1 = new TableCell();
-            date1.Text = x.Date.ToShortDateString();
-            date1.BackColor = System.Drawing.ColorTranslator.FromHtml("#213121");
-            tRow.Cells.Add(date1);
+            TableCell tbill = new TableCell();
+            tbill.Text = x.total_bill;
+            tbill.BackColor = System.Drawing.ColorTranslator.FromHtml("#213121");
+            tRow.Cells.Add(tbill);
             TableCell quan = new TableCell();
-            quan.Text = x.bill_description;
+            quan.Text = x.paid_amount;
             quan.BackColor = System.Drawing.ColorTranslator.FromHtml("#233121");
             tRow.Cells.Add(quan);
 
-
-
-
-
-        }
-        Salary.Rows.Clear();
-        TableRow tR = new TableRow();
-        Salary.Rows.Add(tR);
-        tR.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
-        tR.ForeColor = System.Drawing.Color.White;
-        TableCell tCell11 = new TableCell();
-        tCell11.Text = "Branch";
-        tR.Cells.Add(tCell11);
-        TableCell tCell12 = new TableCell();
-        tCell12.Text = "Employe Name";
-        tR.Cells.Add(tCell12);
-        TableCell tCell13 = new TableCell();
-        tCell13.Text = "Amount";
-        tR.Cells.Add(tCell13);
-
-     
-        TableCell dd = new TableCell();
-        dd.Text = "Date";
-        tR.Cells.Add(dd);
-        TableCell qu1 = new TableCell();
-        qu1.Text = "Paid by";
-        tR.Cells.Add(qu1);
-
-
-        foreach (var x in sal)
-        {
-
-            TableRow tRow = new TableRow();
-            Salary.Rows.Add(tRow);
-
-            employee emm=employeeProfile.getEmpInfo(x.employe_id);
-            string branchname = branchClass.getBranchname(emm.branch_id);
-            string empplname = emm.name;
-            TableCell tCellrn = new TableCell();
-            tCellrn.Text = branchname;
-            tCellrn.BackColor = System.Drawing.ColorTranslator.FromHtml("#312121");
-            tRow.Cells.Add(tCellrn);
-            TableCell tCellrd = new TableCell();
-            tCellrd.Text = empplname;
-            tCellrd.BackColor = System.Drawing.ColorTranslator.FromHtml("#312121");
-            tRow.Cells.Add(tCellrd);
-            TableCell tCellri = new TableCell();
-            tCellri.Text = x.amount;
-            tCellri.BackColor = System.Drawing.ColorTranslator.FromHtml("#312121");
-            tRow.Cells.Add(tCellri);
-
-          
-
-
+            TableCell gstp = new TableCell();
+            gstp.Text = "coming soon";
+            gstp.BackColor = System.Drawing.ColorTranslator.FromHtml("#233121");
+            tRow.Cells.Add(gstp);
 
             TableCell date1 = new TableCell();
-            date1.Text = x.payment_date.ToShortDateString();
+            date1.Text = x.paymentdate.ToShortDateString();
             date1.BackColor = System.Drawing.ColorTranslator.FromHtml("#213121");
             tRow.Cells.Add(date1);
-            TableCell quan = new TableCell();
-            quan.Text = employeeProfile.getEmpusername(x.paidby);
-            quan.BackColor = System.Drawing.ColorTranslator.FromHtml("#233121");
-            tRow.Cells.Add(quan);
-
-
 
 
 
