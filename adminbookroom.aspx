@@ -29,16 +29,26 @@
          <h1 >Room Selection</h1>
          <hr  style="width:50%;border-color:#800000;border-width: 4px;"/>
          <br /><br />
+                             <asp:DropDownList ID="branch" runat="server"  AutoPostBack="true" ClientIDMode="Static"></asp:DropDownList>
+
     <div class="" role="tabpanel" data-example-id="togglable-tabs" >
   
         
     <div id="form1" >
     <table frame='box'>
-  <%   IQueryable<room> rooms = roomsclass.getAvailableRooms(2); %>
+           <% 
+               if (branch.SelectedValue == "Select Branch")
+               {
+
+               }//get all branches
+               else
+               {
+                   int branchid = branchClass.getBranchID(branch.SelectedValue);
+  IQueryable<room> rooms = roomsclass.getAvailableRooms(branchid); %>
     <h2 > Available Rooms</h2>
     <tr style="min-width: 400px;border:none"> 
       <%foreach (var r in rooms)
-        {  %>
+          {  %>
               <% if (r.availbilty == "yes")
                   {
                      %>
@@ -65,8 +75,9 @@
                <td><div class='container_un'><img src='images/ac_semi_sleeper_unavailable.jpg'/></div></td>;
 
                    <%}
-    }%>
+                       }%>
         </tr>
+        <%} %>
         <tr>
              
       

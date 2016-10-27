@@ -42,7 +42,9 @@
 
 
                             <!-- start recent activity -->
-                           
+                    <asp:DropDownList ID="branch" runat="server"  AutoPostBack="true" ClientIDMode="Static"></asp:DropDownList>
+                             
+
                            <table class="table tbl">
                               <thead class="thead-inverse">
                                 <tr>
@@ -55,9 +57,19 @@
                                 </tr>
                               </thead>
                               <tbody>
-                                  <%  IQueryable<room> branchRooms=roomsclass.getAllRooms(employeeProfile.getEmployeBranch("kk"));
-                                      foreach (var r in branchRooms)
-                                      { %>
+                                  <% 
+    if (branch.SelectedValue == "Select Branch")
+    {
+
+    }//get all branches
+    else
+    {
+                                          int branchid = branchClass.getBranchID(branch.SelectedValue);
+        //IQueryable<room> branchRooms = roomsclass.getAllRooms(employeeProfile.getEmployeBranch("kk"));
+        IQueryable<room> branchRooms = roomsclass.getAllRooms(branchid);
+
+        foreach (var r in branchRooms)
+        { %>
                                 <tr>
                                   <td><label id="froomid"><%=r.room_no%></label></td>
                                   <td><label id="froomtype"><%=r.room_type %></label></td>
@@ -65,15 +77,17 @@
                                   <td> <label id="froomrent"><%=r.maximum_room_rent %></label></td>
                                   <td><label id="froombranch"><%=r.branch_id %></label></td>
                                     <% if (r.availbilty == "yes")
-                                        { %>
+    { %>
                                               <td><label id="availbiltyroomy" style="color:green">Available</label></td>
                                               <%}
-                                                else
-                                                { %>
+    else
+    { %>
                                               <td><label id="availbiltyroomn" style="color:red">Booked</label></td>
                                                <%} %>
                                 </tr>
-                                  <%} %>
+                                  <%}
+    }
+     %>
                                
                               </tbody>
                             </table>

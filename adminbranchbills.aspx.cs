@@ -9,6 +9,16 @@ public partial class adminbranchbills : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (!IsPostBack)
+        {
+            branch.Items.Clear();
+            IQueryable<branch> br = admingraphclass.getAllbranches();
+            branch.Items.Add("Select Branch");
+            foreach (branch b in br)
+            {
+                branch.Items.Add(b.name);
+            }
+        }
         int branchID = employeeProfile.getEmployeBranch("kk");
         IQueryable<bill> bs = billclass.getAllBills(branchID);
         //string[] billType = new string[bs.Count() + 1];

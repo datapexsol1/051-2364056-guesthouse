@@ -45,6 +45,8 @@
      <div class="x_content">
      <div class="col-md-9 col-sm-9 col-xs-12">
          <h3>Branch Bills</h3>
+                             <asp:DropDownList ID="branch" runat="server"  AutoPostBack="true" ClientIDMode="Static"></asp:DropDownList>
+
     <div class="" role="tabpanel" data-example-id="togglable-tabs">
                         <ul id="myTab" class="nav nav-tabs bar_tabs" role="tab
                             
@@ -64,6 +66,14 @@
      <div id="myTabContent" class="tab-content">
                           <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
   <div style="overflow:auto;">
+     <%  if (branch.SelectedValue == "Select Branch")
+    {
+
+    }//get all branches
+    else
+    {
+        int branchid = branchClass.getBranchID(branch.SelectedValue);
+                 %>
        <table class="data table table-striped no-margin">
                               <thead>
                                 <tr>
@@ -76,9 +86,9 @@
                               </thead>
                               <tbody>
                                      <%  bill b = new bill();
-                                         IQueryable<bill> bill=billclass.getAllbills(b.Id);
-                                         foreach (var r in bill)
-                                         { %>
+    IQueryable<bill> bill = billclass.getAllbills(branchid);
+    foreach (var r in bill)
+    { %>
                                 <tr>
 <%--                                  <td><label id="bilid"><%=r.Id %></label></td>--%>
                                   <td><label id="bilamount"><%=r.BillAmount%></label></td>
@@ -89,6 +99,7 @@
                                <%} %>
                               </tbody>
                             </table>
+      <%} %>
 
       </div>
                               </div>
