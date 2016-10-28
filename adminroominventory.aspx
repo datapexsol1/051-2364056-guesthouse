@@ -10,12 +10,14 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-      <div class="right_col" role="main">
+   <div class="right_col" role="main">
     <div class="row">
      <div class="col-md-12 col-sm-12 col-xs-12">
      <div class="x_content">
      <div class="col-md-9 col-sm-9 col-xs-12">
          <h3>Room Assets</h3>
+                             <asp:DropDownList ID="brid" runat="server"  AutoPostBack="true" OnSelectedIndexChanged="branchindexchange" ClientIDMode="Static"></asp:DropDownList>
+
     <div class="" role="tabpanel" data-example-id="togglable-tabs">
                         <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
                           <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="false">Room Assets</a>
@@ -39,9 +41,15 @@
 
                         
                         
-                             <%  int bid = employeeProfile.getEmployeBranch("kk");//get from session %>
+                             <%  int bid = employeeProfile.getEmployeBranch("kk");
+                                 //get from session %>
                                    <input type="hidden" name="branch" id="branch"  runat="server"/>
-                                  <select  id="rnovxxxx" name="rnovxxxx"  class="form-control col-md-7 col-xs-12" required="required" >
+                             <asp:DropDownList  runat="server" class="form-control" ID="rnovxxxx" name="rnovxxxx" AutoPostBack="True"  required="required" >
+                                                    
+                                                   
+                                         
+                                               </asp:DropDownList>  
+                                  <%--<select  id="rnovxxxx" name="rnovxxxx"  class="form-control col-md-7 col-xs-12" required="required" >
                                          <option value="">Select Room</option>
                                           <%  
 
@@ -50,7 +58,7 @@
                                               { %>
                                              <option value='<%=x.Id %>'><%= x.room_no %></option>
                                            <%} %>
-                                </select>
+                                </select>--%>
                       </div>
          <a href="#" runat="server" onserverclick="Button1_Click" class="btn btn-success">View</a>
 
@@ -138,7 +146,7 @@
                                      <option value=''>Select Room</option>
                                       <%  
 
-                                        //  IQueryable<room> r = roomsclass.getAllRooms(bid);
+                                        IQueryable<room> r = roomsclass.getAllRooms(bid);
                                           foreach (var x in r)
                                           { %>
                                          <option value='<%=x.Id %>'><%= x.room_no %></option>
@@ -210,7 +218,6 @@
   $('#presentation').restrictLength( $('#pres-max-length') );
 
 </script>     
-
 
 </asp:Content>
 

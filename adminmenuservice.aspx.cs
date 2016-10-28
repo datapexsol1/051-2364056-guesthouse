@@ -9,32 +9,53 @@ public partial class adminmenuservice : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        ordersummery.Visible = false;
-        savetodb.Visible = false;
-        int bid = employeeProfile.getEmployeBranch("kk");//get from session
-        bookingid.Value = bid.ToString();
-        IQueryable<room> r = roomsclass.getBookedROoms(bid);
-        string[] rooms = new string[r.Count() + 1];
-        rooms[0] = "Select";
-        int i = 1;
-        foreach (var x in r)
+        if (!IsPostBack)
         {
+            branch.Items.Clear();
+            IQueryable<branch> br = admingraphclass.getAllbranches();
+            branch.Items.Add("Select Branch");
+            foreach (branch b in br)
+            {
+                branch.Items.Add(b.name);
+            }
 
-            rooms[i] = x.room_no;
-            i++;
+
         }
-        roombranch.DataSource = rooms;
-        roombranch.DataBind();
+        
+        
+        //    ordersummery.Visible = false;
+        //    savetodb.Visible = false;
+        //    if (branch.SelectedValue == "Select Branch")
+        //    {
+
+        //    }
+        //    else
+        //    {
+        //        // int bid = employeeProfile.getEmployeBranch("kk");//get from session
+        //        int bid = branchClass.getBranchID(branch.SelectedValue);
+        //        bookingid.Value = bid.ToString();
+        //        IQueryable<room> r = roomsclass.getBookedROoms(bid);
+        //        string[] rooms = new string[r.Count() + 1];
+        //        rooms[0] = "Select";
+        //        int i = 1;
+        //        foreach (var x in r)
+        //        {
+
+        //            rooms[i] = x.room_no;
+        //            i++;
+        //        }
+        //        roombranch.DataSource = rooms;
+        //        roombranch.DataBind();
 
 
-        bindMenu();
+        //       bindMenu();
 
 
 
+            
 
 
-
-
+        //}
     }
 
 public void bindMenu()
@@ -65,101 +86,109 @@ public void bindMenu()
     dd.Text = "Quantity";
     tRow1.Cells.Add(dd);
 
-    // int roomid = int.Parse(Request["rnovxxxx"].ToString());
-    // int branchid = int.Parse(Request["branch"]);
-    int bbid = employeeProfile.getEmployeBranch("kk");//get from session
-                                                      // bid.Value = bbid.ToString();
-    IQueryable<room_service_menu> assets = empmenuclass.getMenuItem(bbid);
-    string checkin = "";
-
-    foreach (var x in assets)
-    {
-        if (x.type == checkin)
+        // int roomid = int.Parse(Request["rnovxxxx"].ToString());
+        // int branchid = int.Parse(Request["branch"]);
+        if (branch.SelectedValue == "Select Branch")
         {
-            TableRow tRow = new TableRow();
-            menuview.Rows.Add(tRow);
-            //TableCell tCellr = new TableCell();
-            //tCellr.Text = x.type.ToString();
-            //tRow.Cells.Add(tCellr);
-            TableCell tCellrn = new TableCell();
-            tCellrn.Text = x.item_name;
-            tCellrn.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
-            tRow.Cells.Add(tCellrn);
-            TableCell tCellrd = new TableCell();
-            tCellrd.Text = x.price.ToString();
-            tCellrd.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
-            tRow.Cells.Add(tCellrd);
-            TableCell tCellri = new TableCell();
-            tCellri.Text = x.quantity.ToString();
-            tCellri.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
-            tRow.Cells.Add(tCellri);
 
-            TableCell checkbox = new TableCell();
-            checkbox.Text = "<input type='checkbox' name='tbbox' id='tbox" + x.Id + "' value=" + x.Id + " onclick='xyz(this.value)'";
-            checkbox.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
-            tRow.Cells.Add(checkbox);
-            TableCell quan = new TableCell();
-            quan.Text = "<input type = 'number' id='noitem" + x.Id + "' name='noitem" + x.Id + "' value='1' min='1'/>";
-            quan.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
-            tRow.Cells.Add(quan);
-
-            checkin = x.type;
         }
         else
         {
-            TableRow hRow = new TableRow();
-            menuview.Rows.Add(hRow);
-            TableCell hCellr = new TableCell();
-            hCellr.Text = x.type.ToString();
-            hCellr.BackColor = System.Drawing.ColorTranslator.FromHtml("#800000");
-            hCellr.ForeColor = System.Drawing.Color.White;
-            hCellr.ColumnSpan = 5;
-            hRow.Cells.Add(hCellr);
+            // int bid = employeeProfile.getEmployeBranch("kk");//get from session
+            int bbid = branchClass.getBranchID(branch.SelectedValue);
+            //  int bbid = employeeProfile.getEmployeBranch("kk");//get from session
+            // bid.Value = bbid.ToString();
+            IQueryable<room_service_menu> assets = empmenuclass.getMenuItem(bbid);
+            string checkin = "";
 
-            TableRow tRow = new TableRow();
-            menuview.Rows.Add(tRow);
-            tRow.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
-            TableCell tCellrn = new TableCell();
-            tCellrn.Text = x.item_name;
-            tCellrn.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
-            tRow.Cells.Add(tCellrn);
-            TableCell tCellrd = new TableCell();
-            tCellrd.Text = x.price.ToString();
-            tCellrd.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
-            tRow.Cells.Add(tCellrd);
-            TableCell tCellri = new TableCell();
-            tCellri.Text = x.quantity.ToString();
-            tCellri.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
-            tRow.Cells.Add(tCellri);
+            foreach (var x in assets)
+            {
+                if (x.type == checkin)
+                {
+                    TableRow tRow = new TableRow();
+                    menuview.Rows.Add(tRow);
+                    //TableCell tCellr = new TableCell();
+                    //tCellr.Text = x.type.ToString();
+                    //tRow.Cells.Add(tCellr);
+                    TableCell tCellrn = new TableCell();
+                    tCellrn.Text = x.item_name;
+                    tCellrn.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
+                    tRow.Cells.Add(tCellrn);
+                    TableCell tCellrd = new TableCell();
+                    tCellrd.Text = x.price.ToString();
+                    tCellrd.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
+                    tRow.Cells.Add(tCellrd);
+                    TableCell tCellri = new TableCell();
+                    tCellri.Text = x.quantity.ToString();
+                    tCellri.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
+                    tRow.Cells.Add(tCellri);
 
-            TableCell checkbox = new TableCell();
-            checkbox.Text = "<input type='checkbox' name='tbbox' id='tbox" + x.Id + "' value=" + x.Id + " onclick='xyz(this.value)'";
-            checkbox.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
-            tRow.Cells.Add(checkbox);
+                    TableCell checkbox = new TableCell();
+                    checkbox.Text = "<input type='checkbox' name='tbbox' id='tbox" + x.Id + "' value=" + x.Id + " onclick='xyz(this.value)'";
+                    checkbox.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
+                    tRow.Cells.Add(checkbox);
+                    TableCell quan = new TableCell();
+                    quan.Text = "<input type = 'number' id='noitem" + x.Id + "' name='noitem" + x.Id + "' value='1' min='1'/>";
+                    quan.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
+                    tRow.Cells.Add(quan);
 
-            TableCell quan = new TableCell();
-            quan.Text = "<input type = 'number' id='noitem" + x.Id + "' name='noitem" + x.Id + "' value='1' min='1' />";
-            quan.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
-            tRow.Cells.Add(quan);
-            checkin = x.type;
+                    checkin = x.type;
+                }
+                else
+                {
+                    TableRow hRow = new TableRow();
+                    menuview.Rows.Add(hRow);
+                    TableCell hCellr = new TableCell();
+                    hCellr.Text = x.type.ToString();
+                    hCellr.BackColor = System.Drawing.ColorTranslator.FromHtml("#800000");
+                    hCellr.ForeColor = System.Drawing.Color.White;
+                    hCellr.ColumnSpan = 5;
+                    hRow.Cells.Add(hCellr);
+
+                    TableRow tRow = new TableRow();
+                    menuview.Rows.Add(tRow);
+                    tRow.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
+                    TableCell tCellrn = new TableCell();
+                    tCellrn.Text = x.item_name;
+                    tCellrn.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
+                    tRow.Cells.Add(tCellrn);
+                    TableCell tCellrd = new TableCell();
+                    tCellrd.Text = x.price.ToString();
+                    tCellrd.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
+                    tRow.Cells.Add(tCellrd);
+                    TableCell tCellri = new TableCell();
+                    tCellri.Text = x.quantity.ToString();
+                    tCellri.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
+                    tRow.Cells.Add(tCellri);
+
+                    TableCell checkbox = new TableCell();
+                    checkbox.Text = "<input type='checkbox' name='tbbox' id='tbox" + x.Id + "' value=" + x.Id + " onclick='xyz(this.value)'";
+                    checkbox.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
+                    tRow.Cells.Add(checkbox);
+
+                    TableCell quan = new TableCell();
+                    quan.Text = "<input type = 'number' id='noitem" + x.Id + "' name='noitem" + x.Id + "' value='1' min='1' />";
+                    quan.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
+                    tRow.Cells.Add(quan);
+                    checkin = x.type;
 
 
 
 
-            checkin = x.type;
+                    checkin = x.type;
+                }
+
+
+
+            }
         }
-
-
-
-    }
-
 }
 protected void getsummary_click(object sender, EventArgs e)
 {
     if (itemid.Value == "" && nofitem.Value == "")
     {
         //  bookingid.Value= "";
-        bindMenu();
+       // bindMenu();
     }
     else
     {
@@ -245,7 +274,7 @@ protected void getsummary_click(object sender, EventArgs e)
 
 
 
-                    p.booking_id = bookingRoomClass.getbookingid(roombranch.Text);
+                    p.booking_id = bookingRoomClass.getbookingid(roombranch.SelectedValue);
                     p.room_no = roombranch.Text;
                     p.item_id = x.Id;
                     p.quantity = int.Parse(value[l]);
@@ -287,4 +316,31 @@ protected void saveitem_click(object sender, EventArgs e)
     rm.bid = employeeProfile.getEmployeBranch("kk");//get from session
     empmenuclass.addMenuItem(rm);
 }
+    protected void indexchange_click(object sender, EventArgs e)
+    {
+        ordersummery.Visible = false;
+        savetodb.Visible = false;
+     
+            // int bid = employeeProfile.getEmployeBranch("kk");//get from session
+            int bid = branchClass.getBranchID(branch.SelectedValue);
+            bookingid.Value = bid.ToString();
+            IQueryable<room> r = roomsclass.getBookedROoms(bid);
+            string[] rooms = new string[r.Count() + 1];
+            rooms[0] = "Select";
+            int i = 1;
+            foreach (var x in r)
+            {
+
+                rooms[i] = x.room_no;
+                i++;
+            }
+            roombranch.DataSource = rooms;
+            roombranch.DataBind();
+
+
+            bindMenu();
+
+
+        
+    }
 }

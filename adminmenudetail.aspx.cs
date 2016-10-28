@@ -9,7 +9,16 @@ public partial class adminmenudetail : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        if (!IsPostBack)
+        {
+            branch.Items.Clear();
+            IQueryable<branch> br = admingraphclass.getAllbranches();
+            branch.Items.Add("Select Branch");
+            foreach (branch b in br)
+            {
+                branch.Items.Add(b.name);
+            }
+        }
         TableRow tRow1 = new TableRow();
         menuview.Rows.Add(tRow1);
         //TableCell tCell1 = new TableCell();
@@ -28,63 +37,72 @@ public partial class adminmenudetail : System.Web.UI.Page
         // int roomid = int.Parse(Request["rnovxxxx"].ToString());
         // int branchid = int.Parse(Request["branch"]);
         int bid = employeeProfile.getEmployeBranch("kk");//get from sessions
-
-        IQueryable<room_service_menu> assets = empmenuclass.getMenuItem(bid);
-        string checkin = "";
-        foreach (var x in assets)
+        if (branch.SelectedValue == "Select Branch")
         {
-            if (x.type == checkin)
+
+        }
+        else
+        {
+
+            int branchid = branchClass.getBranchID(branch.SelectedValue);
+            //IQueryable<room_service_menu> assets = empmenuclass.getMenuItem(bid); // old function
+            IQueryable<room_service_menu> assets = empmenuclass.getMenuItem(branchid);
+            string checkin = "";
+            foreach (var x in assets)
             {
-                TableRow tRow = new TableRow();
-                menuview.Rows.Add(tRow);
-                //TableCell tCellr = new TableCell();
-                //tCellr.Text = x.type.ToString();
-                //tRow.Cells.Add(tCellr);
-                TableCell tCellrn = new TableCell();
-                tCellrn.Text = x.item_name;
-                tRow.Cells.Add(tCellrn);
-                TableCell tCellrd = new TableCell();
-                tCellrd.Text = x.price.ToString();
-                tRow.Cells.Add(tCellrd);
-                TableCell tCellri = new TableCell();
-                tCellri.Text = x.quantity.ToString();
-                tRow.Cells.Add(tCellri);
-                checkin = x.type;
+                if (x.type == checkin)
+                {
+                    TableRow tRow = new TableRow();
+                    menuview.Rows.Add(tRow);
+                    //TableCell tCellr = new TableCell();
+                    //tCellr.Text = x.type.ToString();
+                    //tRow.Cells.Add(tCellr);
+                    TableCell tCellrn = new TableCell();
+                    tCellrn.Text = x.item_name;
+                    tRow.Cells.Add(tCellrn);
+                    TableCell tCellrd = new TableCell();
+                    tCellrd.Text = x.price.ToString();
+                    tRow.Cells.Add(tCellrd);
+                    TableCell tCellri = new TableCell();
+                    tCellri.Text = x.quantity.ToString();
+                    tRow.Cells.Add(tCellri);
+                    checkin = x.type;
+                }
+                else
+                {
+                    TableRow hRow = new TableRow();
+                    menuview.Rows.Add(hRow);
+                    TableCell hCellr = new TableCell();
+                    hCellr.Text = x.type.ToString();
+                    hCellr.BackColor = System.Drawing.ColorTranslator.FromHtml("#800000");
+                    hCellr.ForeColor = System.Drawing.Color.White;
+                    hCellr.ColumnSpan = 3;
+                    hRow.Cells.Add(hCellr);
+
+                    TableRow tRow = new TableRow();
+                    menuview.Rows.Add(tRow);
+                    //TableCell tCellr = new TableCell();
+                    //tCellr.Text = x.type.ToString();
+                    //tRow.Cells.Add(tCellr);
+                    TableCell tCellrn = new TableCell();
+                    tCellrn.Text = x.item_name;
+                    tRow.Cells.Add(tCellrn);
+                    TableCell tCellrd = new TableCell();
+                    tCellrd.Text = x.price.ToString();
+                    tRow.Cells.Add(tCellrd);
+                    TableCell tCellri = new TableCell();
+                    tCellri.Text = x.quantity.ToString();
+                    tRow.Cells.Add(tCellri);
+                    checkin = x.type;
+
+
+                    checkin = x.type;
+                }
+
+
             }
-            else
-            {
-                TableRow hRow = new TableRow();
-                menuview.Rows.Add(hRow);
-                TableCell hCellr = new TableCell();
-                hCellr.Text = x.type.ToString();
-                hCellr.BackColor = System.Drawing.ColorTranslator.FromHtml("#800000");
-                hCellr.ForeColor = System.Drawing.Color.White;
-                hCellr.ColumnSpan = 3;
-                hRow.Cells.Add(hCellr);
-
-                TableRow tRow = new TableRow();
-                menuview.Rows.Add(tRow);
-                //TableCell tCellr = new TableCell();
-                //tCellr.Text = x.type.ToString();
-                //tRow.Cells.Add(tCellr);
-                TableCell tCellrn = new TableCell();
-                tCellrn.Text = x.item_name;
-                tRow.Cells.Add(tCellrn);
-                TableCell tCellrd = new TableCell();
-                tCellrd.Text = x.price.ToString();
-                tRow.Cells.Add(tCellrd);
-                TableCell tCellri = new TableCell();
-                tCellri.Text = x.quantity.ToString();
-                tRow.Cells.Add(tCellri);
-                checkin = x.type;
-
-
-                checkin = x.type;
-            }
-
-        
+        }
     }
-}
 protected void saveitem_click(object sender, EventArgs e)
 {
     room_service_menu rm = new room_service_menu();

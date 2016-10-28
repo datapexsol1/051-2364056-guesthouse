@@ -9,6 +9,16 @@ public partial class adminroominventory : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (!IsPostBack)
+        {
+            brid.Items.Clear();
+            IQueryable<branch> br = admingraphclass.getAllbranches();
+            brid.Items.Add("Select Branch");
+            foreach (branch b in br)
+            {
+                brid.Items.Add(b.name);
+            }
+        }
         int bid = employeeProfile.getEmployeBranch("kk");//get from session
         IQueryable<room> r = roomsclass.getAllRooms(bid);
         string[] rooms = new string[r.Count() + 1];
@@ -25,9 +35,9 @@ public partial class adminroominventory : System.Web.UI.Page
         branch.Value = bid.ToString();
 
         //  Response.Redirect("#tab_add");
-    
 
-}
+
+    }
 protected void roomSelectedIndexChange(object sender, EventArgs e)
 {
     int roomId = roomsclass.getRoomID(uroomno.SelectedItem.ToString(), int.Parse(branch.Value));
@@ -87,9 +97,9 @@ protected void updateAssets_click(object sender, EventArgs e)
 protected void Button1_Click(object sender, EventArgs e)
 {
 
+        int bid = branchClass.getBranchID(brid.SelectedValue);
 
-
-    TableRow tRow1 = new TableRow();
+        TableRow tRow1 = new TableRow();
     assetsViewTable.Rows.Add(tRow1);
     TableCell tCell1 = new TableCell();
     tCell1.Text = "RoomNo ";
@@ -103,9 +113,11 @@ protected void Button1_Click(object sender, EventArgs e)
     TableCell tCell4 = new TableCell();
     tCell4.Text = "Total Item";
     tRow1.Cells.Add(tCell4);
-    // }
-    int roomid = int.Parse(Request["rnovxxxx"].ToString());
-    int branchid = int.Parse(branch.Value);
+        // }
+        // int roomid = int.Parse(Request["rnovxxxx"].ToString());
+        string roomno = rnovxxxx.SelectedValue;
+        int roomid = roomsclass.getRoomID(roomno,bid);
+        int branchid = int.Parse(branch.Value);
 
 
     IQueryable<room_asset> rom = roomassetclass.getAllRoomAssets(branchid, roomid);
@@ -131,5 +143,48 @@ protected void Button1_Click(object sender, EventArgs e)
 
 
 }
+    protected void branchindexchange(object sender,EventArgs e)
+    {
+        int bid = branchClass.getBranchID(brid.SelectedValue);
+       // int bid = employeeProfile.getEmployeBranch("kk");//get from session
+        IQueryable<room> r = roomsclass.getAllRooms(bid);
+        string[] rooms = new string[r.Count() + 1];
+        rooms[0] = "Select";
+        int i = 1;
+        foreach (var x in r)
+        {
+
+            rooms[i] = x.room_no;
+            i++;
+        }
+        rnovxxxx.DataSource = rooms;
+        rnovxxxx.DataBind();
+        branch.Value = bid.ToString();
+
+        
+
+
+    }
+    //protected void indexSelectedIndexChange(object sender, EventArgs e)
+    //{
+    //    int bid = branchClass.getBranchID(brid.SelectedValue);
+    //    // int bid = employeeProfile.getEmployeBranch("kk");//get from session
+    //    IQueryable<room> r = roomsclass.getAllRooms(bid);
+    //    string[] rooms = new string[r.Count() + 1];
+    //    rooms[0] = "Select";
+    //    int i = 1;
+    //    foreach (var x in r)
+    //    {
+
+    //        rooms[i] = x.room_no;
+    //        i++;
+    //    }
+    //    rnovxxxx.DataSource = rooms;
+    //    rnovxxxx.DataBind();
+    //    branch.Value = bid.ToString();
+
+
+
+
+    //}
 }
-   

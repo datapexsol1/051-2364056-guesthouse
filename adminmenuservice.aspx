@@ -87,10 +87,12 @@
                          <!-- start view activity -->
                       <div id="myTabContent" class="tab-content">
                         <div role="tabpanel" class="tab-pane fade active in" id="tab_view" aria-labelledby="home-tab">
+                            <asp:DropDownList ID="branch" runat="server"  AutoPostBack="true" ClientIDMode="Static" OnSelectedIndexChanged="indexchange_click"></asp:DropDownList>
+                            <br /><br />
                             <asp:Button ID="getsummary" runat="server" Text="Place Order" OnClick="getsummary_click" CssClass="btn btn-success" />
                              <asp:Button ID="savetodb" runat="server" Text="PrintBill"  />
 
-                             <asp:DropDownList  runat="server" class="form-control" ID="roombranch" name="roombranch" required="required" onchange="getchangedvalue()">
+                             <asp:DropDownList  runat="server" class="form-control" ID="roombranch"  EnableViewState="true" name="roombranch" required="required" onchange="getchangedvalue()">
                                                       
                                                    
                                          
