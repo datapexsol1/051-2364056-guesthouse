@@ -5,10 +5,9 @@
     <!-- FullCalendar -->
     <link href="../vendors/fullcalendar/dist/fullcalendar.min.css" rel="stylesheet">
     <link href="../vendors/fullcalendar/dist/fullcalendar.print.css" rel="stylesheet" media="print">
-
+     <link href="../custom/custom.min.css" rel="stylesheet"/>
     <!-- Custom styling plus plugins -->
     
-
     
 </asp:Content>
 
@@ -148,8 +147,13 @@
     <!-- /calendar modal -->
         
     <!-- jQuery -->
-    <script src="../vendors/jquery/dist/jquery.min.js"></script>
-    
+    <script src="js/ajax.js"></script>
+     <script src="Scripts/jquery-1.10.2.js"></script>
+     <script src="../vendors/jquery/dist/jquery.min.js"></script>
+    <script src="Scripts/jquery.signalR-2.1.2.js"></script>
+    <script src="Scripts/jquery.signalR-2.2.1.min.js"></script>
+   <script src="/signalR/hubs"></script>
+   <%-- <script type="text/javascript" src='<%= ResolveClientUrl("~/signalr/hubs") %>'></script>--%>
     <!-- FastClick -->
     <script src="../vendors/fastclick/lib/fastclick.js"></script>
     <!-- NProgress -->
@@ -162,6 +166,51 @@
     <!-- Custom Theme Scripts -->
    
     <!-- FullCalendar -->
+    
+
+    <script>
+        $(document).ready(function () {
+            var job = $.connection.myHub;
+            job.client.displayStatus = function () {
+                getData();
+            };
+            $.connection.hub.start();
+            getData();
+        });
+        function getData() {
+            var $tb1 = $('#menu1');
+            
+            $.ajax({
+                url: 'adminajax.aspx/GetData',
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                type: "POST",
+                success: function (data) {
+                    debugger;
+                    if (data.d.length > 0) {
+                        var newData = data.d;
+                      //  alert(JSON.stringify(data.d));
+                        $tb1.empty();
+                        $tb1.append('<tr><th>ID</th><th>name</th></tr>');
+                        $('#counter').text(newData.length);
+                        
+                        
+                        var rows = [];
+                   
+                       
+                                       
+                        for (var i = 0; i < newData.length; i++) {
+                            var dateobj = new Date(parseInt(newData[i].request_time.substr(6)));
+                            rows.push('<li><a><span><span id="not_name">'+newData[i].guest_name+'</span><span class="time" id="not_time">'+timeSince(dateobj)+'</span> </span><span class="message" id="bid"></span> </a></li>');
+                        }
+                        rows.push('<li><div class="text-center"> <a><strong>See All Alerts</strong><i class="fa fa-angle-right"></i></a></div> </li>');
+                        $tb1.append(rows.join(''));
+                    }
+                }
+
+            });
+        }
+    </script>
     <script>
         <%
         IQueryable<event_calender> eve = events.retrieveAllEvents();
@@ -232,80 +281,7 @@
             });
         });
 
-      //  var date = new Date(),
-      //      d = date.getDate(),
-      //      m = date.getMonth(),
-      //      y = date.getFullYear(),
-      //      started,
-      //      categoryClass;
-
-      //  var calendar = $('#calendar').fullCalendar({
-      //    header: {
-      //      left: 'prev,next today',
-      //      center: 'title',
-      //      right: 'month,agendaWeek,agendaDay'
-      //    },
-      //    selectable: true,
-      //    selectHelper: true,
-      //    select: function(start, end, allDay) {
-      //      $('#fc_create').click();
-
-      //      started = start;
-      //      ended = end;
-
-      //      $(".antosubmit").on("click", function() {
-      //        var title = $("#title").val();
-      //        if (end) {
-      //          ended = end;
-      //        }
-
-      //        categoryClass = $("#event_type").val();
-
-      //        if (title) {
-      //          calendar.fullCalendar('renderEvent', {
-      //              title: title,
-      //              start: started,
-      //              end: end,
-      //              allDay: allDay
-      //            },
-      //            true // make the event "stick"
-      //          );
-      //        }
-
-      //        $('#title').val('');
-
-      //        calendar.fullCalendar('unselect');
-
-      //        $('.antoclose').click();
-
-      //        return false;
-      //      });
-      //    },
-      //    eventClick: function(calEvent, jsEvent, view) {
-      //      $('#fc_edit').click();
-      //      $('#title2').val(calEvent.title);
-
-      //      categoryClass = $("#event_type").val();
-
-      //      $(".antosubmit2").on("click", function() {
-      //        calEvent.title = $("#title2").val();
-
-      //        calendar.fullCalendar('updateEvent', calEvent);
-      //        $('.antoclose2').click();
-      //      });
-
-      //      calendar.fullCalendar('unselect');
-      //    },
-      //    editable: true,
-         
-         
-      //    //events: [{
-      //    //    title: eventTitle[1],
-      //    //  start: new Date(y, m, 1)
-      //    //}]
-      //  });
-      //  calendar.fullCalendar( 'addEventSource', month );
-      //});
+     
     </script>
     <!-- /FullCalendar -->
 </asp:Content>

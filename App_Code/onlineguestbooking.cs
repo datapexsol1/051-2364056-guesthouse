@@ -16,6 +16,7 @@ public class onlineguestbooking
     }
     public static bool register_guest_booking(online_guest_booking ogb)
     {
+        ogb.seen = "no";
         ctownDataContext db = new ctownDataContext();
         int count = (from x in db.GetTable<online_guest_booking>()
                      where x.guest_name == ogb.guest_name || x.guest_cnic_passport == ogb.guest_cnic_passport || 
