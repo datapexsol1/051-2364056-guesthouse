@@ -14,6 +14,7 @@ public partial class employelogin : System.Web.UI.Page
 
     protected void login_Click(object sender, EventArgs e)
     {
+        //should change to session 
         int branchid = employeeProfile.getEmployeBranch("kk");
         string name = Request.Form["username"];
         string password = Request.Form["password"];

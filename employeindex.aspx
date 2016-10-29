@@ -168,7 +168,7 @@
     <!-- FullCalendar -->
     
 
-    <script>
+   <%-- <script>
         $(document).ready(function () {
             var job = $.connection.myHub;
             job.client.displayStatus = function () {
@@ -210,7 +210,7 @@
 
             });
         }
-    </script>
+    </script>--%>
     <script>
         <%
         IQueryable<event_calender> eve = events.retrieveAllEvents();
