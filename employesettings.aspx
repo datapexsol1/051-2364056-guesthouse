@@ -102,7 +102,7 @@
                <input type="hidden" class="input_Text" id="Title"  name="Title"  /> 
    </div> </div>--%>
                <%
-                    int branchid = employeeProfile.getEmployeBranch("kk");
+                    int branchid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
                       int employID =  int.Parse(Session["loginId"].ToString());
                       employee x = employeeProfile.getSelectedEmployeeInfo(employID, branchid);
                    //IQueryable<employee> em = employeeProfile.getAllEmployee(branchid);//branchAssetsClass.getAllBranchAssets(branchid);

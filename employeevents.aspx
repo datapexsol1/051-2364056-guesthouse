@@ -98,7 +98,7 @@
                           <th style="width: 20%"></th>
                         </tr>
                       </thead>
-                         <% IQueryable<event_calender> evecal = events.retrieveAllEvents();
+                         <% IQueryable<event_calender> evecal = events.retrieveAllEvents(Session["loginName"].ToString());
                           foreach (event_calender ec in evecal)
                           {
                                %>

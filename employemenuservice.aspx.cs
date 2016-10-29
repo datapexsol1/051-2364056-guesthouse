@@ -32,7 +32,7 @@ public partial class employemenuservice : System.Web.UI.Page
 
             // int roomid = int.Parse(Request["rnovxxxx"].ToString());
             // int branchid = int.Parse(Request["branch"]);
-            int bid = employeeProfile.getEmployeBranch("kk");//get from sessions
+            int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());//get from sessions
 
             IQueryable<room_service_menu> assets = empmenuclass.getMenuItem(bid);
             string checkin = "";

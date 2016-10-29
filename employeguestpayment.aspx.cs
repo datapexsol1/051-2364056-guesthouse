@@ -216,7 +216,7 @@ public partial class employeguestpayment : System.Web.UI.Page
     {
         bookingRoomAttr[] data = bookingclass.getBookingDetail(int.Parse(tbbid.Value));
         int counter = 0;
-        int branchid = employeeProfile.getEmployeBranch("kk");
+        int branchid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
         foreach (bookingRoomAttr r in data)
         {
             if (roomsclass.checkroomAvalbilty(r.r_roomid, branchid) == "yes")
@@ -239,7 +239,7 @@ public partial class employeguestpayment : System.Web.UI.Page
                 tp.total_bill = Gtotal.Text;
                 tp.paid_amount = tbpaidamount.Text;
                 tp.paymentdate = DateTime.Now;
-                tp.employee_id =employeeProfile.getEmployeeIdfromusername("kk");
+                tp.employee_id =employeeProfile.getEmployeeIdfromusername(Session["loginName"].ToString());
                 guestpayment.addPayment(tp);
             }
             else

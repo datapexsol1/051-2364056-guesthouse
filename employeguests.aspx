@@ -79,7 +79,9 @@
                               </thead>
                               <tbody>
                                   <%--should get bid and get element with that bid --%>
-                                  <% guestBookingAttributes[] bookings=gusetRegistrationClass.getlocalClientData();
+                                  <% 
+                                       int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
+                                      guestBookingAttributes[] bookings=gusetRegistrationClass.getlocalClientData(bid);
                                       foreach (guestBookingAttributes b in bookings)
                                       {
                                           try
@@ -153,7 +155,7 @@
                                 </tr>
                               </thead>
                               <tbody>
-                                  <% guestBookingAttributes[] fbooking = gusetRegistrationClass.getforignerClientData();
+                                  <% guestBookingAttributes[] fbooking = gusetRegistrationClass.getforignerClientData(bid);
                                       foreach (guestBookingAttributes fb in fbooking)
                                       { 
                                           %>

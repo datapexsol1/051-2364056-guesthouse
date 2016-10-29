@@ -197,7 +197,7 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Room No <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <%  int bid = employeeProfile.getEmployeBranch("kk");//get from session %>
+                                <%  int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());//get from session %>
                                <input type="hidden" name="branch" id="branch" value=<%= bid%> />
                                     <input type="hidden" name="guestType" id="guestType" value="xyz" />
                                 <asp:TextBox ID="selectedrooms" runat="server" ></asp:TextBox>

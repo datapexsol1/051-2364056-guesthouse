@@ -18,7 +18,7 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <% int bid = employeeProfile.getEmployeBranch("kk");
+    <% int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
                                List<employee> emp = employeeProfile.getunpaidemploye(bid);
          %> 
      <div class="right_col" role="main">

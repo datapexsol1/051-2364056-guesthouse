@@ -15,7 +15,7 @@ public partial class employeroominventories : System.Web.UI.Page
         }
         else if (!IsPostBack)
         {
-            int bid = employeeProfile.getEmployeBranch("kk");//get from session
+            int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());//get from session
             IQueryable<room> r = roomsclass.getAllRooms(bid);
             string[] rooms = new string[r.Count()+1];
             rooms[0] = "Select";

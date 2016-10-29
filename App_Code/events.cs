@@ -73,13 +73,17 @@ public class events
         return getInfo;
     }
 
-    public static IQueryable<event_calender> retrieveAllEvents()
+    public static IQueryable<event_calender> retrieveAllEvents( string username)
     {
+        int bid = employeeProfile.getEmployeBranch(username);
         ctownDataContext db = new ctownDataContext();
-        IQueryable <event_calender> ec = from x in db.event_calenders
-
+        IQueryable<event_calender> ec =
+                                         from x in db.employees
+                                         join even in db.event_calenders on x.Id equals even.employee_id
+                                         where x.branch_id == bid
+                                         select even;
                                
-                               select x;
+                               
         return ec;
     }
     public static bool deleteEvent(event_calender ec, int id)

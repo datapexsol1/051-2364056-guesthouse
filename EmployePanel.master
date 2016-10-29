@@ -58,8 +58,8 @@
               <div class="profile_pic">
                   <%
 
-                      int branchid = employeeProfile.getEmployeBranch("kk");
-                      int employID =  int.Parse(Session["loginId"].ToString());
+                      int branchid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
+                      int employID = int.Parse(Session["loginId"].ToString());
                       employee emp = employeeProfile.getSelectedEmployeeInfo(employID, branchid);
 
                       byte[] img1 = null;
