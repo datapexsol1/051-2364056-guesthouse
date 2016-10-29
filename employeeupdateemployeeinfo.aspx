@@ -71,7 +71,7 @@
          <h3>Employee Info</h3>
           <div class="container">
                     <%
-                            int branchid = employeeProfile.getEmployeBranch("kk");
+                            int branchid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
                             int val = int.Parse(Request.QueryString["id"]);
                             employee emp = employeeProfile.getSelectedEmployeeInfo(val, branchid);
                             byte[] img1 = null;

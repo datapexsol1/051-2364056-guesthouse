@@ -15,7 +15,7 @@ public partial class employebranchbills : System.Web.UI.Page
         }
         else if (!IsPostBack)
         {
-            int branchID = employeeProfile.getEmployeBranch("kk");
+            int branchID = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
             IQueryable<bill> bs = billclass.getAllBills(branchID);
             //string[] billType = new string[bs.Count() + 1];
             //billType[0] = "Select";
@@ -43,11 +43,13 @@ public partial class employebranchbills : System.Web.UI.Page
         if (ddBillType.Text != "Select")
         {
             bill b = new bill();
-            b.BranchId = employeeProfile.getEmployeBranch("kk");//get from session
+            b.BranchId = employeeProfile.getEmployeBranch(Session["loginName"].ToString());//get from session
             b.BillAmount = Convert.ToInt32(Request.Form["abamount"]);
             b.BillType = abtype.Value.ToString();
             b.bill_description = Request.Form["desc"];
-            b.Date = Convert.ToDateTime(Request.Form["abdate"]);
+
+
+            b.Date =Convert.ToDateTime(Request.Form["abdate"]);
             b.employee_id = int.Parse(Session["loginId"].ToString());
             billclass.Addbill(b);
             ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "activaTab('tab_content1');", true);
@@ -62,7 +64,7 @@ public partial class employebranchbills : System.Web.UI.Page
         //  b.Id =int.Parse(Request.Form["ubno"].ToString());
         if (ddBillType.Text != "Select" && ddDate.Text != "Select")
         {
-            b.BranchId = employeeProfile.getEmployeBranch("kk");//get from session
+            b.BranchId = employeeProfile.getEmployeBranch(Session["loginName"].ToString());//get from session
             b.BillAmount = int.Parse(ubamount.Value);// Convert.ToInt32(Request.Form["ubamount"]);
             b.BillType = ddBillType.SelectedValue.ToString();
 
@@ -78,7 +80,7 @@ public partial class employebranchbills : System.Web.UI.Page
 
     protected void branchBillSelectedIndexChange(object sender, EventArgs e)
     {
-        int branchID = employeeProfile.getEmployeBranch("kk");
+        int branchID = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
 
         var bType = ddBillType.SelectedValue;
 
@@ -93,7 +95,7 @@ public partial class employebranchbills : System.Web.UI.Page
     }
     protected void billTypeSelectedIndexChange(object sender, EventArgs e)
     {
-        int branchID = employeeProfile.getEmployeBranch("kk");
+        int branchID = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
         var bType = ddBillType.SelectedValue;
 
         ////date dropdownlist

@@ -15,7 +15,7 @@ public partial class employevieworders : System.Web.UI.Page
         }
        else if (!IsPostBack)
         {
-                int bid = employeeProfile.getEmployeBranch("kk");//get from session
+                int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());//get from session
             //    brachid.Value = bid.ToString();
             //    IQueryable<room> r = roomsclass.getBookedROoms(bid);
             //    string[] rooms = new string[r.Count() + 1];

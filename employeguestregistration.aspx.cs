@@ -115,7 +115,7 @@ public partial class employeguestregistration : System.Web.UI.Page
         b.branch_id = int.Parse(Request.Form["branch"].ToString());
         b.check_in_date = DateTime.Now;
       //  b.room_id = roomsclass.getRoomID(Request.Form["rno"].ToString(), int.Parse(Request.Form["branch"].ToString()));
-        b.employee_id = employeeProfile.getEmployeid("kk");//get employe username from sessions
+        b.employee_id = employeeProfile.getEmployeid(Session["loginName"].ToString());//get employe username from sessions
         g.employee_id = employID;
         b.guest_id = gusetRegistrationClass.insertGuestinfo(g);//will insert guest data to db and return the id of the guest
         b.check_out_date = null;

@@ -82,8 +82,9 @@
                                 </tr>
                               </thead>
                               <tbody>
-                                     <%  bill b = new bill();
-                                         IQueryable<bill> bill=billclass.getAllbills(b.Id);
+                                     <%  int branchID = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
+                                         bill b = new bill();
+                                         IQueryable<bill> bill=billclass.getAllbills(branchID);
                                          foreach (var r in bill)
                                          { %>
                                 <tr>
@@ -200,7 +201,7 @@
                         
                         <div class="col-md-4">
                             <label >Date <span class="required">*</span></label>
-                          <input type="text" id="abdate" name="abdate"  placeholder="Date" class="form-control " required="required"/>
+                          <input type="text" id="abdate" name="abdate" data-format="dd-mm-yyyy"  placeholder="Date" class="form-control " required="required"/>
                         </div>
                       
                 <div class="form-group col-md-12">
@@ -240,13 +241,12 @@
     <script src="js/datepicker/daterangepicker.js"></script>
   
 
-
-    <!-- bootstrap-daterangepicker -->
+ <!-- bootstrap-daterangepicker -->
     <script>
       $(document).ready(function() {
         var cb = function(start, end, label) {
           console.log(start.toISOString(), end.toISOString(), label);
-          $('#reportrange_right span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+          $('#reportrange_right span').html(start.format('D MM,yyyy') + ' - ' + end.format('D MM,yyyy'));
         };
 
         var optionSet1 = {
@@ -274,7 +274,7 @@
           buttonClasses: ['btn btn-default'],
           applyClass: 'btn-small btn-primary',
           cancelClass: 'btn-small',
-          format: 'MM/DD/YYYY',
+          format: 'DD/MM/YYYY',
           separator: ' to ',
           locale: {
             applyLabel: 'Submit',
@@ -288,7 +288,7 @@
           }
         };
 
-        $('#reportrange_right span').html(moment().subtract(29, 'days').format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
+        $('#reportrange_right span').html(moment().subtract(29, 'days').format('D mmmm,yyyy') + ' - ' + moment().format('D mmmm,yyyy'));
 
         $('#reportrange_right').daterangepicker(optionSet1, cb);
 
@@ -299,7 +299,7 @@
           console.log("hide event fired");
         });
         $('#reportrange_right').on('apply.daterangepicker', function(ev, picker) {
-          console.log("apply event fired, start/end dates are " + picker.startDate.format('MMMM D, YYYY') + " to " + picker.endDate.format('MMMM D, YYYY'));
+          console.log("apply event fired, start/end dates are " + picker.startDate.format('D mmmm,yyyy') + " to " + picker.endDate.format('D mmmm,yyyy'));
         });
         $('#reportrange_right').on('cancel.daterangepicker', function(ev, picker) {
           console.log("cancel event fired");
@@ -324,7 +324,7 @@
       $(document).ready(function() {
         var cb = function(start, end, label) {
           console.log(start.toISOString(), end.toISOString(), label);
-          $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+          $('#reportrange span').html(start.format('D mmmm,yyyy') + ' - ' + end.format('D mmmm,yyyy'));
         };
 
         var optionSet1 = {
@@ -352,7 +352,7 @@
           buttonClasses: ['btn btn-default'],
           applyClass: 'btn-small btn-primary',
           cancelClass: 'btn-small',
-          format: 'MM/DD/YYYY',
+          format: 'DD/MM/YYYY',
           separator: ' to ',
           locale: {
             applyLabel: 'Submit',
@@ -365,7 +365,7 @@
             firstDay: 1
           }
         };
-        $('#reportrange span').html(moment().subtract(29, 'days').format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
+        $('#reportrange span').html(moment().subtract(29, 'days').format('D mmmm,yyyy') + ' - ' + moment().format('D mmmm,yyyy'));
         $('#reportrange').daterangepicker(optionSet1, cb);
         $('#reportrange').on('show.daterangepicker', function() {
           console.log("show event fired");
@@ -374,7 +374,7 @@
           console.log("hide event fired");
         });
         $('#reportrange').on('apply.daterangepicker', function(ev, picker) {
-          console.log("apply event fired, start/end dates are " + picker.startDate.format('MMMM D, YYYY') + " to " + picker.endDate.format('MMMM D, YYYY'));
+          console.log("apply event fired, start/end dates are " + picker.startDate.format('D mmmm,yyyy') + " to " + picker.endDate.format('D mmmm,yyyy'));
         });
         $('#reportrange').on('cancel.daterangepicker', function(ev, picker) {
           console.log("cancel event fired");
@@ -413,6 +413,7 @@
           });
         </script>
         <!-- /bootstrap-daterangepicker -->
+
 
 
 </asp:Content>

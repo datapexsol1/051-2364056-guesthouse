@@ -82,11 +82,11 @@ public class billclass
 
     }
 
-    public static IQueryable<bill> getAllbills(int pid)
+    public static IQueryable<bill> getAllbills(int bid)
     {
         ctownDataContext db = new ctownDataContext();
         IQueryable<bill> bil = from b in db.bills
-                               where b.BranchId == pid
+                               where b.BranchId == bid
                                select b;
         return bil;
     }

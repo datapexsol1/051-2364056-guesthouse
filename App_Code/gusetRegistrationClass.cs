@@ -114,7 +114,7 @@ public class gusetRegistrationClass
         }
 
     }
-    public static guestBookingAttributes[] getlocalClientData()
+    public static guestBookingAttributes[] getlocalClientData(int bid)
     {
         ctownDataContext db = new ctownDataContext();
         var result = (from b in db.bookings
@@ -122,7 +122,7 @@ public class gusetRegistrationClass
                       // join r in db.rooms on b.room_id equals r.Id
                       join r in db.booking_Rooms on b.Id equals r.bookingId
                       join room in db.rooms on r.roomid equals room.Id
-                      where g.guest_type == "local" && r.checkout == null
+                      where g.guest_type == "local" && r.checkout == null && b.branch_id == bid
                       select new
                       {
                           booking = b,
@@ -243,14 +243,14 @@ public class gusetRegistrationClass
         }
         return count;
     }
-    public static guestBookingAttributes[] getforignerClientData()
+    public static guestBookingAttributes[] getforignerClientData(int bid)
     {
         ctownDataContext db = new ctownDataContext();
         var result = (from b in db.bookings
                       join g in db.guests on b.guest_id equals g.Id
                       join r in db.booking_Rooms on b.Id equals r.bookingId
                       join room in db.rooms on r.roomid equals room.Id
-                      where g.guest_type == "forigner" && b.check_out_date == null
+                      where g.guest_type == "forigner" && b.check_out_date == null && b.branch_id == bid
                       select new
                       {
                           booking = b,

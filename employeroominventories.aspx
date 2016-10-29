@@ -42,7 +42,7 @@
 
                         
                         
-                             <%  int bid = employeeProfile.getEmployeBranch("kk");//get from session %>
+                             <%  int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());//get from session %>
                                    <input type="hidden" name="branch" id="branch"  runat="server"/>
                                   <select  id="rnovxxxx" name="rnovxxxx"  class="form-control col-md-7 col-xs-12" required="required" >
                                          <option value="">Select Room</option>

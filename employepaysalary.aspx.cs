@@ -17,7 +17,7 @@ public partial class employepaysalary : System.Web.UI.Page
         }
         else if (!IsPostBack)
         {
-            int bid = employeeProfile.getEmployeBranch("kk");
+            int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
             List<employee> emp = employeeProfile.getunpaidemploye(bid);
             IQueryable<employee> bemploye = employeeProfile.getAllEmployee(bid);
             List<string> lname = new List<string>();
@@ -66,7 +66,7 @@ public partial class employepaysalary : System.Web.UI.Page
         
             if (x.payment_date.Month==DateTime.Now.Month ) {
                 empname.InnerText = emp.name;
-                empphone.InnerText = "123";
+                empphone.InnerText = emp.employee_no;
                 inputid.Value = x.Id.ToString();
             empamount.InnerText = x.amount;
             idhid.Value = x.employe_id.ToString();
@@ -108,7 +108,7 @@ public partial class employepaysalary : System.Web.UI.Page
         bool check = employeeProfile.updateEmployeeSalary(empsalary,hiddenid);
         if (check == true)
         {
-            int bid = employeeProfile.getEmployeBranch("kk");
+            int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
             List<employee> emp = employeeProfile.getunpaidemploye(bid);
             IQueryable<employee> bemploye = employeeProfile.getAllEmployee(bid);
             List<string> lname = new List<string>();

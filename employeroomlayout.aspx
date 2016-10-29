@@ -34,7 +34,7 @@
         
     <div id="form1" >
     <table frame='box'>
-  <%   IQueryable<room> rooms = roomsclass.getAvailableRooms(2); %>
+  <%   IQueryable<room> rooms = roomsclass.getAvailableRooms(employeeProfile.getEmployeBranch(Session["loginName"].ToString())); %>
     <h2 > Available Rooms</h2>
     <tr style="min-width: 400px;border:none"> 
       <%foreach (var r in rooms)

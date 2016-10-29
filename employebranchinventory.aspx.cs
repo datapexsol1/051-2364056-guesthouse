@@ -56,7 +56,7 @@ public partial class employebranchinventory : System.Web.UI.Page
         tCell4.Text = "Total Item";
         tRow1.Cells.Add(tCell4);
 
-        int branchid = employeeProfile.getEmployeBranch("kk"); ;//int.Parse(Request["branch"]);get from session 
+        int branchid = employeeProfile.getEmployeBranch(Session["loginName"].ToString()); ;//int.Parse(Request["branch"]);get from session 
 
 
         IQueryable<Branch_asset> rom = branchAssetsClass.getAllBranchAssets(branchid);

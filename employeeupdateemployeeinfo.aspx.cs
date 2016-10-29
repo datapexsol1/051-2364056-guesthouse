@@ -18,7 +18,7 @@ public partial class employeeupdateemployeeinfo : System.Web.UI.Page
     }
     protected void update_Click(object sender, EventArgs e)
     {
-        int branchid = employeeProfile.getEmployeBranch("kk");
+        int branchid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
         int val = int.Parse(Request.QueryString["id"]);
         employee emp = new employee();
         

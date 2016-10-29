@@ -143,7 +143,7 @@
                         <label class="control-label col-md-4 " for="room no">Room No <span class="required">*</span>
                         </label>
                          <% // int bid = employeeProfile.getEmployeBranch("kk");//get from session 
-                            string bname = employeeProfile.getEmployeBranchname("kk");%>
+                            string bname = employeeProfile.getEmployeBranchname(Session["loginName"].ToString());%>
                                 <div class="col-md-8">
                                       <input type="text" id="alabel" name="alabel" value="<%=bname %>" class="form-control "/>
                                     </div>

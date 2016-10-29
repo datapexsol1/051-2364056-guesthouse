@@ -14,25 +14,42 @@ public partial class employelogin : System.Web.UI.Page
 
     protected void login_Click(object sender, EventArgs e)
     {
-        //should change to session 
-        int branchid = employeeProfile.getEmployeBranch("kk");
+      
         string name = Request.Form["username"];
         string password = Request.Form["password"];
 
-
-        string emp = employeeProfile.employeSignin(name, password);
-        int id = employeeProfile.getEmpID(name,password, branchid);
-
-        if (emp != "" || emp != null)
+        if(name!="" && password != "")
         {
-            Session["loginId"] = id;
-            Response.Redirect("employeindex.aspx");
-            
+            int emp = employeeProfile.employeSignin(name, password);
+           
+            if (emp == 1)
+            {
+                
+                Session["loginName"] = name;
+                int branchid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
+                int id = employeeProfile.getEmpID(name, password, branchid);
+                Session["loginId"] = id;
+                Response.Write("yourlogin");
+              Response.Redirect("employeindex.aspx");
+            }
+            else
+            {
+                Response.Write("yournotlogin");
+            }
         }
-        else
-        {
-            Response.Write("yournotlogin");
-        }
+        //string emp = employeeProfile.employeSignin(name, password);
+        //int id = employeeProfile.getEmpID(name, password, branchid);
+
+        //if (emp != "" || emp != null)
+        //{
+        //    Session["loginId"] = id;
+        //    Response.Redirect("employeindex.aspx");
+
+        //}
+        //else
+        //{
+        //    Response.Write("yournotlogin");
+        //}
     }
   
 }

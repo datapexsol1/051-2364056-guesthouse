@@ -77,7 +77,7 @@
                                 </tr>
                               </thead>
                               <tbody>
-                                  <%  IQueryable<room> branchRooms=roomsclass.getAllRooms(employeeProfile.getEmployeBranch("kk"));
+                                  <%  IQueryable<room> branchRooms=roomsclass.getAllRooms(employeeProfile.getEmployeBranch(Session["loginName"].ToString()));
                                       foreach (var r in branchRooms)
                                       { %>
                                 <tr>
