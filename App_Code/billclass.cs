@@ -126,7 +126,7 @@ public class billclass
         ctownDataContext db = db = new ctownDataContext();
 
         List<bill> billid = (from b in db.GetTable<bill>()
-                             where b.BranchId == branchId
+                             where b.BranchId == branchId && b.BillType == val
                              select b).ToList();
         List<bill> selectedbills = new List<bill>();
         foreach (bill x in billid)
@@ -142,4 +142,70 @@ public class billclass
         return selectedbills;
 
     }
+
+    public static bool isBillPaid(string billType, int bid)
+    {
+        ctownDataContext db = db = new ctownDataContext();
+        int billPaid = (from x in db.bills
+                        where x.Date.Month == DateTime.Now.Month && x.BillType == billType && x.BranchId == bid
+                        select x).Count();
+        if (billPaid >= 1)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+
+    }
+    public static bill latestcheckHouseRentYear(int bid)
+    {
+     //   abamount
+        ctownDataContext db = db = new ctownDataContext();
+        int check = (from x in db.bills            
+                  where x.BranchId == bid && x.BillType == "House Rent"
+                  select x).Count();
+        if (check >= 1)
+        {
+            bill b = (from x in db.bills
+                      orderby x.Date descending
+                      where x.BranchId == bid && x.BillType == "House Rent"
+                      select x).First();
+
+            return b;
+        }
+        else
+        {
+            return null;
+        }
+        
+  
+
+    }
+    public static bill oldestcheckHouseRentYear(int bid)
+    {
+        //   abamount
+        ctownDataContext db = db = new ctownDataContext();
+        int check = (from x in db.bills
+                     where x.BranchId == bid && x.BillType == "House Rent"
+                     select x).Count();
+        if (check >= 1)
+        {
+            bill b = (from x in db.bills
+                      orderby x.Date ascending
+                      where x.BranchId == bid && x.BillType == "House Rent"
+                      select x).First();
+
+            return b;
+        }
+        else
+        {
+            return null;
+        }
+
+
+
+    }
+    
 }

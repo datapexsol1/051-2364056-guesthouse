@@ -61,7 +61,9 @@ public partial class employeguestregistration : System.Web.UI.Page
              g.departure_date = null;
              g.flight_no = null;*/
             g.guest_type = "local";
-            ShowMessage("Information has been saved successfully ! ", MessageType.Success);
+            //Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('Success','Information has been saved successfully !');</script>");
+
+            //ShowMessage("Information has been saved successfully ! ", MessageType.Success);
 
         }
         else if (Request.Form["guestType"].ToString() == "foriegner")
@@ -91,13 +93,17 @@ public partial class employeguestregistration : System.Web.UI.Page
            // g.departure_date = dt;
             g.flight_no = Request.Form["fflightno"];
             g.guest_type = "forigner";
-            ShowMessage("Information has been saved successfully ! ", MessageType.Success);
+            //Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('Success','Information has been saved successfully !');</script>");
+
+            //ShowMessage("Information has been saved successfully ! ", MessageType.Success);
 
 
         }
         else
         {
-            ShowMessage("Invalid Information ! ", MessageType.Warning);
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('Error','There are an error , try again');</script>");
+
+            //ShowMessage("Invalid Information ! ", MessageType.Warning);
 
         }
 
@@ -139,7 +145,16 @@ public partial class employeguestregistration : System.Web.UI.Page
 
             }
            
-            gusetRegistrationClass.bookRooms(r);
+            bool check = gusetRegistrationClass.bookRooms(r);
+            if(check==true)
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('Success','Information has been saved successfully !');</script>");
+
+            }
+            else
+            {
+
+            }
         }
           
 

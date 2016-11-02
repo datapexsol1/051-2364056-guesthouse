@@ -1,0 +1,64 @@
+.Notify_Success
+{
+width:100%;
+float:right;
+top:0;
+right:0;
+position:absolute;
+background:#385200;
+color:#c9dba3;
+z-index:1000;
+font-family:tahoma;
+text-align:center;
+height:auto;
+padding-top:15px;
+padding-bottom:15px;
+padding-right:10px;
+padding-left:10px;
+}
+.Notify_Error
+{
+/*width:250px;*/
+width:100%;
+float:right;
+top:0;
+right:0;
+position:absolute;
+background:#6a0000;
+color:#ffc1c1;
+z-index:1000;
+font-family:tahoma;
+text-align:center;
+height:auto;
+padding-top:15px;
+padding-bottom:15px;
+padding-right:10px;
+padding-left:10px;
+}
+.Notify_Warning
+{
+width:100%;
+float:right;
+top:0;
+right:0;
+position:absolute;
+background:/*#ffec95*/#d76000;
+color:#f1c600;
+z-index:1000;
+font-family:tahoma;
+text-align:center;
+height:auto;
+padding-top:15px;
+padding-bottom:15px;
+padding-right:10px;
+padding-left:10px;
+}
+
+.imgCss {
+    width:20px;
+    height:18px;
+   float:left;
+   margin-left : 150px;
+   z-index:1000;
+
+}

@@ -35,6 +35,59 @@
             document.getElementById('<%=ubamount.ClientID %>').value = "";--%>
 
         }
+        function setHomeRent() {
+            if(document.getElementById('<%=abtype.ClientID %>').value  == "House Rent")
+            {
+
+                //document.getElementById('abamount').value = 242000;
+                <%
+
+
+
+
+
+
+        ////////////
+        int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
+        bill b = billclass.latestcheckHouseRentYear(bid);//latest bill year
+        bill oldyeardate =  billclass.oldestcheckHouseRentYear(bid);//oldest bill year
+
+        int y1 = oldyeardate.Date.Year; //old year
+        int y2 = b.Date.Year; ///new year
+        // DateTime.Subtract(DateTime);
+        int d3 = y2 - y1;
+        if(d3 == 0)
+        {
+            %>
+                document.getElementById('abamount').value = 242000;
+                <%
+        }
+        else
+        {
+            double increment = 242000 * 10 / 100;
+
+             %>
+                
+                document.getElementById('abamount').value = 242000 + <%=increment * d3 %> ;
+        <%
+        }
+        // var newDate = myDate.AddYears(-1);
+        if (b != null)
+        {
+            abcd.Value = b.Date.ToShortDateString();
+        }
+        else
+        {
+            abcd.Value = "";
+        }
+
+        %>
+            }
+            else
+            {
+                document.getElementById('abamount').value = '';
+            }
+        }
     </script>
      
 </asp:Content>
@@ -126,6 +179,15 @@
                                           <asp:ListItem value="Electricity" Text="Electricity"></asp:ListItem>
                                           <asp:ListItem value="Gas" Text="Gas"></asp:ListItem>
                                           <asp:ListItem value="Water" Text="Water"></asp:ListItem>
+                                          <asp:ListItem value="Nayatel" Text="Nayatel"></asp:ListItem>
+                                          <asp:ListItem value="House Rent" Text="House Rent"></asp:ListItem>
+                                          <asp:ListItem value="Repair and Maintainence" Text="Repair and Maintainence"></asp:ListItem>
+                                          <asp:ListItem value="Petrol for Generator" Text="Petrol for Generator"></asp:ListItem>
+                                          <asp:ListItem value="Food Supplies" Text="Food Supplies"></asp:ListItem>
+                                          <asp:ListItem value="Other Supplies" Text="Other Supplies"></asp:ListItem>
+                                          <asp:ListItem value="Commission" Text="Commission"></asp:ListItem>
+                                          <asp:ListItem value="Misc." Text="Misc."></asp:ListItem>
+                                          <asp:ListItem value="Communication" Text="Communication"></asp:ListItem>
                                           <asp:ListItem value="Other" Text="Other"></asp:ListItem>
                                        </Items>
                                       </asp:DropDownList>
@@ -186,12 +248,23 @@
                                 
                         <div class="col-md-4">
                             <label>Bill Type <span class="required">*</span></label>
-                             <select class="form-control" id="abtype" name="abtype" runat="server" required="required">
+                             <select class="form-control" id="abtype" name="abtype"  onchange="setHomeRent();" runat="server" required="required">
                                             <option value="0">Select</option>
-                                              <option value="Electricity" id="abtype1">Electricity</option>
-                                              <option value="Gas" id="abtype2">Gas</option>
-                                              <option value="Water" id="abtype3">Water</option>
-                                             <option value="Other" id="abtype4">Other</option>
+                                        
+                                 <option value="Electricity" id="abtype1">Electricity</option>
+                                          <option value="Gas" id="abtype2">Gas</option>
+                                          <option value="Water" id="abtype3">Water</option>
+                                          <option value="Nayatel" id="abtype4">Nayatel</option>
+                                          <option value="House Rent" id="abtype5">House Rent</option>
+                               
+                                          <option value="Repair and Maintainence" id="abtype6">Repair and Maintainence</option>
+                                          <option value="Petrol for Generator" id="abtype7">Petrol for Generator</option>
+                                          <option value="Food Supplies" id="abtype8">Food Supplies</option>
+                                          <option value="Other Supplies" id="abtype9">Other Supplies</option>
+                                          <option value="Commission" id="abtype10">Commission</option>
+                                          <option value="Misc." id="abtype11">Misc.</option>
+                                          <option value="Communication" id="abtype12">Communication</option>
+                                          <option value="Other" id="abtype13">Other</option>
 
                             </select>
                         </div>
@@ -222,6 +295,7 @@
                            <%--<button onserverclick="Button1_Click" runat="server" class="btn btn-success">Submit</button>--%>
                           <asp:Button ID="Button1" runat="server" Text="Submit"   class="btn btn-success"    OnClick="Button1_Click" />
                             <%--<input type="submit" name="submit" onserverclick="Button1_Click" runat="server" class="btn btn-success"/>--%>
+                        <input type="hidden" id="abcd" runat="server" />
                         </div>
                       </div>
                             </div>
