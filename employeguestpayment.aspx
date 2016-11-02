@@ -51,6 +51,7 @@
              <div style="float:right;">
                  <asp:HiddenField ID="tbroombill" runat="server" />
                  <asp:HiddenField ID="tbfacilitebill" runat="server" />
+                  <asp:HiddenField ID="taxdiscountH" runat="server" />
                  <!-- if stay hours is less than 6 hours-->
                  <br />
                 <%--  --%><asp:DropDownList ID="paymentDropdown" runat="server" AutoPostBack="True" CausesValidation="True" OnSelectedIndexChanged="paymentDropdown_SelectedIndexChanged">
@@ -75,10 +76,12 @@
              <label id="gtotal" ><u>Total Bill : </u></label>
                  <asp:Label Font-Bold="true" ID="Gtotal" runat="server"></asp:Label>
              <br />
-
+                   <label><u>Chaque No:<asp:TextBox ID="chaqueno" runat="server"></asp:TextBox> </u></label><br />
                   <label id="gtotal1"><u>Paid Amount : </u></label>
+               
                  <asp:Textbox ID="tbpaidamount" runat="server"></asp:Textbox>                  
-                                <asp:CheckBox ID="cbtax" runat="server" Text="Discount" AutoPostBack="true" OnCheckedChanged="checkedchange"  />
+                                <asp:CheckBox ID="timelesscbox" runat="server" Text="RRentDiscount" AutoPostBack="true" OnCheckedChanged="checkedchange"  />
+                                <asp:CheckBox ID="taxtdiscount" runat="server" Text="Tax Discount" AutoPostBack="true" OnCheckedChanged="tax_discount"  />
 
                  <br />
                        <asp:Button ID="btnpaid" CssClass="btn btn-success" runat="server" Text="Pay" OnClick="btnpaid_Click" />

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="guest_house_database" Class="ctownDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=DESKTOP-ET1M3I1;Initial Catalog=guest_house_database;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="guest_house_databaseConnectionString1" Provider="System.Data.SqlClient" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=DESKTOP-PLPMAOO;Initial Catalog=guest_house_database;Integrated Security=True;Encrypt=False;TrustServerCertificate=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="guest_house_databaseConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.booking" Member="bookings">
     <Type Name="booking">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -207,18 +207,6 @@
       <Column Name="delivery" Type="System.String" DbType="NChar(3) NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
-  <Table Name="dbo.total_payment" Member="total_payments">
-    <Type Name="total_payment">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="booking_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="total_rent" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
-      <Column Name="facility_total_payment" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
-      <Column Name="total_bill" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
-      <Column Name="paid_amount" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
-      <Column Name="paymentdate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="employee_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
   <Table Name="dbo.employesalary" Member="employesalaries">
     <Type Name="employesalary">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -254,6 +242,20 @@
       <Column Name="no_of_room" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="room_type" Type="System.String" DbType="NVarChar(15) NOT NULL" CanBeNull="false" />
       <Column Name="seen" Type="System.String" DbType="VarChar(3) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.total_payment" Member="total_payments">
+    <Type Name="total_payment">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="booking_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="total_rent" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="facility_total_payment" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="total_bill" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="paid_amount" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="paymentdate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="employee_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="chaqueno" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="payment_type" Type="System.String" DbType="VarChar(13)" CanBeNull="true" />
     </Type>
   </Table>
 </Database>
