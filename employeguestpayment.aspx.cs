@@ -17,16 +17,22 @@ public partial class employeguestpayment : System.Web.UI.Page
         {
             if (!IsPostBack && Request.QueryString["booking"].ToString() != null)
             {
+                chaqueno.Visible = false;
+                taxtdiscount.Visible = false;
                 bindTable();
                 tbpaidamount.Text = Gtotal.Text;
                 if (double.Parse(hrs.Value) <= 6)
                 {
-                    cbtax.Visible = true;
+                    timelesscbox.Visible = true;
                 }
                 else
                 {
-                    cbtax.Visible = false;
+                    timelesscbox.Visible = false;
                 }
+            }
+            else
+            {
+                bindTable();
             }
         }
     }
@@ -35,6 +41,8 @@ public partial class employeguestpayment : System.Web.UI.Page
         double roombill = 0.0;
         double facilitiesbill = 0.0;
         double grand_totalbill = 0.0;
+        bookingtable.Rows.Clear();
+        facilites.Rows.Clear();
         int bid = int.Parse(Request.QueryString["booking"]);
         tbbid.Value = bid.ToString();
         bookingRoomAttr[] data = bookingclass.getBookingDetail(bid);
@@ -168,24 +176,59 @@ public partial class employeguestpayment : System.Web.UI.Page
 
 
 
-
+            input.Value = x.r_rent;
 
         }
         tbfacilitebill.Value = facilitiesbill.ToString();
         tbroombill.Value = roombill.ToString();
         double taxAmount = (roombill + facilitiesbill) * 17 / 100;
         Gtotal.Text = (roombill + facilitiesbill + taxAmount).ToString();
+        totalbill.Value = (roombill + facilitiesbill + taxAmount).ToString(); //Gtotal.Text;
+        lbfacilities.Text = (facilitiesbill ).ToString();
+        lbtax.Text = taxAmount.ToString();
+        lbroomrent.Text = roombill.ToString();
+        //Gtotal.Text = totalbill.Value;
         //tbpaidamount.Text = Gtotal.Text;
         //hidden val
-        input.Value = Gtotal.Text;
+
+
+
     }
+    //houre less then six then 
     protected void checkedchange(object sender, EventArgs e)
     {
-        if (cbtax.Checked && double.Parse(hrs.Value) <= 6)
+        if (timelesscbox.Checked && double.Parse(hrs.Value) <= 6)
         {
             //< !-- if stay hours is less than 6 hours then 50% discount will be provided-- >
-            double taxAmount = double.Parse(input.Value) * 50 / 100;
-            tbpaidamount.Text = (double.Parse(input.Value) - taxAmount).ToString();
+            double revertTax = double.Parse(input.Value) * 50 / 100;
+            Gtotal.Text = (double.Parse(totalbill.Value) - revertTax).ToString();
+
+            //double taxAmount = double.Parse(input.Value) * 50 / 100;
+            // tbpaidamount.Text = (double.Parse(input.Value ) - taxAmount).ToString();
+            tbpaidamount.Text = Gtotal.Text;
+            
+
+        }
+        else
+        {
+            tbpaidamount.Text = Gtotal.Text;
+        }
+        bindTable();
+
+    }
+    protected void tax_discount(object sender, EventArgs e)
+    {
+        if (taxtdiscount.Checked)
+        {
+            //< !-- if stay hours is less than 6 hours then 50% discount will be provided-- >
+            double revertTax = double.Parse(lbtax.Text);
+            Gtotal.Text = (double.Parse(totalbill.Value) - revertTax).ToString();
+
+            //double taxAmount = double.Parse(input.Value) * 50 / 100;
+            // tbpaidamount.Text = (double.Parse(input.Value ) - taxAmount).ToString();
+            tbpaidamount.Text = Gtotal.Text;
+
+
         }
         else
         {
@@ -214,40 +257,95 @@ public partial class employeguestpayment : System.Web.UI.Page
 
     protected void btnpaid_Click(object sender, EventArgs e)
     {
-        bookingRoomAttr[] data = bookingclass.getBookingDetail(int.Parse(tbbid.Value));
-        int counter = 0;
-        int branchid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
-        foreach (bookingRoomAttr r in data)
+        string msgshow = "";
+        if (paymentDropdown.SelectedIndex != 0)
         {
-            if (roomsclass.checkroomAvalbilty(r.r_roomid, branchid) == "yes")
+            //bid is booking id 
+            bookingRoomAttr[] data = bookingclass.getBookingDetail(int.Parse(tbbid.Value));
+            int counter = 0;
+            int branchid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
+            foreach (bookingRoomAttr r in data)
             {
-                counter++;
+                if (roomsclass.checkroomAvalbilty(r.r_roomid, branchid) == "yes")
+                {
+                    counter++;
+                }
+                else
+                {
+                    break;
+                }
             }
-            else
+            if (counter == data.Count())
             {
-                break;
-            }
-        }
-        if (counter == data.Count())
-        {
-            if (tbbid.Value != "" && tbroombill.Value != null && tbfacilitebill.Value != "" && Gtotal.Text != "" && tbpaidamount.Text != "")
-            {
-                total_payment tp = new total_payment();
-                tp.booking_id = int.Parse(tbbid.Value);
-                tp.total_rent = tbroombill.Value;
-                tp.facility_total_payment = tbfacilitebill.Value;
-                tp.total_bill = Gtotal.Text;
-                tp.paid_amount = tbpaidamount.Text;
-                tp.paymentdate = DateTime.Now;
-                tp.employee_id =employeeProfile.getEmployeeIdfromusername(Session["loginName"].ToString());
-                guestpayment.addPayment(tp);
-            }
-            else
-            {
-                Page_Load(this, e);
-                //display msg of error 
-            }
-        }
+                if (tbbid.Value != "" && tbroombill.Value != null && tbfacilitebill.Value != "" && Gtotal.Text != "" && tbpaidamount.Text != "" && paymentDropdown.SelectedIndex != 0)
+                {
+                    total_payment tp = new total_payment();
+                    tp.booking_id = int.Parse(tbbid.Value);
+                    tp.total_rent = tbroombill.Value;
+                    tp.facility_total_payment = tbfacilitebill.Value;
+                    tp.total_bill = Gtotal.Text;
+                    tp.paid_amount = tbpaidamount.Text;
+                    tp.paymentdate = DateTime.Now;
+                    if (paymentDropdown.SelectedIndex == 2 && chaqueno.Text != "")  ///Cheque is on index 2 
+                    {
+                        tp.chaqueno = chaqueno.Text;
+                        tp.employee_id = employeeProfile.getEmployeeIdfromusername(Session["loginName"].ToString());
+                        guestpayment.addPayment(tp);
+                        msgshow = "Data Saved Successfully";
+                    }
+                    else if (paymentDropdown.SelectedIndex == 1 || paymentDropdown.SelectedIndex == 3)
+                    {
+                        tp.chaqueno = null;
+                        tp.employee_id = employeeProfile.getEmployeeIdfromusername(Session["loginName"].ToString());
+                        guestpayment.addPayment(tp);
+                        msgshow = "Data saved Successfully";
+                    }
+                    else
+                    {
+                        msgshow = "Please add CHAQUE NO";
+                    }
 
+                }
+                else
+                {
+                    msgshow = "Please Cheaque out all rooms of this booking ";
+                    //display msg checkout before
+                    //  bindTable();
+                    // Page_Load(this, e);
+                    //display msg of error 
+                }
+            }
+
+        }else
+        {
+            msgshow = "Please Select Payment type";
+        }
+    }
+
+    protected void paymentDropdown_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (paymentDropdown.SelectedIndex == 0)
+        {
+            chaqueno.Visible = false;
+            taxtdiscount.Visible = false;
+            timelesscbox.Visible = false; //show msg "please select payment type"
+        }
+        if (paymentDropdown.SelectedValue == "Cash")
+        {
+            chaqueno.Visible = false;
+            taxtdiscount.Visible = true;
+            timelesscbox.Visible = true;
+        }else if(paymentDropdown.SelectedValue== "Cheque")
+        {
+            chaqueno.Visible = true;
+            taxtdiscount.Visible = false;
+            timelesscbox.Visible = true;
+        }
+        else if (paymentDropdown.SelectedValue == "Pay later")
+        {
+            chaqueno.Visible = false;
+            taxtdiscount.Visible = true;
+            timelesscbox.Visible = true;
+        }
     }
 }

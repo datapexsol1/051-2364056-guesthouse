@@ -101,8 +101,7 @@ public class employeeProfile
         ctownDataContext db = new ctownDataContext();
 
         IQueryable<employee> emp = from x in db.GetTable<employee>()
-
-                                   
+                                   where x.login_type!="admin"
                                    select x;
         return emp;
 
@@ -113,6 +112,7 @@ public class employeeProfile
         if (branchId == 0)
         {
             IQueryable<employee> emp = from x in db.GetTable<employee>()
+                                       where x.login_type != "admin"
                                        select x;
             return emp;
         }
