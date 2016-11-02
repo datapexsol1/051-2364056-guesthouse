@@ -28,6 +28,10 @@ public partial class employeguestpayment : System.Web.UI.Page
                     cbtax.Visible = false;
                 }
             }
+            else
+            {
+                bindTable();
+            }
         }
     }
     void bindTable()
@@ -35,6 +39,8 @@ public partial class employeguestpayment : System.Web.UI.Page
         double roombill = 0.0;
         double facilitiesbill = 0.0;
         double grand_totalbill = 0.0;
+        bookingtable.Rows.Clear();
+        facilites.Rows.Clear();
         int bid = int.Parse(Request.QueryString["booking"]);
         tbbid.Value = bid.ToString();
         bookingRoomAttr[] data = bookingclass.getBookingDetail(bid);
@@ -168,24 +174,38 @@ public partial class employeguestpayment : System.Web.UI.Page
 
 
 
-
+            input.Value = x.r_rent;
 
         }
         tbfacilitebill.Value = facilitiesbill.ToString();
         tbroombill.Value = roombill.ToString();
         double taxAmount = (roombill + facilitiesbill) * 17 / 100;
         Gtotal.Text = (roombill + facilitiesbill + taxAmount).ToString();
+        totalbill.Value = (roombill + facilitiesbill + taxAmount).ToString(); //Gtotal.Text;
+        lbfacilities.Text = (facilitiesbill ).ToString();
+        lbtax.Text = taxAmount.ToString();
+        lbroomrent.Text = roombill.ToString();
+        //Gtotal.Text = totalbill.Value;
         //tbpaidamount.Text = Gtotal.Text;
         //hidden val
-        input.Value = Gtotal.Text;
+
+
+
     }
+    //houre less then six then 
     protected void checkedchange(object sender, EventArgs e)
     {
         if (cbtax.Checked && double.Parse(hrs.Value) <= 6)
         {
             //< !-- if stay hours is less than 6 hours then 50% discount will be provided-- >
-            double taxAmount = double.Parse(input.Value) * 50 / 100;
-            tbpaidamount.Text = (double.Parse(input.Value) - taxAmount).ToString();
+            double revertTax = double.Parse(input.Value) * 50 / 100;
+            Gtotal.Text = (double.Parse(totalbill.Value) - revertTax).ToString();
+
+            //double taxAmount = double.Parse(input.Value) * 50 / 100;
+            // tbpaidamount.Text = (double.Parse(input.Value ) - taxAmount).ToString();
+            tbpaidamount.Text = Gtotal.Text;
+            
+
         }
         else
         {
@@ -244,10 +264,32 @@ public partial class employeguestpayment : System.Web.UI.Page
             }
             else
             {
-                Page_Load(this, e);
+               
+                //display msg checkout before
+              //  bindTable();
+               // Page_Load(this, e);
                 //display msg of error 
             }
         }
 
+    }
+
+    protected void paymentDropdown_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (paymentDropdown.SelectedIndex == 0)
+        {
+            cbtax.Visible = false; //show msg "please select payment type"
+        }
+        if (paymentDropdown.SelectedValue == "Cash")
+        {
+            cbtax.Visible = true;
+        }else if(paymentDropdown.SelectedValue== "Cheque")
+        {
+            cbtax.Visible = false;
+        }
+        else if (paymentDropdown.SelectedValue == "Pay later")
+        {
+            cbtax.Visible = true;
+        }
     }
 }

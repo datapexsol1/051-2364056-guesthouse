@@ -52,21 +52,43 @@
                  <asp:HiddenField ID="tbroombill" runat="server" />
                  <asp:HiddenField ID="tbfacilitebill" runat="server" />
                  <!-- if stay hours is less than 6 hours-->
-                <asp:CheckBox ID="cbtax" runat="server" Text="Discount" AutoPostBack="true" OnCheckedChanged="checkedchange"  />
                  <br />
-             <label id="gtotal" ><h3>Total Bill : </h3></label>
+                <%--  --%><asp:DropDownList ID="paymentDropdown" runat="server" AutoPostBack="True" CausesValidation="True" OnSelectedIndexChanged="paymentDropdown_SelectedIndexChanged">
+                    <asp:ListItem>Select Payment Method</asp:ListItem>       
+                    <asp:ListItem>Cash</asp:ListItem>
+                     <asp:ListItem>Cheque</asp:ListItem>
+                     <asp:ListItem>Pay later</asp:ListItem>
+
+                          </asp:DropDownList><br />
+                 <label id="gbill" ><u>Bill  </u></label>
+                 <br />
+                 <b>Room Rent</b>
+                 <asp:Label Font-Bold="true" ID="lbroomrent" runat="server"></asp:Label>
+                 <br />
+                 <b> Facilities </b>
+                 <asp:Label Font-Bold="true" ID="lbfacilities" runat="server"></asp:Label>
+                 <br />
+                 <b>Tax</b>
+                 <asp:Label Font-Bold="true" ID="lbtax" runat="server"></asp:Label>
+                 <br />
+
+             <label id="gtotal" ><u>Total Bill : </u></label>
                  <asp:Label Font-Bold="true" ID="Gtotal" runat="server"></asp:Label>
+             <br />
+
+                  <label id="gtotal1"><u>Paid Amount : </u></label>
+                 <asp:Textbox ID="tbpaidamount" runat="server"></asp:Textbox>                  
+                                <asp:CheckBox ID="cbtax" runat="server" Text="Discount" AutoPostBack="true" OnCheckedChanged="checkedchange"  />
+
                  <br />
-                  <label id="gtotal1"><h3>Grand Total : </h3></label>
-                 <asp:label ID="tbpaidamount" runat="server"></asp:label>
-                 <br />
-                       <asp:Button ID="btnpaid" CssClass="btn btn-success" runat="server" Text="Paid" OnClick="btnpaid_Click" />
+                       <asp:Button ID="btnpaid" CssClass="btn btn-success" runat="server" Text="Pay" OnClick="btnpaid_Click" />
                </div>
 
              </div>
 
           <input id="input" type="hidden" runat="server"/>
          <input id="hrs" type="hidden" runat="server"/>
+         <input id="totalbill" type="hidden" runat="server"/>
 
 
 

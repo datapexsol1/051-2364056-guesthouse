@@ -69,7 +69,14 @@
                               </ul>
                             </div>
                             <div class="right col-xs-5 text-center">
-                              <img src="data:image/png;base64,<%=Convert.ToBase64String(e.image.ToArray()) %>" alt="" class="img-circle img-responsive">
+                                <%
+                                    byte[] img = null;
+                                    if (e.image != null)
+                                    {
+                                        img = e.image.ToArray();
+                                    }
+                                     %>
+                              <img src="data:image/png;base64,<%=Convert.ToBase64String(img) %>" alt="" class="img-circle img-responsive">
                             </div>
                           </div>
                           <div class="col-xs-12 bottom text-center">

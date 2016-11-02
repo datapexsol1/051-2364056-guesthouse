@@ -240,7 +240,7 @@
           };
      chart.options.theme= "theme3";
     chart.options.axisX = { title: "Weekly ",titleFontSize: 30,interval: 1};
-    chart.options.axisY = { title: "Rupees", includeZero: false,interval: 10000,titleFontSize: 20};
+    chart.options.axisY = { title: "Rupees", includeZero: false,interval: 100000,titleFontSize: 20};
     /* chart.options.axisY2 = { prefix: "$", suffix: "K",title: "Price"}; */
     chart.options.title = { text: "Income & Expenditure" };
     var series=[];
@@ -467,7 +467,7 @@
             chart.options.theme= "theme3";
             chart.options.axisX = { title: "Monthly",titleFontSize: 25, interval: 4,
                 intervalType: "day",includeZero: true,valueFormatString: "DD-MMM"};
-            chart.options.axisY = { title: "Rupees", includeZero: false,interval: 10000,titleFontSize: 20};
+            chart.options.axisY = { title: "Rupees", includeZero: false,interval: 100000,titleFontSize: 20};
             /* chart.options.axisY2 = { prefix: "$", suffix: "K",title: "Price"}; */
             chart.options.title = { text: "Income & Expenditure" };
             var series=[];
@@ -590,7 +590,7 @@
             chart.options.theme= "theme3";
             chart.options.axisX = { title: "Monthly",titleFontSize: 25, interval: 4,
                 intervalType: "day",includeZero: true,valueFormatString: "DD-MMM"};
-            chart.options.axisY = { title: "Rupees", includeZero: false,interval: 10000,titleFontSize: 20};
+            chart.options.axisY = { title: "Rupees", includeZero: false,interval: 100000,titleFontSize: 20};
             /* chart.options.axisY2 = { prefix: "$", suffix: "K",title: "Price"}; */
             chart.options.title = { text: "Income & Expenditure" };
             var series=[];
@@ -735,7 +735,7 @@
           };
      chart.options.theme= "theme4";
     chart.options.axisX = { title: "Month",titleFontSize: 30,interval: 1};
-    chart.options.axisY = { title: "Income", includeZero: false,interval: 10000,titleFontSize: 20};
+    chart.options.axisY = { title: "Income", includeZero: false,interval: 100000,titleFontSize: 20};
     /* chart.options.axisY2 = { prefix: "$", suffix: "K",title: "Price"}; */
     chart.options.title = { text: "Income & Expenditure" };
     var series=[];
