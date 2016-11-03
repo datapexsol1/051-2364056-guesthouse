@@ -258,4 +258,15 @@
       <Column Name="payment_type" Type="System.String" DbType="VarChar(13)" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.admin_notification" Member="admin_notifications">
+    <Type Name="admin_notification">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="eid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="branch_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="time" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="table_name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Changed_row_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="operation_type" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
 </Database>
