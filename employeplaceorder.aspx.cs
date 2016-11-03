@@ -9,15 +9,11 @@ public partial class employemenuservice : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["loginId"] == null)
-        {
-            Response.Redirect("employelogin.aspx");
-        }
-        else if (!IsPostBack)
+        if (!IsPostBack)
         {
             ordersummery.Visible = false;
             savetodb.Visible = false;
-            int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());//get from session
+            int bid = employeeProfile.getEmployeBranch("kk");//get from session
             bookingid.Value = bid.ToString();
             IQueryable<room> r = roomsclass.getBookedROoms(bid);
             string[] rooms = new string[r.Count() + 1];
@@ -43,7 +39,7 @@ public partial class employemenuservice : System.Web.UI.Page
 
         }
     }
-         public void bindMenu()
+    public void bindMenu()
     {
         TableRow tRow1 = new TableRow();
         menuview.Rows.Add(tRow1);
@@ -73,7 +69,7 @@ public partial class employemenuservice : System.Web.UI.Page
 
         // int roomid = int.Parse(Request["rnovxxxx"].ToString());
         // int branchid = int.Parse(Request["branch"]);
-        int bbid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());//get from session
+        int bbid = employeeProfile.getEmployeBranch("kk");//get from session
                                                           // bid.Value = bbid.ToString();
         IQueryable<room_service_menu> assets = empmenuclass.getMenuItem(bbid);
         string checkin = "";
@@ -155,11 +151,11 @@ public partial class employemenuservice : System.Web.UI.Page
                 checkin = x.type;
             }
 
-        
+
+
+        }
 
     }
-
-}
     protected void getsummary_click(object sender, EventArgs e)
     {
         if (itemid.Value == "" && nofitem.Value == "")
@@ -282,15 +278,14 @@ public partial class employemenuservice : System.Web.UI.Page
 
         }
     }
-    protected void saveitem_click(object sender,EventArgs e)
+    protected void saveitem_click(object sender, EventArgs e)
     {
         room_service_menu rm = new room_service_menu();
-        rm.employee_id = int.Parse(Session["loginId"].ToString());
         rm.type = Request.Form["addtype"].ToString();
-            rm.item_name= Request.Form["additemname"].ToString();
-        rm.price=int.Parse(Request.Form["additemprice"].ToString());
-        rm.quantity=Request.Form["additemquantity"].ToString();
-        rm.bid= employeeProfile.getEmployeBranch(Session["loginName"].ToString());//get from session
+        rm.item_name = Request.Form["additemname"].ToString();
+        rm.price = int.Parse(Request.Form["additemprice"].ToString());
+        rm.quantity = Request.Form["additemquantity"].ToString();
+        rm.bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());//get from session
         empmenuclass.addMenuItem(rm);
     }
 }

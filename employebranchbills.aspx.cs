@@ -9,14 +9,11 @@ public partial class employebranchbills : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["loginId"] == null)
-        {
-            Response.Redirect("employelogin.aspx");
-        }
-        else if (!IsPostBack)
+        if (!IsPostBack)
         {
             int branchID = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
             IQueryable<bill> bs = billclass.getAllBills(branchID);
+
             //string[] billType = new string[bs.Count() + 1];
             //billType[0] = "Select";
             //int i = 1;
@@ -31,6 +28,13 @@ public partial class employebranchbills : System.Web.UI.Page
 
 
         }
+        if (abtype.Value != "")
+        {
+        //    int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
+        //string date = billclass.checkHouseRentYear(bid);
+        }
+
+       
 
 
     }
@@ -40,23 +44,76 @@ public partial class employebranchbills : System.Web.UI.Page
 
     protected void Button1_Click(object sender, EventArgs e)
     {
+        //int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
+        //bill bil = billclass.checkHouseRentYear(bid);
+        //if (bil != null)
+        //{
+        //    abcd.Value = bil.Date.ToShortDateString();
+        //}
+        //else
+        //{
+        //    abcd.Value = "";
+        //}
         if (ddBillType.Text != "Select")
         {
             bill b = new bill();
             b.BranchId = employeeProfile.getEmployeBranch(Session["loginName"].ToString());//get from session
             b.BillAmount = Convert.ToInt32(Request.Form["abamount"]);
-            b.BillType = abtype.Value.ToString();
             b.bill_description = Request.Form["desc"];
-
-
-            b.Date =Convert.ToDateTime(Request.Form["abdate"]);
-            b.employee_id = int.Parse(Session["loginId"].ToString());
-            billclass.Addbill(b);
+            b.Date = Convert.ToDateTime(Request.Form["abdate"]);
+            //checking if bill already exist
+            if (abtype.Value == "Electricity" || abtype.Value == "Gas" || abtype.Value== "Water" || abtype.Value == "Nayatel" )
+            {
+                bool isbillpaid = billclass.isBillPaid(abtype.Value,b.BranchId);
+                if(isbillpaid == true)
+                {
+                    b.BillType = abtype.Value.ToString();
+                    billclass.Addbill(b);
+                }
+                else
+                {
+                   
+                    //return bill is already paid
+                }
+                
+              
+            }
+            else if(abtype.Value == "House Rent")
+            {
+                int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
+                bill bil = billclass.latestcheckHouseRentYear(bid);
+                if (bil != null)
+                {
+                    abcd.Value = bil.Date.ToShortDateString();
+                    if (b.Date.Month != DateTime.Now.Month)
+                    {
+                        b.BillType = abtype.Value.ToString();
+                      
+                        billclass.Addbill(b);
+                    }
+                    else
+                    {
+                        //bill have already been paid
+                    }
+                }
+                else
+                {
+                    abcd.Value = "";
+                }
+            }
+            else
+            {
+                b.BillType = abtype.Value.ToString();
+                billclass.Addbill(b);
+            }
+            
+          
+           
             ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "activaTab('tab_content1');", true);
 
         }
     }
-
+   
     protected void Update_bills(object sender, EventArgs e)
     {
         bill b = new bill();
@@ -69,7 +126,7 @@ public partial class employebranchbills : System.Web.UI.Page
             b.BillType = ddBillType.SelectedValue.ToString();
 
             b.Date = DateTime.Parse(ddDate.SelectedValue.ToString());
-            b.employee_id = int.Parse(Session["loginId"].ToString());
+
             //    b.Date = //Convert.ToDateTime(Request.Form["ubdate"]);
             billclass.updateBills(b, b.BranchId);
             ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "activaTab('tab_content1');", true);
@@ -110,10 +167,10 @@ public partial class employebranchbills : System.Web.UI.Page
             //if (result == 1 || result == 0)
             //{
 
-                billType[i] = x.Date.ToShortDateString();
-                i++;
+            billType[i] = x.Date.ToShortDateString();
+            i++;
             //}
-           
+
         }
         ddDate.DataSource = billType;
         ddDate.DataBind();

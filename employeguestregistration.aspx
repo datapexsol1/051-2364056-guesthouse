@@ -2,6 +2,9 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
+    <script src="js/jquery-1.10.2.min.js"></script>
+    <link href="Notifications/NotificationStyle.css" rel="stylesheet" />
+    <script src="js/NotificationJS.js"></script>
     <script>
         $(document).ready(function(){
          
@@ -204,7 +207,10 @@
                             </div>
                           </div>
 
-
+                          <%
+                              room r = roomsclass.getRoomInfo(selectedrooms.Text,bid);
+                              
+                               %>
 
                                    <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Type Of Room</label>
@@ -261,7 +267,7 @@
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                               <input type="number" id="rrent" name="rrent" required="required" class="form-control col-md-7 col-xs-12" data-validation="required" 
-		 data-validation-error-msg="Enter Room rent" min="0"/>
+		 data-validation-error-msg="Enter Room rent" min="<%=r.minimum_room_rent %>" max ="<%=r.maximum_room_rent %>"/>
                             </div>
                           </div>
 
@@ -330,7 +336,9 @@
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                  <label >Arrival Date <span class="required">*</span>
                             </label>
-                              <input type="date" id="Arrival" name="arrivaldate" class="form-control col-md-7 col-xs-12" required="required"/>
+                              <%--<input type="text" class="form-control has-feedback-left" id="Arrival" placeholder="First Name" aria-describedby="inputSuccess2Status2">--%>
+
+                              <input type="text" id="Arrival" name="arrivaldate" class="form-control col-md-7 col-xs-12" required="required"/>
                             </div>
                  
                             
@@ -371,7 +379,7 @@
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                  <label>Date Of Birth <span class="required">*</span>
                             </label>
-                              <input id="dob" name="dob" class="date-picker form-control col-md-7 col-xs-12"  type="date" required="required"/>
+                              <input id="dob" name="dob" class="date-picker form-control col-md-7 col-xs-12"  type="text" required="required"/>
                             </div>
                           </div>
                             
@@ -385,9 +393,7 @@
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                  <label >Company Name <span class="required">*</span>
                             </label>
-                              <input type="text" id="cname" name="cname"  class="form-control col-md-7 col-xs-12" data-validation="length alphanumeric" 
-		 data-validation-length="3-25" 
-		 data-validation-error-msg="Enter Company name"/>
+                              <input type="text" id="cname" name="cname"  class="form-control col-md-7 col-xs-12"/>
                             </div>
                           </div>
 
@@ -398,9 +404,7 @@
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                 <label >Profession<span class="required">*</span>
                             </label>
-                              <input type="text" id="proffesion" name="proffesion"  class="form-control col-md-7 col-xs-12" data-validation="length alphanumeric" 
-		 data-validation-length="3-25" 
-		 data-validation-error-msg="Enter profession"/>
+                              <input type="text" id="proffesion" name="proffesion"  class="form-control col-md-7 col-xs-12" />
                             </div>
                           <%--</div>
 
@@ -410,9 +414,7 @@
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                   <label>Designation<span class="required">*</span>
                             </label>
-                              <input type="text" id="designation" name="designation"  class="form-control col-md-7 col-xs-12" data-validation="length alphanumeric" 
-		 data-validation-length="3-25" 
-		 data-validation-error-msg="Enter designation"/>
+                              <input type="text" id="designation" name="designation"  class="form-control col-md-7 col-xs-12" />
                             </div>
                           </div>
 
@@ -421,7 +423,8 @@
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                  <label >PH: No Office <span class="required">*</span>
                             </label>
-                              <input type="number" id="poffice" name="poffice"  class="form-control col-md-7 col-xs-12" pattern="\d*" title="Enter Phone no"/>
+                              <input type="number" id="poffice" name="poffice"  class="form-control col-md-7 col-xs-12" 
+                                  />
                             </div>
                           <%--</div>
 
@@ -430,7 +433,8 @@
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                 <label >PH: No Residence <span class="required">*</span>
                             </label>
-                              <input type="number" id="presidence" name="presidence"  class="form-control col-md-7 col-xs-12" pattern="\d*" title="Enter residence no"/>
+                              <input type="number" id="presidence" name="presidence"  class="form-control col-md-7 col-xs-12" 
+                                  />
                             </div>
                           </div>
 
@@ -439,7 +443,7 @@
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                 <label >PH: No Cell<span class="required">*</span>
                             </label>
-                              <input type="number" id="pcell" name="pcell"   class="form-control col-md-7 col-xs-12" pattern="\d*" title="Enter Mobile no"/>
+                              <input type="number" id="pcell" name="pcell"   class="form-control col-md-7 col-xs-12" required="required" pattern="\d*" title="Enter Mobile no"/>
                             </div>
                           <%--</div>
 
@@ -448,7 +452,7 @@
                             <div class="col-md-4 col-sm-4 col-xs-12">
                              <label>Departure Date <span class="required">*</span>
                             </label>
-                              <input type="date" id="Depature" name="departure" required="required" class="form-control col-md-7 col-xs-12"/>
+                              <input type="text" id="Depature" name="departure"  class="form-control col-md-7 col-xs-12"/>
                             </div>
                           </div>
 
@@ -456,7 +460,7 @@
                           
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                   <label>Departure Time</label>
-                              <input id="dtime" name="dtime" class="form-control col-md-7 col-xs-12" type="time" required="required"/>
+                              <input id="dtime" name="dtime" class="form-control col-md-7 col-xs-12" type="time" />
                             </div>
                           <%--</div>
 
@@ -465,9 +469,7 @@
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                                             <label>Flight No<span class="required">*</span>
                             </label>
-                              <input type="text" id="flightno" name="flightno"  class="form-control col-md-7 col-xs-12" data-validation="length alphanumeric" 
-		 data-validation-length="3-25" 
-		 data-validation-error-msg="Enter Flight no."/>
+                              <input type="text" id="flightno" name="flightno"  class="form-control col-md-7 col-xs-12" />
                             </div>
                           </div>
 
@@ -478,9 +480,7 @@
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <label >Company Adress<span class="required">*</span>
                             </label>
-                             <input  id="caddress" name="caddress"  class="form-control col-md-7 col-xs-12" data-validation="length alphanumeric" 
-		 data-validation-length="3-50" 
-		 data-validation-error-msg="Enter Company address"/>
+                             <input  id="caddress" name="caddress"  class="form-control col-md-7 col-xs-12" />
                             </div>
                           <%--</div>
 
@@ -489,7 +489,7 @@
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                  <label >Permanent Adress<span class="required">*</span>
                             </label>
-                             <input id="paddress" name="paddress"  class="form-control col-md-7 col-xs-12" data-validation="length alphanumeric" 
+                             <input type="text" id="paddress" name="paddress"  class="form-control col-md-7 col-xs-12" data-validation="length alphanumeric" 
 		 data-validation-length="3-25" 
 		 data-validation-error-msg="Enter permanent address"/>
                             </div>
@@ -528,7 +528,7 @@
                                  <div class="col-md-4 col-sm-4 col-xs-12">
                                 <label >Registration No <span class="required">*</span>
                             </label>
-                              <input type="number" id="fregno"  name="fregno"  class="form-control col-md-7 col-xs-12" data-validation="length alphanumeric" 
+                              <input type="text" id="fregno"  name="fregno"  class="form-control col-md-7 col-xs-12" data-validation="length alphanumeric" 
 		 data-validation-length="3-25" 
 		 data-validation-error-msg="Enter Reg#"/>
                             </div>
@@ -537,7 +537,7 @@
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                  <label >Arrival Date <span class="required">*</span>
                             </label>
-                              <input type="date" id="farrival" name="farrivaldate"  class="form-control col-md-7 col-xs-12" required="required"/>
+                              <input type="text" id="farrival" name="farrivaldate"  class="form-control col-md-7 col-xs-12" required="required"/>
                             </div>
                           </div>
 
@@ -554,7 +554,7 @@
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                 <label>Guest Name <span class="required">*</span>
                             </label>
-                              <input type="Text" id="fgname" name="fgname"  class="form-control col-md-7 col-xs-12" data-validation="length alphanumeric" 
+                              <input type="text" id="fgname" name="fgname"  class="form-control col-md-7 col-xs-12" data-validation="length alphanumeric" 
 		 data-validation-length="3-25" 
 		 data-validation-error-msg="Enter guest name"/>
                             </div>
@@ -577,7 +577,7 @@
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                  <label>Date Of Birth <span class="required">*</span>
                             </label>
-                              <input id="fdob"  name="fdob" class="date-picker form-control col-md-7 col-xs-12"  type="date" required="required"/>
+                              <input id="fdob"  name="fdob" class="date-picker form-control col-md-7 col-xs-12"  type="text" required="required"/>
                             </div>
                           </div>
                             
@@ -591,9 +591,7 @@
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                  <label >Company Name <span class="required">*</span>
                             </label>
-                              <input type="text" id="fcname" name="fcname"  class="form-control col-md-7 col-xs-12" data-validation="length alphanumeric" 
-		 data-validation-length="3-25" 
-		 data-validation-error-msg="Enter company name"/>
+                              <input type="text" id="fcname" name="fcname"  class="form-control col-md-7 col-xs-12" />
                             </div>
                           </div>
 
@@ -604,9 +602,7 @@
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                 <label >Profession<span class="required">*</span>
                             </label>
-                              <input type="text" id="fproffesion" name="fproffesion"  class="form-control col-md-7 col-xs-12" data-validation="length alphanumeric" 
-		 data-validation-length="3-25" 
-		 data-validation-error-msg="Enter profession"/>
+                              <input type="text" id="fproffesion" name="fproffesion"  class="form-control col-md-7 col-xs-12" />
                             </div>
                           <%--</div>
 
@@ -643,7 +639,9 @@
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                 <label >PH: No Cell<span class="required">*</span>
                             </label>
-                              <input type="number" id="fpcell" name="fpcell"  class="form-control col-md-7 col-xs-12" required/>
+                              <input type="number" id="fpcell" name="fpcell"  class="form-control col-md-7 col-xs-12" data-validation="required" 
+
+		 data-validation-error-msg="Enter Contact no"/>
                             </div>
                           <%--</div>
 
@@ -652,7 +650,7 @@
                             <div class="col-md-4 col-sm-4 col-xs-12">
                              <label>Departure Date <span class="required">*</span>
                             </label>
-                              <input type="date" id="fdeparture" name="fdeparture"  class="form-control col-md-7 col-xs-12" required/>
+                              <input type="text" id="fdeparture" name="fdeparture"  class="form-control col-md-7 col-xs-12" />
                             </div>
                           </div>
 
@@ -660,7 +658,7 @@
                           
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                   <label>Departure Time</label>
-                              <input id="fdtime" name="fdtime"class="form-control col-md-7 col-xs-12" type="time" required/>
+                              <input id="fdtime" name="fdtime"class="form-control col-md-7 col-xs-12" type="time" />
                             </div>
                           <%--</div>
 
@@ -669,10 +667,8 @@
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                                             <label>Flight No<span class="required">*</span>
                             </label>
-                              <input type="number" id="fflightno" name="fflightno"  class="form-control col-md-7 col-xs-12"
-                                  data-validation="length alphanumeric" 
-		 data-validation-length="3-25" 
-		 data-validation-error-msg="Enter flight no"/>
+                              <input type="text" id="fflightno" name="fflightno"  class="form-control col-md-7 col-xs-12"
+                                 />
                             </div>
                           </div>
 
@@ -683,9 +679,7 @@
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <label >Company Adress<span class="required">*</span>
                             </label>
-                             <input name="fcaddress" id="fcaddress"  class="form-control col-md-7 col-xs-12" data-validation="length alphanumeric" 
-		 data-validation-length="3-25" 
-		 data-validation-error-msg="Enter company address"></input>
+                             <input name="fcaddress" id="fcaddress"  class="form-control col-md-7 col-xs-12" ></input>
                             </div>
                           <%--</div>
 
@@ -704,7 +698,7 @@
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                  <label >Passport/IC No <span class="required">*</span>
                             </label>
-                              <input type="number" id="fpassno" name="fpassno"  class="form-control col-md-7 col-xs-12" data-validation="length alphanumeric" 
+                              <input type="text" id="fpassno" name="fpassno"  class="form-control col-md-7 col-xs-12" data-validation="length alphanumeric" 
 		 data-validation-length="3-25" 
 		 data-validation-error-msg="Enter Passport no"/>
                             </div>
@@ -735,7 +729,7 @@
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                 <label>Date Of Issue <span class="required">*</span>
                             </label>
-                              <input type="date" id="dateofissue" name="fdateofissue"  class="form-control col-md-7 col-xs-12" required/>
+                              <input type="text" id="dateofissue" name="fdateofissue"  class="form-control col-md-7 col-xs-12" required/>
                             </div>
                           </div>
 
@@ -744,7 +738,7 @@
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                 <label>Visa No <span class="required">*</span>
                             </label>
-                              <input type="number" id="visano" name="visano"  class="form-control col-md-7 col-xs-12" data-validation="length alphanumeric" 
+                              <input type="text" id="visano" name="visano"  class="form-control col-md-7 col-xs-12" data-validation="length alphanumeric" 
 		 data-validation-length="3-25" 
 		 data-validation-error-msg="Enter visa no"/>
                             </div>
@@ -755,7 +749,7 @@
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                  <label>Valid Upto <span class="required">*</span>
                             </label>
-                              <input type="date" id="validupto" name="validupto"  class="form-control col-md-7 col-xs-12" required/>
+                              <input type="text" id="validupto" name="validupto"  class="form-control col-md-7 col-xs-12" required/>
                             </div>
                           </div>
 
@@ -771,15 +765,17 @@
 
                                <div class="form-group">--%>
                                    <div class="col-md-4 col-sm-4 col-xs-12">
-                                 <label >Comming From <span class="required">*</span>
+                                 <label >Coming From <span class="required">*</span>
                             </label>
-                              <input type="number" id="fcfrom" name="fcfrom"  class="form-control col-md-7 col-xs-12" required/>
+                              <input type="text" id="fcfrom" name="fcfrom"  class="form-control col-md-7 col-xs-12" data-validation="required" 
+		 data-validation-length="3-25" 
+		 data-validation-error-msg="Data is not valid" />
                             </div>
                             
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                 <label >Going To <span class="required">*</span>
                             </label>
-                              <input type="number" id="fgoto" name="fgoto"  class="form-control col-md-7 col-xs-12" required/>
+                              <input type="text" id="fgoto" name="fgoto"  class="form-control col-md-7 col-xs-12" />
                             </div>
                           </div>
     
@@ -828,6 +824,264 @@
   $('#presentation').restrictLength( $('#pres-max-length') );
 
 </script>
+     <!-- jQuery -->
+    <script src="../vendors/jquery/dist/jquery.min.js"></script>
 
+    <!-- bootstrap-daterangepicker -->
+    <script src="js/moment/moment.min.js"></script>
+    <script src="js/datepicker/daterangepicker.js"></script>
+  
+
+
+    <!-- bootstrap-daterangepicker -->
+    <script>
+      $(document).ready(function() {
+        var cb = function(start, end, label) {
+          console.log(start.toISOString(), end.toISOString(), label);
+          $('#reportrange_right span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+        };
+
+        var optionSet1 = {
+          startDate: moment().subtract(29, 'days'),
+          endDate: moment(),
+          minDate: '01/01/2012',
+          maxDate: '12/31/2015',
+          dateLimit: {
+            days: 60
+          },
+          showDropdowns: true,
+          showWeekNumbers: true,
+          timePicker: false,
+          timePickerIncrement: 1,
+          timePicker12Hour: true,
+          ranges: {
+            'Today': [moment(), moment()],
+            'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+            'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+            'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+            'This Month': [moment().startOf('month'), moment().endOf('month')],
+            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+          },
+          opens: 'right',
+          buttonClasses: ['btn btn-default'],
+          applyClass: 'btn-small btn-primary',
+          cancelClass: 'btn-small',
+          format: 'MM/DD/YYYY',
+          separator: ' to ',
+          locale: {
+            applyLabel: 'Submit',
+            cancelLabel: 'Clear',
+            fromLabel: 'From',
+            toLabel: 'To',
+            customRangeLabel: 'Custom',
+            daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+            monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+            firstDay: 1
+          }
+        };
+
+        $('#reportrange_right span').html(moment().subtract(29, 'days').format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
+
+        $('#reportrange_right').daterangepicker(optionSet1, cb);
+
+        $('#reportrange_right').on('show.daterangepicker', function() {
+          console.log("show event fired");
+        });
+        $('#reportrange_right').on('hide.daterangepicker', function() {
+          console.log("hide event fired");
+        });
+        $('#reportrange_right').on('apply.daterangepicker', function(ev, picker) {
+          console.log("apply event fired, start/end dates are " + picker.startDate.format('MMMM D, YYYY') + " to " + picker.endDate.format('MMMM D, YYYY'));
+        });
+        $('#reportrange_right').on('cancel.daterangepicker', function(ev, picker) {
+          console.log("cancel event fired");
+        });
+
+        $('#options1').click(function() {
+          $('#reportrange_right').data('daterangepicker').setOptions(optionSet1, cb);
+        });
+
+        $('#options2').click(function() {
+          $('#reportrange_right').data('daterangepicker').setOptions(optionSet2, cb);
+        });
+
+        $('#destroy').click(function() {
+          $('#reportrange_right').data('daterangepicker').remove();
+        });
+
+      });
+    </script>
+
+    <script>
+      $(document).ready(function() {
+        var cb = function(start, end, label) {
+          console.log(start.toISOString(), end.toISOString(), label);
+          $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+        };
+
+        var optionSet1 = {
+          startDate: moment().subtract(29, 'days'),
+          endDate: moment(),
+          minDate: '01/01/2012',
+          maxDate: '12/31/2015',
+          dateLimit: {
+            days: 60
+          },
+          showDropdowns: true,
+          showWeekNumbers: true,
+          timePicker: false,
+          timePickerIncrement: 1,
+          timePicker12Hour: true,
+          ranges: {
+            'Today': [moment(), moment()],
+            'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+            'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+            'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+            'This Month': [moment().startOf('month'), moment().endOf('month')],
+            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+          },
+          opens: 'left',
+          buttonClasses: ['btn btn-default'],
+          applyClass: 'btn-small btn-primary',
+          cancelClass: 'btn-small',
+          format: 'MM/DD/YYYY',
+          separator: ' to ',
+          locale: {
+            applyLabel: 'Submit',
+            cancelLabel: 'Clear',
+            fromLabel: 'From',
+            toLabel: 'To',
+            customRangeLabel: 'Custom',
+            daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+            monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+            firstDay: 1
+          }
+        };
+        $('#reportrange span').html(moment().subtract(29, 'days').format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
+        $('#reportrange').daterangepicker(optionSet1, cb);
+        $('#reportrange').on('show.daterangepicker', function() {
+          console.log("show event fired");
+        });
+        $('#reportrange').on('hide.daterangepicker', function() {
+          console.log("hide event fired");
+        });
+        $('#reportrange').on('apply.daterangepicker', function(ev, picker) {
+          console.log("apply event fired, start/end dates are " + picker.startDate.format('MMMM D, YYYY') + " to " + picker.endDate.format('MMMM D, YYYY'));
+        });
+        $('#reportrange').on('cancel.daterangepicker', function(ev, picker) {
+          console.log("cancel event fired");
+        });
+        $('#options1').click(function() {
+          $('#reportrange').data('daterangepicker').setOptions(optionSet1, cb);
+        });
+        $('#options2').click(function() {
+          $('#reportrange').data('daterangepicker').setOptions(optionSet2, cb);
+        });
+        $('#destroy').click(function() {
+          $('#reportrange').data('daterangepicker').remove();
+        });
+      });
+    </script>
+
+    <script>
+      $(document).ready(function() {
+      
+          $('#Arrival').daterangepicker({
+          singleDatePicker: true,
+          calender_style: "picker_2"
+        }, function(start, end, label) {
+          console.log(start.toISOString(), end.toISOString(), label);
+        });
+     
+       
+      });
+      $(document).ready(function () {
+
+          $('#dob').daterangepicker({
+              singleDatePicker: true,
+              calender_style: "picker_2"
+          }, function (start, end, label) {
+              console.log(start.toISOString(), end.toISOString(), label);
+          });
+
+
+      });
+      $(document).ready(function () {
+
+          $('#Depature').daterangepicker({
+              singleDatePicker: true,
+              calender_style: "picker_2"
+          }, function (start, end, label) {
+              console.log(start.toISOString(), end.toISOString(), label);
+          });
+
+
+      });
+      $(document).ready(function () {
+
+          $('#farrival').daterangepicker({
+              singleDatePicker: true,
+              calender_style: "picker_2"
+          }, function (start, end, label) {
+              console.log(start.toISOString(), end.toISOString(), label);
+          });
+
+
+      });
+      $(document).ready(function () {
+
+          $('#fdeparture').daterangepicker({
+              singleDatePicker: true,
+              calender_style: "picker_2"
+          }, function (start, end, label) {
+              console.log(start.toISOString(), end.toISOString(), label);
+          });
+
+
+      });
+      $(document).ready(function () {
+
+          $('#dateofissue').daterangepicker({
+              singleDatePicker: true,
+              calender_style: "picker_2"
+          }, function (start, end, label) {
+              console.log(start.toISOString(), end.toISOString(), label);
+          });
+
+
+      });
+      $(document).ready(function () {
+
+          $('#validupto').daterangepicker({
+              singleDatePicker: true,
+              calender_style: "picker_2"
+          }, function (start, end, label) {
+              console.log(start.toISOString(), end.toISOString(), label);
+          });
+
+
+      });
+      $(document).ready(function () {
+
+          $('#fdob').daterangepicker({
+              singleDatePicker: true,
+              calender_style: "picker_2"
+          }, function (start, end, label) {
+              console.log(start.toISOString(), end.toISOString(), label);
+          });
+
+
+      });
+      
+    </script>
+
+        <script>
+          $(document).ready(function() {
+            $('#reservation').daterangepicker(null, function(start, end, label) {
+              console.log(start.toISOString(), end.toISOString(), label);
+            });
+          });
+        </script>
+        <!-- /bootstrap-daterangepicker -->
 
 </asp:Content>
