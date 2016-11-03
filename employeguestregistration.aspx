@@ -4,7 +4,7 @@
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
     <script src="js/jquery-1.10.2.min.js"></script>
     <link href="Notifications/NotificationStyle.css" rel="stylesheet" />
-    <script src="js/NotificationJS.js"></script>
+  
     <script>
         $(document).ready(function(){
          
@@ -811,6 +811,7 @@
                 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+      
 <script>
 
   $.validate({
@@ -1083,5 +1084,5 @@
           });
         </script>
         <!-- /bootstrap-daterangepicker -->
-
+    <script src="js/NotificationJS.js"></script>
 </asp:Content>

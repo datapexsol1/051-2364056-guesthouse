@@ -26,7 +26,7 @@
     <link href="../vendors/fullcalendar/dist/fullcalendar.print.css" rel="stylesheet" media="print"/>
 
     <script src="js/ajax.js"></script>
-    <script src="js/NotificationJS.js"></script>
+    
      <link href="../vendors/normalize-css/normalize.css" rel="stylesheet">
     <link href="../vendors/ion.rangeSlider/css/ion.rangeSlider.css" rel="stylesheet">
     <link href="../vendors/ion.rangeSlider/css/ion.rangeSlider.skinFlat.css" rel="stylesheet">  
@@ -370,6 +370,7 @@
       });
     </script>
     <!-- /Bootstrap Colorpicker -->
+          <script src="js/NotificationJS.js"></script>
   </form> 
 </body>
 </html>
