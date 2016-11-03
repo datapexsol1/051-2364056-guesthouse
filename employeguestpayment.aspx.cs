@@ -286,6 +286,7 @@ public partial class employeguestpayment : System.Web.UI.Page
                     tp.total_bill = Gtotal.Text;
                     tp.paid_amount = tbpaidamount.Text;
                     tp.paymentdate = DateTime.Now;
+                    tp.payment_type = paymentDropdown.SelectedValue;
                     if (paymentDropdown.SelectedIndex == 2 && chaqueno.Text != "")  ///Cheque is on index 2 
                     {
                         tp.chaqueno = chaqueno.Text;
