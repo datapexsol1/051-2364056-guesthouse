@@ -8,7 +8,7 @@ $(document).ready(function () {
     });
 
 });
-var timer;
+$timer=0;
 
 
     function ShowNotification(status, msg) {
