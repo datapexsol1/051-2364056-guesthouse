@@ -92,6 +92,9 @@ public partial class ctownDataContext : System.Data.Linq.DataContext
   partial void Inserttotal_payment(total_payment instance);
   partial void Updatetotal_payment(total_payment instance);
   partial void Deletetotal_payment(total_payment instance);
+  partial void Insertadmin_notification(admin_notification instance);
+  partial void Updateadmin_notification(admin_notification instance);
+  partial void Deleteadmin_notification(admin_notification instance);
   #endregion
 	
 	public ctownDataContext() : 
@@ -289,6 +292,14 @@ public partial class ctownDataContext : System.Data.Linq.DataContext
 		get
 		{
 			return this.GetTable<total_payment>();
+		}
+	}
+	
+	public System.Data.Linq.Table<admin_notification> admin_notifications
+	{
+		get
+		{
+			return this.GetTable<admin_notification>();
 		}
 	}
 }
@@ -5242,6 +5253,212 @@ public partial class total_payment : INotifyPropertyChanging, INotifyPropertyCha
 				this._payment_type = value;
 				this.SendPropertyChanged("payment_type");
 				this.Onpayment_typeChanged();
+			}
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+		}
+	}
+}
+
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.admin_notification")]
+public partial class admin_notification : INotifyPropertyChanging, INotifyPropertyChanged
+{
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private int _Id;
+	
+	private int _eid;
+	
+	private int _branch_id;
+	
+	private System.DateTime _time;
+	
+	private string _table_name;
+	
+	private int _Changed_row_id;
+	
+	private string _operation_type;
+	
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OneidChanging(int value);
+    partial void OneidChanged();
+    partial void Onbranch_idChanging(int value);
+    partial void Onbranch_idChanged();
+    partial void OntimeChanging(System.DateTime value);
+    partial void OntimeChanged();
+    partial void Ontable_nameChanging(string value);
+    partial void Ontable_nameChanged();
+    partial void OnChanged_row_idChanging(int value);
+    partial void OnChanged_row_idChanged();
+    partial void Onoperation_typeChanging(string value);
+    partial void Onoperation_typeChanged();
+    #endregion
+	
+	public admin_notification()
+	{
+		OnCreated();
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+	public int Id
+	{
+		get
+		{
+			return this._Id;
+		}
+		set
+		{
+			if ((this._Id != value))
+			{
+				this.OnIdChanging(value);
+				this.SendPropertyChanging();
+				this._Id = value;
+				this.SendPropertyChanged("Id");
+				this.OnIdChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_eid", DbType="Int NOT NULL")]
+	public int eid
+	{
+		get
+		{
+			return this._eid;
+		}
+		set
+		{
+			if ((this._eid != value))
+			{
+				this.OneidChanging(value);
+				this.SendPropertyChanging();
+				this._eid = value;
+				this.SendPropertyChanged("eid");
+				this.OneidChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_branch_id", DbType="Int NOT NULL")]
+	public int branch_id
+	{
+		get
+		{
+			return this._branch_id;
+		}
+		set
+		{
+			if ((this._branch_id != value))
+			{
+				this.Onbranch_idChanging(value);
+				this.SendPropertyChanging();
+				this._branch_id = value;
+				this.SendPropertyChanged("branch_id");
+				this.Onbranch_idChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_time", DbType="DateTime NOT NULL")]
+	public System.DateTime time
+	{
+		get
+		{
+			return this._time;
+		}
+		set
+		{
+			if ((this._time != value))
+			{
+				this.OntimeChanging(value);
+				this.SendPropertyChanging();
+				this._time = value;
+				this.SendPropertyChanged("time");
+				this.OntimeChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_table_name", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+	public string table_name
+	{
+		get
+		{
+			return this._table_name;
+		}
+		set
+		{
+			if ((this._table_name != value))
+			{
+				this.Ontable_nameChanging(value);
+				this.SendPropertyChanging();
+				this._table_name = value;
+				this.SendPropertyChanged("table_name");
+				this.Ontable_nameChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Changed_row_id", DbType="Int NOT NULL")]
+	public int Changed_row_id
+	{
+		get
+		{
+			return this._Changed_row_id;
+		}
+		set
+		{
+			if ((this._Changed_row_id != value))
+			{
+				this.OnChanged_row_idChanging(value);
+				this.SendPropertyChanging();
+				this._Changed_row_id = value;
+				this.SendPropertyChanged("Changed_row_id");
+				this.OnChanged_row_idChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_operation_type", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+	public string operation_type
+	{
+		get
+		{
+			return this._operation_type;
+		}
+		set
+		{
+			if ((this._operation_type != value))
+			{
+				this.Onoperation_typeChanging(value);
+				this.SendPropertyChanging();
+				this._operation_type = value;
+				this.SendPropertyChanged("operation_type");
+				this.Onoperation_typeChanged();
 			}
 		}
 	}

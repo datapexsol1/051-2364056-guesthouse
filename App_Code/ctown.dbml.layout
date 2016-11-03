@@ -128,5 +128,11 @@
         <elementListCompartment Id="dbf40352-3f06-4e93-939c-7dce0ded9a63" absoluteBounds="2.015, 28.21, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
+    <classShape Id="92f561b5-3839-4aec-a1b6-74f983f7d981" absoluteBounds="2.375, 2.5, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/ctownDataContext/admin_notification" />
+      <nestedChildShapes>
+        <elementListCompartment Id="81e844de-338a-4afe-8066-0c5fc76e1ca9" absoluteBounds="2.39, 2.96, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>
