@@ -207,18 +207,6 @@
       <Column Name="delivery" Type="System.String" DbType="NChar(3) NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
-  <Table Name="dbo.total_payment" Member="total_payments">
-    <Type Name="total_payment">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="booking_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="total_rent" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
-      <Column Name="facility_total_payment" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
-      <Column Name="total_bill" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
-      <Column Name="paid_amount" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
-      <Column Name="paymentdate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="employee_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
   <Table Name="dbo.employesalary" Member="employesalaries">
     <Type Name="employesalary">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -254,6 +242,20 @@
       <Column Name="BranchId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="bill_description" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
       <Column Name="employee_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.total_payment" Member="total_payments">
+    <Type Name="total_payment">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="booking_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="total_rent" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="facility_total_payment" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="total_bill" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="paid_amount" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="paymentdate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="employee_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="chaqueno" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="payment_type" Type="System.String" DbType="VarChar(13)" CanBeNull="true" />
     </Type>
   </Table>
 </Database>
