@@ -1,27 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EmployePanel.master" AutoEventWireup="true" CodeFile="employeerooms.aspx.cs" Inherits="employeerooms" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
-   <style>
-       .tbl{
-           margin-left:-20px;
-       }
-   </style>
-   
-</asp:Content>
-
-
-
-
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-
- <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!-- Meta, title, CSS, favicons, etc. -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title></title>
 
     <!-- Bootstrap -->
     <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -32,8 +11,42 @@
 
     <!-- Custom Theme Style -->
     <link href="../custom/custom.min.css" rel="stylesheet">
-    </head>
+
+   <style>
+       .tbl{
+           margin-left:-20px;
+       }
+   </style>
+   <script>
+       function InsertAddRoomsValues() {
+           $("input[name=roomno]").val("000");
+           $("input[name=roomtype]").val("000");
+           $("input[name=roomsize]").val("000");
+           $("input[name=roommaxrent]").val("000");
+           $("input[name=roomminrent]").val("000");
+           $("input[name=roombranch]").val("Islamabad");
+
+           //document.getElementById("roomno").value = "abc";
+           //document.getElementById("roomtype").value = "abc";
+           //document.getElementById("roomsize").value = "abc";
+           //document.getElementById("roommaxrent").value = "123";
+           //document.getElementById("roomminrent").value = "123";
+           //document.getElementById("roombranch").value = "Islamabad";
+           alert("hello");
+       }
+   </script>
+</asp:Content>
+
+
+
+
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
      
+
+  
+        <div id="Notify"></div>
+     <div class="messagealert" id="alert_container"  style=" opacity: 0;transition: visibility 0s 2s, opacity 2s linear;">  </div> 
+
       <div class="right_col" role="main">
     <div class="row">
      <div class="col-md-12 col-sm-12 col-xs-12">
@@ -45,8 +58,9 @@
                         <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
                           <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Rooms</a></li>
                           
-                          <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Add Rooms</a></li>
-                            
+                          <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Add Rooms</a></li>
+                          <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false" onclick="InsertAddRoomsValues()">Update Rooms</a></li>
+
                           
                         </ul>
                         <div id="myTabContent" class="tab-content">
@@ -106,7 +120,7 @@
                          
                             
                             
-                          <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
+                          <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
                              
                               
                                    <div class="form-group col-md-6">
@@ -130,8 +144,8 @@
                         <label class="control-label col-md-4 " for="room size">Room Size <span class="required">*</span>
                         </label>
                         <div class="col-md-8">
-                          <input type="text" id="roomsize" name="roomsize"  placeholder="Room size" class="form-control " data-validation="length alphanumeric" 
-		 data-validation-length="3-12" 
+                          <input type="text" id="roomsize" name="roomsize"  placeholder="Room size" class="form-control " data-validation="required" 
+
 		 data-validation-error-msg="Room size is not in correct format"/>
                         </div>
                       </div>
@@ -157,7 +171,7 @@
                         <label class="control-label col-md-4 " for="branch no">Branch <span class="required">*</span>
                         </label>
                         <div class="col-md-8">
-                        <select class="form-control" name="roombranch" required="required">
+                        <select class="form-control" name="roombranch" >
                              <option value="">Select</option>
                              <% IQueryable<branch> brachdata=branchClass.getBrachesinfo();
                                           foreach (var b in brachdata)
@@ -168,19 +182,66 @@
                         </div>
                       </div>
                               <div class="form-group">
-                        <div class="col-md-6 col-md-offset-11">
-                          <asp:Button ID="saveroom" runat="server" Text="Save Room" OnClick="saveroom_click" />
+                        <div class="col-md-6 col-md-offset-1">
+                          <asp:Button ID="saveroom" runat="server" Text="Save Room" OnClick="saveroom_click" CssClass="btn btn-success" />
                         </div>
                       </div>
-                              
+                           
                               
                               
                               
                               
                               
                           </div>
+                            <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
+                                <div class="form-group col-md-12">
+                                      <asp:DropDownList runat="server" ID="ddRoomNo" ClientIDMode="Static" OnSelectedIndexChanged="ddRoomNoIndexChanged" AutoPostBack="true"  CssClass="btn btn-default">
+                                      </asp:DropDownList> 
+                                </div>
+                                <div class="row">
+                                  <div class="form-group col-md-6">
+                                    <label class="control-label col-md-4 " for="room rent">Room No (optional) <span class="required">*</span></label>
+                                    <div class="col-md-8">
+                                      <input type="text" id="roomnoupdate" name="roomnoupdate" runat="server" placeholder="Select Room no" class="form-control "/>
+                                    </div>
+                                  </div>
+                                <div class="form-group col-md-6">
+                                    <label class="control-label col-md-4 " for="room rent">Room type (optional) <span class="required">*</span></label>
+                                    <div class="col-md-8">
+                                      <input type="text" id="roomtypeupdate" name="roomtypeupdate" runat="server"  placeholder="Select Room type" class="form-control "/>
+                                    </div>
+                                  </div>
+                                    </div>
+                                
+                                <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label class="control-label col-md-4 " for="room rent">Minimum Room rent (optional) <span class="required">*</span></label>
+                                    <div class="col-md-8">
+                                      <input type="number" id="roomminrentupdate" name="roomminrentupdate" runat="server"  placeholder="Select minimum Room Rent" class="form-control "/>
+                                    </div>
+                                  </div>
+                                    <div class="form-group col-md-6">
+                                    <label class="control-label col-md-4 " for="room rent">Maximum Room rent (optional) <span class="required">*</span></label>
+                                    <div class="col-md-8">
+                                      <input type="number" id="roommaxrentupdate" name="roommaxrentupdate" runat="server"  placeholder="Select maximum Room type" class="form-control "/>
+                                    </div>
+                                  </div>
+                                    </div>
+                                <div class="row">
+                                  <div class="form-group col-md-6">
+                                    <label class="control-label col-md-4 " for="room rent">Room Size (optional) <span class="required">*</span></label>
+                                    <div class="col-md-8">
+                                      <input type="text" id="roomsizeupdate" name="roomsizeupdate" runat="server" placeholder="Select Room size" class="form-control "/>
+                                    </div>
+                                  </div>
+                                    </div>
+                                <asp:Button runat="server" Text="Update" OnClick="updateRoomInfo" CssClass="btn btn-success" />
+                          </div>
+                            
                         </div>
+       
                       </div>
+                  
          </div>
          </div>
          </div>

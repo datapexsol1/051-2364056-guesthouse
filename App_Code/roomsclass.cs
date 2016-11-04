@@ -35,16 +35,18 @@ public class roomsclass
             try
             {
                 db.SubmitChanges();
+                return true;
             }
             catch (ChangeConflictException e)
             {
                 //report error, log error whatever...
+                return false;
             }
-            return true;
+            
         }
         else
         {
-            return true;
+            return false;
         }
 
         
@@ -57,6 +59,15 @@ public class roomsclass
                    where r.availbilty=="yes" && r.branch_id==bid
                    select r;
         return rom;
+    }
+    public static int getAvailableRoomNos(int bid)
+    {
+        ctownDataContext db = new ctownDataContext();
+        int num = (from r in db.rooms
+
+                               where r.availbilty == "yes" && r.branch_id == bid
+                               select r).Count();
+        return num;
     }
     public static IQueryable<room> getBookedROoms(int bid)
     {
