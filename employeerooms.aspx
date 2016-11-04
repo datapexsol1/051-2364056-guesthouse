@@ -248,7 +248,7 @@
         </div>
           </div>
     </div>
-    <%-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>--%>
+     <%--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>--%>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
 <script>
 
@@ -265,8 +265,8 @@
 </script>
 
       <!-- jQuery -->
-    <%--<script src="../vendors/jquery/dist/jquery.min.js"></script>--%>
-  
+   <%-- <script src="../vendors/jquery/dist/jquery.min.js"></script>
+  --%>
     <!-- FastClick -->
     <script src="../vendors/fastclick/lib/fastclick.js"></script>
     <!-- NProgress -->
@@ -279,5 +279,9 @@
     <!-- bootstrap-daterangepicker -->
     <script src="js/moment/moment.min.js"></script>
     <script src="js/datepicker/daterangepicker.js"></script>
- </asp:Content>
+    
+
+   
+   
+</asp:Content>
 

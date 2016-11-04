@@ -187,25 +187,20 @@ public class billclass
     {
         //   abamount
         ctownDataContext db = db = new ctownDataContext();
-        int check = (from x in db.bills
-                     where x.BranchId == bid && x.BillType == "House Rent"
-                     select x).Count();
-        if (check >= 1)
+        bill b = new bill();
+        try
         {
-            bill b = (from x in db.bills
+            b = (from x in db.bills
                       orderby x.Date ascending
                       where x.BranchId == bid && x.BillType == "House Rent"
                       select x).First();
-
             return b;
         }
-        else
+        catch
         {
             return null;
         }
-
-
-
+        
     }
     
 }

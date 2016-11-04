@@ -234,11 +234,6 @@
             endDate [<%=i%>]=  "<%=ec.event_end_date %>";
             color [<%=i%>]=  "<%=ec.event_color %>";
             <% i++;}%>
-         //   alert(eventTitle[1]);
-           // alert(eventDisc[1]);
-          
-            //my code*********
-
             var getEvent = []; 
             for(var i = 0;i < eventTitle.length;i++)
             {
@@ -249,15 +244,10 @@
                 var end_Date = endDate[i];
                 var eve_desc = eventDisc[i];
                 var eve_color = color[i];
-                // array of events
-                //var getEvent = [];  <-- move it out of loop
-                // inserting data from database to getEvent array
                 var insertEvents = [];
-                
                 insertEvents =
                 {
                     title: 'Title : '+primaryAsset+'\nDescription : '+eve_desc,
-                    // description:eve_desc,
                     start: release_Date,
                     end:end_Date,
                     color:eve_color
