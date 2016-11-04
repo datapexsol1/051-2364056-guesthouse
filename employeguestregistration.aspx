@@ -172,11 +172,11 @@
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+        <div id="Notify"></div>
+     <div class="messagealert" id="alert_container"  style=" opacity: 0;transition: visibility 0s 2s, opacity 2s linear;">  </div>  
     <div class="right_col" role="main">
           <div class="">
-               <div class="messagealert" id="alert_container"  style=" 
-  opacity: 0;
-  transition: visibility 0s 2s, opacity 2s linear;">  </div>                	  
+                     	  
 
             <div class="page-title">
               <div class="title_left">

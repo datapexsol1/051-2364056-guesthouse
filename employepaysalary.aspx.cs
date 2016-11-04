@@ -144,7 +144,7 @@ public partial class employepaysalary : System.Web.UI.Page
             tbupdate.Visible = false;
 
 
-            admin_notification_class.addnotification(eid, bid, DateTime.Now, admin_notification_class.TableNames.event_calender.ToString(), hiddenid, admin_notification_class.CommandType.Update.ToString());
+            admin_notification_class.addnotification(eid, bid, DateTime.Now, admin_notification_class.TableNames.bill.ToString(), hiddenid, admin_notification_class.CommandType.Update.ToString());
             msg = "Successfully updated the information";
             type = "Success";
 

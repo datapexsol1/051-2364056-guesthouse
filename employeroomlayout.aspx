@@ -77,7 +77,20 @@
 </table>
         <br /><br />
         <h2>Selected Rooms</h2>
-<textarea id='t' name='roomselected' class='input' >Seats:</textarea><br>
+       <%
+           int totalNoOfRooms = roomsclass.getAvailableRoomNos(employeeProfile.getEmployeBranch(Session["loginName"].ToString()));
+           if (totalNoOfRooms >= 1)
+           {
+               %>
+        <textarea id='t' name='roomselected' class='input' placeholder="Select room" required="required">Seats:</textarea><br/>
+ <%          }
+    else
+    {
+         %>
+         <h3> No rooms Available</h3>
+
+ <%   }%>
+
 
 
         </div></div>

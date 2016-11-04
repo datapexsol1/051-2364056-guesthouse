@@ -12,6 +12,7 @@ public partial class employeguestregistration : System.Web.UI.Page
     {
         ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "ShowMessage('" + Message + "','" + type + "');", true);
     }
+    string msg, type;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Session["loginId"] == null)
@@ -148,13 +149,18 @@ public partial class employeguestregistration : System.Web.UI.Page
             bool check = gusetRegistrationClass.bookRooms(r);
             if(check==true)
             {
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('Success','Information has been saved successfully !');</script>");
+                admin_notification_class.addnotification(employeeProfile.getEmployeid(Session["loginName"].ToString()), bid, DateTime.Now, admin_notification_class.TableNames.guests.ToString(), employeeProfile.getEmployeid(Session["loginName"].ToString()), admin_notification_class.CommandType.Add.ToString());
+                msg = "Successfully updated the information";
+                type = "Success";
 
             }
             else
             {
-
+                msg = "There is some error";
+                type = "Error";
             }
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('" + type + "','" + msg + "');</script>");
+          
         }
           
 
