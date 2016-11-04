@@ -5,7 +5,11 @@
     <link href="../vendors/normalize-css/normalize.css" rel="stylesheet">
     <link href="../vendors/ion.rangeSlider/css/ion.rangeSlider.css" rel="stylesheet">
     <link href="../vendors/ion.rangeSlider/css/ion.rangeSlider.skinFlat.css" rel="stylesheet">
+    <link href="build/css/style.css" rel="stylesheet" />
      <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <link href="Notifications/NotificationStyle.css" rel="stylesheet" />
+        <script src="js/jquery-1.10.2.min.js"></script>
+    <script src="js/NotificationJS.js"></script>
 <script type="text/javascript">
 
     $(function () {
@@ -24,7 +28,27 @@
 
     };
     
-   
+    function ShowMessage(message, messagetype) {
+        var cssclass;
+        switch (messagetype) {
+            case 'Success':
+                cssclass = 'alert-success'
+                break;
+            case 'Error':
+                cssclass = 'alert-danger'
+                break;
+            case 'Warning':
+                cssclass = 'alert-warning'
+                break;
+            default:
+                cssclass = 'alert-info'
+        }
+        $('#alert_container').append('<div id="alert_div" style="margin-top:40px;margin-left:100px;width:50%; -webkit-box-shadow: 3px 4px 6px #999;" class="alert fade in ' + cssclass + '"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>' + messagetype + '!</strong> <span>' + message + '</span></div>');
+        $('#alert_container').fadeIn("slow");
+       var timer = setTimeout(function () {
+           $('#alert_container').fadeOut();
+        }, 4000);
+    }
 </script>
     <style type="text/css">
 #dvPreview
@@ -63,11 +87,14 @@
 </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+     <div id="Notify"></div>
     <div class="right_col" role="main">
+       <div class="messagealert" id="alert_container"  style=" opacity: 0;transition: visibility 0s 2s, opacity 2s linear;">  </div>  
     <div class="row">
      <div class="col-md-12 col-sm-12 col-xs-12">
      <div class="x_content">
      <div class="col-md-9 col-sm-9 col-xs-12">
+         
          <h3>Employee Info</h3>
           <div class="container">
                     <%
@@ -174,11 +201,11 @@
                                   
                                   
                          </div>         
-              <asp:Button ID="updatebutton" runat="server" Text="Submit" class="btn btn-success" OnClick="update_Click"/>
+              <%--<asp:Button ID="updatebutton" runat="server" Text="Submit" class="btn btn-success" OnClick="update_Click" CausesValidation="false"/>--%>
                                  
                             <%--<button id="updatebutton" type="submit" class="btn btn-success" onserverclick="update_Click" runat="server">Submit</button>--%>        
                                     
-              <%--<a href="#" id="updatebutton" onserverclick="update_Click" runat="server" class="btn btn-success" >Update</a>--%>
+              <a href="#" id="updatebutton" onserverclick="update_Click" runat="server" class="btn btn-success" >Update</a>
     
 
           </div>

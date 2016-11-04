@@ -51,6 +51,7 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+    <div id="Notify"></div>
     <%  
         event_calender eventInfo = new event_calender();
         if (!string.IsNullOrEmpty(Request.QueryString["id"]))
@@ -82,7 +83,8 @@
      <div class="col-md-12 col-sm-12 col-xs-12">
      <div class="x_content">
      <div class="col-md-9 col-sm-9 col-xs-12">
-                 <div class="messagealert" id="alert_container">  </div>	
+                       <div class="messagealert" id="alert_container"  style=" opacity: 0;transition: visibility 0s 2s, opacity 2s linear;">  </div>  
+	
          <h3>Update Events</h3>
 
 

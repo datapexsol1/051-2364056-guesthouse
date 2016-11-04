@@ -15,7 +15,7 @@ public class employeeProfile
         // TODO: Add constructor logic here
         //
     }
-    public static void addemployesalary(employesalary es)
+    public static bool addemployesalary(employesalary es)
     {
         ctownDataContext db = new ctownDataContext();
         int check = (from x in db.employesalaries
@@ -25,6 +25,11 @@ public class employeeProfile
         {
             db.employesalaries.InsertOnSubmit(es);
             db.SubmitChanges();
+            return true;
+        }
+        else
+        {
+            return false;
         }
 
     }
@@ -245,31 +250,45 @@ public class employeeProfile
             return emp1;
         }
     }
-    public static void updateEmployeeInfo(employee emp, int val, int branchid)
+    public static bool updateEmployeeInfo(employee emp, int val, int branchid)
     {
         ctownDataContext db = new ctownDataContext();
-        var ra = (from x in db.employees
-                  where x.Id == val && x.branch_id == branchid
-                  select x).First();
-        ra.name = emp.name;
-        ra.email = emp.email;
-        ra.employee_no = emp.employee_no;
-        ra.cnic = emp.cnic;
-        ra.designation = emp.designation;
-        ra.dateofjoining = emp.dateofjoining;
-        ra.address = emp.address;
-        ra.salary = emp.salary;
-        if (emp.image != null)
-        {
-            ra.image = emp.image;
+        try {
+            var ra = (from x in db.employees
+                      where x.Id == val && x.branch_id == branchid
+                      select x).First();
+            ra.name = emp.name;
+            ra.email = emp.email;
+            ra.employee_no = emp.employee_no;
+            ra.cnic = emp.cnic;
+            ra.designation = emp.designation;
+            ra.dateofjoining = emp.dateofjoining;
+            ra.address = emp.address;
+            ra.salary = emp.salary;
+            if (emp.image != null)
+            {
+                ra.image = emp.image;
+            }
+
+            int check = (from y in db.employees
+                         where y.Id == ra.Id
+                         select y).Count();
+            if (check == 1)
+            {
+                db.SubmitChanges();
+                return true;
+                
+            }
+            else
+            {
+                return false;
+            }
         }
-        int check = (from y in db.employees
-                     where y.Id == ra.Id
-                     select y).Count();
-        if (check == 1)
+        catch
         {
-            db.SubmitChanges();
+            return false;
         }
+        
     }
     public static int getEmployeeId(string name)
     {
@@ -277,6 +296,16 @@ public class employeeProfile
 
         int id = (from x in db.employees
                   where x.name == name
+                  select x.Id).First();
+        return id;
+
+    }
+    public static int getEmployeeIDbyusername(string name)
+    {
+        ctownDataContext db = new ctownDataContext();
+
+        int id = (from x in db.employees
+                  where x.username == name
                   select x.Id).First();
         return id;
 

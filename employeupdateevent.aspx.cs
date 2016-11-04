@@ -12,6 +12,7 @@ public partial class employeupdateevent : System.Web.UI.Page
     {
         ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "ShowMessage('" + Message + "','" + type + "');", true);
     }
+    string msg, type;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Session["loginId"] == null)
@@ -22,6 +23,7 @@ public partial class employeupdateevent : System.Web.UI.Page
 
     protected void eventsubmit_Click(object sender, EventArgs e)
     {
+        int branchID = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
         int employID = int.Parse(Session["loginId"].ToString());
         int id = int.Parse(updatehiddenid.Value);//int.Parse(Request.Form["updatehiddenid"].ToString());
         event_calender ev = new event_calender();
@@ -34,8 +36,18 @@ public partial class employeupdateevent : System.Web.UI.Page
         bool check = events.updateEvent(ev,id);
         if (check == true)
         {
-            ShowMessage("Successfully updated information", MessageType.Success);
-            Response.Redirect("employeindex.aspx");
+            admin_notification_class.addnotification(employID, branchID, DateTime.Now, admin_notification_class.TableNames.event_calender.ToString(), employID, admin_notification_class.CommandType.Update.ToString());
+            msg = "Successfully updated the information";
+            type = "Success";
+            ScriptManager.RegisterClientScriptBlock(this, typeof(Page), "redirectJS", "setTimeout(function() { window.location.replace('employeevents.aspx') }, 4500);", true);
+
         }
+        else
+        {
+            msg = "There is some error";
+            type = "Error";
+        }
+        Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('" + type + "','" + msg + "');</script>");
+
     }
 }

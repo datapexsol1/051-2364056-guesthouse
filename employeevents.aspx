@@ -25,6 +25,8 @@
     <link href="../vendors/cropper/dist/cropper.min.css" rel="stylesheet">
     <!-- Custom Theme Style -->
     <link href="../custom/custom.min.css" rel="stylesheet">
+
+    
     <script>
         function activaTab(tab) {
 
@@ -45,6 +47,8 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
             <%--<%Session["updateEventID"] = id;%> --%>  
+    <div id="Notify"></div>
+     <div class="messagealert" id="alert_container"  style=" opacity: 0;transition: visibility 0s 2s, opacity 2s linear;">  </div>  
      
       <div class="right_col" role="main">
     <div class="row">
@@ -148,8 +152,7 @@
                                 <div class="row">
                                      <div class="col-md-5">
                                          <b>Event name</b>
-                                            <input runat="server" type="text" id="eventname" name="eventname" placeholder="Event name..." data-validation="length alphanumeric" 
-		 data-validation-length="3-25" 
+                                            <input runat="server" type="text" id="eventname" name="eventname" placeholder="Event name..." data-validation="required"    
 		 data-validation-error-msg="Enter event" class="form-control"/>
                                          </div>
                                 
@@ -161,23 +164,25 @@
                                 <div class="row">
                                      <div class="col-md-5">
                                          <b>Event start date</b>
-                                            <input  type="date" id="eventstartdate" data-validation="required" 
 
-		 data-validation-error-msg="Select date" name="eventstartdate"  class="form-control" runat="server"/>
+                                            <input  type="text" id="eventstartdate" data-validation="required" 
+
+		 data-validation-error-msg="Select date" name="eventstartdate"  class="form-control"/>
                                          </div>
                                
                                      <div class="col-md-5">
                                          <b>Event end date</b>
-                                            <input  type="date" id="eventenddate"  name="eventenddate" data-validation="required" 
+                                            <input  type="text" id="eventenddate"  name="eventenddate" data-validation="required" 
 
-		 data-validation-error-msg="Select date"  placeholder="Select date..." class="form-control" runat="server"/>
+		 data-validation-error-msg="Select date"  placeholder="Select date..." class="form-control" />
                                          </div>
                                 </div>
+                                    
                                 <div class="row">
                         <div class="col-md-5">
                           <div class="input-group demo2">
                               <b>Event color</b>
-                            <input type="text"  placeholder="Select color.." class="form-control" runat="server" id="eventcolor" data-validation="required" 
+                            <input type="text"  placeholder="Select color.." class="form-control" runat="server" id="eventcolor" value="#000000" data-validation="required" 
 
 		 data-validation-error-msg="Enter event color" name="eventcolor"/>
                             <span class="input-group-addon"><i></i></span>
@@ -219,6 +224,192 @@
     
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+
+  
+     <!-- bootstrap-daterangepicker -->
+    <script>
+      $(document).ready(function() {
+        var cb = function(start, end, label) {
+          console.log(start.toISOString(), end.toISOString(), label);
+          $('#reportrange_right span').html(start.format("dd-mm-yy") + ' - ' + end.format("dd-mm-yy"));
+        };
+
+        var optionSet1 = {
+          startDate: moment().subtract(29, 'days'),
+          endDate: moment(),
+          minDate: '01/01/2012',
+          maxDate: '12/31/2015',
+          dateLimit: {
+            days: 60
+          },
+          showDropdowns: true,
+          showWeekNumbers: true,
+          timePicker: false,
+          timePickerIncrement: 1,
+          timePicker12Hour: true,
+          ranges: {
+            'Today': [moment(), moment()],
+            'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+            'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+            'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+            'This Month': [moment().startOf('month'), moment().endOf('month')],
+            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+          },
+          opens: 'right',
+          buttonClasses: ['btn btn-default'],
+          applyClass: 'btn-small btn-primary',
+          cancelClass: 'btn-small',
+          format: "dd-mm-yy",
+          separator: ' to ',
+          locale: {
+            applyLabel: 'Submit',
+            cancelLabel: 'Clear',
+            fromLabel: 'From',
+            toLabel: 'To',
+            customRangeLabel: 'Custom',
+            daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+            monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+            firstDay: 1
+          }
+        };
+
+        $('#reportrange_right span').html(moment().subtract(29, 'days').format("dd-mm-yy") + ' - ' + moment().format("dd-mm-yy"));
+
+        $('#reportrange_right').daterangepicker(optionSet1, cb);
+
+        $('#reportrange_right').on('show.daterangepicker', function() {
+          console.log("show event fired");
+        });
+        $('#reportrange_right').on('hide.daterangepicker', function() {
+          console.log("hide event fired");
+        });
+        $('#reportrange_right').on('apply.daterangepicker', function(ev, picker) {
+            console.log("apply event fired, start/end dates are " + picker.startDate.format("dd-mm-yy") + " to " + picker.endDate.format("dd-mm-yy"));
+        });
+        $('#reportrange_right').on('cancel.daterangepicker', function(ev, picker) {
+          console.log("cancel event fired");
+        });
+
+        $('#options1').click(function() {
+          $('#reportrange_right').data('daterangepicker').setOptions(optionSet1, cb);
+        });
+
+        $('#options2').click(function() {
+          $('#reportrange_right').data('daterangepicker').setOptions(optionSet2, cb);
+        });
+
+        $('#destroy').click(function() {
+          $('#reportrange_right').data('daterangepicker').remove();
+        });
+
+      });
+    </script>
+
+    <script>
+      $(document).ready(function() {
+        var cb = function(start, end, label) {
+          console.log(start.toISOString(), end.toISOString(), label);
+          $('#reportrange span').html(start.format("dd-mm-yy") + ' - ' + end.format("dd-mm-yy"));
+        };
+
+        var optionSet1 = {
+          startDate: moment().subtract(29, 'days'),
+          endDate: moment(),
+          minDate: '01/01/2012',
+          maxDate: '12/31/2015',
+          dateLimit: {
+            days: 60
+          },
+          showDropdowns: true,
+          showWeekNumbers: true,
+          timePicker: false,
+          timePickerIncrement: 1,
+          timePicker12Hour: true,
+          ranges: {
+            'Today': [moment(), moment()],
+            'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+            'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+            'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+            'This Month': [moment().startOf('month'), moment().endOf('month')],
+            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+          },
+          opens: 'left',
+          buttonClasses: ['btn btn-default'],
+          applyClass: 'btn-small btn-primary',
+          cancelClass: 'btn-small',
+          format: "dd-mm-yy",
+          separator: ' to ',
+          locale: {
+            applyLabel: 'Submit',
+            cancelLabel: 'Clear',
+            fromLabel: 'From',
+            toLabel: 'To',
+            customRangeLabel: 'Custom',
+            daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+            monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+            firstDay: 1
+          }
+        };
+        $('#reportrange span').html(moment().subtract(29, 'days').format("dd-mm-yy") + ' - ' + moment().format("dd-mm-yy"));
+        $('#reportrange').daterangepicker(optionSet1, cb);
+        $('#reportrange').on('show.daterangepicker', function() {
+          console.log("show event fired");
+        });
+        $('#reportrange').on('hide.daterangepicker', function() {
+          console.log("hide event fired");
+        });
+        $('#reportrange').on('apply.daterangepicker', function(ev, picker) {
+            console.log("apply event fired, start/end dates are " + picker.startDate.format('D MMMM, YYYY') + " to " + picker.endDate.format('D MMMM, YYYY'));
+        });
+        $('#reportrange').on('cancel.daterangepicker', function(ev, picker) {
+          console.log("cancel event fired");
+        });
+        $('#options1').click(function() {
+          $('#reportrange').data('daterangepicker').setOptions(optionSet1, cb);
+        });
+        $('#options2').click(function() {
+          $('#reportrange').data('daterangepicker').setOptions(optionSet2, cb);
+        });
+        $('#destroy').click(function() {
+          $('#reportrange').data('daterangepicker').remove();
+        });
+      });
+    </script>
+
+    <script>
+        
+       
+      $(document).ready(function() {
+      
+          $('#eventstartdate').daterangepicker({
+          singleDatePicker: true,
+          calender_style: "picker_2"
+        }, function(start, end, label) {
+          console.log(start.toISOString(), end.toISOString(), label);
+        });
+     
+       
+      });
+      $(document).ready(function () {
+
+          $('#eventenddate').daterangepicker({
+              singleDatePicker: true,
+              calender_style: "picker_2"
+          }, function (start, end, label) {
+              console.log(start.toISOString(), end.toISOString(), label);
+          });
+      });
+    </script>
+
+        <script>
+          $(document).ready(function() {
+            $('#reservation').daterangepicker(null, function(start, end, label) {
+              console.log(start.toISOString(), end.toISOString(), label);
+            });
+          });
+        </script>
+        <!-- /bootstrap-daterangepicker -->
+
 <script>
 
   $.validate({

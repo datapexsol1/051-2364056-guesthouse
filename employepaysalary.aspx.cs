@@ -9,6 +9,7 @@ using System.Web.UI.WebControls;
 
 public partial class employepaysalary : System.Web.UI.Page
 {
+    string msg, type;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Session["loginId"] == null)
@@ -40,17 +41,35 @@ public partial class employepaysalary : System.Web.UI.Page
         if (tbpaidvalue.Value != null && tbpaidvalue.Value != "")
         {
             //int id=int.Parse(Request.QueryString["id"]);
+            int branchID = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
+            int employID = employeeProfile.getEmployeid(Session["loginName"].ToString());
             employesalary es = new employesalary();
             es.employe_id = int.Parse(tbid.Value);
             es.payment_date = DateTime.Now;
             //string str = "paidamount" + id;
             es.amount = tbpaidvalue.Value;//Request.Form[str].ToString();
-            employeeProfile.addemployesalary(es);
+            bool check = employeeProfile.addemployesalary(es);
+            if (check == true)
+            {
+                admin_notification_class.addnotification(employID, branchID, DateTime.Now, admin_notification_class.TableNames.event_calender.ToString(), int.Parse(tbid.Value), admin_notification_class.CommandType.Update.ToString());
+                msg = "Successfully updated the information";
+                type = "Success";
+
+            }
+            else
+            {
+                msg = "There is some error";
+                type = "Error";
+            }
+           
+
         }
         else
         {
-
+            msg = "There is some error";
+            type = "Error";
         }
+        Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('" + type + "','" + msg + "');</script>");
     }
     protected void ddemployeenameselectedindexchange(object sender, EventArgs e)
     {
@@ -109,6 +128,7 @@ public partial class employepaysalary : System.Web.UI.Page
         if (check == true)
         {
             int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
+            int eid = employeeProfile.getEmployeid(Session["loginName"].ToString());
             List<employee> emp = employeeProfile.getunpaidemploye(bid);
             IQueryable<employee> bemploye = employeeProfile.getAllEmployee(bid);
             List<string> lname = new List<string>();
@@ -122,7 +142,20 @@ public partial class employepaysalary : System.Web.UI.Page
 
             table.Visible = false;
             tbupdate.Visible = false;
+
+
+            admin_notification_class.addnotification(eid, bid, DateTime.Now, admin_notification_class.TableNames.event_calender.ToString(), hiddenid, admin_notification_class.CommandType.Update.ToString());
+            msg = "Successfully updated the information";
+            type = "Success";
+
         }
+        else
+        {
+            msg = "There is some error";
+            type = "Error";
+        }
+        Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('" + type + "','" + msg + "');</script>");
     }
+    
    
 }

@@ -18,6 +18,8 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+    <div id="Notify"></div>
+     <div class="messagealert" id="alert_container"  style=" opacity: 0;transition: visibility 0s 2s, opacity 2s linear;">  </div>  
     <% int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
                                List<employee> emp = employeeProfile.getunpaidemploye(bid);
          %> 

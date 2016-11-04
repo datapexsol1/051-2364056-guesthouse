@@ -8,18 +8,29 @@ using System.Web.UI.WebControls;
 
 public partial class employeeupdateemployeeinfo : System.Web.UI.Page
 {
+    public enum MessageType { Success, Error, Info, Warning };
+    protected void ShowMessage(string Message, MessageType type)
+    {
+        ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "ShowMessage('" + Message + "','" + type + "');", true);
+    }
+    string msg;
+    string type;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Session["loginId"] == null)
         {
             Response.Redirect("employelogin.aspx");
         }
+        if (!IsPostBack)
+        {
 
+        }
     }
     protected void update_Click(object sender, EventArgs e)
-    {
+    {        
         int branchid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
-        int val = int.Parse(Request.QueryString["id"]);
+        int eid = employeeProfile.getEmployeeIDbyusername(Session["loginName"].ToString());
+        int updateId = int.Parse(Request.QueryString["id"]);
         employee emp = new employee();
         
         emp.name = Request.Form["inname"].ToString();
@@ -39,9 +50,23 @@ public partial class employeeupdateemployeeinfo : System.Web.UI.Page
         
         }
 
-        employeeProfile.updateEmployeeInfo(emp, val, branchid);
-      //  Response.Redirect("employeeviewemployeeinfo.aspx");
+        bool check = employeeProfile.updateEmployeeInfo(emp, updateId, branchid);
+        //  Response.Redirect("employeeviewemployeeinfo.aspx");
+        admin_notification_class.addnotification(eid,branchid,DateTime.Now,admin_notification_class.TableNames.employee.ToString(), updateId, admin_notification_class.CommandType.Update.ToString());
+        if (check == true)
+        {
+            msg = "Successfully updated";
+            type = "Success";
+            
+        }
+        else
+        {
+            msg = "There is some error";
+            type = "Error";
+        }
+        Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('"+type+"','" + msg + "');</script>");
 
+        //ShowMessage(msg, type);
     }
           public static byte[] imageToByteArray(HttpPostedFile postedfile)
     {
