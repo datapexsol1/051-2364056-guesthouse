@@ -267,6 +267,7 @@
       <Column Name="table_name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Changed_row_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="operation_type" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="seen" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

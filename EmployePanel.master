@@ -219,9 +219,55 @@
         <!-- /top navigation -->
 
         <!-- page content -->
-
+           <script src="Scripts/jquery-1.10.2.js"></script>
+      <script src="../vendors/jquery/dist/jquery.min.js"></script>
+    <script src="Scripts/jquery.signalR-2.1.2.js"></script>
+    <script src="Scripts/jquery.signalR-2.2.1.min.js"></script>
+    <script src="/signalR/hubs"></script>
            
-        
+         <script>
+        $(document).ready(function () {
+            var job = $.connection.myHub;
+            job.client.displayStatus = function () {
+                getData();
+            };
+            $.connection.hub.start();
+            getData();
+        });
+        function getData() {
+            var $tb1 = $('#menu1');
+            
+            $.ajax({
+                url: 'adminajax.aspx/GetData',
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                type: "POST",
+                success: function (data) {
+                    debugger;
+                    if (data.d.length > 0) {
+                        var newData = data.d;
+                      //  alert(JSON.stringify(data.d));
+                        $tb1.empty();
+                        $tb1.append('<tr><th>ID</th><th>name</th></tr>');
+                        $('#counter').text(newData.length);
+                        
+                        
+                        var rows = [];
+                   
+                       
+                                       
+                        for (var i = 0; i < newData.length; i++) {
+                            var dateobj = new Date(parseInt(newData[i].time.substr(6)));
+                            rows.push('<li><a><span><span id="not_name">'+newData[i].table_name+'</span><span class="time" id="not_time">'+timeSince(dateobj)+'</span> </span><span class="message" id="bid"></span> </a></li>');
+                        }
+                        rows.push('<li><div class="text-center"> <a><strong>See All Alerts</strong><i class="fa fa-angle-right"></i></a></div> </li>');
+                        $tb1.append(rows.join(''));
+                    }
+                }
+
+            });
+        }
+    </script>
 
         <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
         
@@ -237,12 +283,12 @@
                    
     </div></div>
         <!-- /footer content -->
-     
-     <script src="Scripts/jquery-1.10.2.js"></script>
+    
+    <%-- <script src="Scripts/jquery-1.10.2.js"></script>
       <script src="../vendors/jquery/dist/jquery.min.js"></script>
     <script src="Scripts/jquery.signalR-2.1.2.js"></script>
     <script src="Scripts/jquery.signalR-2.2.1.min.js"></script>
-    <script src="/signalR/hubs"></script>
+    <script src="/signalR/hubs"></script>--%>
     
     <!-- jQuery -->
     

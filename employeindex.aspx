@@ -211,6 +211,7 @@
             });
         }
     </script>--%>
+      
     <script>
         <%
         IQueryable<event_calender> eve = events.retrieveAllEvents(Session["loginName"].ToString());
