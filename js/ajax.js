@@ -178,11 +178,7 @@ function getyearlyExp(val, date) {
     var input = val;
     var obj;
     var Data = JSON.stringify({ inputVal: input, incomedate: date });
-
-
-
     $.ajax({
-
         url: "adminajax.aspx/getyearlyExpenditure",
         async: false,
         data: Data,

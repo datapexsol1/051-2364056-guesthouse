@@ -10,29 +10,21 @@
         };
  
         function myfunction() {
-            alert("adsa");
+         
             var d = new Date();
             d.setDate(0);
             document.getElementById('<%=ddBillType.ClientID %>').value = 'Water';
             document.getElementById('<%=ddDate.ClientID %>').value =  '123' ;
             document.getElementById('<%=ubamount.ClientID %>').value = 123;
 
-<%--            document.getElementById('abamount').value = "";
-                document.getElementById('<%=abtype.ClientID %>').value = "";
-                document.getElementById('abdate').value = '';
-                document.getElementById('desc').value = "";--%>
+
         }
         function setAddVal() {
-            alert("adsa");
-            //$("input[name=abamount]").val("123");
+        
             document.getElementById('abamount').value = 123;
             document.getElementById('<%=abtype.ClientID %>').value = "Water";
             document.getElementById('abdate').value = '01-10-1991';
             document.getElementById('desc').value = "123";
-
-          <%-- document.getElementById('<%=ddBillType.ClientID %>').value = '';
-            document.getElementById('<%=ddDate.ClientID %>').value =  '' ;
-            document.getElementById('<%=ubamount.ClientID %>').value = "";--%>
 
         }
     </script>
@@ -68,8 +60,8 @@
   <div style="overflow:auto;">
      <%  if (branch.SelectedValue == "Select Branch")
     {
-
-    }//get all branches
+            //show all branch bills details 
+    }
     else
     {
         int branchid = branchClass.getBranchID(branch.SelectedValue);
@@ -132,15 +124,7 @@
                                           <asp:ListItem value="Other" Text="Other"></asp:ListItem>
                                        </Items>
                                       </asp:DropDownList>
-                                        <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="ddBillType" ErrorMessage="RequiredFieldValidator"></asp:RequiredFieldValidator>--%>
-                                    <%--<select class="form-control" id="ddBillType" name="ubtype" runat="server">
-                                        <option value="0">Select</option>
-                                    <option value="Electricity" id="ubtype1">Electricity</option>
-                              <option value="Gas" id="ubtype2">Gas</option>
-                              <option value="Water" id="ubtype3">Water</option>
-
-
-                                        </select>--%></td>
+                                       </td>
                                
                                   <td>
 
@@ -237,7 +221,7 @@
         </div>
          </div>
     <!-- jQuery -->
-    <script src="../vendors/jquery/dist/jquery.min.js"></script>
+   
 
     <!-- bootstrap-daterangepicker -->
     <script src="js/moment/moment.min.js"></script>
@@ -245,155 +229,9 @@
   
 
 
-    <!-- bootstrap-daterangepicker -->
-    <script>
-      $(document).ready(function() {
-        var cb = function(start, end, label) {
-          console.log(start.toISOString(), end.toISOString(), label);
-          $('#reportrange_right span').html(start.format('D MMMM, YYYY') + ' - ' + end.format('D MMMM, YYYY'));
-        };
 
-        var optionSet1 = {
-          startDate: moment().subtract(29, 'days'),
-          endDate: moment(),
-          minDate: '01/01/2012',
-          maxDate: '12/31/2015',
-          dateLimit: {
-            days: 60
-          },
-          showDropdowns: true,
-          showWeekNumbers: true,
-          timePicker: false,
-          timePickerIncrement: 1,
-          timePicker12Hour: true,
-          ranges: {
-            'Today': [moment(), moment()],
-            'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-            'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-            'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-            'This Month': [moment().startOf('month'), moment().endOf('month')],
-            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-          },
-          opens: 'right',
-          buttonClasses: ['btn btn-default'],
-          applyClass: 'btn-small btn-primary',
-          cancelClass: 'btn-small',
-          format: 'MM/DD/YYYY',
-          separator: ' to ',
-          locale: {
-            applyLabel: 'Submit',
-            cancelLabel: 'Clear',
-            fromLabel: 'From',
-            toLabel: 'To',
-            customRangeLabel: 'Custom',
-            daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-            monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-            firstDay: 1
-          }
-        };
 
-        $('#reportrange_right span').html(moment().subtract(29, 'days').format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
-
-        $('#reportrange_right').daterangepicker(optionSet1, cb);
-
-        $('#reportrange_right').on('show.daterangepicker', function() {
-          console.log("show event fired");
-        });
-        $('#reportrange_right').on('hide.daterangepicker', function() {
-          console.log("hide event fired");
-        });
-        $('#reportrange_right').on('apply.daterangepicker', function(ev, picker) {
-          console.log("apply event fired, start/end dates are " + picker.startDate.format('MMMM D, YYYY') + " to " + picker.endDate.format('MMMM D, YYYY'));
-        });
-        $('#reportrange_right').on('cancel.daterangepicker', function(ev, picker) {
-          console.log("cancel event fired");
-        });
-
-        $('#options1').click(function() {
-          $('#reportrange_right').data('daterangepicker').setOptions(optionSet1, cb);
-        });
-
-        $('#options2').click(function() {
-          $('#reportrange_right').data('daterangepicker').setOptions(optionSet2, cb);
-        });
-
-        $('#destroy').click(function() {
-          $('#reportrange_right').data('daterangepicker').remove();
-        });
-
-      });
-    </script>
-
-    <script>
-      $(document).ready(function() {
-        var cb = function(start, end, label) {
-          console.log(start.toISOString(), end.toISOString(), label);
-          $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-        };
-
-        var optionSet1 = {
-          startDate: moment().subtract(29, 'days'),
-          endDate: moment(),
-          minDate: '01/01/2012',
-          maxDate: '12/31/2015',
-          dateLimit: {
-            days: 60
-          },
-          showDropdowns: true,
-          showWeekNumbers: true,
-          timePicker: false,
-          timePickerIncrement: 1,
-          timePicker12Hour: true,
-          ranges: {
-            'Today': [moment(), moment()],
-            'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-            'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-            'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-            'This Month': [moment().startOf('month'), moment().endOf('month')],
-            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-          },
-          opens: 'left',
-          buttonClasses: ['btn btn-default'],
-          applyClass: 'btn-small btn-primary',
-          cancelClass: 'btn-small',
-          format: 'MM/DD/YYYY',
-          separator: ' to ',
-          locale: {
-            applyLabel: 'Submit',
-            cancelLabel: 'Clear',
-            fromLabel: 'From',
-            toLabel: 'To',
-            customRangeLabel: 'Custom',
-            daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-            monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-            firstDay: 1
-          }
-        };
-        $('#reportrange span').html(moment().subtract(29, 'days').format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
-        $('#reportrange').daterangepicker(optionSet1, cb);
-        $('#reportrange').on('show.daterangepicker', function() {
-          console.log("show event fired");
-        });
-        $('#reportrange').on('hide.daterangepicker', function() {
-          console.log("hide event fired");
-        });
-        $('#reportrange').on('apply.daterangepicker', function(ev, picker) {
-          console.log("apply event fired, start/end dates are " + picker.startDate.format('MMMM D, YYYY') + " to " + picker.endDate.format('MMMM D, YYYY'));
-        });
-        $('#reportrange').on('cancel.daterangepicker', function(ev, picker) {
-          console.log("cancel event fired");
-        });
-        $('#options1').click(function() {
-          $('#reportrange').data('daterangepicker').setOptions(optionSet1, cb);
-        });
-        $('#options2').click(function() {
-          $('#reportrange').data('daterangepicker').setOptions(optionSet2, cb);
-        });
-        $('#destroy').click(function() {
-          $('#reportrange').data('daterangepicker').remove();
-        });
-      });
-    </script>
+   
 
     <script>
       $(document).ready(function() {
@@ -409,14 +247,6 @@
       });
     </script>
 
-        <script>
-          $(document).ready(function() {
-            $('#reservation').daterangepicker(null, function(start, end, label) {
-              console.log(start.toISOString(), end.toISOString(), label);
-            });
-          });
-        </script>
-        <!-- /bootstrap-daterangepicker -->
-
+     
 </asp:Content>
 

@@ -185,57 +185,10 @@
                                     <li role="presentation" class="dropdown">
                                         <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
                                             <i class="fa fa-envelope-o"></i>
-                                            <span class="badge bg-green">6</span>
+                                             <span class="badge bg-green" id="counter"></span>
+                                            
                                         </a>
                                         <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-                                            <li>
-                                                <a>
-                                                    <span class="image">
-                                                        <img src="images/img.jpg" alt="Profile Image" /></span>
-                                                    <span>
-                                                        <span>John Smith</span>
-                                                        <span class="time">3 mins ago</span>
-                                                    </span>
-                                                    <span class="message">Film festivals used to be do-or-die moments for movie makers. They were where...
-                                                    </span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a>
-                                                    <span class="image">
-                                                        <img src="images/img.jpg" alt="Profile Image" /></span>
-                                                    <span>
-                                                        <span>John Smith</span>
-                                                        <span class="time">3 mins ago</span>
-                                                    </span>
-                                                    <span class="message">Film festivals used to be do-or-die moments for movie makers. They were where...
-                                                    </span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a>
-                                                    <span class="image">
-                                                        <img src="images/img.jpg" alt="Profile Image" /></span>
-                                                    <span>
-                                                        <span>John Smith</span>
-                                                        <span class="time">3 mins ago</span>
-                                                    </span>
-                                                    <span class="message">Film festivals used to be do-or-die moments for movie makers. They were where...
-                                                    </span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a>
-                                                    <span class="image">
-                                                        <img src="images/img.jpg" alt="Profile Image" /></span>
-                                                    <span>
-                                                        <span>John Smith</span>
-                                                        <span class="time">3 mins ago</span>
-                                                    </span>
-                                                    <span class="message">Film festivals used to be do-or-die moments for movie makers. They were where...
-                                                    </span>
-                                                </a>
-                                            </li>
                                             <li>
                                                 <div class="text-center">
                                                     <a>
@@ -252,7 +205,58 @@
                     </div>
                     <!-- /top navigation -->
 
-                    <!-- page content -->
+                      <script src="Scripts/jquery-1.10.2.js"></script>
+      <script src="../vendors/jquery/dist/jquery.min.js"></script>
+    <script src="Scripts/jquery.signalR-2.1.2.js"></script>
+    <script src="Scripts/jquery.signalR-2.2.1.min.js"></script>
+    <script src="/signalR/hubs"></script>
+                   <script src="js/ajax.js"></script>
+                      <link href="build/css/style.css" rel="stylesheet" />
+         <script>
+        $(document).ready(function () {
+            var job = $.connection.myHub;
+            job.client.displayStatus = function () {
+                getData();
+            };
+            $.connection.hub.start();
+            getData();
+        });
+        function getData() {
+            var $tb1 = $('#menu1');
+            
+            $.ajax({
+                url: 'adminajax.aspx/GetData',
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                type: "POST",
+                success: function (data) {
+                    debugger;
+                    if (data.d.length > 0) {
+                        var newData = data.d;
+                      //  alert(JSON.stringify(data.d));
+                        $tb1.empty();
+                        $tb1.append('<tr><th>ID</th><th>name</th></tr>');
+                       
+                        $('#counter').text(newData.length);
+                        
+                        
+                        var rows = [];
+                   
+                       
+                                       
+                        for (var i = 0; i < newData.length; i++) {
+                            var dateobj = new Date(parseInt(newData[i].time.substr(6)));
+                            rows.push('<li><a><span><span id="not_name">'+newData[i].table_name+'</span><span class="time" id="not_time">'+timeSince(dateobj)+'</span> </span><span class="message" id="bid"></span> </a></li>');
+                        }
+                        rows.push('<li><div class="text-center"> <a><strong>See All Alerts</strong><i class="fa fa-angle-right"></i></a></div> </li>');
+                        $tb1.append(rows.join(''));
+                    }
+                }
+
+            });
+        }
+    </script>
+
 
                     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                     </asp:ContentPlaceHolder>
@@ -269,7 +273,7 @@
             </div>
 
             <!-- jQuery -->
-            <script src="../vendors/jquery/dist/jquery.min.js"></script>
+            
             <!-- Bootstrap -->
             <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
             <!-- FastClick -->
@@ -498,7 +502,7 @@
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>--%>
             <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css" />
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+           <%-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>--%>
             <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 
             <!-- jQuery Smart Wizard -->
