@@ -191,7 +191,7 @@
 
  </div>
      <!-- jQuery -->
-    <script src="../vendors/jquery/dist/jquery.min.js"></script>
+  <%--  <script src="../vendors/jquery/dist/jquery.min.js"></script>--%>
 
     <!-- bootstrap-daterangepicker -->
     <script src="js/moment/moment.min.js"></script>

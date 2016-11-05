@@ -255,13 +255,14 @@ public partial class adminajax : System.Web.UI.Page
         return myJsonString;
     }
     [WebMethod]
-    public static IEnumerable<online_guest_booking> GetData()
+    public static IEnumerable<admin_notification> GetData()
     {
-        var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["guest_house_databaseConnectionString1"].ConnectionString);
-
+        var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["guest_house_databaseConnectionString"].ConnectionString);
+        SqlDependency.Stop(ConfigurationManager.ConnectionStrings["guest_house_databaseConnectionString"].ConnectionString);
+        SqlDependency.Start(ConfigurationManager.ConnectionStrings["guest_house_databaseConnectionString"].ConnectionString);
         connection.Open();
         //   string com1 = "select count(Id) from dbo.Products";
-        using (SqlCommand com = new SqlCommand("select Id,branch_id,check_in_date,check_out_date,no_of_guest,request_time,guest_name,guest_cnic_passport,guest_phone,guest_email,no_of_room,room_type from dbo.online_guest_booking where seen='no'", connection))
+        using (SqlCommand com = new SqlCommand("select Id,eid,branch_id,time,table_name,Changed_row_id,operation_type,seen from admin_notification", connection))
         {
             com.Notification = null;
             SqlDependency dependency = new SqlDependency(com);
@@ -271,21 +272,18 @@ public partial class adminajax : System.Web.UI.Page
                 connection.Open();
 
             var reader = com.ExecuteReader();
-           
-            return reader.Cast<IDataRecord>().Select(x => new online_guest_booking
+
+            return reader.Cast<IDataRecord>().Select(x => new admin_notification
             {
                 Id = x.GetInt32(0),
-                branch_id = x.GetInt32(1),
-                check_in_date = x.GetDateTime(2),
-                check_out_date = x.GetDateTime(3),
-                no_of_guest = x.GetInt32(4),
-                request_time = x.GetDateTime(5),
-                guest_name = x.GetString(6),
-                guest_cnic_passport = x.GetString(7),
-                guest_phone = x.GetString(8),
-                guest_email = x.GetString(9),
-                no_of_room = x.GetInt32(10),
-                room_type = x.GetString(11),
+                eid = x.GetInt32(1),
+                branch_id = x.GetInt32(2),
+                time = x.GetDateTime(3),
+                table_name = x.GetString(4),
+                Changed_row_id = x.GetInt32(5),
+                operation_type = x.GetString(6),
+                seen = x.GetString(7)
+               
 
             }
             ).ToList();
