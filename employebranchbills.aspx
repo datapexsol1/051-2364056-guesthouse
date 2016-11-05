@@ -258,7 +258,6 @@
                                           <option value="Water" id="abtype3">Water</option>
                                           <option value="Nayatel" id="abtype4">Nayatel</option>
                                           <option value="House Rent" id="abtype5">House Rent</option>
-                               
                                           <option value="Repair and Maintainence" id="abtype6">Repair and Maintainence</option>
                                           <option value="Petrol for Generator" id="abtype7">Petrol for Generator</option>
                                           <option value="Food Supplies" id="abtype8">Food Supplies</option>

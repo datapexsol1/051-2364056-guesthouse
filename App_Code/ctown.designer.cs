@@ -98,7 +98,7 @@ public partial class ctownDataContext : System.Data.Linq.DataContext
   #endregion
 	
 	public ctownDataContext() : 
-			base(global::System.Configuration.ConfigurationManager.ConnectionStrings["guest_house_databaseConnectionString"].ConnectionString, mappingSource)
+			base(global::System.Configuration.ConfigurationManager.ConnectionStrings["guest_house_databaseConnectionString1"].ConnectionString, mappingSource)
 	{
 		OnCreated();
 	}
@@ -5467,7 +5467,7 @@ public partial class admin_notification : INotifyPropertyChanging, INotifyProper
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_seen", DbType="VarChar(5)")]
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_seen", DbType="VarChar(3) NOT NULL", CanBeNull=false)]
 	public string seen
 	{
 		get

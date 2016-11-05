@@ -34,7 +34,7 @@ public partial class employeevents : System.Web.UI.Page
             msg = "Success fully added the event ! ";
             type = "Success";
             //   Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('Success','Successfully updated information');</script>");
-            admin_notification_class.addnotification(employID,branchID,DateTime.Now,admin_notification_class.TableNames.event_calender.ToString(),employID,admin_notification_class.CommandType.Add.ToString());
+            admin_notification_class.addnotification(employID,branchID,DateTime.Now,admin_notification_class.TableNames.event_calender.ToString(),employID,admin_notification_class.CommandType.Add.ToString(),"yes");
             ScriptManager.RegisterClientScriptBlock(this, typeof(Page), "redirectJS", "setTimeout(function() { window.location.replace('employeevents.aspx') }, 4500);", true);
 
         }

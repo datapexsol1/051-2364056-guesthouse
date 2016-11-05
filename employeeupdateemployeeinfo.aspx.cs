@@ -52,7 +52,7 @@ public partial class employeeupdateemployeeinfo : System.Web.UI.Page
 
         bool check = employeeProfile.updateEmployeeInfo(emp, updateId, branchid);
         //  Response.Redirect("employeeviewemployeeinfo.aspx");
-        admin_notification_class.addnotification(eid,branchid,DateTime.Now,admin_notification_class.TableNames.employee.ToString(), updateId, admin_notification_class.CommandType.Update.ToString());
+        admin_notification_class.addnotification(eid,branchid,DateTime.Now,admin_notification_class.TableNames.employee.ToString(), updateId, admin_notification_class.CommandType.Update.ToString(),"yes");
         if (check == true)
         {
             msg = "Successfully updated";
