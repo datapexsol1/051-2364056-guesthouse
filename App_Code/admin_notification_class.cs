@@ -29,6 +29,7 @@ public class admin_notification_class
         adminnotic.table_name = table_name;
         adminnotic.Changed_row_id = changed_row_id;
         adminnotic.operation_type = operation_type;
+        adminnotic.seen = "no";
         db.admin_notifications.InsertOnSubmit(adminnotic);
         db.SubmitChanges();
 
