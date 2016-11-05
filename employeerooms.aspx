@@ -2,15 +2,6 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 
-    <!-- Bootstrap -->
-    <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <!-- NProgress -->
-    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
-
-    <!-- Custom Theme Style -->
-    <link href="../custom/custom.min.css" rel="stylesheet">
 
    <style>
        .tbl{
@@ -44,13 +35,16 @@
      
 
   
-        <div id="Notify"></div>
-     <div class="messagealert" id="alert_container"  style=" opacity: 0;transition: visibility 0s 2s, opacity 2s linear;">  </div> 
 
       <div class="right_col" role="main">
+          
+       
     <div class="row">
      <div class="col-md-12 col-sm-12 col-xs-12">
      <div class="x_content">
+          <div id="Notify"></div>
+  
+             <div class="messagealert" id="alert_container"  style=" opacity: 0;transition: visibility 0s 2s, opacity 2s linear;">  </div> 
      <div class="col-md-9 col-sm-9 col-xs-12">
          <h3>Rooms</h3>
           <div class="container">
@@ -74,13 +68,13 @@
 
 
 
-
+                              <div class="table-responsive">
 
 
                             <!-- start recent activity -->
                            
-                           <table class="table tbl">
-                              <thead class="thead-inverse">
+                           <table  class="table table-condensed">
+                              <thead >
                                 <tr>
                                   <th>Room No</th>
                                   <th>Room Type</th>
@@ -115,7 +109,7 @@
                             </table>
                             <!-- end recent activity -->
                               
-
+</div>
                  </div>
                          
                             
@@ -248,40 +242,9 @@
         </div>
           </div>
     </div>
-     <%--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>--%>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
-<script>
 
-  $.validate({
-    modules : 'location, date, security, file',
-    onModulesLoaded : function() {
-      $('#country').suggestCountry();
-    }
-  });
+     
 
-  // Restrict presentation length
-  $('#presentation').restrictLength( $('#pres-max-length') );
-
-</script>
-
-      <!-- jQuery -->
-   <%-- <script src="../vendors/jquery/dist/jquery.min.js"></script>
-  --%>
-    <!-- FastClick -->
-    <script src="../vendors/fastclick/lib/fastclick.js"></script>
-    <!-- NProgress -->
-    <script src="../vendors/nprogress/nprogress.js"></script>
-    <!-- morris.js -->
-    <script src="../vendors/raphael/raphael.min.js"></script>
-    <script src="../vendors/morris.js/morris.min.js"></script>
-    <!-- bootstrap-progressbar -->
-    <script src="../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
-    <!-- bootstrap-daterangepicker -->
-    <script src="js/moment/moment.min.js"></script>
-    <script src="js/datepicker/daterangepicker.js"></script>
-    
-
-   
    
 </asp:Content>
 
