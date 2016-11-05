@@ -6,9 +6,9 @@
     <link href="../vendors/ion.rangeSlider/css/ion.rangeSlider.css" rel="stylesheet">
     <link href="../vendors/ion.rangeSlider/css/ion.rangeSlider.skinFlat.css" rel="stylesheet">
     <link href="build/css/style.css" rel="stylesheet" />
-     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+   <%--  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>--%>
     <link href="Notifications/NotificationStyle.css" rel="stylesheet" />
-        <script src="js/jquery-1.10.2.min.js"></script>
+       <%-- <script src="js/jquery-1.10.2.min.js"></script>--%>
     <script src="js/NotificationJS.js"></script>
 <script type="text/javascript">
 
@@ -219,7 +219,7 @@
     </div>
 
     </div>
-         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <%-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>--%>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
 <script>
 
@@ -235,9 +235,9 @@
 
 </script>   
      <!-- jQuery -->
-    <script src="../vendors/jquery/dist/jquery.min.js"></script>
+   <%-- <script src="../vendors/jquery/dist/jquery.min.js"></script>--%>
     <!-- Bootstrap -->
-    <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+  <%--  <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>--%>
     <!-- FastClick -->
     <script src="../vendors/fastclick/lib/fastclick.js"></script>
     <!-- NProgress -->

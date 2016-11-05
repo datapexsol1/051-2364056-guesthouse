@@ -35,16 +35,13 @@
      
 
   
+        <div id="Notify"></div>
+     <div class="messagealert" id="alert_container"  style=" opacity: 0;transition: visibility 0s 2s, opacity 2s linear;">  </div> 
 
       <div class="right_col" role="main">
-          
-       
     <div class="row">
      <div class="col-md-12 col-sm-12 col-xs-12">
      <div class="x_content">
-          <div id="Notify"></div>
-  
-             <div class="messagealert" id="alert_container"  style=" opacity: 0;transition: visibility 0s 2s, opacity 2s linear;">  </div> 
      <div class="col-md-9 col-sm-9 col-xs-12">
          <h3>Rooms</h3>
           <div class="container">
@@ -68,13 +65,13 @@
 
 
 
-                              <div class="table-responsive">
+
 
 
                             <!-- start recent activity -->
                            
-                           <table  class="table table-condensed">
-                              <thead >
+                           <table class="table tbl">
+                              <thead class="thead-inverse">
                                 <tr>
                                   <th>Room No</th>
                                   <th>Room Type</th>
@@ -109,7 +106,7 @@
                             </table>
                             <!-- end recent activity -->
                               
-</div>
+
                  </div>
                          
                             
@@ -242,9 +239,6 @@
         </div>
           </div>
     </div>
-
-     
-
-   
+    
 </asp:Content>
 
