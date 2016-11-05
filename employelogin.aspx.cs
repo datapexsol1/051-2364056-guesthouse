@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 
 public partial class employelogin : System.Web.UI.Page
 {
+    string msg;
     protected void Page_Load(object sender, EventArgs e)
     {
 
@@ -29,14 +30,18 @@ public partial class employelogin : System.Web.UI.Page
                 int branchid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
                 int id = employeeProfile.getEmpID(name, password, branchid);
                 Session["loginId"] = id;
-                Response.Write("yourlogin");
-              Response.Redirect("employeindex.aspx");
+                //   Response.Write("yourlogin");
+                Response.Redirect("employeindex.aspx");
             }
             else
             {
-                Response.Write("yournotlogin");
+               msg = "Incorrect username or password";
+
+             //   Response.Write("yournotlogin");
             }
         }
+        Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('Error','"+msg+"');</script>");
+
         //string emp = employeeProfile.employeSignin(name, password);
         //int id = employeeProfile.getEmpID(name, password, branchid);
 
@@ -51,5 +56,9 @@ public partial class employelogin : System.Web.UI.Page
         //    Response.Write("yournotlogin");
         //}
     }
-  
+    protected void hello_Click(object sender, EventArgs e)
+    {
+        Page.ClientScript.RegisterStartupScript(GetType(), "script", "  <script>ShowNotification('Error','There are an error , try again');</script>");
+    }
+
 }
