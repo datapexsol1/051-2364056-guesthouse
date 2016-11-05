@@ -19,7 +19,7 @@ public class admin_notification_class
         // TODO: Add constructor logic here
         //
     }
-    public static string  addnotification(int eid,int branch_id,DateTime date,string table_name,int changed_row_id,string operation_type,string seenValue)
+    public static string  addnotification(int eid,int branch_id,DateTime date,string table_name,int changed_row_id,string operation_type)
     {
         ctownDataContext db = new ctownDataContext();
         admin_notification adminnotic = new admin_notification();
@@ -29,6 +29,7 @@ public class admin_notification_class
         adminnotic.table_name = table_name;
         adminnotic.Changed_row_id = changed_row_id;
         adminnotic.operation_type = operation_type;
+        adminnotic.seen = "no";
         db.admin_notifications.InsertOnSubmit(adminnotic);
         db.SubmitChanges();
 
