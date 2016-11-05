@@ -5298,6 +5298,8 @@ public partial class admin_notification : INotifyPropertyChanging, INotifyProper
 	
 	private string _operation_type;
 	
+	private string _seen;
+	
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -5316,6 +5318,8 @@ public partial class admin_notification : INotifyPropertyChanging, INotifyProper
     partial void OnChanged_row_idChanged();
     partial void Onoperation_typeChanging(string value);
     partial void Onoperation_typeChanged();
+    partial void OnseenChanging(string value);
+    partial void OnseenChanged();
     #endregion
 	
 	public admin_notification()
@@ -5459,6 +5463,26 @@ public partial class admin_notification : INotifyPropertyChanging, INotifyProper
 				this._operation_type = value;
 				this.SendPropertyChanged("operation_type");
 				this.Onoperation_typeChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_seen", DbType="VarChar(3) NOT NULL", CanBeNull=false)]
+	public string seen
+	{
+		get
+		{
+			return this._seen;
+		}
+		set
+		{
+			if ((this._seen != value))
+			{
+				this.OnseenChanging(value);
+				this.SendPropertyChanging();
+				this._seen = value;
+				this.SendPropertyChanged("seen");
+				this.OnseenChanged();
 			}
 		}
 	}

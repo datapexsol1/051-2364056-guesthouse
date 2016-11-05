@@ -36,7 +36,7 @@ public partial class employeupdateevent : System.Web.UI.Page
         bool check = events.updateEvent(ev,id);
         if (check == true)
         {
-            admin_notification_class.addnotification(employID, branchID, DateTime.Now, admin_notification_class.TableNames.event_calender.ToString(), employID, admin_notification_class.CommandType.Update.ToString());
+            admin_notification_class.addnotification(employID, branchID, DateTime.Now, admin_notification_class.TableNames.event_calender.ToString(), employID, admin_notification_class.CommandType.Update.ToString(),"yes");
             msg = "Successfully updated the information";
             type = "Success";
             ScriptManager.RegisterClientScriptBlock(this, typeof(Page), "redirectJS", "setTimeout(function() { window.location.replace('employeevents.aspx') }, 4500);", true);

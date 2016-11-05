@@ -303,13 +303,13 @@ public partial class employeguestpayment : System.Web.UI.Page
                     }
                     else
                     {
-                        msgshow = "Please add CHAQUE NO";
+                        msgshow = "Please add Cheque NO";
                     }
 
                 }
                 else
                 {
-                    msgshow = "Please Cheaque out all rooms of this booking ";
+                    msgshow = "Please Cheque out all rooms of this booking ";
                     //display msg checkout before
                     //  bindTable();
                     // Page_Load(this, e);
