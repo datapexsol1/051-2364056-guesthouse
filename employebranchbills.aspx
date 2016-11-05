@@ -1,7 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EmployePanel.master" AutoEventWireup="true" CodeFile="employebranchbills.aspx.cs" Inherits="employebranchbills" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+    <script src="Scripts/jquery-1.10.2.js"></script>
+      <script src="../vendors/jquery/dist/jquery.min.js"></script>
     <script>
+           
         function activaTab(tab) {
 
             $('.nav-tabs a[href="#' + tab + '"]').tab('show');
@@ -312,7 +315,19 @@
     <script src="js/moment/moment.min.js"></script>
     <script src="js/datepicker/daterangepicker.js"></script>
   
-
+    <script>
+      $(document).ready(function() {
+      
+          $('#abdate').daterangepicker({
+          singleDatePicker: true,
+          calender_style: "picker_2"
+        }, function(start, end, label) {
+          console.log(start.toISOString(), end.toISOString(), label);
+        });
+     
+       
+      });
+    </script>
  <!-- bootstrap-daterangepicker -->
    
 
