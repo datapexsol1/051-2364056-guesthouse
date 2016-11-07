@@ -11,7 +11,7 @@
 
             //alert("working");
         };
- 
+       
         function myfunction() {
             alert("adsa");
             var d = new Date();
@@ -89,6 +89,7 @@
         catch (Exception ex){
 
         }%>
+       
     </script>
 
 
@@ -113,9 +114,9 @@
                             ">
                           <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Bills</a>
                           </li>
-                          <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false" onclick="setAddVal()">Update Bills</a>
+                          <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false" onclick="setAddPanelVal()">Update Bills</a>
                           </li>
-                          <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false" onclick="myfunction()">Add Bills</a>
+                          <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false" onclick="setUpdatePanelVal()">Add Bills</a>
                           </li>
                             
                           
@@ -157,11 +158,12 @@
                               </div>
 
 
-                                <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab" onselect="setAddVal()">
-
+                                <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab" >
+                                    
 
                                      <div style="overflow:auto;white-space:nowrap;">
-       <table class="data table table-striped no-margin">
+                                         <div id="updatePanelID">
+                                                    <table class="data table table-striped no-margin">
                               <thead>
                                  <tr>
 <%--                                  <th>Bill Id</th>--%>
@@ -220,14 +222,15 @@
 
                                     <td>
                                         <%--<input type="submit" runat="server" id="send" onserverclick="Update_bills" causesvalidation="false" />--%>
-                                <%--<asp:Button ID="send" runat="server" Text="Update" class="btn btn-success" OnClick="Update_bills"  />--%>
-                                        <a href ="" id="send" onserverclick="Update_bills" runat="server" class="btn btn-success">Update</a>
+                                <asp:Button ID="send" runat="server" Text="Update" class="btn btn-success" OnClick="Update_bills"  />
+                                        <%--<a href ="" id="send" onserverclick="Update_bills" runat="server" class="btn btn-success">Update</a>--%>
 
                                     </td>
                                 </tr>
                                
                               </tbody>
                             </table>
+                                         </div>
 
       </div>
 
@@ -238,7 +241,7 @@
            <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
                              
  
-                              
+                         <div id="addpanelid">     
                             <div class="col-md-4">
                              <label >Bill Amount <span class="required">*</span></label>
 
@@ -290,12 +293,12 @@
                  </div>
                     </div>
                    
-                           
+                           </div>
                               <div class="form-group">
                         <div class="col-md-6 col-md-offset-11">
                             <%--<a href="#" onserverclick="Button1_Click" runat="server" class="btn btn-success" >Submit</a>--%>
                            <%--<button onserverclick="Button1_Click" runat="server" class="btn btn-success">Submit</button>--%>
-                          <asp:Button ID="Button1" runat="server" Text="Submit"   class="btn btn-success"    OnClick="Button1_Click" />
+                          <asp:Button ID="Button1" runat="server" Text="Submit"  CausesValidation="true" class="btn btn-success" OnClick="Button1_Click" />
                             <%--<input type="submit" name="submit" onserverclick="Button1_Click" runat="server" class="btn btn-success"/>--%>
                         <input type="hidden" id="abcd" runat="server" />
                         </div>
@@ -327,6 +330,29 @@
      
        
       });
+        function setUpdatePanelVal(){ 
+
+           // alert("hello");
+            document.getElementById('<%=ddBillType.ClientID %>').value = 'Electricity';
+            document.getElementById('<%=ubamount.ClientID %>').value = '123';
+
+
+             $("#addpanelid").find("input[type=text]").val('');
+          document.getElementById('<%=abtype.ClientID %>').value = 'Select';
+          $("#addpanelid").find("input[type=number]").val('');
+        };
+        
+      function setAddPanelVal(){ 
+
+        //  alert("setting updatepanel");
+          $("#addpanelid").find("input[type=text]").val('01-10-2016');
+          document.getElementById('<%=abtype.ClientID %>').value = 'Electricity';
+          $("#addpanelid").find("input[type=number]").val(1);
+         
+          document.getElementById('<%=ddBillType.ClientID %>').value = 'Select';
+            document.getElementById('<%=ubamount.ClientID %>').value = '';
+
+        };
     </script>
  <!-- bootstrap-daterangepicker -->
    

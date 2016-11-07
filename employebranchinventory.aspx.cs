@@ -17,15 +17,15 @@ public partial class employebranchinventory : System.Web.UI.Page
         }
         // viewBranchAssets();
 
-       else if (!IsPostBack)
+        else if (!IsPostBack)
         {
-            
+
 
 
 
             //update function dropdown branch name
             IQueryable<branch> b = branchClass.getBrachesinfo();
-            string[] branchName = new string[b.Count()+1];
+            string[] branchName = new string[b.Count() + 1];
             branchName[0] = "Select";
             int i = 1;
             foreach (var x in b)
@@ -38,7 +38,10 @@ public partial class employebranchinventory : System.Web.UI.Page
             ddbranchname.DataBind();
             viewBranchAssets();
         }
-
+        else
+        {
+            viewBranchAssets();
+        }
     }
     public void viewBranchAssets()
     {
@@ -86,10 +89,11 @@ public partial class employebranchinventory : System.Web.UI.Page
         int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
         room_asset r = new room_asset();
         Branch_asset b = new Branch_asset();
-        b.bid = int.Parse(Request.Form["branch"].ToString());
+        b.employee_id = eid;
+        b.bid =bid;
         b.title = Request.Form["alabel1"].ToString();
-        b.description = Request.Form["adescription1"].ToString();
-        b.no_item = int.Parse(Request.Form["insertaitemno"].ToString());
+        b.description = Request.Form["adescription"].ToString();
+        b.no_item = int.Parse(Request.Form["aitemno"].ToString());
         check = branchAssetsClass.addinventry(b);
         if (check == true)
         {

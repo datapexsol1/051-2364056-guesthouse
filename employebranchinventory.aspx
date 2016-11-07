@@ -140,7 +140,7 @@
                               
                         <div class="form-group col-md-6">
 
-                        <label class="control-label col-md-4 " for="room no">Room No <span class="required">*</span>
+                        <label class="control-label col-md-4 " for="room no">Branch name<span class="required">*</span>
                         </label>
                          <% // int bid = employeeProfile.getEmployeBranch("kk");//get from session 
                             string bname = employeeProfile.getEmployeBranchname(Session["loginName"].ToString());%>
@@ -150,7 +150,7 @@
                              
                           </div>
                               <div class="form-group col-md-6">
-                                    <label class="control-label col-md-4 " for="room no">Label <span class="required">*</span> </label>
+                                    <label class="control-label col-md-4 " for="room no">Item  <span class="required">*</span> </label>
                                     <div class="col-md-8">
                                       <input type="text" id="alabel1" name="alabel1" placeholder="Label" class="form-control " data-validation="length alphanumeric" 
 		 data-validation-length="3-25" 
