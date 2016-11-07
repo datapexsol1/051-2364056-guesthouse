@@ -9,18 +9,19 @@ public partial class employebranchinventory : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+       
         if (Session["loginId"] == null)
         {
             Response.Redirect("employelogin.aspx");
         }
         // viewBranchAssets();
 
-       else if (!IsPostBack)
+       else //if (!IsPostBack)
         {
-            
 
 
 
+            ddbranchname.Items.Clear();
             //update function dropdown branch name
             IQueryable<branch> b = branchClass.getBrachesinfo();
             string[] branchName = new string[b.Count()+1];
@@ -82,11 +83,14 @@ public partial class employebranchinventory : System.Web.UI.Page
     {
         room_asset r = new room_asset();
         Branch_asset b = new Branch_asset();
-        b.bid = int.Parse(Request.Form["branch"].ToString());
+
+        b.bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());//int.Parse(Request.Form["branch"].ToString());
         b.title = Request.Form["alabel1"].ToString();
-        b.description = Request.Form["adescription1"].ToString();
-        b.no_item = int.Parse(Request.Form["insertaitemno"].ToString());
+        b.description = Request.Form["adescription"].ToString();
+        b.no_item = int.Parse(Request.Form["aitemno"].ToString());
         branchAssetsClass.addinventry(b);
+        ddbranchname.Items.Clear();
+        Page_Load(this, e);
     }
     protected void branchNameSelectedIndexChange(object sender, EventArgs e)
     {
