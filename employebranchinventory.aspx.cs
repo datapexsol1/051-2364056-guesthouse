@@ -7,25 +7,24 @@ using System.Web.UI.WebControls;
 
 public partial class employebranchinventory : System.Web.UI.Page
 {
-    string msg, type;
-    bool check;
     protected void Page_Load(object sender, EventArgs e)
     {
+       
         if (Session["loginId"] == null)
         {
             Response.Redirect("employelogin.aspx");
         }
         // viewBranchAssets();
 
-        else if (!IsPostBack)
+       else //if (!IsPostBack)
         {
 
 
 
-
+           
             //update function dropdown branch name
             IQueryable<branch> b = branchClass.getBrachesinfo();
-            string[] branchName = new string[b.Count() + 1];
+            string[] branchName = new string[b.Count()+1];
             branchName[0] = "Select";
             int i = 1;
             foreach (var x in b)
@@ -38,14 +37,12 @@ public partial class employebranchinventory : System.Web.UI.Page
             ddbranchname.DataBind();
             viewBranchAssets();
         }
-        else
-        {
-            viewBranchAssets();
-        }
+       
+
     }
     public void viewBranchAssets()
     {
-        
+        assetsViewTable.Rows.Clear();
         TableRow tRow1 = new TableRow();
         assetsViewTable.Rows.Add(tRow1);
         TableCell tCell1 = new TableCell();
@@ -85,29 +82,16 @@ public partial class employebranchinventory : System.Web.UI.Page
     }
     protected void saveBAssets_click(object sender, EventArgs e)
     {
-        int eid = employeeProfile.getEmployeid(Session["loginName"].ToString());
-        int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
         room_asset r = new room_asset();
         Branch_asset b = new Branch_asset();
-        b.employee_id = eid;
-        b.bid =bid;
+
+        b.bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());//int.Parse(Request.Form["branch"].ToString());
         b.title = Request.Form["alabel1"].ToString();
         b.description = Request.Form["adescription"].ToString();
         b.no_item = int.Parse(Request.Form["aitemno"].ToString());
-        check = branchAssetsClass.addinventry(b);
-        if (check == true)
-        {
-            admin_notification_class.addnotification(eid, bid, DateTime.Now, admin_notification_class.TableNames.rooms.ToString(), 0, admin_notification_class.CommandType.Add.ToString());
-            msg = "Successfully stored the information";
-            type = "Success";
-
-        }
-        else
-        {
-            msg = "There is some error";
-            type = "Error";
-        }
-        Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('" + type + "','" + msg + "');</script>");
+        branchAssetsClass.addinventry(b);
+        Page_Load(this, e);
+      
     }
     protected void branchNameSelectedIndexChange(object sender, EventArgs e)
     {
@@ -145,31 +129,18 @@ public partial class employebranchinventory : System.Web.UI.Page
     }
     protected void updateBranchAssets_click(object sender, EventArgs e)
     {
-        int eid = employeeProfile.getEmployeid(Session["loginName"].ToString());
-        int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
+
         Branch_asset ba = new Branch_asset();
 
         int getBranchId = branchClass.getBranchID(ddbranchname.Text);
-        int getAssetsID = branchAssetsClass.getBranchAssetsId(getBranchId,dditemname.SelectedValue.ToString());// getting branch assets item id
+        int getAssetsID = branchAssetsClass.getBranchAssetsId(getBranchId,dditemname.SelectedValue.ToString());
        // ba.bid =
 
         ba.title = itemname.Value;
         ba.description = itemdescription.Value;
         ba.no_item = int.Parse(totalitem.Value);
-        check = branchAssetsClass.updateBranchAssets(ba, getAssetsID);
-        if (check == true)
-        {
-            admin_notification_class.addnotification(eid, bid, DateTime.Now, admin_notification_class.TableNames.rooms.ToString(), ba.id, admin_notification_class.CommandType.Update.ToString());
-            msg = "Successfully stored the information";
-            type = "Success";
-
-        }
-        else
-        {
-            msg = "There is some error";
-            type = "Error";
-        }
-        Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('" + type + "','" + msg + "');</script>");
+        branchAssetsClass.updateBranchAssets(ba, getAssetsID);
+   
     }
     
 
