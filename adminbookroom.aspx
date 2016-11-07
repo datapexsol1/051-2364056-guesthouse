@@ -1,11 +1,15 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AdminPanel.master" AutoEventWireup="true" CodeFile="adminbookroom.aspx.cs" Inherits="adminbookroom" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
-     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
-<title>SEAT LAYOUT</title>
-<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-<script src="js/jquery-1.8.3.js"></script>
-<script src="js/jquery-ui.js"></script>
+   
+
+      
+ <script src="js/canvasjs.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css"/>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
+     <script src="js/ajax.js"></script>
 <link rel="stylesheet" href="css/seatlayout.css" />
     <script>
         imgseaterArr = new Array();

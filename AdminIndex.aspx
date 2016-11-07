@@ -3,8 +3,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <link href="build/css/style.css" rel="stylesheet" />
      <script src="js/canvasjs.js"></script>
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css"/>
+<%--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>--%>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
      <script src="js/ajax.js"></script>
@@ -15,9 +15,6 @@
       $("#datebexpy").datepicker();
       
   });
-
-
-  
   </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
@@ -558,8 +555,7 @@
             var mexp=[];
             $('#hyearincome').val(val);
             var date =$('#datebexpy').val();
-            alert("yearly"+val);
-            alert("yearly"+date);
+           
             var xyz=  getyearlyIncome($('#hyearincome').val(),date);
             var exp=  getyearlyExp($('#hyearincome').val(),date);
             var i=0;
