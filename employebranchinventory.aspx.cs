@@ -21,7 +21,7 @@ public partial class employebranchinventory : System.Web.UI.Page
 
 
 
-            ddbranchname.Items.Clear();
+           
             //update function dropdown branch name
             IQueryable<branch> b = branchClass.getBrachesinfo();
             string[] branchName = new string[b.Count()+1];
@@ -37,11 +37,12 @@ public partial class employebranchinventory : System.Web.UI.Page
             ddbranchname.DataBind();
             viewBranchAssets();
         }
+       
 
     }
     public void viewBranchAssets()
     {
-        
+        assetsViewTable.Rows.Clear();
         TableRow tRow1 = new TableRow();
         assetsViewTable.Rows.Add(tRow1);
         TableCell tCell1 = new TableCell();
@@ -89,8 +90,8 @@ public partial class employebranchinventory : System.Web.UI.Page
         b.description = Request.Form["adescription"].ToString();
         b.no_item = int.Parse(Request.Form["aitemno"].ToString());
         branchAssetsClass.addinventry(b);
-        ddbranchname.Items.Clear();
         Page_Load(this, e);
+      
     }
     protected void branchNameSelectedIndexChange(object sender, EventArgs e)
     {
