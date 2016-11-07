@@ -98,7 +98,7 @@
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-
+<div id="Notify"></div>
 
 
      <div class="right_col" role="main">
@@ -220,7 +220,8 @@
 
                                     <td>
                                         <%--<input type="submit" runat="server" id="send" onserverclick="Update_bills" causesvalidation="false" />--%>
-                                <asp:Button ID="send" runat="server" Text="Update" class="btn btn-success" OnClick="Update_bills"  />
+                                <%--<asp:Button ID="send" runat="server" Text="Update" class="btn btn-success" OnClick="Update_bills"  />--%>
+                                        <a href ="" id="send" onserverclick="Update_bills" runat="server" class="btn btn-success">Update</a>
 
                                     </td>
                                 </tr>

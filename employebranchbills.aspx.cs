@@ -7,6 +7,8 @@ using System.Web.UI.WebControls;
 
 public partial class employebranchbills : System.Web.UI.Page
 {
+    string msg, type;
+    bool addcheck, updatecheck;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
@@ -44,6 +46,7 @@ public partial class employebranchbills : System.Web.UI.Page
 
     protected void Button1_Click(object sender, EventArgs e)
     {
+
         //int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
         //bill bil = billclass.checkHouseRentYear(bid);
         //if (bil != null)
@@ -54,10 +57,12 @@ public partial class employebranchbills : System.Web.UI.Page
         //{
         //    abcd.Value = "";
         //}
+        int eid = employeeProfile.getEmployeid(Session["loginName"].ToString());
+        int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString()); 
         if (ddBillType.Text != "Select")
         {
             bill b = new bill();
-            b.BranchId = employeeProfile.getEmployeBranch(Session["loginName"].ToString());//get from session
+            b.BranchId = bid;// employeeProfile.getEmployeBranch(Session["loginName"].ToString());//get from session
             b.BillAmount = Convert.ToInt32(Request.Form["abamount"]);
             b.bill_description = Request.Form["desc"];
             b.Date = Convert.ToDateTime(Request.Form["abdate"]);
@@ -68,7 +73,8 @@ public partial class employebranchbills : System.Web.UI.Page
                 if(isbillpaid == true)
                 {
                     b.BillType = abtype.Value.ToString();
-                    billclass.Addbill(b);
+                    addcheck = billclass.Addbill(b);
+
                 }
                 else
                 {
@@ -80,7 +86,7 @@ public partial class employebranchbills : System.Web.UI.Page
             }
             else if(abtype.Value == "House Rent")
             {
-                int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
+                //int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
                 bill bil = billclass.latestcheckHouseRentYear(bid);
                 if (bil != null)
                 {
@@ -88,8 +94,8 @@ public partial class employebranchbills : System.Web.UI.Page
                     if (b.Date.Month != DateTime.Now.Month)
                     {
                         b.BillType = abtype.Value.ToString();
-                      
-                        billclass.Addbill(b);
+
+                        addcheck = billclass.Addbill(b);
                     }
                     else
                     {
@@ -104,34 +110,65 @@ public partial class employebranchbills : System.Web.UI.Page
             else
             {
                 b.BillType = abtype.Value.ToString();
-                billclass.Addbill(b);
+                addcheck = billclass.Addbill(b);
             }
-            
-          
+
            
             ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "activaTab('tab_content1');", true);
+            
+        }
+        if (addcheck == true)
+        {
+            admin_notification_class.addnotification(eid, bid, DateTime.Now, admin_notification_class.TableNames.rooms.ToString(), 0, admin_notification_class.CommandType.Add.ToString());
+            msg = "Successfully stored the information";
+            type = "Success";
 
         }
+        else
+        {
+            msg = "There is some error";
+            type = "Error";
+        }
+        Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('" + type + "','" + msg + "');</script>");
+
     }
    
     protected void Update_bills(object sender, EventArgs e)
     {
+       
+        int eid = employeeProfile.getEmployeid(Session["loginName"].ToString());
+        int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString()); ;
         bill b = new bill();
         //  GetID(b.BranchId, b.BillType);
         //  b.Id =int.Parse(Request.Form["ubno"].ToString());
         if (ddBillType.Text != "Select" && ddDate.Text != "Select")
         {
-            b.BranchId = employeeProfile.getEmployeBranch(Session["loginName"].ToString());//get from session
+            b.BranchId = bid;//employeeProfile.getEmployeBranch(Session["loginName"].ToString());//get from session
             b.BillAmount = int.Parse(ubamount.Value);// Convert.ToInt32(Request.Form["ubamount"]);
             b.BillType = ddBillType.SelectedValue.ToString();
-
+            int updateBillId = b.Id;
             b.Date = DateTime.Parse(ddDate.SelectedValue.ToString());
 
             //    b.Date = //Convert.ToDateTime(Request.Form["ubdate"]);
-            billclass.updateBills(b, b.BranchId);
-            ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "activaTab('tab_content1');", true);
+           updatecheck = billclass.updateBills(b, b.BranchId);
+            admin_notification_class.addnotification(eid, bid, DateTime.Now, admin_notification_class.TableNames.rooms.ToString(), updateBillId, admin_notification_class.CommandType.Update.ToString());
+
+
 
         }
+        if (updatecheck == true)
+        {
+            msg = "Successfully updated the information";
+            type = "Success";
+
+        }
+        else
+        {
+            msg = "There is some error";
+            type = "Error";
+        }
+        Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('" + type + "','" + msg + "');</script>");
+        ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "activaTab('tab_content1');", true);
     }
 
 

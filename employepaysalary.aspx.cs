@@ -20,12 +20,13 @@ public partial class employepaysalary : System.Web.UI.Page
         {
             int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
             List<employee> emp = employeeProfile.getunpaidemploye(bid);
-            IQueryable<employee> bemploye = employeeProfile.getAllEmployee(bid);
+            //IQueryable<employee> bemploye = employeeProfile.getAllEmployee(bid);
+            IQueryable<employee> bemploye = employeeProfile.getAllEmployeeUserName(bid);
             List<string> lname = new List<string>();
             lname.Add("Select");
             foreach (employee em in bemploye)
             {
-                lname.Add(em.name);
+                lname.Add(em.username);
             }
             ddemployeename.DataSource = lname;
             ddemployeename.DataBind();
@@ -46,6 +47,7 @@ public partial class employepaysalary : System.Web.UI.Page
             employesalary es = new employesalary();
             es.employe_id = int.Parse(tbid.Value);
             es.payment_date = DateTime.Now;
+            es.paidby = employID;
             //string str = "paidamount" + id;
             es.amount = tbpaidvalue.Value;//Request.Form[str].ToString();
             bool check = employeeProfile.addemployesalary(es);
@@ -75,8 +77,8 @@ public partial class employepaysalary : System.Web.UI.Page
     {
         ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "activaTab('tab_content2');", true);
         table.Visible = true;
-        var name = ddemployeename.SelectedValue;
-        int id = employeeProfile.getEmployeeId(name);
+        var username = ddemployeename.SelectedValue;
+        int id = employeeProfile.getEmployeeId(username);
         int salaryId = employeeProfile.getEmployeeIdSalaryID(id);
 
         employesalary x = employeeProfile.getInfo(salaryId);
@@ -116,6 +118,7 @@ public partial class employepaysalary : System.Web.UI.Page
     }
     protected void updateSalary2(object sender, EventArgs e)
     {
+        int eid = employeeProfile.getEmployeid(Session["loginName"].ToString());
         int hiddenid = int.Parse(inputid.Value);
         table.Visible = false;
         tbupdate.Visible = true;
@@ -128,7 +131,7 @@ public partial class employepaysalary : System.Web.UI.Page
         if (check == true)
         {
             int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
-            int eid = employeeProfile.getEmployeid(Session["loginName"].ToString());
+            
             List<employee> emp = employeeProfile.getunpaidemploye(bid);
             IQueryable<employee> bemploye = employeeProfile.getAllEmployee(bid);
             List<string> lname = new List<string>();

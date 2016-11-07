@@ -3,6 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+    <div id="Notify"></div>
      <div class="right_col" role="main">
           <div class="">
             <div class="page-title">
@@ -132,8 +133,8 @@
                       <br />
                       <div class="form-group">
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                         
-                            <asp:Button ID="Button1" runat="server" Text="Save"  class="btn btn-success" onclick="saveitem_click"/>
+                         <a href="" runat="server" onserverclick="saveitem_click" class="btn btn-success">Save</a>
+                            <%--<asp:Button ID="Button1" runat="server" Text="Save"  class="btn btn-success" onclick="saveitem_click"/>--%>
 
                         </div>
                       </div>

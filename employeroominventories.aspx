@@ -12,7 +12,7 @@
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-
+    <div id="Notify"></div>
      <div class="right_col" role="main">
     <div class="row">
      <div class="col-md-12 col-sm-12 col-xs-12">

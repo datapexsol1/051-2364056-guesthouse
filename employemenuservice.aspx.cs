@@ -7,6 +7,8 @@ using System.Web.UI.WebControls;
 
 public partial class employemenuservice : System.Web.UI.Page
 {
+    string type, msg;
+    bool check;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Session["loginId"] == null)
@@ -92,12 +94,28 @@ public partial class employemenuservice : System.Web.UI.Page
     }
     protected void saveitem_click(object sender,EventArgs e)
     {
+        int eid = employeeProfile.getEmployeid(Session["loginName"].ToString());
+        int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
         room_service_menu rm = new room_service_menu();
         rm.type = Request.Form["addtype"].ToString();
             rm.item_name= Request.Form["additemname"].ToString();
         rm.price=int.Parse(Request.Form["additemprice"].ToString());
         rm.quantity=Request.Form["additemquantity"].ToString();
         rm.employee_id = int.Parse(Session["loginId"].ToString());
-        empmenuclass.addMenuItem(rm);
+        rm.bid = bid;
+        check = empmenuclass.addMenuItem(rm);
+        if (check == true)
+        {
+            admin_notification_class.addnotification(eid, bid, DateTime.Now, admin_notification_class.TableNames.room_service_menu.ToString(), rm.Id, admin_notification_class.CommandType.Add.ToString());
+            msg = "Successfully stored the information";
+            type = "Success";
+
+        }
+        else
+        {
+            msg = "There is some error";
+            type = "Error";
+        }
+        Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('" + type + "','" + msg + "');</script>");
     }
 }
