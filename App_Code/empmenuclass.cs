@@ -48,12 +48,13 @@ public class empmenuclass
                                                  select x);
             return rsm;
     }
-    public static void placeOrder(placed_order p)
+    public static bool placeOrder(placed_order p)
     {
 
         ctownDataContext db = new ctownDataContext();
         db.placed_orders.InsertOnSubmit(p);
         db.SubmitChanges();
+        return true;
     }
 
 
@@ -153,8 +154,9 @@ public class empmenuclass
         }
         return order_detail;
     }
-    public static void deleteplacedorders(int[] orderid)
+    public static bool deleteplacedorders(int[] orderid)
     {
+        bool check;
         ctownDataContext db = new ctownDataContext();
         foreach(int x in orderid)
         {
@@ -163,7 +165,9 @@ public class empmenuclass
                        select o).First();
             db.placed_orders.DeleteOnSubmit(item);
             db.SubmitChanges();
+            check = true;
         }
+        return true;
     }
 
     public static bool ordercanelation_maxtime(DateTime ordertime)

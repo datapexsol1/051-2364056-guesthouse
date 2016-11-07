@@ -92,7 +92,7 @@
                             <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
                                <div class="row">
                                  <div class="col-md-4">
-                                     <label>Select employee name</label>
+                                     <label>Select employee username</label>
                                     
                               <asp:DropDownList  runat="server" class="form-control" clientIdMode="static" ID="ddemployeename" name="ddemployeename" OnSelectedIndexChanged="ddemployeenameselectedindexchange" AutoPostBack="True" required="required">
                                       <Items>

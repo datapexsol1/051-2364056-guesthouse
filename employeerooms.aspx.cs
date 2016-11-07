@@ -48,7 +48,7 @@ public partial class employeerooms : System.Web.UI.Page
         bool check = roomsclass.Addroom(r);//if true display msg 
         if(check == true)
         {
-            admin_notification_class.addnotification(eid, bid, DateTime.Now, admin_notification_class.TableNames.rooms.ToString(),r.Id, admin_notification_class.CommandType.Add.ToString(),"yes");
+            admin_notification_class.addnotification(eid, bid, DateTime.Now, admin_notification_class.TableNames.rooms.ToString(),r.Id, admin_notification_class.CommandType.Add.ToString());
             msg = "Successfully stored the information";
             type = "Success";
 
@@ -84,7 +84,7 @@ public partial class employeerooms : System.Web.UI.Page
         bool check = updateRoom(rm, bid);
         if(check==true)
         {
-            admin_notification_class.addnotification(eid, bid, DateTime.Now, admin_notification_class.TableNames.bill.ToString(), rm.Id, admin_notification_class.CommandType.Update.ToString(),"yes");
+            admin_notification_class.addnotification(eid, bid, DateTime.Now, admin_notification_class.TableNames.bill.ToString(), rm.Id, admin_notification_class.CommandType.Update.ToString());
             msg = "Successfully updated the information";
             type = "Success";
 

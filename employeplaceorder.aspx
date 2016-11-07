@@ -44,7 +44,7 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
- 
+ <div id="Notify"></div>
      <div class="right_col" role="main">
             <input type="hidden" id="itemid" runat="server" />
     <input type="hidden" id="nofitem" runat="server" />

@@ -7,6 +7,8 @@ using System.Web.UI.WebControls;
 
 public partial class employevieworders : System.Web.UI.Page
 {
+    string type, msg;
+    bool check;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Session["loginId"] == null)
@@ -199,6 +201,8 @@ public partial class employevieworders : System.Web.UI.Page
 
     protected void Button1_Click(object sender, EventArgs e)
     {
+        int eid = employeeProfile.getEmployeid(Session["loginName"].ToString());
+        int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
         string str = cancelids.Value;
         string[] words = str.Split(',');
         if (words != null)
@@ -210,9 +214,22 @@ public partial class employevieworders : System.Web.UI.Page
                 value[i] = int.Parse(words[i]);
                 
             }
-            empmenuclass.deleteplacedorders(value);
+            check = empmenuclass.deleteplacedorders(value);
             cancelids.Value = "";
         }
+        if (check == true)
+        {
+            admin_notification_class.addnotification(eid, bid, DateTime.Now, admin_notification_class.TableNames.placed_order.ToString(), 0, admin_notification_class.CommandType.Delete.ToString());
+            msg = "Successfully deleted the information";
+            type = "Success";
+           
+        }
+        else
+        {
+            msg = "There is some error";
+            type = "Error";
+        }
+        Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('" + type + "','" + msg + "');</script>");
     }
   
 }

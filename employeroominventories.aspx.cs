@@ -7,6 +7,8 @@ using System.Web.UI.WebControls;
 
 public partial class employeroominventories : System.Web.UI.Page
 {
+    string msg, type;
+    bool check;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Session["loginId"] == null)
@@ -70,13 +72,28 @@ public partial class employeroominventories : System.Web.UI.Page
     }
   protected void saveAssets_click(object sender, EventArgs e)
     {
+        int eid = employeeProfile.getEmployeid(Session["loginName"].ToString());
+        int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
         room_asset r = new room_asset();
         r.room_id = int.Parse(Request.Form["rno"].ToString());
         r.label = Request.Form["alabel"].ToString();
         r.description = Request.Form["adescription"].ToString();
         r.total_item =int.Parse(Request.Form["insertaitemno"].ToString());
-        r.employee_id = int.Parse(Session["loginId"].ToString());
-        roomassetclass.addinventry(r);
+        r.employee_id = eid;//int.Parse(Session["loginId"].ToString());
+        check = roomassetclass.addinventry(r);
+        if (check == true)
+        {
+            admin_notification_class.addnotification(eid, bid, DateTime.Now, admin_notification_class.TableNames.rooms.ToString(), 0, admin_notification_class.CommandType.Add.ToString());
+            msg = "Successfully stored the information";
+            type = "Success";
+
+        }
+        else
+        {
+            msg = "There is some error";
+            type = "Error";
+        }
+        Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('" + type + "','" + msg + "');</script>");
     }
     protected void updateAssets_click(object sender, EventArgs e)
     {
@@ -87,7 +104,22 @@ public partial class employeroominventories : System.Web.UI.Page
         r.label = ulabel.Value;
         r.description = udescription.Value;
         r.total_item = int.Parse(uitemno.Value);
-        roomassetclass.updateInventory(r, int.Parse(inventoryId.Value));
+       check = roomassetclass.updateInventory(r, int.Parse(inventoryId.Value));
+        int eid = employeeProfile.getEmployeid(Session["loginName"].ToString());
+        int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
+        if (check == true)
+        {
+            admin_notification_class.addnotification(eid, bid, DateTime.Now, admin_notification_class.TableNames.rooms.ToString(), r.id, admin_notification_class.CommandType.Update.ToString());
+            msg = "Successfully stored the information";
+            type = "Success";
+
+        }
+        else
+        {
+            msg = "There is some error";
+            type = "Error";
+        }
+        Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('" + type + "','" + msg + "');</script>");
     }
 
     protected void Button1_Click(object sender, EventArgs e)
