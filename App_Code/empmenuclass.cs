@@ -58,13 +58,13 @@ public class empmenuclass
     }
 
 
-    public static orderdetail_attr[] getOrderPLaced(int bid)
+    public static orderdetail_attr[] getOrderPLaced(int bid,string  roomno)
     {
 
         ctownDataContext db = new ctownDataContext();
         var orders = from x in db.placed_orders
                      join orderdetail in db.room_service_menus on x.item_id equals orderdetail.Id
-                     where x.booking_id == bid
+                     where x.booking_id == bid && x.room_no==roomno
                      select new
                      {
                          placed_order = x,

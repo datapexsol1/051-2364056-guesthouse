@@ -18,7 +18,7 @@ public partial class adminexpensesreport : System.Web.UI.Page
             {
                 branches.Items.Add(x.name);
             }
-         IQueryable<employee> emp=   employeeProfile.getAllEmployee_allbranch(0);
+            IQueryable<employee> emp = employeeProfile.getAllEmployee_allbranch(0);
             employe.Items.Add("Select Employe");
             foreach(employee ex in emp)
             {
@@ -40,7 +40,7 @@ public partial class adminexpensesreport : System.Web.UI.Page
         if (branches.SelectedIndex == 0)
         {
            
-            IQueryable<employee> emp=  employeeProfile.getAllEmployee_allbranch(0);
+            IQueryable<employee> emp=  employeeProfile.getAllEmployee_allbranch(2);
             foreach (employee em in emp)
             {
                 ls.Add(em.username);

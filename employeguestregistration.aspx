@@ -208,8 +208,9 @@
                           </div>
 
                           <%
-                              room r = roomsclass.getRoomInfo(selectedrooms.Text,bid);
-                              
+                              string oneroomrent = selectedrooms.Text.Split(',').First();
+                              room r = roomsclass.getRoomInfo(oneroomrent,bid);
+
                                %>
 
                                    <div class="form-group">
