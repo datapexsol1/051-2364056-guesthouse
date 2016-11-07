@@ -1,12 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EmployePanel.master" AutoEventWireup="true" CodeFile="employebranchinventory.aspx.cs" Inherits="employebranchinventory" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
      <script>
-         function activaTab(tab) {
-             
-             $('.nav-tabs a[href="#' + tab + '"]').tab('show');
-            
-            //alert("working");
-         };
+        
          function myFunction() {
              document.getElementById('ddbranchname').selectedIndex = 0;
              document.getElementById('dditemname').selectedIndex = 0;
@@ -15,14 +10,14 @@
          }
          $(document).ready(function () {
 
-             alert("hello");
+             //alert("hello");
 
 
 
          });
          //submitting temporary values in add panel 
          function submitTempValue(){
-             alert("update panel");
+          //   alert("update panel");
         
 
              
@@ -140,17 +135,17 @@
                               
                         <div class="form-group col-md-6">
 
-                        <label class="control-label col-md-4 " for="room no">Room No <span class="required">*</span>
+                        <label class="control-label col-md-4 " for="room no">Branch name<span class="required">*</span>
                         </label>
                          <% // int bid = employeeProfile.getEmployeBranch("kk");//get from session 
                             string bname = employeeProfile.getEmployeBranchname(Session["loginName"].ToString());%>
                                 <div class="col-md-8">
-                                      <input type="text" id="alabel" name="alabel" value="<%=bname %>" class="form-control "/>
+                                      <input type="text" id="alabel" name="alabel" value="<%=bname %>" readonly="true" class="form-control "/>
                                     </div>
                              
                           </div>
                               <div class="form-group col-md-6">
-                                    <label class="control-label col-md-4 " for="room no">Label <span class="required">*</span> </label>
+                                    <label class="control-label col-md-4 " for="room no">Item  <span class="required">*</span> </label>
                                     <div class="col-md-8">
                                       <input type="text" id="alabel1" name="alabel1" placeholder="Label" class="form-control " data-validation="length alphanumeric" 
 		 data-validation-length="3-25" 
@@ -196,7 +191,12 @@
        
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
 <script>
+    function activaTab(tab) {
 
+        $('.nav-tabs a[href="#' + tab + '"]').tab('show');
+
+        //alert("working");
+    };
   $.validate({
     modules : 'location, date, security, file',
     onModulesLoaded : function() {

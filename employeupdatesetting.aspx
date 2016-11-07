@@ -1,4 +1,5 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EmployePanel.master" AutoEventWireup="true" CodeFile="employeeupdateemployeeinfo.aspx.cs" Inherits="employeeupdateemployeeinfo" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EmployePanel.master" AutoEventWireup="true" CodeFile="employeupdatesetting.aspx.cs" Inherits="employeupdatesetting" %>
+
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
      <!-- Ion.RangeSlider -->
@@ -98,20 +99,20 @@
          <h3>Employee Info</h3>
           <div class="container">
                     <%
-                            int branchid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
-                            int val = int.Parse(Request.QueryString["id"]);
-                            employee emp = employeeProfile.getSelectedEmployeeInfo(val, branchid);
-                            byte[] img1 = null;
-                            if (emp.image != null)
-                            {
-                                img1 = emp.image.ToArray();
-                            }
-                            else
-                            {
-                               img1 = System.Text.Encoding.UTF8.GetBytes ("images/images.png");
-                            }
-                        
-                    
+                        int branchid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
+                        int eid = employeeProfile.getEmployeid(Session["loginName"].ToString());
+                        employee emp = employeeProfile.getSelectedEmployeeInfo(eid, branchid);
+                        byte[] img1 = null;
+                        if (emp.image != null)
+                        {
+                            img1 = emp.image.ToArray();
+                        }
+                        else
+                        {
+                            img1 = System.Text.Encoding.UTF8.GetBytes ("images/images.png");
+                        }
+
+
                    %>
              <%--<img src="images/user.png" class="avatar" alt="Avatar">--%>
               <div class="row">
@@ -158,40 +159,42 @@
               
                   <div class="form-group col-md-6">
                       <b>Cnic</b>
-                       <input id="incnic" name="incnic" type="text" value="<%=emp.cnic %>" readonly="true" data-inputmask="'mask' : '99999-9999999-9'" class="form-control" data-validation="required" 
+                       <input id="incnic" name="incnic" type="text" value="<%=emp.cnic %>" data-inputmask="'mask' : '99999-9999999-9'" class="form-control" data-validation="required" 
 		  
 		 data-validation-error-msg="Enter Cnic xxxxx-xxxxxxx-x" />
                   </div>
               </div>
+
               <div class="row">
+                  <div class="form-group col-md-6">
+                      <b>Address</b>
+                      <input id="inaddress" name="inaddress" value="<%=emp.address %>" class="form-control " data-validation="required" 
+		 data-validation-length="3-50" 
+		 data-validation-error-msg="Enter Address"/>
+                  </div>
+                 
+              
+                  <div class="form-group col-md-6">
+                      <b>Joining date</b>
+
+                      <input id="injoiningdate" name="injoiningdate"  readonly="true" value="<%=emp.dateofjoining  %>" type=""  class="form-control " data-validation="required" 
+
+		 data-validation-error-msg="Select date"/>
+                  </div>
+              </div>
+              <div class="row">
+                  
+              
                   <div class="form-group col-md-6">
                       <b>Designation</b>
                       <input id="indesig" name="indesig" value="<%=emp.designation %>" readonly="true" class="form-control " data-validation="length alphanumeric" 
 		 data-validation-length="3-25" 
 		 data-validation-error-msg="Enter designation"/>
                   </div>
-              
-                  <div class="form-group col-md-6">
-                      <b>Joining date</b>
-
-                      <input id="injoiningdate" name="injoiningdate"  value="<%=emp.dateofjoining  %>" type="" readonly="true" class="form-control " data-validation="required" 
-
-		 data-validation-error-msg="Select date"/>
-                  </div>
-              </div>
-              <div class="row">
-                  <div class="form-group col-md-6">
-                      <b>Address</b>
-                      <input id="inaddress" name="inaddress" value="<%=emp.address %>" readonly="true" class="form-control " data-validation="required" 
-		 data-validation-length="3-50" 
-		 data-validation-error-msg="Enter Address"/>
-                  </div>
-              
-                 
           
                   <div class="form-group col-md-6">
                       <b>Salary</b>
-                      <input id="insalary" name="insalary" type="number" min="0" value="<%=emp.salary %>" readonly="true" class="form-control " data-validation="length alphanumeric" 
+                      <input id="insalary" name="insalary" type="number" min="0" readonly="true" value="<%=emp.salary %>" class="form-control " data-validation="length alphanumeric" 
 		 data-validation-length="3-25" 
 		 data-validation-error-msg="Enter Salary"/>
                   </div>

@@ -17,13 +17,7 @@
            $("input[name=roomminrent]").val("000");
            $("input[name=roombranch]").val("Islamabad");
 
-           //document.getElementById("roomno").value = "abc";
-           //document.getElementById("roomtype").value = "abc";
-           //document.getElementById("roomsize").value = "abc";
-           //document.getElementById("roommaxrent").value = "123";
-           //document.getElementById("roomminrent").value = "123";
-           //document.getElementById("roombranch").value = "Islamabad";
-           alert("hello");
+      //     alert("hello");
        }
    </script>
 </asp:Content>
@@ -189,6 +183,7 @@
                           </div>
                             <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
                                 <div class="form-group col-md-12">
+                                    <label>Select room</label>
                                       <asp:DropDownList runat="server" ID="ddRoomNo" ClientIDMode="Static" OnSelectedIndexChanged="ddRoomNoIndexChanged" AutoPostBack="true"  CssClass="btn btn-default">
                                       </asp:DropDownList> 
                                 </div>
@@ -255,7 +250,12 @@
 
   // Restrict presentation length
   $('#presentation').restrictLength( $('#pres-max-length') );
+  function activaTab(tab) {
 
+      $('.nav-tabs a[href="#' + tab + '"]').tab('show');
+
+      //alert("working");
+  };
 </script>
 
       <!-- jQuery -->

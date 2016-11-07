@@ -16,7 +16,14 @@ public class billclass
         //
     }
 
-
+    public static bill setbill()
+    {
+        ctownDataContext db = new ctownDataContext();
+        var ra = (from x in db.bills
+                 
+                  select x).First();
+        return ra;
+    }
     public static bool Addbill(bill b)
     {
         bool return_ = false;

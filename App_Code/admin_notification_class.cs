@@ -10,7 +10,7 @@ using System.Web.UI;
 public class admin_notification_class
 {
     public enum CommandType { Add, Update, Delete };
-    public enum TableNames {bill, booking, booking_Room,banch,Branch_assets,employee,employesalary,
+    public enum TableNames {bill, booking, booking_Room,branch,Branch_assets,employee,employesalary,
     event_calender,facility_payment,guests,images,online_guest_booking,other_requirement,placed_order, room_assets, room_service_menu,rooms, total_payment};
 
     public admin_notification_class()

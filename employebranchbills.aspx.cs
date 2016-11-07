@@ -62,6 +62,7 @@ public partial class employebranchbills : System.Web.UI.Page
         if (ddBillType.Text != "Select")
         {
             bill b = new bill();
+            b.employee_id = eid;
             b.BranchId = bid;// employeeProfile.getEmployeBranch(Session["loginName"].ToString());//get from session
             b.BillAmount = Convert.ToInt32(Request.Form["abamount"]);
             b.bill_description = Request.Form["desc"];
@@ -78,7 +79,7 @@ public partial class employebranchbills : System.Web.UI.Page
                 }
                 else
                 {
-                   
+                    msg = "Already bill is paid this month";
                     //return bill is already paid
                 }
                 
@@ -99,6 +100,7 @@ public partial class employebranchbills : System.Web.UI.Page
                     }
                     else
                     {
+                        msg = "bill have already been paid";
                         //bill have already been paid
                     }
                 }
@@ -119,14 +121,14 @@ public partial class employebranchbills : System.Web.UI.Page
         }
         if (addcheck == true)
         {
-            admin_notification_class.addnotification(eid, bid, DateTime.Now, admin_notification_class.TableNames.rooms.ToString(), 0, admin_notification_class.CommandType.Add.ToString());
+            admin_notification_class.addnotification(eid, bid, DateTime.Now, admin_notification_class.TableNames.bill.ToString(), 0, admin_notification_class.CommandType.Add.ToString());
             msg = "Successfully stored the information";
             type = "Success";
 
         }
         else
         {
-            msg = "There is some error";
+         //   msg = "There is some error";
             type = "Error";
         }
         Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('" + type + "','" + msg + "');</script>");
