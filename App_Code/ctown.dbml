@@ -96,37 +96,6 @@
       <Column Name="going_to" Type="System.String" DbType="NVarChar(25) NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
-  <Table Name="dbo.guests" Member="guests">
-    <Type Name="guest">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="reg_no" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="guest_name" Type="System.String" DbType="NVarChar(25) NOT NULL" CanBeNull="false" />
-      <Column Name="cnic" Type="System.String" DbType="NVarChar(25) NOT NULL" CanBeNull="false" />
-      <Column Name="date_of_birth" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
-      <Column Name="company_name" Type="System.String" DbType="NVarChar(25)" CanBeNull="true" />
-      <Column Name="[complete _address]" Member="complete__address" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="profession" Type="System.String" DbType="NVarChar(25)" CanBeNull="true" />
-      <Column Name="designation" Type="System.String" DbType="NVarChar(25)" CanBeNull="true" />
-      <Column Name="permanent_address" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="office_phone" Type="System.String" DbType="NVarChar(25)" CanBeNull="true" />
-      <Column Name="residence" Type="System.String" DbType="NVarChar(25)" CanBeNull="true" />
-      <Column Name="mobile" Type="System.String" DbType="NVarChar(25)" CanBeNull="true" />
-      <Column Name="f_passport_no" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="f_nationality" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="f_passport_issue_date" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="f_visa_number" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="f_visa_valid_upto" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="f_purpose_of_vist" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="f_coming_from" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="f_going_to" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="departure_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="flight_no" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="place_of_issue" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="guest_type" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="image" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="employee_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
   <Table Name="dbo.images" Member="images">
     <Type Name="image">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -282,6 +251,38 @@
       <Column Name="room_no" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="item_quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="branch_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.guests" Member="guests">
+    <Type Name="guest">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="reg_no" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="guest_name" Type="System.String" DbType="NVarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="cnic" Type="System.String" DbType="NVarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="date_of_birth" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="company_name" Type="System.String" DbType="NVarChar(25)" CanBeNull="true" />
+      <Column Name="[complete _address]" Member="complete__address" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="profession" Type="System.String" DbType="NVarChar(25)" CanBeNull="true" />
+      <Column Name="designation" Type="System.String" DbType="NVarChar(25)" CanBeNull="true" />
+      <Column Name="permanent_address" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="office_phone" Type="System.String" DbType="NVarChar(25)" CanBeNull="true" />
+      <Column Name="residence" Type="System.String" DbType="NVarChar(25)" CanBeNull="true" />
+      <Column Name="mobile" Type="System.String" DbType="NVarChar(25)" CanBeNull="true" />
+      <Column Name="f_passport_no" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="f_nationality" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="f_passport_issue_date" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="f_visa_number" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="f_visa_valid_upto" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="f_purpose_of_vist" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="f_coming_from" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="f_going_to" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="departure_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="flight_no" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="place_of_issue" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="guest_type" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="image" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="employee_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="advance" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

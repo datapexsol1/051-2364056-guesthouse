@@ -103,7 +103,7 @@
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-
+    <div id="Notify"></div>
     <asp:HiddenField ID="tbbid" runat="server" />
        <div class="right_col" role="main">
     <div class="row">
@@ -211,10 +211,18 @@
                  <br />
                  <b>Tax</b>
                  <asp:Label Font-Bold="true" ID="lbtax" runat="server"></asp:Label>
+                      <br />
+                       <b>Total Bill</b>
+                 <asp:Label Font-Bold="true" ID="tbill" runat="server"></asp:Label>
+                 <br />
+                      <br />
+                       <b>Advance</b>
+                 <asp:Label Font-Bold="true" ID="lbadvance" runat="server"></asp:Label>
                  <br />
 
-             <label id="gtotal" ><u>Total Bill : </u></label>
+             <label id="gtotal" ><u>Remaining Bill : </u></label>
                  <asp:Label Font-Bold="true" ID="Gtotal" runat="server"></asp:Label>
+                      <asp:HiddenField ID="gtotaltb" runat="server" />
              <br />
                    <label><u>Chaque No:<asp:TextBox ID="chaqueno" runat="server"></asp:TextBox> </u></label><br />
                   <label id="gtotal1"><u>Paid Amount : </u></label>

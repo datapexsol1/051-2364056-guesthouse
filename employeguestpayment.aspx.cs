@@ -7,6 +7,8 @@ using System.Web.UI.WebControls;
 
 public partial class employeguestpayment : System.Web.UI.Page
 {
+    string msgshow = "";
+    string type;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Session["loginId"] == null)
@@ -20,7 +22,9 @@ public partial class employeguestpayment : System.Web.UI.Page
                 chaqueno.Visible = false;
                 taxtdiscount.Visible = false;
                 bindTable();
-                tbpaidamount.Text = Gtotal.Text;
+                // tbpaidamount.Text = Gtotal.Text;
+                tbpaidamount.Text = gtotaltb.Value;
+                //tbpaidamount.Text = (double.Parse(Gtotal.Text) - double.Parse(lbadvance.Text)).ToString();
                 if (double.Parse(hrs.Value) <= 6)
                 {
                     timelesscbox.Visible = true;
@@ -49,6 +53,15 @@ public partial class employeguestpayment : System.Web.UI.Page
         int bid = int.Parse(Request.QueryString["booking"]);
         tbbid.Value = bid.ToString();
         bookingRoomAttr[] data = bookingclass.getBookingDetail(bid);
+        int? advanc = 0;
+        if (data.Count() > 0)
+        {
+           advanc = gusetRegistrationClass.getGuestAdvance(data[0].b_guestid);
+        }
+        if (!advanc.HasValue)
+        {
+            advanc = 0;
+        }
         TableRow tRow1 = new TableRow();
         bookingtable.Rows.Add(tRow1);
         TableCell tCell1 = new TableCell();
@@ -195,13 +208,25 @@ public partial class employeguestpayment : System.Web.UI.Page
         tbfacilitebill.Value = facilitiesbill.ToString();
         tbroombill.Value = roombill.ToString();
         double taxAmount = (roombill + facilitiesbill) * 17 / 100;
-        Gtotal.Text = (roombill + facilitiesbill + taxAmount).ToString();
-        totalbill.Value = (roombill + facilitiesbill + taxAmount).ToString(); //Gtotal.Text;
+        double total_bill_variable = roombill + facilitiesbill + taxAmount;
+
+        Gtotal.Text = total_bill_variable.ToString()+"-"+advanc+ ":"+(total_bill_variable-advanc).ToString();
+        gtotaltb.Value = (total_bill_variable - advanc).ToString();
+        totalbill.Value = (total_bill_variable-advanc).ToString(); //Gtotal.Text;
+
+        tbill.Text = total_bill_variable.ToString() ;
         lbfacilities.Text = (facilitiesbill ).ToString();
+
         lbtax.Text = taxAmount.ToString();
+
+        lbadvance.Text = advanc.ToString() ;
+
+       // totalbill.Text = total_bill_variable.ToString();
+
         lbroomrent.Text = roombill.ToString();
         //Gtotal.Text = totalbill.Value;
         //tbpaidamount.Text = Gtotal.Text;
+        //tbpaidamount.Text = (double.Parse(Gtotal.Text) - double.Parse(lbadvance.Text)).ToString();
         //hidden val
 
 
@@ -216,15 +241,19 @@ public partial class employeguestpayment : System.Web.UI.Page
             double revertTax = double.Parse(input.Value) * 50 / 100;
             Gtotal.Text = (double.Parse(totalbill.Value) - revertTax).ToString();
 
-            //double taxAmount = double.Parse(input.Value) * 50 / 100;
-            // tbpaidamount.Text = (double.Parse(input.Value ) - taxAmount).ToString();
-            tbpaidamount.Text = Gtotal.Text;
-            
+
+            // tbpaidamount.Text = Gtotal.Text;
+            //tbpaidamount.Text = (double.Parse(Gtotal.Text)-double.Parse(lbadvance.Text)).ToString() ;
+            tbpaidamount.Text = gtotaltb.Value;
+
+
 
         }
         else
         {
-            tbpaidamount.Text = Gtotal.Text;
+            // tbpaidamount.Text = Gtotal.Text;
+            // (double.Parse(Gtotal.Text) - double.Parse(lbadvance.Text)).ToString();
+            tbpaidamount.Text = gtotaltb.Value;
         }
         bindTable();
 
@@ -237,15 +266,16 @@ public partial class employeguestpayment : System.Web.UI.Page
             double revertTax = double.Parse(lbtax.Text);
             Gtotal.Text = (double.Parse(totalbill.Value) - revertTax).ToString();
 
-            //double taxAmount = double.Parse(input.Value) * 50 / 100;
-            // tbpaidamount.Text = (double.Parse(input.Value ) - taxAmount).ToString();
-            tbpaidamount.Text = Gtotal.Text;
+
+            // tbpaidamount.Text = Gtotal.Text;
+            tbpaidamount.Text = (double.Parse(Gtotal.Text) - double.Parse(lbadvance.Text)).ToString();
 
 
         }
         else
         {
-            tbpaidamount.Text = Gtotal.Text;
+            // tbpaidamount.Text = Gtotal.Text;
+            tbpaidamount.Text = (double.Parse(Gtotal.Text) - double.Parse(lbadvance.Text)).ToString();
         }
         bindTable();
 
@@ -270,7 +300,7 @@ public partial class employeguestpayment : System.Web.UI.Page
 
     protected void btnpaid_Click(object sender, EventArgs e)
     {
-        string msgshow = "";
+        
         if (paymentDropdown.SelectedIndex != 0)
         {
             //bid is booking id 
@@ -290,14 +320,18 @@ public partial class employeguestpayment : System.Web.UI.Page
             }
             if (counter == data.Count())
             {
-                if (tbbid.Value != "" && tbroombill.Value != null && tbfacilitebill.Value != "" && Gtotal.Text != "" && tbpaidamount.Text != "" && paymentDropdown.SelectedIndex != 0)
+                if (tbbid.Value != "" && tbroombill.Value != null && tbfacilitebill.Value != "" && tbill.Text != ""  && paymentDropdown.SelectedIndex != 0)
                 {
                     total_payment tp = new total_payment();
                     tp.booking_id = int.Parse(tbbid.Value);
                     tp.total_rent = tbroombill.Value;
                     tp.facility_total_payment = tbfacilitebill.Value;
-                    tp.total_bill = Gtotal.Text;
-                    tp.paid_amount = tbpaidamount.Text;
+                    tp.total_bill = tbill.Text;
+                    if (tbpaidamount.Text == "")
+                    {
+                        tbpaidamount.Text = "0";
+                    }
+                    tp.paid_amount = (double.Parse(tbpaidamount.Text)+double.Parse(lbadvance.Text)).ToString();
                     tp.paymentdate = DateTime.Now;
                     tp.payment_type = paymentDropdown.SelectedValue;
                     if (paymentDropdown.SelectedIndex == 2 && chaqueno.Text != "")  ///Cheque is on index 2 
@@ -305,24 +339,36 @@ public partial class employeguestpayment : System.Web.UI.Page
                         tp.chaqueno = chaqueno.Text;
                         tp.employee_id = employeeProfile.getEmployeeIdfromusername(Session["loginName"].ToString());
                         guestpayment.addPayment(tp);
-                        msgshow = "Data Saved Successfully";
+                        msgshow = "Payment through Check Saved Successfully";
+                        type = "Success";
                     }
                     else if (paymentDropdown.SelectedIndex == 1 || paymentDropdown.SelectedIndex == 3)
                     {
                         tp.chaqueno = null;
                         tp.employee_id = employeeProfile.getEmployeeIdfromusername(Session["loginName"].ToString());
                         guestpayment.addPayment(tp);
-                        msgshow = "Data saved Successfully";
+                        if (tbpaidamount.Text == "0")
+                        {
+                            msgshow = "Payment Throug Cash with 0 Amount save Successfully. Amount will be paid later ";
+                            type = "Success";
+                        }
+                        else
+                        {
+                            msgshow = "Payment Throug Cash save Successfully";
+                            type = "Success";
+                        }
                     }
-                    else
+                    else if(paymentDropdown.SelectedIndex == 2 && chaqueno.Text == "")
                     {
                         msgshow = "Please add Cheque NO";
+                        type = "Error";
                     }
 
                 }
                 else
                 {
                     msgshow = "Please Cheque out all rooms of this booking ";
+                    type = "Error";
                     //display msg checkout before
                     //  bindTable();
                     // Page_Load(this, e);
@@ -333,7 +379,10 @@ public partial class employeguestpayment : System.Web.UI.Page
         }else
         {
             msgshow = "Please Select Payment type";
+            type = "Error";
         }
+        Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('" + type + "','" + msgshow + "');</script>");
+
     }
 
     protected void paymentDropdown_SelectedIndexChanged(object sender, EventArgs e)
@@ -342,7 +391,8 @@ public partial class employeguestpayment : System.Web.UI.Page
         {
             chaqueno.Visible = false;
             taxtdiscount.Visible = false;
-            timelesscbox.Visible = false; //show msg "please select payment type"
+            timelesscbox.Visible = false;
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('Error','Please Select Payment Type');</script>");
         }
         if (paymentDropdown.SelectedValue == "Cash")
         {
