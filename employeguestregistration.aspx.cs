@@ -61,6 +61,7 @@ public partial class employeguestregistration : System.Web.UI.Page
              g.f_going_to = null;
              g.departure_date = null;
              g.flight_no = null;*/
+            g.advance = int.Parse(Request.Form["advance"]);
             g.guest_type = "local";
             //Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('Success','Information has been saved successfully !');</script>");
 
@@ -95,7 +96,7 @@ public partial class employeguestregistration : System.Web.UI.Page
             g.flight_no = Request.Form["fflightno"];
             g.guest_type = "forigner";
             //Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('Success','Information has been saved successfully !');</script>");
-
+            g.advance =int.Parse( Request.Form["advance"]);
             //ShowMessage("Information has been saved successfully ! ", MessageType.Success);
 
 

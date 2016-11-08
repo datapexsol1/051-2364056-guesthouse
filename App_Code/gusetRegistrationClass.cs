@@ -308,6 +308,15 @@ public class gusetRegistrationClass
         return bookingguestdata;
 
     }
+    public static int? getGuestAdvance(int guest_ID)
+    {
+        ctownDataContext db = new ctownDataContext();
+        int? advance = (from x in db.guests
+                       where x.Id == guest_ID
+                       select x.advance).First();
+        return advance;
+    }
+
 
 
 }
