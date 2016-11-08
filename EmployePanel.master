@@ -114,6 +114,7 @@
 
                       <!--  <li><a href="employeplaceorder.aspx">Order Menu</a></li>-->
                         <li><a href="employebranchbills.aspx">Branch Bills</a></li>
+                        <li><a href="employeguest_service.aspx">Branch Service</a></li>
                         <%--<li><a href="employeguestpayment.aspx">Guests Total Bill</a></li>--%>
                     </ul>
                   </li>

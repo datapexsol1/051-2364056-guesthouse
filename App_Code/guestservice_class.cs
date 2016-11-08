@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Linq;
 using System.Linq;
 using System.Web;
 
@@ -14,4 +15,118 @@ public class guestservice_class
         // TODO: Add constructor logic here
         //
     }
+    public static IQueryable<guest_service> getAllService(int bid)
+    {
+        ctownDataContext db = new ctownDataContext();
+        IQueryable<guest_service> gs = from b in db.guest_services
+                                       where b.branch_id == bid
+                                       select b;
+        return gs;
+    }
+    public static IQueryable<guest_service> getRoomNo(int bid, string type)
+    {
+        ctownDataContext db = new ctownDataContext();
+        IQueryable<guest_service> gs = from b in db.guest_services
+                                       where b.branch_id == bid && b.type == type
+                                       select b;
+        return gs;
+    }
+    public static bool addService(guest_service b)
+    {
+        bool return_ = false;
+        ctownDataContext db = new ctownDataContext();
+        int count = (from x in db.guest_services
+                     where x.Id == b.Id && x.type == b.type && x.date_time == b.date_time   //for checking already existance
+                     select x).Count();
+        if (count == 0)
+        {
+
+            try
+            {
+                db.guest_services.InsertOnSubmit(b);
+                db.SubmitChanges();
+                return_ = true;
+            }
+            catch (ChangeConflictException e)
+            {
+                return_ = false;
+            }
+
+        }
+        return return_;
+    }
+    public static booking_Room getBooking(string roomNo, int bid)
+    {
+        ctownDataContext db = new ctownDataContext();
+        int roomId = (from x in db.rooms
+                      where x.room_no == roomNo && x.branch_id==bid
+                      select x.Id).First();
+        booking_Room bookingRoomInfo = (from x in db.booking_Rooms
+                                             join r in db.rooms on new { X1 = x.roomid, X2 = bid } equals new { X1 = r.Id, X2 = r.branch_id }
+
+                                      //  join r in db.rooms on x.roomid equals r.Id  
+                                        orderby x.roomid descending
+                                where x.checkout==null  && r.room_no==roomNo && r.branch_id == bid
+                                select x).First();
+
+        return bookingRoomInfo;
+    }
+    public static List<guest_service> getDate(int bid, string type, string roomno)
+    {
+        ctownDataContext db = new ctownDataContext();
+        List<guest_service> gs = (from b in db.guest_services
+                                  where b.branch_id == bid && b.type == type && b.room_no == roomno
+                                  select b).ToList();
+
+        List<guest_service> selectedDates = new List<guest_service>();
+        foreach (guest_service x in gs)
+        {
+
+            DateTime d1 = DateTime.Parse(x.date_time.ToShortTimeString());
+            DateTime d2 = DateTime.Parse(DateTime.Now.ToShortTimeString());
+            // DateTime.Subtract(DateTime);
+            double d3 = d2.Subtract(d1).TotalMinutes;
+
+            if (d3 <= 30)
+            {
+                selectedDates.Add(x);
+            }
+
+
+        }
+        return selectedDates;
+    }
+    public static guest_service getInfoForUpdate(int bid, string type, string roomno, DateTime date)
+    {
+        ctownDataContext db = new ctownDataContext();
+        guest_service gs = (from b in db.guest_services
+                                  where b.branch_id == bid && b.type == type && b.room_no == roomno && b.date_time==date
+                                  select b).First();
+        return gs;
+    }
+    public static bool updateService(guest_service gs,DateTime d)
+    {
+        ctownDataContext db = new ctownDataContext();
+        var ugs = (from b in db.guest_services
+                            where b.branch_id == gs.branch_id && b.type == gs.type && b.room_no == gs.room_no && b.date_time == d
+                            select b).First();
+        ugs.item_cost = gs.item_cost;
+        ugs.item_quantity = gs.item_quantity;
+        ugs.description = gs.description;
+
+
+        int check = (from y in db.guest_services
+                     where y.Id == ugs.Id
+                     select y).Count();
+        if (check == 1)
+        {
+            db.SubmitChanges();
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
 }

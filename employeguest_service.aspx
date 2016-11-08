@@ -12,83 +12,7 @@
             //alert("working");
         };
  
-        function myfunction() {
-            alert("adsa");
-            var d = new Date();
-            d.setDate(0);
-            document.getElementById('<%=ddBillType.ClientID %>').value = 'Water';
-            document.getElementById('<%=ddDate.ClientID %>').value =  '123' ;
-            document.getElementById('<%=ubamount.ClientID %>').value = 123;
 
-<%--            document.getElementById('abamount').value = "";
-                document.getElementById('<%=abtype.ClientID %>').value = "";
-                document.getElementById('abdate').value = '';
-                document.getElementById('desc').value = "";--%>
-        }
-        function setAddVal() {
-                <%try
-        {%>
-            //$("input[name=abamount]").val("123");
-            document.getElementById('abamount').value = 123;
-            document.getElementById('<%=abtype.ClientID %>').value = "Water";
-            document.getElementById('abdate').value = '01-10-1991';
-            document.getElementById('desc').value = "123";
-
-          <%-- document.getElementById('<%=ddBillType.ClientID %>').value = '';
-            document.getElementById('<%=ddDate.ClientID %>').value =  '' ;
-            document.getElementById('<%=ubamount.ClientID %>').value = "";--%>
-
-        }
-        function setHomeRent() {
-            if(document.getElementById('<%=abtype.ClientID %>').value  == "House Rent")
-            {
-
-                //document.getElementById('abamount').value = 242000;
-                <%
-        int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
-        bill b = billclass.latestcheckHouseRentYear(bid);//latest bill year
-        bill oldyeardate = billclass.oldestcheckHouseRentYear(bid);//oldest bill year
-
-        int y1 = oldyeardate.Date.Year; //old year
-        int y2 = b.Date.Year; ///new year
-        // DateTime.Subtract(DateTime);
-        int d3 = y2 - y1;
-        if (d3 == 0)
-        {
-            %>
-                document.getElementById('abamount').value = 242000;
-                <%
-        }
-        else
-        {
-            double increment = 242000 * 10 / 100;
-
-             %>
-                
-                document.getElementById('abamount').value = 242000 + <%=increment * d3 %> ;
-        <%
-        }
-        // var newDate = myDate.AddYears(-1);
-        if (b != null)
-        {
-            abcd.Value = b.Date.ToShortDateString();
-        }
-        else
-        {
-            abcd.Value = "";
-        }
-
-        %>
-            }
-            else
-            {
-                document.getElementById('abamount').value = '';
-            }
-        }
-        <%}
-        catch (Exception ex){
-
-        }%>
     </script>
 
 
@@ -106,16 +30,16 @@
      <div class="col-md-12 col-sm-12 col-xs-12">
      <div class="x_content">
      <div class="col-md-9 col-sm-9 col-xs-12">
-         <h3>Branch Bills</h3>
+         <h3>Branch Services</h3>
     <div class="" role="tabpanel" data-example-id="togglable-tabs">
                         <ul id="myTab" class="nav nav-tabs bar_tabs" role="tab
                             
                             ">
-                          <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Bills</a>
+                          <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Services</a>
                           </li>
-                          <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false" onclick="setAddVal()">Update Bills</a>
+                          <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false" onclick="setAddVal()">Update Services</a>
                           </li>
-                          <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false" onclick="myfunction()">Add Bills</a>
+                          <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false" onclick="myfunction()">Add Services</a>
                           </li>
                             
                           
@@ -130,23 +54,29 @@
                               <thead>
                                 <tr>
 <%--                                  <th>Bill Id</th>--%>
-                                  <th>Bill Amount</th>
-                                  <th>Bill Type</th>
-                                  <th>Bill Date</th>
+                                  <th>Service type</th>
+                                  <th>Description</th>
+                                  <th>Quantity</th>
+                                    <th>Date & time</th>
+                                    <th>Room no</th>
+                                    <th>Cost</th>
                                  
                                 </tr>
                               </thead>
                               <tbody>
                                      <%  int branchID = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
-                                         bill b = new bill();
-                                         IQueryable<bill> bill=billclass.getAllbills(branchID);
-                                         foreach (var r in bill)
+
+                                         IQueryable<guest_service> gs=guestservice_class.getAllService(branchID);
+                                         foreach (var r in gs)
                                          { %>
                                 <tr>
 <%--                                  <td><label id="bilid"><%=r.Id %></label></td>--%>
-                                  <td><label id="bilamount"><%=r.BillAmount%></label></td>
-                                  <td><label id="biltype"><%=r.BillType%></label></td>
-                                  <td> <label id="bildate"><%=r.Date%></label></td>
+                                  <td><label id="bilamount"><%=r.type%></label></td>
+                                  <td><label id="biltype"><%=r.description%></label></td>
+                                  <td> <label id="bildate"><%=r.item_quantity%></label></td>
+                                    <td> <label id="bildate1"><%=r.date_time%></label></td>
+                                    <td> <label id="bildate2"><%=r.room_no%></label></td>
+                                    <td> <label id="bildate3"><%=r.item_cost%></label></td>
                                   
                                 </tr>
                                <%} %>
@@ -157,82 +87,46 @@
                               </div>
 
 
-                                <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab" onselect="setAddVal()">
+           <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab" onselect="setAddVal()">
+               <div id="updatePanel">
+                   <div class="col-md-4">
+                       <label >Select Service Type <span class="required">*</span></label>
+                        <asp:DropDownList runat="server" ID="ddServiceType" AutoPostBack="true" OnSelectedIndexChanged="ddServiceTypeSelectedIndex" CssClass="form-control"></asp:DropDownList>
+                    </div>
+                   <div class="col-md-4">
+                       <label >Select Room No <span class="required">*</span></label>
+                        <asp:DropDownList runat="server" ID="ddRoomNo" AutoPostBack="true" OnSelectedIndexChanged="ddRoomNoTypeSelectedIndex" CssClass="form-control">
+                            <asp:ListItem Value="Select"></asp:ListItem>
+                        </asp:DropDownList>
+                    </div>
+                   <div class="col-md-4">
+                       <label >Select Date <span class="required">*</span></label>
+                        <asp:DropDownList runat="server" ID="ddDate" AutoPostBack="true"  OnSelectedIndexChanged="ddDateTypeSelectedIndex"  CssClass="form-control">
+                            <asp:ListItem Value="Select"></asp:ListItem>
+                        </asp:DropDownList>
+                    </div>
+                   <div class="col-md-4">
+                       <label >Description <span class="required">*</span></label>
+                       <input type="text" id="updesc" name="updesc" required="required" runat="server" aria-required="true" placeholder="Description" class="form-control"/>
+
+                    </div>
+                   <div class="col-md-4">
+                       <label >Quantity <span class="required">*</span></label>
+                       <input type="number" min="0" id="upqty" name="upqty" required="required" runat="server" aria-required="true"   class="form-control"/>
+
+                    </div>
+                   <div class="col-md-4">
+                       <label >Cost <span class="required">*</span></label>
+                       <input type="number" min="0" id="upcost" name="upcost" required="required" runat="server" aria-required="true"  value="0" class="form-control"/>
+
+                    </div>
+                </div>
+<a href="" runat="server" onserverclick="Update_service" class="btn btn-success">Update service</a>
+               <%--<asp:Button runat="server" Text="Update service" ID="UpdateId" CssClass="btn btn-success" OnClick="Update_service"/>--%>
 
 
-                                     <div style="overflow:auto;white-space:nowrap;">
-       <table class="data table table-striped no-margin">
-                              <thead>
-                                 <tr>
-<%--                                  <th>Bill Id</th>--%>
-                                     <th>Bill Type</th>
-                                     <th>Bill Date</th>
-                                  <th>Bill Amount</th>
-                                  
-                                  
-                                 
-                                </tr>
-                              </thead>
-                              <tbody>
-                                <tr>
-                                    <td> <asp:DropDownList  runat="server" class="form-control" clientIdMode="static" ID="ddBillType" name="ddBillType" AutoPostBack="True" OnSelectedIndexChanged="billTypeSelectedIndexChange" required>
-                                      <Items>
-                                           <asp:ListItem Text="Select" Value="" />
-                                          <asp:ListItem value="Electricity" Text="Electricity"></asp:ListItem>
-                                          <asp:ListItem value="Gas" Text="Gas"></asp:ListItem>
-                                          <asp:ListItem value="Water" Text="Water"></asp:ListItem>
-                                          <asp:ListItem value="Nayatel" Text="Nayatel"></asp:ListItem>
-                                          <asp:ListItem value="House Rent" Text="House Rent"></asp:ListItem>
-                                          <asp:ListItem value="Repair and Maintainence" Text="Repair and Maintainence"></asp:ListItem>
-                                          <asp:ListItem value="Petrol for Generator" Text="Petrol for Generator"></asp:ListItem>
-                                          <asp:ListItem value="Food Supplies" Text="Food Supplies"></asp:ListItem>
-                                          <asp:ListItem value="Other Supplies" Text="Other Supplies"></asp:ListItem>
-                                          <asp:ListItem value="Commission" Text="Commission"></asp:ListItem>
-                                          <asp:ListItem value="Misc." Text="Misc."></asp:ListItem>
-                                          <asp:ListItem value="Communication" Text="Communication"></asp:ListItem>
-                                          <asp:ListItem value="Other" Text="Other"></asp:ListItem>
-                                       </Items>
-                                      </asp:DropDownList>
-                                        <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="ddBillType" ErrorMessage="RequiredFieldValidator"></asp:RequiredFieldValidator>--%>
-                                    <%--<select class="form-control" id="ddBillType" name="ubtype" runat="server">
-                                        <option value="0">Select</option>
-                                    <option value="Electricity" id="ubtype1">Electricity</option>
-                              <option value="Gas" id="ubtype2">Gas</option>
-                              <option value="Water" id="ubtype3">Water</option>
 
-
-                                        </select>--%></td>
-                               
-                                  <td>
-
-                                      <asp:DropDownList  runat="server" class="form-control" ID="ddDate" name="ddDate" OnSelectedIndexChanged="branchBillSelectedIndexChange" AutoPostBack="True"  >
-                                      <Items>
-                                           <asp:ListItem Text="Select" Value="" />
-                                          
-                                           
-                                       </Items>
-                                      </asp:DropDownList>
-                                      
-                                      
-                                      
-                                         <%--<input type="date" id="ubdate" name="ubdate"  placeholder="Date" class="form-control "/>--%></td>
-                                                                    <td> <input type="number" id="ubamount" name="ubamount" runat="server" placeholder="Bill Amount" class="form-control " required="required"/></td>
-
-                                    <td>
-                                        <%--<input type="submit" runat="server" id="send" onserverclick="Update_bills" causesvalidation="false" />--%>
-                                <%--<asp:Button ID="send" runat="server" Text="Update" class="btn btn-success" OnClick="Update_bills"  />--%>
-                                        <a href ="" id="send" onserverclick="Update_bills" runat="server" class="btn btn-success">Update</a>
-
-                                    </td>
-                                </tr>
-                               
-                              </tbody>
-                            </table>
-
-      </div>
-
-
-                              </div>
+           </div>
 
 
            <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
@@ -240,16 +134,71 @@
  
                               
                             <div class="col-md-4">
-                             <label >Bill Amount <span class="required">*</span></label>
+                             <label >Service type <span class="required">*</span></label>
 
-                              <input type="number" id="abamount" min="0" name="abamount" required="required" 
-                                  aria-required="true"  placeholder="Amount" class="form-control"/>
+                              <select id="serviceId" name="serviceId" class="form-control">
+                                  <option value="" name="">Select</option>
+                                  <option value="Car Rent">Car Rent</option>
+                                  <option value="Laundry">Laundry</option>
+                                  <option value="Other">Other</option>
+                              </select>
 
                             </div>
-                                  
+                            <div class="col-md-4">
+                             <label >Description <span class="required">*</span></label>
+
+                              <input type="text" id="addesc" name="addesc" required="required" aria-required="true"  placeholder="Description" class="form-control"/>
+
+                            </div>
+               <div class="col-md-4">
+                             <label >Quantity <span class="required">*</span></label>
+
+                              <input type="number" min="0" id="adqty" name="adqty" required="required" aria-required="true"  value="0" class="form-control"/>
+
+                            </div>
+               <%--<div class="col-md-4">
+                             <label >Date <span class="required">*</span></label>
+
+                              <input type="text" id="abdate" name="abdate" required="required" aria-required="true" placeholder="Select date" class="form-control"/>
+
+                            </div>--%>
+               <div class="col-md-4">
+                             <label >Room no <span class="required">*</span></label>
+                    <select id="adroomno" name="adroomno" class="form-control" >
+                        <option>Select Room</option>
+                                <%
+                                    IQueryable<room> rm = roomsclass.getBookedROoms(branchID);
+                                    foreach (var x in rm)
+                                    {
+                                     %>
+                        <option><%=x.room_no %></option>
+                  <%} %>
+
+                   </select>
+                              <%--<input type="text" id="adroomno" name="adroomno" required="required" aria-required="true"  placeholder="Enter room no" class="form-control"/>--%>
+
+                            </div>
+               <div class="col-md-4">
+                             <label >Item cost <span class="required">*</span></label>
+
+                              <input type="number" id="adcost" name="adcost" required="required" aria-required="true"  value="0" class="form-control"/>
+
+                            </div>
+
+
+
+
+               <!------------------------------------------------------------------------------------>
+                           <%-- <div class="col-md-4">
+                             <label >Bill Amount <span class="required">*</span></label>
+
+                              <input type="number" id="abamount" min="0" name="abamount" required="required" aria-required="true"  placeholder="Amount" class="form-control"/>
+
+                            </div>
+                                  --%>
                      
                                 
-                        <div class="col-md-4">
+                       <%-- <div class="col-md-4">
                             <label>Bill Type <span class="required">*</span></label>
                              <select class="form-control" id="abtype" name="abtype"  onchange="setHomeRent();" runat="server" required="required">
                                             <option value="0">Select</option>
@@ -269,12 +218,12 @@
                                           <option value="Other" id="abtype13">Other</option>
 
                             </select>
-                        </div>
+                        </div>--%>
                       
                            
 
                         
-                        <div class="col-md-4">
+                       <%-- <div class="col-md-4">
                             <label >Date <span class="required">*</span></label>
                           <input type="text" id="abdate" name="abdate" data-format="dd-mm-yyyy"  placeholder="Date" class="form-control " required="required"/>
                         </div>
@@ -288,14 +237,14 @@
                               <textarea  id="desc" name="desc"  placeholder="Description" rows="2" class="form-control "></textarea>
                         </div>
                  </div>
-                    </div>
+                    </div>--%>
                    
                            
                               <div class="form-group">
                         <div class="col-md-6 col-md-offset-11">
                             <%--<a href="#" onserverclick="Button1_Click" runat="server" class="btn btn-success" >Submit</a>--%>
                            <%--<button onserverclick="Button1_Click" runat="server" class="btn btn-success">Submit</button>--%>
-                          <asp:Button ID="Button1" runat="server" Text="Submit"   class="btn btn-success"    OnClick="Button1_Click" />
+                          <asp:Button ID="Button1" runat="server" Text="Submit"   class="btn btn-success"    OnClick="SaveServices" />
                             <%--<input type="submit" name="submit" onserverclick="Button1_Click" runat="server" class="btn btn-success"/>--%>
                         <input type="hidden" id="abcd" runat="server" />
                         </div>
