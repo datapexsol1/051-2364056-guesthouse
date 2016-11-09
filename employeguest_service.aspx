@@ -107,17 +107,17 @@
                     </div>
                    <div class="col-md-4">
                        <label >Description <span class="required">*</span></label>
-                       <input type="text" id="updesc" name="updesc" required="required" runat="server" aria-required="true" placeholder="Description" class="form-control"/>
+                       <input type="text" id="updesc" name="updesc"  runat="server" aria-required="true" placeholder="Description" class="form-control"/>
 
                     </div>
                    <div class="col-md-4">
                        <label >Quantity <span class="required">*</span></label>
-                       <input type="number" min="0" id="upqty" name="upqty" required="required" runat="server" aria-required="true"   class="form-control"/>
+                       <input type="number" min="0" id="upqty" name="upqty"  runat="server" aria-required="true"   class="form-control"/>
 
                     </div>
                    <div class="col-md-4">
                        <label >Cost <span class="required">*</span></label>
-                       <input type="number" min="0" id="upcost" name="upcost" required="required" runat="server" aria-required="true"  value="0" class="form-control"/>
+                       <input type="number" min="0" id="upcost" name="upcost"  runat="server" aria-required="true"  value="0" class="form-control"/>
 
                     </div>
                 </div>
@@ -147,13 +147,13 @@
                             <div class="col-md-4">
                              <label >Description <span class="required">*</span></label>
 
-                              <input type="text" id="addesc" name="addesc" required="required" aria-required="true"  placeholder="Description" class="form-control"/>
+                              <input type="text" id="addesc" name="addesc" aria-required="true"  placeholder="Description" class="form-control"/>
 
                             </div>
                <div class="col-md-4">
                              <label >Quantity <span class="required">*</span></label>
 
-                              <input type="number" min="0" id="adqty" name="adqty" required="required" aria-required="true"  value="0" class="form-control"/>
+                              <input type="number" min="0" id="adqty" name="adqty"  aria-required="true"  value="0" class="form-control"/>
 
                             </div>
                <%--<div class="col-md-4">
@@ -181,63 +181,14 @@
                <div class="col-md-4">
                              <label >Item cost <span class="required">*</span></label>
 
-                              <input type="number" id="adcost" name="adcost" required="required" aria-required="true"  value="0" class="form-control"/>
+                              <input type="number" id="adcost" name="adcost"  aria-required="true"  value="0" class="form-control"/>
 
                             </div>
 
 
 
 
-               <!------------------------------------------------------------------------------------>
-                           <%-- <div class="col-md-4">
-                             <label >Bill Amount <span class="required">*</span></label>
-
-                              <input type="number" id="abamount" min="0" name="abamount" required="required" aria-required="true"  placeholder="Amount" class="form-control"/>
-
-                            </div>
-                                  --%>
-                     
-                                
-                       <%-- <div class="col-md-4">
-                            <label>Bill Type <span class="required">*</span></label>
-                             <select class="form-control" id="abtype" name="abtype"  onchange="setHomeRent();" runat="server" required="required">
-                                            <option value="0">Select</option>
-                                        
-                                 <option value="Electricity" id="abtype1">Electricity</option>
-                                          <option value="Gas" id="abtype2">Gas</option>
-                                          <option value="Water" id="abtype3">Water</option>
-                                          <option value="Nayatel" id="abtype4">Nayatel</option>
-                                          <option value="House Rent" id="abtype5">House Rent</option>
-                                          <option value="Repair and Maintainence" id="abtype6">Repair and Maintainence</option>
-                                          <option value="Petrol for Generator" id="abtype7">Petrol for Generator</option>
-                                          <option value="Food Supplies" id="abtype8">Food Supplies</option>
-                                          <option value="Other Supplies" id="abtype9">Other Supplies</option>
-                                          <option value="Commission" id="abtype10">Commission</option>
-                                          <option value="Misc." id="abtype11">Misc.</option>
-                                          <option value="Communication" id="abtype12">Communication</option>
-                                          <option value="Other" id="abtype13">Other</option>
-
-                            </select>
-                        </div>--%>
-                      
-                           
-
-                        
-                       <%-- <div class="col-md-4">
-                            <label >Date <span class="required">*</span></label>
-                          <input type="text" id="abdate" name="abdate" data-format="dd-mm-yyyy"  placeholder="Date" class="form-control " required="required"/>
-                        </div>
-                      
-                <div class="form-group col-md-12">
-                    <div class="row">
-                        
-                        <div class="col-md-12">
-                        <label >Bill Description <span class="required">*</span>
-                        </label>
-                              <textarea  id="desc" name="desc"  placeholder="Description" rows="2" class="form-control "></textarea>
-                        </div>
-                 </div>
-                    </div>--%>
+              
                    
                            
                               <div class="form-group">
