@@ -103,7 +103,14 @@ public partial class employebranchbills : System.Web.UI.Page
         var roomNo = ddRoomNo.SelectedValue;
         
             List<guest_service> b = guestservice_class.getDate(branchID,selectedServiceType,roomNo);
-            string[] date = new string[b.Count() + 1];
+            if(b.Count == 0)
+            {
+            msg = "There is no value saved in last 30 minutes";
+            type = "Error";
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('" + type + "','" + msg + "');</script>");
+
+        }
+        string[] date = new string[b.Count() + 1];
             date[0] = "Select";
             int i = 1;
             foreach (var x in b)
