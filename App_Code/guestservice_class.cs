@@ -18,9 +18,9 @@ public class guestservice_class
     public static IQueryable<guest_service> getAllService(int bid)
     {
         ctownDataContext db = new ctownDataContext();
-        IQueryable<guest_service> gs = from b in db.guest_services
+        IQueryable<guest_service> gs =( from b in db.guest_services
                                        where b.branch_id == bid
-                                       select b;
+                                       select b).Distinct();
         return gs;
     }
     public static IQueryable<guest_service> getRoomNo(int bid, string type)
@@ -96,19 +96,19 @@ public class guestservice_class
         }
         return selectedDates;
     }
-    public static guest_service getInfoForUpdate(int bid, string type, string roomno, DateTime date)
+    public static guest_service getInfoForUpdate(int bid, string type, string roomno, DateTime date,int bookingId)
     {
         ctownDataContext db = new ctownDataContext();
         guest_service gs = (from b in db.guest_services
-                                  where b.branch_id == bid && b.type == type && b.room_no == roomno && b.date_time==date
+                                  where b.branch_id == bid && b.type == type && b.room_no == roomno && b.booking_id==bookingId
                                   select b).First();
         return gs;
     }
-    public static bool updateService(guest_service gs,DateTime d)
+    public static bool updateService(guest_service gs,DateTime d,int bookid)
     {
         ctownDataContext db = new ctownDataContext();
         var ugs = (from b in db.guest_services
-                            where b.branch_id == gs.branch_id && b.type == gs.type && b.room_no == gs.room_no && b.date_time == d
+                            where b.branch_id == gs.branch_id && b.type == gs.type && b.room_no == gs.room_no && b.booking_id ==bookid
                             select b).First();
         ugs.item_cost = gs.item_cost;
         ugs.item_quantity = gs.item_quantity;

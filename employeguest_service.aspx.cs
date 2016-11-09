@@ -56,7 +56,7 @@ public partial class employebranchbills : System.Web.UI.Page
 
         gs.item_cost = Request.Form["adcost"];
         gs.branch_id = bid;
-        gs.booking_Id = bookroominfo.bookingId; 
+        gs.booking_id = bookroominfo.bookingId; 
         check = guestservice_class.addService(gs);
         if (check == true)
         {
@@ -124,7 +124,8 @@ public partial class employebranchbills : System.Web.UI.Page
         var selectedServiceType = ddServiceType.SelectedValue;
         var roomNo = ddRoomNo.SelectedValue;
         DateTime date = DateTime.Parse(ddDate.SelectedValue);
-        guest_service b = guestservice_class.getInfoForUpdate(branchID, selectedServiceType, roomNo,date);
+        booking_Room bookroominfo = guestservice_class.getBooking(roomNo, branchID);
+        guest_service b = guestservice_class.getInfoForUpdate(branchID, selectedServiceType, roomNo,date,bookroominfo.bookingId);
         updesc.Value = b.description;
         upqty.Value = b.item_quantity.ToString();
         upcost.Value = b.item_cost.ToString();
@@ -137,7 +138,9 @@ public partial class employebranchbills : System.Web.UI.Page
     {
 
         int eid = employeeProfile.getEmployeid(Session["loginName"].ToString());
-        int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString()); ;
+        int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
+        var roomNo = ddRoomNo.SelectedValue;
+        booking_Room bookroominfo = guestservice_class.getBooking(roomNo, bid);
         guest_service b = new guest_service();
         DateTime d = DateTime.Parse(ddDate.SelectedValue);
         b.room_no = ddRoomNo.SelectedValue;
@@ -147,7 +150,7 @@ public partial class employebranchbills : System.Web.UI.Page
         b.description = updesc.Value;
         b.item_cost = upcost.Value;
         b.item_quantity = int.Parse(upqty.Value);
-        check = guestservice_class.updateService(b,d);
+        check = guestservice_class.updateService(b,d,bookroominfo.bookingId);
         if (check == true)
         {
             msg = "Successfully updated the information";
