@@ -134,10 +134,10 @@
         <elementListCompartment Id="78ca0a10-6269-4da0-bf6e-4ede3e0ab335" absoluteBounds="6.39, 4.96, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="d5d3278f-2fdd-4b2d-a6bc-62a4cfa68b8a" absoluteBounds="1.625, 17.625, 2, 6.1938297526041657">
+    <classShape Id="4f6fc954-75a6-4fe9-91a9-858a76ad0a6b" absoluteBounds="0.875, 17.5, 2, 6.1938297526041657">
       <DataClassMoniker Name="/ctownDataContext/guest" />
       <nestedChildShapes>
-        <elementListCompartment Id="b719d07c-b9c0-467e-a59f-0d03e5e00243" absoluteBounds="1.6400000000000001, 18.085, 1.9700000000000002, 5.6338297526041661" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="a69eece5-97bf-48bb-a7f4-d9c00ba82a21" absoluteBounds="0.89, 17.96, 1.9700000000000002, 5.6338297526041661" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>
