@@ -25,15 +25,34 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-         <div class="right_col" role="main" align="center">
-    <div class="row">
+        <div class="right_col" role="main">
+          <div class="">
+    <div class="page-title">
+              <div class="title_left">
+                   <h3>Select Room</h3>
+              </div>
+
+              <div class="title_right">
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                  <div class="input-group">
+                      <span class="input-group-btn">
+                              <button class="btn btn-default" type="button" disabled="disabled">Select branch!</button>
+                          </span>
+                  <asp:DropDownList ID="branch" runat="server"  AutoPostBack="true" ClientIDMode="Static"  CssClass="form-control"></asp:DropDownList>
+
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+      <div class="clearfix"></div>
+
+            <div class="row">
      <div class="col-md-12 col-sm-12 col-xs-12">
      <div class="x_content">
-     <div class="col-md-9 col-sm-9 col-xs-12">
-         <h1 >Room Selection</h1>
-         <hr  style="width:50%;border-color:#800000;border-width: 4px;"/>
-         <br /><br />
-                             <asp:DropDownList ID="branch" runat="server"  AutoPostBack="true" ClientIDMode="Static"></asp:DropDownList>
+     <div class="col-md-12 col-sm-9 col-xs-12">
+         
+                             <%--<asp:DropDownList ID="branch" runat="server"  AutoPostBack="true" ClientIDMode="Static"></asp:DropDownList>--%>
 
     <div class="" role="tabpanel" data-example-id="togglable-tabs" >
   
@@ -92,7 +111,7 @@
 </table>
         <br /><br />
         <h2>Selected Rooms</h2>
-<textarea id='t' name='roomselected' class='input' >Seats:</textarea><br>
+<textarea id='t' name='roomselected' class='input' placeholder="Select rooms" >Seats:</textarea><br>
 
 
         </div></div>

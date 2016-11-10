@@ -9,6 +9,17 @@ public partial class adminbranchinventory : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+
+        if (!IsPostBack)
+        {
+            brid.Items.Clear();
+            IQueryable<branch> br = admingraphclass.getAllbranches();
+            brid.Items.Add("Select Branch");
+            foreach (branch x in br)
+            {
+                brid.Items.Add(x.name);
+            }
+        }
         //update function dropdown branch name
         IQueryable<branch> b = branchClass.getBrachesinfo();
         string[] branchName = new string[b.Count() + 1];
@@ -43,27 +54,28 @@ public void viewBranchAssets()
     TableCell tCell4 = new TableCell();
     tCell4.Text = "Total Item";
     tRow1.Cells.Add(tCell4);
-
-    int branchid = employeeProfile.getEmployeBranch("kk"); ;//int.Parse(Request["branch"]);get from session 
+        if(brid.SelectedValue!="Select Branch") {
+            int branchid = branchClass.getBranchID(brid.SelectedValue);//int.Parse(Request["branch"]);get from session 
 
 
     IQueryable<Branch_asset> rom = branchAssetsClass.getAllBranchAssets(branchid);
-    foreach (var x in rom)
-    {
-        TableRow tRow = new TableRow();
-        assetsViewTable.Rows.Add(tRow);
-        TableCell tCellr = new TableCell();
-        tCellr.Text = x.bid.ToString();
-        tRow.Cells.Add(tCellr);
-        TableCell tCellrn = new TableCell();
-        tCellrn.Text = x.title;
-        tRow.Cells.Add(tCellrn);
-        TableCell tCellrd = new TableCell();
-        tCellrd.Text = x.description;
-        tRow.Cells.Add(tCellrd);
-        TableCell tCellri = new TableCell();
-        tCellri.Text = x.no_item.ToString();
-        tRow.Cells.Add(tCellri);
+            foreach (var x in rom)
+            {
+                TableRow tRow = new TableRow();
+                assetsViewTable.Rows.Add(tRow);
+                TableCell tCellr = new TableCell();
+                tCellr.Text = x.bid.ToString();
+                tRow.Cells.Add(tCellr);
+                TableCell tCellrn = new TableCell();
+                tCellrn.Text = x.title;
+                tRow.Cells.Add(tCellrn);
+                TableCell tCellrd = new TableCell();
+                tCellrd.Text = x.description;
+                tRow.Cells.Add(tCellrd);
+                TableCell tCellri = new TableCell();
+                tCellri.Text = x.no_item.ToString();
+                tRow.Cells.Add(tCellri);
+            }
     }
 }
 protected void saveBAssets_click(object sender, EventArgs e)

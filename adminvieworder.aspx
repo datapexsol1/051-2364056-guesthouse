@@ -6,17 +6,28 @@
       <asp:HiddenField ID="brachid" runat="server" />
     
    
-    
      <div class="right_col" role="main">
           <div class="">
-            <div class="page-title">
+    <div class="page-title">
               <div class="title_left">
-                <h3>Menu items</h3>
+                   <h3>Guests Order</h3>
               </div>
 
-             
+              <div class="title_right">
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                  <div class="input-group">
+                      <span class="input-group-btn">
+                              <button class="btn btn-default" type="button" disabled="disabled">Select branch!</button>
+                          </span>
+                  <asp:DropDownList ID="branch" runat="server"  AutoPostBack="true" ClientIDMode="Static"  CssClass="form-control"></asp:DropDownList>
+
+                    
+                  </div>
+                </div>
+              </div>
             </div>
-      <</div>
+     
+        
             <div class="clearfix"></div>  
      <div class="">
               <div class="col-md-12 col-sm-12 col-xs-12">
@@ -49,7 +60,7 @@
                            <%-- <asp:Button ID="getsummary" runat="server" Text="Place Order" OnClick="getsummary_click" />
                              <asp:Button ID="savetodb" runat="server" Text="PrintBill"  />--%>
 
-                             <asp:DropDownList ID="ddrooms" runat="server" CssClass="form-group col-md-5" AutoPostBack="True" OnSelectedIndexChanged="ddrooms_SelectedIndexChanged"></asp:DropDownList>
+                             <asp:DropDownList ID="ddrooms" runat="server" CssClass="form-control" AutoPostBack="True" OnSelectedIndexChanged="ddrooms_SelectedIndexChanged"></asp:DropDownList>
                                         
                             <asp:Table ID="viewOrder" runat="server"  class="table table-bordered table-striped"></asp:Table>
                             <asp:Label ID="grandtotal" runat="server"  Text="Amount"></asp:Label>
@@ -73,7 +84,7 @@
 
               
 
-         </div></div>   </div>
+         </div></div>   </div></div>
 
 </asp:Content>
 

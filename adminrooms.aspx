@@ -12,12 +12,34 @@
     
 
      
-      <div class="right_col" role="main">
-    <div class="row">
+      
+   <div class="right_col" role="main">
+          <div class="">
+    <div class="page-title">
+              <div class="title_left">
+                   <h3>Rooms</h3>
+              </div>
+
+              <div class="title_right">
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                  <div class="input-group">
+                      <span class="input-group-btn">
+                              <button class="btn btn-default" type="button" disabled="disabled">Select branch!</button>
+                          </span>
+                  <asp:DropDownList ID="branch" runat="server"  AutoPostBack="true" ClientIDMode="Static"  CssClass="form-control"></asp:DropDownList>
+
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+      <div class="clearfix"></div>
+
+            <div class="row">
      <div class="col-md-12 col-sm-12 col-xs-12">
      <div class="x_content">
      <div class="col-md-9 col-sm-9 col-xs-12">
-         <h3>Rooms</h3>
+
           <div class="container">
     <div class="" role="tabpanel" data-example-id="togglable-tabs">
                         <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
@@ -42,7 +64,7 @@
 
 
                             <!-- start recent activity -->
-                    <asp:DropDownList ID="branch" runat="server"  AutoPostBack="true" ClientIDMode="Static"></asp:DropDownList>
+                    <%--<asp:DropDownList ID="branch" runat="server"  AutoPostBack="true" ClientIDMode="Static"></asp:DropDownList>--%>
                              
 
                            <table class="table tbl">
@@ -179,7 +201,7 @@
         </div>
           </div>
     </div>
-   
+   </div>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
 <script>
 

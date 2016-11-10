@@ -308,20 +308,22 @@ protected void getsummary_click(object sender, EventArgs e)
 protected void saveitem_click(object sender, EventArgs e)
 {
     room_service_menu rm = new room_service_menu();
-    rm.employee_id = int.Parse(Session["loginId"].ToString());
+        rm.employee_id = employeeProfile.getEmployeeId(Session["adminLogin"].ToString());// int.Parse(Session["loginId"].ToString());
     rm.type = Request.Form["addtype"].ToString();
     rm.item_name = Request.Form["additemname"].ToString();
     rm.price = int.Parse(Request.Form["additemprice"].ToString());
     rm.quantity = Request.Form["additemquantity"].ToString();
-    rm.bid = employeeProfile.getEmployeBranch("kk");//get from session
+    rm.bid = employeeProfile.getEmployeBranch(Session["adminLogin"].ToString());//get from session
     empmenuclass.addMenuItem(rm);
 }
     protected void indexchange_click(object sender, EventArgs e)
     {
         ordersummery.Visible = false;
         savetodb.Visible = false;
-     
-            // int bid = employeeProfile.getEmployeBranch("kk");//get from session
+
+        // int bid = employeeProfile.getEmployeBranch("kk");//get from session
+        if (branch.SelectedValue != "Select Branch")
+        {
             int bid = branchClass.getBranchID(branch.SelectedValue);
             bookingid.Value = bid.ToString();
             IQueryable<room> r = roomsclass.getBookedROoms(bid);
@@ -341,6 +343,6 @@ protected void saveitem_click(object sender, EventArgs e)
             bindMenu();
 
 
-        
+        }   
     }
 }

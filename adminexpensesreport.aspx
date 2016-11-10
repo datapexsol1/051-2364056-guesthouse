@@ -25,38 +25,60 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <asp:HiddenField ID="date" runat="server" OnValueChanged="Button1_Click" CLientIDMode="Static"/>
+     <div class="right_col" role="main">
+          <div class="">
+    <div class="page-title">
+              <div class="title_left">
+         <h3>Expense report of branches</h3>
+              </div>
 
+              <div class="title_right">
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                  <div class="input-group">
+                      <span class="input-group-btn">
+                              <button class="btn btn-default" type="button" disabled="disabled">Select branch!</button>
+                          </span>
+     <asp:DropDownList ID="branches" runat="server" AutoPostBack="True" OnSelectedIndexChanged="branches_SelectedIndexChanged" CssClass="form-control">
+         </asp:DropDownList>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+      <div class="clearfix"></div>
   
-      <div class="right_col" role="main">
     <div class="row">
      <div class="col-md-12 col-sm-12 col-xs-12">
      <div class="x_content">
      <div class="col-md-9 col-sm-9 col-xs-12">
-         <h3>Branch</h3>
-
-         branches
 
 
-     <asp:DropDownList ID="branches" runat="server" AutoPostBack="True" OnSelectedIndexChanged="branches_SelectedIndexChanged">
-        
-    </asp:DropDownList>
-         bill type
-    <asp:DropDownList ID="employe" runat="server" AutoPostBack="True" OnSelectedIndexChanged="employe_SelectedIndexChanged" >
+         <div class="row">
+        <div class="col-md-4">
+             Select bill type
+    <asp:DropDownList ID="employe" runat="server" AutoPostBack="True" OnSelectedIndexChanged="employe_SelectedIndexChanged" CssClass="form-control">
        
     </asp:DropDownList>
-         datetime
+        </div>
+    
+        <div class="col-md-4">
+         Select date
        
-      <input id="datewincome" />
+      <input id="datewincome" class="form-control"/>
+            </div>
+             </div>
+         <div class="row">
          <%--asp:Button ID="Button1"  Text="Search" OnClick="Button1_Click"  />--%>
          <div class="table-responsive">
                       <asp:Table ID="expance" class="table" runat="server"></asp:Table>
 
                        <asp:Table ID="Salary" class="table" runat="server"></asp:Table>
              </div>
+             </div>
          </div>
          </div>
          </div>
         </div>
-          </div>
+          </div></div>
 </asp:Content>
 

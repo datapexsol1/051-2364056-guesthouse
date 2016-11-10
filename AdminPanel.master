@@ -188,9 +188,9 @@
                                              <span class="badge bg-green" id="counter"></span>
                                             
                                         </a>
-                                        <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+                                        <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu" style="height:500px; overflow:auto">
                                             <li>
-                                                <div class="text-center">
+                                                <div class="text-center" >
                                                     <a>
                                                         <strong>See All Alerts</strong>
                                                         <i class="fa fa-angle-right"></i>
