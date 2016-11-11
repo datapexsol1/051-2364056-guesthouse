@@ -21,8 +21,11 @@
                 $("#s2").show();
                 $("#s3").hide();
                 $("#guestType").val("pakistani") ;
-                alert($("#guestType").val());
+              //  alert($("#guestType").val());
                 //    $('input[name=regno]').val("0") ;
+                 $("<%=cnicfrontimg.ClientID%>").val("");
+                 $("<%=cnicbackimg.ClientID%>").val("");
+                 $("<%=regformimage.ClientID%>").val("");
                 $("input[name=regno]").val("");
                 $("input[name=arrivaldate]").val("");
                 $("input[name=atime]").val("");
@@ -65,7 +68,9 @@
                 $("input[name=visano]").val("000");
                 $("input[name=validupto]").val("2016-01-01");
                 $("input[name=fcfrom]").val("00");
-                $("input[name=fgoto]").val("00");
+                $("<%=passportimage.ClientID%>").val("<%= System.Text.Encoding.UTF8.GetBytes ("images/images.png")%>");
+                 $("<%=fregformimg.ClientID%>").val("<%= System.Text.Encoding.UTF8.GetBytes ("images/images.png")%>");
+
             });
         });
 
@@ -74,7 +79,8 @@
                 $("#s3").show();
                 $("#s2").hide();
                 $("#guestType").val("foriegner");
-                
+                 $("<%=passportimage.ClientID%>").val("");
+                 $("<%=fregformimg.ClientID%>").val("");
                 $("input[name=fregno]").val("");
                 $("input[name=farrivaldate]").val("");
                 $("input[name=fatime]").val("");
@@ -113,7 +119,7 @@
 
 
 
-                alert($("#guestType").val());
+              //  alert($("#guestType").val());
                 $("input[name=regno]").val("00");
                 $("input[name=arrivaldate]").val("2016-01-01");
                 $("input[name=atime]").val("18:01");
@@ -131,6 +137,9 @@
                 $("input[name=flightno]").val("00");
                 $("input[name=caddress]").val("00");
                 $("input[name=paddress]").val("00");
+                 $("<%=cnicfrontimg.ClientID%>").val("<%= System.Text.Encoding.UTF8.GetBytes ("images/images.png")%>");
+                 $("<%=cnicbackimg.ClientID%>").val("<%= System.Text.Encoding.UTF8.GetBytes ("images/images.png")%>");
+                 $("<%=regformimage.ClientID%>").val("<%= System.Text.Encoding.UTF8.GetBytes ("images/images.png")%>");
             });
         });
         function ShowMessage(message, messagetype) {
@@ -293,10 +302,10 @@
                             <div class="col-md-6 col-sm-6 col-xs-12">
 
                                 <div id="national" class="btn-group" data-toggle="buttons">
-                                    <button id="pakistani">Pakistani</button>
+                                    <button id="pakistani" class="btn btn-danger">Pakistani</button>
                                     </div>
                                <div id="national1" class="btn-group" data-toggle="buttons">
-                                    <button id="foriegner">Foriegner</button>
+                                    <button id="foriegner" class="btn btn-danger">Foriegner</button>
                                     </div>
 
                               <%--<div id="national" class="btn-group" data-toggle="buttons">
@@ -502,6 +511,23 @@
 		 data-validation-length="3-25" 
 		 data-validation-error-msg="Enter permanent address"/>
                             </div>
+             <div class="form-group">
+                 <div class="col-md-4 col-sm-4 col-xs-12">
+                                <label >CNIC Front Image <span class="required">*</span>
+                            </label>
+                              <asp:FileUpload ID="cnicfrontimg" runat="server"   class="form-control col-md-7 col-xs-12" data-validation="required" data-validation-error-msg="Select CNIC image!"/>
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <label >CNIC Back Image <span class="required">*</span>
+                            </label>
+                              <asp:FileUpload ID="cnicbackimg" runat="server"  class="form-control col-md-7 col-xs-12" data-validation="required" data-validation-error-msg="Select CNIC image!"/>
+                            </div>
+                 <div class="col-md-4 col-sm-4 col-xs-12">
+                                <label >Registration Form Image <span class="required">*</span>
+                            </label>
+                              <asp:FileUpload ID="regformimage" runat="server"  class="form-control col-md-7 col-xs-12" data-validation="required" data-validation-error-msg="Select Registration form image!"/>
+                            </div>
+                 </div>
                           </div>
      <div style="padding-top:15px;" class="alignright col-md-2 col-sm-2 col-xs-12">
 
@@ -788,7 +814,7 @@
                             </div>
                           </div>
     
-
+    <div class="row">
        <div style="padding-top:10px;" class="form-horizontal form-label-left col-md-6 col-sm-6 col-xs-12">
                                 <label class="col-md-4 col-sm-4 col-xs-12">Purpose of Visit</label>
                               <div id="purpose" style="padding-left:5px;" data-toggle="buttons">
@@ -803,6 +829,19 @@
                                 </label>
                               </div>
                             </div>
+        </div>
+    <div class="form-group">
+                 <div class="col-md-4 col-sm-4 col-xs-12">
+                                <label >Passport Image <span class="required">*</span>
+                            </label>
+                              <asp:FileUpload ID="passportimage" runat="server"  class="form-control col-md-7 col-xs-12" data-validation="required" data-validation-error-msg="Select Passport image!"/>
+                            </div>
+        <div class="col-md-4 col-sm-4 col-xs-12">
+                                <label >Registration Form Image <span class="required">*</span>
+                            </label>
+                              <asp:FileUpload ID="fregformimg"  runat="server"  class="form-control col-md-7 col-xs-12" data-validation="required" data-validation-error-msg="Select Registration form image!"/>
+                            </div>
+        </div>
     </div>
                   <div style="padding-top:15px;" class="alignright col-md-2 col-sm-2 col-xs-12">
       <asp:Button ID="Save" runat="server" Text="Register Guest" OnClick="Save_Click"  CausesValidation="false" class="btn btn-success"/>
