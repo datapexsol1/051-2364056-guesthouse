@@ -7,6 +7,7 @@
 .loginmodal-container {
   padding: 30px;
   max-width: 350px;
+ /*height: 450px;*/
   width: 100% !important;
   background-color: #F7F7F7;
   margin: 0 auto;
@@ -98,6 +99,7 @@
   font-size: 12px;
 }
     </style>
+   
 </asp:Content>
 
 
@@ -130,19 +132,9 @@
 
 
           <div>
-             <h3>Resturent</h3>
+             <h3>Facilities</h3>
                <hr style="border:dashed;" />
                <asp:Table ID="facilites" runat="server" class="table table-bordered table-striped">
-
-
-
-    </asp:Table>
-         
-         </div>
-           <div>
-             <h3>Laundry Car Rent</h3>
-               <hr style="border:dashed;" />
-               <asp:Table ID="laundry" runat="server" class="table table-bordered table-striped">
 
 
 
@@ -156,13 +148,56 @@
              
              <br />
              <div style="float:right;">
-                 <a href="#" data-toggle="modal" data-target="#login-modal"  class="btn btn-default">Pay Now</a>
+                  
+                 <label id="gbill" style="background-color:goldenrod;width:100%;text-align:center;font-size:x-large"><u>Bill  </u></label>
+                 <br />
+                  <asp:DropDownList ID="paymentDropdown" runat="server" AutoPostBack="True" CausesValidation="True" OnSelectedIndexChanged="paymentDropdown_SelectedIndexChanged">
+                    <asp:ListItem>Select Payment Method</asp:ListItem>       
+                    <asp:ListItem>Cash</asp:ListItem>
+                     <asp:ListItem>Cheque</asp:ListItem>
+                     <asp:ListItem>Pay later</asp:ListItem>
+
+                          </asp:DropDownList><br />
+                 <b>Room Rent</b>
+                 <asp:Label Font-Bold="true" ID="lbroomrent" runat="server"></asp:Label>
+                 <br />
+                 <b> Facilities </b>
+                 <asp:Label Font-Bold="true" ID="lbfacilities" runat="server"></asp:Label>
+                 <br />
+                 <b>Tax</b>
+                 <asp:Label Font-Bold="true" ID="lbtax" runat="server"></asp:Label>
+                      <br />
+                       <b>Total Bill</b>
+                 <asp:Label Font-Bold="true" ID="tbill" runat="server"></asp:Label>
+                 <br />
+                     
+                       <b>Advance</b>
+                 <asp:Label Font-Bold="true" ID="lbadvance" runat="server"></asp:Label>
+                 <br />
+                                     <label><u>Chaque No:<asp:TextBox ID="chaqueno" runat="server" placeholder="Enter cheque no."></asp:TextBox> </u></label><br />
+
+
+             <label id="gtotal" ><u>Remaining Bill : </u></label>
+                 <asp:Label Font-Bold="true" ID="Gtotal" runat="server"></asp:Label>
+                      <asp:HiddenField ID="gtotaltb" runat="server" />
+             <br />
+                  <label id="gtotal1"><u>Paid Amount : </u></label>
+               
+                 <asp:Textbox ID="tbpaidamount" runat="server"></asp:Textbox>  
+                 <br/>                
+                                <asp:CheckBox ID="timelesscbox" runat="server" Text="RentDiscount" AutoPostBack="true" OnCheckedChanged="checkedchange"  />
+                                <asp:CheckBox ID="taxtdiscount" runat="server" Text="Tax Discount" AutoPostBack="true" OnCheckedChanged="tax_discount"  />
+
+                 <br />
+                                        <asp:Button ID="btnpaid" CssClass="btn btn-success" runat="server" Text="Pay" OnClick="btnpaid_Click" />
+
+                 <a href="#" data-toggle="modal" data-target="#login-modal"  class="btn btn-default">Print Bill Now</a>
                  <asp:HiddenField ID="tbroombill" runat="server" />
                  <asp:HiddenField ID="tbfacilitebill" runat="server" />
                   <asp:HiddenField ID="taxdiscountH" runat="server" />
-                
                  <!-- if stay hours is less than 6 hours-->
                  <br />
+                
                 <%--  --%><%--<asp:DropDownList ID="paymentDropdown" runat="server" AutoPostBack="True" CausesValidation="True" OnSelectedIndexChanged="paymentDropdown_SelectedIndexChanged">
                     <asp:ListItem>Select Payment Method</asp:ListItem>       
                     <asp:ListItem>Cash</asp:ListItem>
@@ -203,55 +238,65 @@
                           <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
     	  <div class="modal-dialog">
 				<div class="loginmodal-container">
-					<h1>Guest house customer Bill</h1><br/>
-				  <div>
-                      <asp:DropDownList ID="paymentDropdown" runat="server" AutoPostBack="True" CausesValidation="True" OnSelectedIndexChanged="paymentDropdown_SelectedIndexChanged">
-                    <asp:ListItem>Select Payment Method</asp:ListItem>       
-                    <asp:ListItem>Cash</asp:ListItem>
-                     <asp:ListItem>Cheque</asp:ListItem>
-                     <asp:ListItem>Pay later</asp:ListItem>
+        <div id="dvbill" >
 
-                          </asp:DropDownList><br />
-                 <label id="gbill" ><u>Bill  </u></label>
+					
+            <div>
+                <div class="col-sm-12">
+                                       <h3 style=" background-color:goldenrod;color:black;      width:100%; ">Guest house customer Bill</h3>
+                    </div>
+                <div class="col-sm-12">
+                    <b class="col-sm-4">Room Rent</b>
+                    <asp:Label Font-Bold="true" class="col-sm-8" ID="prroomrent" runat="server"><%=lbroomrent.Text %></asp:Label>
+                </div >
+                <div class="col-sm-12">
+                    <b class="col-sm-4">Facilities</b>
+                    <asp:Label Font-Bold="true" class="col-sm-8" ID="printfacilities"  runat="server"><%=lbfacilities.Text %></asp:Label>
+                </div>
+                <div class="col-sm-12">
+                    <b class="col-sm-4">Tax</b>
+                    <asp:Label Font-Bold="true" class="col-sm-8" ID="printtax"  runat="server"><%=lbtax.Text %></asp:Label>
+                </div>
+                <div class="col-sm-12">
+                    <b class="col-sm-4">Total Bill</b>
+                    <asp:Label Font-Bold="true" class="col-sm-8" ID="printbill"  runat="server"><%=tbill.Text %></asp:Label>
+                </div>
+                <div class="col-sm-12">
+                    <b class="col-sm-4">Advance </b>
+                    <asp:Label Font-Bold="true" class="col-sm-8" ID="printadvance"  runat="server"><%=lbadvance.Text %></asp:Label>
+                </div>
+                <div class="col-sm-12">
+                    <b class="col-sm-4">Remaining Bill</b>
+                    <asp:Label Font-Bold="true" class="col-sm-8" ID="printrbill"  runat="server"><%=gtotaltb.Value %></asp:Label>
+                </div>
+                <div class="col-sm-12">
+                    <b class="col-sm-4">Paid Amount</b>
+                    <asp:Label Font-Bold="true" class="col-sm-8" ID="printpaidamount"  runat="server"><%=tbpaidamount.Text %></asp:Label>
+                </div>
+                <div class="col-sm-12">
+                    <%
+                        if (paymentDropdown.Text == "Cheque")
+                        {
+                        %>
+                    <label class="col-sm-4"><u>Chaque No: <%=chaqueno.Text %> </u></label><br />
+                    <%} %>
+                </div>
+            </div>
+				 
+                 
                  <br />
-                 <b>Room Rent</b>
-                 <asp:Label Font-Bold="true" ID="lbroomrent" runat="server"></asp:Label>
-                 <br />
-                 <b> Facilities </b>
-                 <asp:Label Font-Bold="true" ID="lbfacilities" runat="server"></asp:Label>
-                 <br />
-                 <b>Tax</b>
-                 <asp:Label Font-Bold="true" ID="lbtax" runat="server"></asp:Label>
-                      <br />
-                       <b>Total Bill</b>
-                 <asp:Label Font-Bold="true" ID="tbill" runat="server"></asp:Label>
-                 <br />
-                      <br />
-                       <b>Advance</b>
-                 <asp:Label Font-Bold="true" ID="lbadvance" runat="server"></asp:Label>
-                 <br />
-
-             <label id="gtotal" ><u>Remaining Bill : </u></label>
-                 <asp:Label Font-Bold="true" ID="Gtotal" runat="server"></asp:Label>
-                      <asp:HiddenField ID="gtotaltb" runat="server" />
-             <br />
-                   <label><u>Chaque No:<asp:TextBox ID="chaqueno" runat="server"></asp:TextBox> </u></label><br />
-                  <label id="gtotal1"><u>Paid Amount : </u></label>
-               
-                 <asp:Textbox ID="tbpaidamount" runat="server"></asp:Textbox>                  
-                                <asp:CheckBox ID="timelesscbox" runat="server" Text="RentDiscount" AutoPostBack="true" OnCheckedChanged="checkedchange"  />
-                                <asp:CheckBox ID="taxtdiscount" runat="server" Text="Tax Discount" AutoPostBack="true" OnCheckedChanged="tax_discount"  />
-
-                 <br />
-   
-
-                       <asp:Button ID="btnpaid" CssClass="btn btn-success" runat="server" Text="Pay" OnClick="btnpaid_Click" />
-               	 
+                     
+                 
+   </div>
+<div class="row">
+    <div class="col-md-12">
+               	 <input type="button" id="btnPrint" value="Print"  class="btn btn"/>
                       <br />
                       
 					<%--<input type="submit" name="gbook" class="tm-yellow-btn" value="Book room">--%>
 				  </div>
 				</div>
+                              </div>
 			</div>
 		  </div>
                          <!--popup end-->
@@ -271,13 +316,42 @@
          </div>
         </div>
            </div>
-   </div>
 
 
 
+    </div>
 
 
+     <script>
+        $(function () {
+            $("#btnPrint").click(function () {
+                //alert("hello");
+                var contents = $("#dvbill").html();
+                var frame1 = $('<iframe />');
+                frame1[0].name = "frame1";
+                frame1.css({ "position": "absolute", "top": "-1000000px" });
+                $("body").append(frame1);
+                var frameDoc = frame1[0].contentWindow ? frame1[0].contentWindow : frame1[0].contentDocument.document ? frame1[0].contentDocument.document : frame1[0].contentDocument;
+                frameDoc.document.open();
+                //Create a new HTML document.
+                frameDoc.document.write('<html><head><title>CapeTown guest house</title>');
+                frameDoc.document.write('</head><body style="-webkit-print-color-adjust: exact;background-color:white; height: 950px;left: 0; right: 0; background-repeat: no-repeat; background-size:700px 500px;align-content:center;>');
+                //Append the external CSS file.
 
+
+                //Append the DIV contents.
+                frameDoc.document.write(contents);
+                frameDoc.document.write('</body></html>');
+                frameDoc.document.close();
+                setTimeout(function () {
+                    window.frames["frame1"].focus();
+                    window.frames["frame1"].print();
+                    frame1.remove();
+                }, 500);
+            });
+        });
+
+    </script>
 
 </asp:Content>
 
