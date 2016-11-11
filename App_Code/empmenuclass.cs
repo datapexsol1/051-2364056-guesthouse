@@ -58,7 +58,7 @@ public class empmenuclass
     }
 
 
-    public static orderdetail_attr[] getOrderPLaced(int bid,string  roomno)
+    public static orderdetail_attr[] getOrderPLaced(int bid,string  roomno)//booking id
     {
 
         ctownDataContext db = new ctownDataContext();

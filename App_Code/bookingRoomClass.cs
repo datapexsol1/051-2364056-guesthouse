@@ -34,4 +34,26 @@ public class bookingRoomClass
 
         return orders;
     }
+    public static bool checkBookingRoomcheckout(int bookingid)
+    {
+        ctownDataContext db = new ctownDataContext();
+
+        int totalrooms = (from x in db.booking_Rooms
+                          where x.bookingId == bookingid
+                          select x).Count();
+
+        int Checkoutroom= (from x in db.booking_Rooms
+                 join r in db.rooms on x.roomid equals r.Id
+                 where x.bookingId == bookingid && r.availbilty=="yes"
+                 select x).Count();
+        if (totalrooms==Checkoutroom)
+        {
+            return true;
+
+        }
+        else
+        {
+            return false;
+        }
+    }
 }

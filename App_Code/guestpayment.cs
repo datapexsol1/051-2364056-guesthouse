@@ -27,21 +27,6 @@ public class guestpayment
     {
 
         db = new ctownDataContext();
-        //SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["guest_house_databaseConnectionString1"].ConnectionString);
-        //SqlCommand cmd = new SqlCommand(@"
-        //		     SELECT * FROM dbo.total_payment
-        //    inner join dbo.booking_Room on dbo.total_payment.booking_id=dbo.booking_Room.bookingId
-        //    INNER JOIN dbo.booking on dbo.booking_Room.bookingId=dbo.booking.Id
-        //    inner join dbo.guests on dbo.booking.guest_id=dbo.guests.Id
-        //    inner join dbo.rooms on dbo.booking_Room.roomid=dbo.rooms.Id
-        //    where dbo.booking.branch_id ='" + bid + "'", conn);
-
-        //room 
-        //guest
-        //bookingroom
-        //booking
-        //totalpayment 
-      
       var payment_result= from g in db.guests
                              join b in db.bookings on g.Id equals b.guest_id
             
@@ -124,17 +109,7 @@ public class guestpayment
                 }
             }
         }
-        //conn.Open();
-        //SqlDataAdapter da = new SqlDataAdapter(cmd);
-        //DataTable dt = new DataTable();
-        //da.Fill(dt);
-        //conn.Close();
-        // return dt;
-        //IQueryable<total_payment> tp = from x in db.total_payments
 
-        //                               select x;
-
-        //return tp;
         return recivables_payments;
     }
     
