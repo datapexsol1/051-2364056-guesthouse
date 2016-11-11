@@ -149,7 +149,7 @@
                                               <td><%=x.address %></td>
                                               <td><%=x.login_type %></td>
                                               <td><%=x.salary %></td>
-                                              <td><a href="employeupdatesetting.aspx"  onserverclick='update_Click' class='btn btn-success' >Update</ a ></td>
+                                              <td><a href="employeupdatesetting.aspx?id=<%=x.Id %>"  onserverclick='update_Click' class='btn btn-success' >Update</ a ></td>
                                           </tr>
                                          
                                       </tbody>

@@ -53,7 +53,7 @@ public partial class adminlogin : System.Web.UI.Page
             //Response.Write(ipaddress);
             //// Response.Write("<h1>" + ipaddress + "</h1>");
             ////Response.Write(str);
-
+            Session["adminLogin"] = name;
              Response.Redirect("AdminIndex.aspx");
 
         }

@@ -10,7 +10,7 @@ public partial class adminemployesignup : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-      
+
     }
 
     protected void send_Click(object sender, EventArgs e)
@@ -20,7 +20,7 @@ public partial class adminemployesignup : System.Web.UI.Page
         emp.username = Request.Form["username"].ToString();
         emp.password = Request.Form["password"].ToString();
         emp.email = Request.Form["email"].ToString();
-        emp.employee_no = "123";
+        emp.employee_no = Request.Form["number"];
         emp.cnic = Request.Form["cnic"].ToString();
         emp.designation = Request.Form["designation"].ToString();
         emp.branch_id = int.Parse(Request.Form["brancid"].ToString());
@@ -28,19 +28,24 @@ public partial class adminemployesignup : System.Web.UI.Page
         emp.dateofjoining = DateTime.Now;
         emp.login_type = "Employe";
         emp.salary = int.Parse(Request.Form["salary"].ToString());
+        if (image.HasFile)
+        {
+            HttpPostedFile postedfile = image.PostedFile;
+            emp.image = imageToByteArray(postedfile);
+        }
         //if(imageuploaded.hasfile)then do this
-   //     HttpPostedFile postedfile = image.PostedFile;
-       // emp.image = imageToByteArray(postedfile);
+        //     HttpPostedFile postedfile = image.PostedFile;
+        // emp.image = imageToByteArray(postedfile);
         emp.address = Request.Form["address"].ToString(); ;
 
-        bool result=employeeProfile.employeSignUp(emp);
+        bool result = employeeProfile.employeSignUp(emp);
         if (result == true)
         {
-           //show succesful msg
+            //show succesful msg
         }
         else
         {
-           //show error msg 
+            //show error msg 
         }
     }
     public static byte[] imageToByteArray(HttpPostedFile postedfile)
@@ -49,7 +54,7 @@ public partial class adminemployesignup : System.Web.UI.Page
         string fileextention = Path.GetExtension(filename);
         int size = postedfile.ContentLength;
         byte[] imgbytes = null;
-        if (fileextention.ToLower() == ".jpg")
+        if (fileextention.ToLower() == ".jpg" || fileextention.ToLower() == ".jpeg" || fileextention.ToLower() == ".png")
         {
             Stream stream = postedfile.InputStream;
             BinaryReader binaryreader = new BinaryReader(stream);

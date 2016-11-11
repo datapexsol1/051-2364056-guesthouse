@@ -25,15 +25,37 @@
   </head>
 
 
-   
+   <div class="right_col" role="main">
+          <div class="">
+    <div class="page-title">
+              <div class="title_left">
+                   <h3>Guests</h3>
+              </div>
 
-      <div class="right_col" role="main">
-    <div class="row">
+              <div class="title_right">
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                  <div class="input-group">
+                      <span class="input-group-btn">
+                              <button class="btn btn-default" type="button" disabled="disabled">Select branch!</button>
+                          </span>
+                  <asp:DropDownList ID="branch" runat="server"  AutoPostBack="true" ClientIDMode="Static"  CssClass="form-control"></asp:DropDownList>
+
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+      <div class="clearfix"></div>
+
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
      <div class="col-md-12 col-sm-12 col-xs-12">
      <div class="x_content">
-     <div class="col-md-9 col-sm-9 col-xs-12">
-         <h3>Guests</h3>
-    <div class="" role="tabpanel" data-example-id="togglable-tabs">
+
+     <div class="col-md-12 col-sm-12 col-xs-12">
+      
+         
+             <div class="" role="tabpanel" data-example-id="togglable-tabs">
                         <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
                           <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Local Guests</a>
                           </li>
@@ -41,11 +63,12 @@
                           </li>
                          
                         </ul>
+
                         <div id="myTabContent" class="tab-content">
                           <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
 
                             <!-- start recent activity -->
-                               <div style="overflow:auto;white-space:nowrap;">
+                               <div class="table-responsive">
                                <table class="table table-bordered table-striped" >
                               <thead>
                                 <tr >
@@ -73,14 +96,23 @@
                               </thead>
                               <tbody>
                                   <%--should get bid and get element with that bid --%>
-                                  <% int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
-                                      guestBookingAttributes[] bookings=gusetRegistrationClass.getlocalClientData(bid);
-                                      foreach (guestBookingAttributes b in bookings)
+                                  <%
+                                      if (branch.SelectedValue == "Select Branch")
                                       {
-                                          try
+
+                                      }
+                                      else
+                                      {
+                                          int bid = branchClass.getBranchID(branch.SelectedValue);
+
+                                          guestBookingAttributes[] bookings = gusetRegistrationClass.getlocalClientData(bid);
+
+                                          foreach (guestBookingAttributes b in bookings)
                                           {
-                                              if (b.b_id != 0)
+                                              try
                                               {
+                                                  if (b.b_id != 0)
+                                                  {
                                        %>
                                 <tr>
                                     <td><a href="employeguestpayment.aspx?booking=<%=b.b_id%>"<label style="color:red">Check Out</label></a></td>
@@ -106,7 +138,10 @@
 
                                   </tr>
                                   <%}
-        } catch (Exception ex) { } } %>
+                                          }
+                                          catch (Exception ex) { }
+                                      }
+                                       %>
                               </tbody>
                             </table>
                                    </div>
@@ -185,7 +220,8 @@
 
 
                                   </tr>
-                                  <%} %>
+                                  <%}
+                                      }%>
                               </tbody>
                             </table>
                                     </div>
@@ -259,7 +295,7 @@
         </div>
           </div>
     
-
+</div></div>
 
       <!-- jQuery -->
     <script src="../vendors/jquery/dist/jquery.min.js"></script>

@@ -30,14 +30,33 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    
-     <div class="right_col" role="main">
-    <div class="row">
+    <div class="right_col" role="main">
+          <div class="">
+    <div class="page-title">
+              <div class="title_left">
+                   <h3>Branch bills</h3>
+              </div>
+
+              <div class="title_right">
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                  <div class="input-group">
+                      <span class="input-group-btn">
+                              <button class="btn btn-default" type="button" disabled="disabled">Select branch!</button>
+                          </span>
+                  <asp:DropDownList ID="branch" runat="server"  AutoPostBack="true" ClientIDMode="Static"  CssClass="form-control"></asp:DropDownList>
+
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+      <div class="clearfix"></div>
+              <div class="row">
+   
      <div class="col-md-12 col-sm-12 col-xs-12">
      <div class="x_content">
-     <div class="col-md-9 col-sm-9 col-xs-12">
-         <h3>Branch Bills</h3>
-                             <asp:DropDownList ID="branch" runat="server"  AutoPostBack="true" ClientIDMode="Static"></asp:DropDownList>
+     <div class="col-md-12 col-sm-12 col-xs-12">
+         
 
     <div class="" role="tabpanel" data-example-id="togglable-tabs">
                         <ul id="myTab" class="nav nav-tabs bar_tabs" role="tab
@@ -219,7 +238,7 @@
          </div>
          </div>
         </div>
-         </div>
+         </div></div></div></div>
     <!-- jQuery -->
    
 

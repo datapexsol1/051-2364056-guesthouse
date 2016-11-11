@@ -22,7 +22,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Form Validation</h3>
+                <h3>Create Employee Account</h3>
               </div>
 
               <div class="title_right">
@@ -42,7 +42,6 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Form validation <small>sub title</small></h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -51,8 +50,7 @@
                         <ul class="dropdown-menu" role="menu">
                           <li><a href="#">Settings 1</a>
                           </li>
-                          <li><a href="#">Settings 2</a>
-                          </li>
+                   
                         </ul>
                       </li>
                       <li><a class="close-link"><i class="fa fa-close"></i></a>
@@ -65,12 +63,11 @@
                     <div class="form-horizontal form-label-left">
 
                       
-                      <span class="section">Employe Signup</span>
                         
                         <div class="row">
-                          <div class="form-group col-md-6" style="float:right;">
-                              <label class="control-label col-md-4 " for="name">Branch <span class="required">*</span></label>
-                              <div class="col-md-8">
+                          <div class="form-group col-md-4">
+                              <label >Branch <span class="required">*</span></label>
+                             
                                   <select class="form-control" name="brancid">
                                       <option value="0">Select</option>
                                      <%  IQueryable<branch> brachdata=branchClass.getBrachesinfo();
@@ -81,104 +78,112 @@
                                   </select>
 
                           
-                        </div>
+                        
                              </div>
-                            </div>
-                        <div class="row">
-                      <div class="form-group col-md-6">
-                        <label class="control-label col-md-4 " for="name">Name <span class="required">*</span>
+                            
+                      <div class="form-group col-md-4">
+                        <label>Name <span class="required">*</span>
                         </label>
-                        <div class="col-md-8">
+                       
                           <input id="name" class="form-control" data-validate-length-range="6" data-validate-words="2" name="name" placeholder="Complete name(s) e.g Waqas khan" required="required" type="text"/>
-                        </div>
+                        
                       </div>
-                      <div class="form-group col-md-6">
-                        <label class="control-label col-md-4 " for="email">Email <span class="required">*</span>
+                      <div class="form-group col-md-4">
+                        <label >Email <span class="required">*</span>
                         </label>
-                        <div class="col-md-8">
+                      
                           <input type="email" id="email" name="email" required="required" placeholder="Email" class="form-control "/>
-                        </div>
-                      </div>
                         
-                           <div class="form-group col-md-6">
-                        <label class="control-label col-md-4" for="number">Number <span class="required">*</span>
+                      </div>
+                        <div class="row">
+                           <div class="form-group col-md-4">
+                        <label >Contact <span class="required">*</span>
                         </label>
-                        <div class="col-md-8">
-                          <input type="number" id="number" name="number" required="required" data-validate-minmax="10,100" class="form-control col-md-7 col-xs-12"/>
-                        </div>
+                      
+                          <input type="number" id="number" name="number" required="required" min="0" data-validate-minmax="10,100" class="form-control col-md-7 col-xs-12"/>
+                     
                       </div>
                         
 
-                      <div class="form-group col-md-6">
-                        <label class="control-label col-md-4" for="website">C.N.I.C <span class="required">*</span>
+                      <div class="form-group col-md-4">
+                        <label>C.N.I.C <span class="required">*</span>
                         </label>
-                        <div class="col-md-8">
-                          <input type="number" id="cnic" name="cnic" required="required"  class="form-control"/>
+                        
+                          <input type="text" id="cnic" name="cnic" required="required"  class="form-control"/>
                         </div>
-                          </div>
                       
-                    <div class="form-group col-md-6">
-                        <label class="control-label col-md-4" for="occupation">Designation <span class="required">*</span>
+                      
+                    <div class="form-group col-md-4">
+                        <label >Designation <span class="required">*</span>
                         </label>
-                        <div class="col-md-8">
+                        
                           <input id="designation" type="text" name="designation" data-validate-length-range="5,20" class="optional form-control"/>
-                        </div>
-                      </div>
                         
-                   <div class="form-group col-md-6">
-                        <label class="control-label col-md-4" for="website">Salary <span class="required">*</span>
+                      </div>
+                        </div>
+                            
+                            <div class="row">
+                   <div class="form-group col-md-4">
+                        <label >Salary <span class="required">*</span>
                         </label>
-                        <div class="col-md-8">
+                       
                           <input type="number" id="salary" name="salary" required="required" class="form-control"/>
-                        </div>
+                        
                        </div>
-                      
-                    <div class="form-group col-md-6">
-                        <label class="control-label col-md-4" for="occupation">Choose Image <span class="required">*</span>
-                        </label>
-                        <div class="col-md-8">
-                          <input id="image" type="file" name="image"  class="optional form-control " runat="server"/>
-                        </div>
-                      </div>
-
-                      <div class="form-group col-md-6">
-                        <label class="control-label col-md-4" for="email">Username <span class="required">*</span>
-                        </label>
-                        <div class="col-md-8">
-                          <input type="text" id="username" name="username"  required="required" class="form-control"/>
-                        </div>
-                          </div>
-                          <div class="form-group col-md-6">
-                        <label class="control-label col-md-4" for="website">Password <span class="required">*</span>
-                        </label>
-                        <div class="col-md-8">
-                          <input type="password" id="password" name="password" required="required" class="form-control"/>
-                        </div>
-                              </div>
-                      
-                    <div class="form-group col-md-6">
-                        <label class="control-label col-md-4" for="occupation">confirm Password <span class="required">*</span>
-                        </label>
-                        <div class="col-md-8">
-                          <input id="confirmpassword" type="password" name="confirmpassword" data-validate-length-range="5,20" class="optional form-control"/>
-                        </div>
-                      </div>
-                      
-                         <div class="form-group col-md-12">
-                             <label class="control-label col-md-2" for="email">Address <span class="required">*</span></label>
-                        <div class="col-md-10">
+                      <div class="form-group col-md-4">
+                             <label >Address <span class="required">*</span></label>
+                       
                             
                              <input id="address" type="text" name="address" data-validate-length-range="5,150" class="optional form-control"/>
 
-                          
                         </div>
+                    <div class="form-group col-md-4">
+                        <label >Choose Image <span class="required">*</span>
+                        </label>
+                        <asp:FileUpload ID="image" runat="server" class="optional form-control "/>
+                          <%--<input id="image" type="file" name="image"  class="optional form-control " runat="server"/>--%>
+                        
+                      </div>
+                                </div>
+                             <div class="row">
+                      <div class="form-group col-md-4">
+                        <label>Username <span class="required">*</span>
+                        </label>
+                        <%
+                            Random r = new Random();
+                            int rand = r.Next(0, 100);
+                            bool check = employeeProfile.checkUsername(rand);
+                            if (check == true)
+                            {
+                             %>
+                          <input type="text" id="username" name="username" value="CT-<%=rand %>"  required="required" class="form-control"/>
+                        <%} %>
+                          </div>
+                           
+                          <div class="form-group col-md-4">
+                        <label>Password <span class="required">*</span>
+                        </label>
+                       
+                          <input type="password" id="password" name="password" required="required" class="form-control"/>
+                        
+                              </div>
+                      
+                    <div class="form-group col-md-4">
+                        <label>confirm Password <span class="required">*</span>
+                        </label>
+                        
+                          <input id="confirmpassword" type="password" name="confirmpassword" data-validate-length-range="5,20" class="optional form-control"/>
+                        
+                      </div>
+                      
+                         
                              </div>
                        </div>
                      
                         <div style="margin-top:20px;">
                     
                       <div class="form-group">
-                        <div class="col-md-6 col-md-offset-10">
+                        <div class="col-md-6 col-md-offset-5">
                           <asp:Button ID="send" runat="server" Text="Submit"  class="btn btn-success" OnClick="send_Click" />
                         </div>
                       </div>

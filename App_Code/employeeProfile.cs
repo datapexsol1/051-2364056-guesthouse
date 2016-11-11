@@ -33,6 +33,22 @@ public class employeeProfile
         }
 
     }
+    public static bool checkUsername(int username)
+    {
+        ctownDataContext Database = new ctownDataContext();
+        int count = (from x in Database.employees
+                     where x.username == username.ToString()     //for checking already existance of client
+                     select x).Count();
+        if (count == 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
+    }
     public static bool employeSignUp(employee emp)
     {
         ctownDataContext Database = new ctownDataContext();
@@ -41,6 +57,10 @@ public class employeeProfile
                      select x).Count();
         if (count == 0)
         {
+            if (emp.image != null)
+            {
+                
+            }
             Database.employees.InsertOnSubmit(emp);
             try
             {

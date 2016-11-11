@@ -7,9 +7,32 @@
     
 
     <!-- page content -->
-        <div class="right_col" role="main">
+        
+   <div class="right_col" role="main">
           <div class="">
-            <div class="page-title">
+    <div class="page-title">
+              <div class="title_left">
+                   <h3>Employee detail</h3>
+              </div>
+
+              <div class="title_right">
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                  <div class="input-group">
+                      <span class="input-group-btn">
+                              <button class="btn btn-default" type="button" disabled="disabled">Select branch!</button>
+                          </span>
+                  <asp:DropDownList ID="branch" runat="server"  AutoPostBack="true" ClientIDMode="Static" OnSelectedIndexChanged="sranchSelected_Indexchange" CssClass="form-control"></asp:DropDownList>
+
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+      <div class="clearfix"></div>
+
+            <div class="row">
+          <div class="">
+         <%--   <div class="page-title">
               <div class="title_left">
                 <h3>Contacts Design</h3>
               </div>
@@ -24,7 +47,7 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div>--%>
 
             <div class="clearfix"></div>
    
@@ -32,7 +55,7 @@
               <div class="col-md-12">
                 <div class="x_panel">
                   <div class="x_content">
-                    <asp:DropDownList ID="branch" runat="server" OnSelectedIndexChanged="sranchSelected_Indexchange" AutoPostBack="true"></asp:DropDownList>
+                    <%--<asp:DropDownList ID="branch" runat="server" OnSelectedIndexChanged="sranchSelected_Indexchange" AutoPostBack="true"></asp:DropDownList>--%>
 
 
                       <div class="clearfix"></div>
@@ -56,7 +79,7 @@
 
                       
 
-                      <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
+                      <div class="col-md-5 col-sm-5 col-xs-12 profile_details">
                         <div class="well profile_view">
                           <div class="col-sm-12">
                             <h4 class="brief"><i><%=e.designation %></i></h4>
@@ -101,7 +124,7 @@
               </div>
             </div>
           </div>
-       
+       </div></div>
         <!-- /page content -->
 </asp:Content>
 

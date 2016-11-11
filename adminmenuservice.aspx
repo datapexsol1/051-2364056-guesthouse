@@ -45,18 +45,33 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
      <div class="right_col" role="main">
+          <div class="">
+    <div class="page-title">
+              <div class="title_left">
+<h3>Order Menu items</h3>
+
+              </div>
+
+              <div class="title_right">
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                  <div class="input-group">
+                      <span class="input-group-btn">
+                              <button class="btn btn-default" type="button" disabled="disabled">Select branch!</button>
+                          </span>
+                            <asp:DropDownList ID="branch" runat="server"  AutoPostBack="true" ClientIDMode="Static" CssClass="form-control" OnSelectedIndexChanged="indexchange_click"></asp:DropDownList>
+
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+      <div class="clearfix"></div>
             <input type="hidden" id="itemid" runat="server" />
     <input type="hidden" id="nofitem" runat="server" />
     <input type="hidden" id="bookingid" runat="server" />
      <input type="hidden" id="roomno" runat="server" />
           <div class="">
-            <div class="page-title">
-              <div class="title_left">
-                <h3>Menu items</h3>
-              </div>
-
-             
-            </div>
+            
 
             <div class="clearfix"></div>  
      <div class="">
@@ -87,7 +102,6 @@
                          <!-- start view activity -->
                       <div id="myTabContent" class="tab-content">
                         <div role="tabpanel" class="tab-pane fade active in" id="tab_view" aria-labelledby="home-tab">
-                            <asp:DropDownList ID="branch" runat="server"  AutoPostBack="true" ClientIDMode="Static" OnSelectedIndexChanged="indexchange_click"></asp:DropDownList>
                             <br /><br />
                             <asp:Button ID="getsummary" runat="server" Text="Place Order" OnClick="getsummary_click" CssClass="btn btn-success" />
                              <asp:Button ID="savetodb" runat="server" Text="PrintBill"  />
