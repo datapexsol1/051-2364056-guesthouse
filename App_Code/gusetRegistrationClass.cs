@@ -34,7 +34,8 @@ public class gusetRegistrationClass
         db.guests.InsertOnSubmit(g);
         db.SubmitChanges();
         int guestid = (from x in db.guests
-                       where x.cnic == g.cnic || x.f_passport_no == g.f_passport_no
+                      orderby x.Id descending
+                      where x.cnic == g.cnic || x.f_passport_no == g.f_passport_no
                        select x.Id).First();
 
         return guestid;

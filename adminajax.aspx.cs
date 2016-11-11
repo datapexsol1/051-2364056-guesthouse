@@ -257,7 +257,7 @@ public partial class adminajax : System.Web.UI.Page
     [WebMethod]
     public static IEnumerable<admin_notification> GetData()
     {
-        var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["guest_house_databaseConnectionString"].ConnectionString);
+        var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["guest_house_databaseConnectionString1"].ConnectionString);
         SqlDependency.Stop(ConfigurationManager.ConnectionStrings["guest_house_databaseConnectionString1"].ConnectionString);
         SqlDependency.Start(ConfigurationManager.ConnectionStrings["guest_house_databaseConnectionString1"].ConnectionString);
         connection.Open();

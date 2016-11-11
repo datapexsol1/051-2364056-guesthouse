@@ -60,7 +60,7 @@
               <div class="profile_pic">
                   <%
 
-                      int branchid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
+                      int branchid =  employeeProfile.getEmployeBranch(Session["loginName"].ToString());
                       int employID = int.Parse(Session["loginId"].ToString());
                       employee emp = employeeProfile.getSelectedEmployeeInfo(employID, branchid);
 
@@ -137,6 +137,12 @@
                       <li><a href="employeplaceorder.aspx">Order menu</a></li>
                        <li><a href="employevieworders.aspx">View Guests Orders</a></li>
                        <li><a href="employecancelorder.aspx">Cancel Order</a></li>
+                    </ul>
+                 </li>
+                    <li><a ><i class="fa fa-file-text-o"></i> Payments<span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                      <li><a href="employeeReceiveable.aspx">Payment Receivable</a></li>
+                     
                     </ul>
                  </li>
                
