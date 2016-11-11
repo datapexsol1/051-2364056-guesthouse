@@ -258,8 +258,8 @@ public partial class adminajax : System.Web.UI.Page
     public static IEnumerable<admin_notification> GetData()
     {
         var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["guest_house_databaseConnectionString"].ConnectionString);
-        SqlDependency.Stop(ConfigurationManager.ConnectionStrings["guest_house_databaseConnectionString1"].ConnectionString);
-        SqlDependency.Start(ConfigurationManager.ConnectionStrings["guest_house_databaseConnectionString1"].ConnectionString);
+        SqlDependency.Stop(ConfigurationManager.ConnectionStrings["guest_house_databaseConnectionString"].ConnectionString);
+        SqlDependency.Start(ConfigurationManager.ConnectionStrings["guest_house_databaseConnectionString"].ConnectionString);
         connection.Open();
         //   string com1 = "select count(Id) from dbo.Products";
         using (SqlCommand com = new SqlCommand("select Id,eid,branch_id,time,table_name,Changed_row_id,operation_type,seen from admin_notification", connection))

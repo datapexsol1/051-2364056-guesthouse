@@ -128,5 +128,35 @@ public class guestservice_class
             return false;
         }
     }
+    public static List<guestresvices_attributeclass> getlaundryandcarrent(int bid, string roomno)//booking id
+    {
 
+        ctownDataContext db = new ctownDataContext();
+        var result = from g in db.guests
+                     join b in db.bookings on g.Id equals b.guest_id
+
+                     join br in db.booking_Rooms on b.Id equals br.bookingId
+                     join r in db.rooms on br.roomid equals r.Id
+                     join roomservice in db.guest_services on b.Id equals roomservice.booking_id
+                     where b.Id==bid && r.room_no==roomno
+                     select new
+                     {
+                         guest = g,
+                         room = r,
+                         guest_service= roomservice
+
+                     };
+        List<guestresvices_attributeclass> ls = new List<guestresvices_attributeclass>();
+        foreach(var x in result)
+        {
+            guestresvices_attributeclass temp = new guestresvices_attributeclass();
+            temp.g = x.guest;
+            temp.r = x.room;
+            temp.gs = x.guest_service;
+            ls.Add(temp);
+        }
+        return ls;
+
+        
+    }
 }

@@ -205,7 +205,85 @@ public partial class employeguestpayment : System.Web.UI.Page
             input.Value = x.r_rent;
           
         }
-        tbfacilitebill.Value = facilitiesbill.ToString();
+
+
+
+
+        //*************************************************************
+        //       laundry and rent 
+        //*************************************************************
+        orderdetail_attr[] oders = empmenuclass.getOrderPLaced(bid, roomsclass.getRoomNo(x.r_roomid, employeeProfile.getEmployeBranch(int.Parse(Session["loginId"].ToString()))));
+        if (oders.Count() >= 1)
+        {
+            if (once == 0)
+            {
+                TableRow horderitem = new TableRow();
+                facilites.Rows.Add(horderitem);
+                TableCell hroomno = new TableCell();
+                hroomno.Text = "RoomNo";
+                horderitem.Cells.Add(hroomno);
+                TableCell hitemname = new TableCell();
+                hitemname.Text = "Item";
+                horderitem.Cells.Add(hitemname);
+                TableCell hitemprice = new TableCell();
+                hitemprice.Text = "item price";
+                horderitem.Cells.Add(hitemprice);
+                TableCell hquantity = new TableCell();
+                hquantity.Text = "Quantity";
+                horderitem.Cells.Add(hquantity);
+                TableCell hitemquantity = new TableCell();
+                hitemquantity.Text = "#Item";
+                horderitem.Cells.Add(hitemquantity);
+                TableCell htotalprice = new TableCell();
+                htotalprice.Text = "Total Price";
+                horderitem.Cells.Add(htotalprice);
+                TableCell hdate = new TableCell();
+                hdate.Text = "Date";
+                horderitem.Cells.Add(hdate);
+                once++;
+            }
+
+            foreach (orderdetail_attr or in oders)
+            {
+                TableRow orderitem = new TableRow();
+                facilites.Rows.Add(orderitem);
+                TableCell roono = new TableCell();
+                roono.Text = roomsclass.getRoomNo(int.Parse(x.r_roomid.ToString()), x.b_branch_id);
+                orderitem.Cells.Add(roono);
+                TableCell itemname = new TableCell();
+                itemname.Text = or.rs_orde_menu.item_name;
+                orderitem.Cells.Add(itemname);
+                TableCell itemprice = new TableCell();
+                itemprice.Text = or.rs_orde_menu.price.ToString();
+                orderitem.Cells.Add(itemprice);
+                TableCell quantity = new TableCell();
+                quantity.Text = or.rs_orde_menu.quantity;
+                orderitem.Cells.Add(quantity);
+                TableCell itemquantity = new TableCell();
+                itemquantity.Text = or.order.quantity.ToString();
+                orderitem.Cells.Add(itemquantity);
+                TableCell totalprice = new TableCell();
+                facilitiesbill += or.order.quantity * or.rs_orde_menu.price; //grand total 
+                totalprice.Text = (or.order.quantity * or.rs_orde_menu.price).ToString();
+                orderitem.Cells.Add(totalprice);
+                TableCell date = new TableCell();
+                date.Text = or.order.date.ToString();
+                orderitem.Cells.Add(date);
+            }
+
+        }
+
+
+
+
+        input.Value = x.r_rent;
+
+    }
+
+
+
+
+    tbfacilitebill.Value = facilitiesbill.ToString();
         tbroombill.Value = roombill.ToString();
         double taxAmount = (roombill + facilitiesbill) * 17 / 100;
         double total_bill_variable = roombill + facilitiesbill + taxAmount;

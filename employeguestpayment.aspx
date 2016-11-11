@@ -130,9 +130,19 @@
 
 
           <div>
-             <h3>Facilities</h3>
+             <h3>Resturent</h3>
                <hr style="border:dashed;" />
                <asp:Table ID="facilites" runat="server" class="table table-bordered table-striped">
+
+
+
+    </asp:Table>
+         
+         </div>
+           <div>
+             <h3>Laundry Car Rent</h3>
+               <hr style="border:dashed;" />
+               <asp:Table ID="laundry" runat="server" class="table table-bordered table-striped">
 
 
 
@@ -150,6 +160,7 @@
                  <asp:HiddenField ID="tbroombill" runat="server" />
                  <asp:HiddenField ID="tbfacilitebill" runat="server" />
                   <asp:HiddenField ID="taxdiscountH" runat="server" />
+                
                  <!-- if stay hours is less than 6 hours-->
                  <br />
                 <%--  --%><%--<asp:DropDownList ID="paymentDropdown" runat="server" AutoPostBack="True" CausesValidation="True" OnSelectedIndexChanged="paymentDropdown_SelectedIndexChanged">
