@@ -308,26 +308,7 @@
                          <!--popup end-->--%>
           <input id="input" type="hidden" runat="server"/>
          <input id="hrs" type="hidden" runat="server"/>
-         <input id="totalbill" type="hidden" runat="server"/>
-
-
-
-
-
-
-
-
-
-         </div>
-         </div>
-        </div>
-           </div>
-
-
-
-    </div>
-
-
+         <input id="totalbill" type="hidden" runat="server" />
      <script>
         $(function () {
             $("#btnPrint").click(function () {
