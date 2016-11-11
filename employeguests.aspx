@@ -10,7 +10,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
     
-     <head>
+   <%--  <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
@@ -28,7 +28,7 @@
 
     <!-- Custom Theme Style -->
     <link href="../custom/custom.min.css" rel="stylesheet">
-  </head>
+  </head>--%>
 
 
    
@@ -267,10 +267,10 @@
     
 
 
-      <!-- jQuery -->
+    <%--  <!-- jQuery -->
     <%--<script src="../vendors/jquery/dist/jquery.min.js"></script>--%>
     <!-- Bootstrap -->
-    <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+   <%-- <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- FastClick -->
     <script src="../vendors/fastclick/lib/fastclick.js"></script>
     <!-- NProgress -->
@@ -285,7 +285,7 @@
     <script src="js/datepicker/daterangepicker.js"></script>
     
     <!-- Custom Theme Scripts -->
-    <script src="../build/js/custom.min.js"></script>
+    <script src="../build/js/custom.min.js"></script>--%>
 
    
 
