@@ -112,6 +112,7 @@
      <div class="col-md-12 col-sm-12 col-xs-12">
      <div class="x_content">
      <div class="col-md-9 col-sm-9 col-xs-12">
+         <div id="printPaymentpage">
          <h3>Guest Payment</h3>
          <hr style="border:dashed;" />
          <div>
@@ -143,7 +144,7 @@
          </div>
           <hr style="border:dashed;" />
 
-         <div style="float:right;">
+         
              
              
              <br />
@@ -184,20 +185,14 @@
                   <label id="gtotal1"><u>Paid Amount : </u></label>
                
                  <asp:Textbox ID="tbpaidamount" runat="server"></asp:Textbox>  
-                 <br/>                
+               
+                 <!-- if stay hours is less than 6 hours-->
+               
+                            
                                 <asp:CheckBox ID="timelesscbox" runat="server" Text="RentDiscount" AutoPostBack="true" OnCheckedChanged="checkedchange"  />
                                 <asp:CheckBox ID="taxtdiscount" runat="server" Text="Tax Discount" AutoPostBack="true" OnCheckedChanged="tax_discount"  />
 
                  <br />
-                                        <asp:Button ID="btnpaid" CssClass="btn btn-success" runat="server" Text="Pay" OnClick="btnpaid_Click" />
-
-                 <a href="#" data-toggle="modal" data-target="#login-modal"  class="btn btn-default">Print Bill Now</a>
-                 <asp:HiddenField ID="tbroombill" runat="server" />
-                 <asp:HiddenField ID="tbfacilitebill" runat="server" />
-                  <asp:HiddenField ID="taxdiscountH" runat="server" />
-                 <!-- if stay hours is less than 6 hours-->
-                 <br />
-                
                 <%--  --%><%--<asp:DropDownList ID="paymentDropdown" runat="server" AutoPostBack="True" CausesValidation="True" OnSelectedIndexChanged="paymentDropdown_SelectedIndexChanged">
                     <asp:ListItem>Select Payment Method</asp:ListItem>       
                     <asp:ListItem>Cash</asp:ListItem>
@@ -234,8 +229,19 @@
                </div>
 
              </div>
+         <div style="float:right;margin-top:250px">
+           
+
+                 
+                                        <asp:Button ID="btnpaid" CssClass="btn btn-success" runat="server" Text="Pay" OnClick="btnpaid_Click" />
+             <input type="button" id="btnPrint" value="Print Bill"  class="btn btn-default"/>
+                 <%--<a href="#" data-toggle="modal" data-target="#login-modal"  class="btn btn-default">Print Bill Now</a>--%>
+                 <asp:HiddenField ID="tbroombill" runat="server" />
+                 <asp:HiddenField ID="tbfacilitebill" runat="server" />
+                  <asp:HiddenField ID="taxdiscountH" runat="server" />
+             </div>
          <!--popup start-->
-                          <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                         <%-- <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
     	  <div class="modal-dialog">
 				<div class="loginmodal-container">
         <div id="dvbill" >
@@ -290,7 +296,7 @@
    </div>
 <div class="row">
     <div class="col-md-12">
-               	 <input type="button" id="btnPrint" value="Print"  class="btn btn"/>
+               	 <input type="button" id="btnPrint" value="Print Bill"  class="btn btn-default"/>
                       <br />
                       
 					<%--<input type="submit" name="gbook" class="tm-yellow-btn" value="Book room">--%>
@@ -299,7 +305,7 @@
                               </div>
 			</div>
 		  </div>
-                         <!--popup end-->
+                         <!--popup end-->--%>
           <input id="input" type="hidden" runat="server"/>
          <input id="hrs" type="hidden" runat="server"/>
          <input id="totalbill" type="hidden" runat="server"/>
@@ -326,7 +332,7 @@
         $(function () {
             $("#btnPrint").click(function () {
                 //alert("hello");
-                var contents = $("#dvbill").html();
+                var contents = $("#printPaymentpage").html();
                 var frame1 = $('<iframe />');
                 frame1[0].name = "frame1";
                 frame1.css({ "position": "absolute", "top": "-1000000px" });
