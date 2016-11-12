@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -130,6 +131,27 @@ public partial class employeguestregistration : System.Web.UI.Page
      //   b.booking_rent = Request.Form["rrent"].ToString();
         b.guest_reg_card_arr_date = "111";
         b.no_of_pax = Request.Form["noofpax"].ToString();
+        if (cnicfrontimg.HasFile && cnicbackimg.HasFile && regformimage.HasFile)
+        {
+            HttpPostedFile identity1 = cnicfrontimg.PostedFile;
+            HttpPostedFile identity2 = cnicbackimg.PostedFile;
+            HttpPostedFile regform = regformimage.PostedFile;
+            b.front_identity_layout = imageToByteArray(identity1);
+            b.back_identity_layout = imageToByteArray(identity2);
+            b.registration_form_image = imageToByteArray(regform);
+
+        }
+        //for foreigner
+        if(passportimage.HasFile && fregformimg.HasFile)
+        {
+            HttpPostedFile identity1 = passportimage.PostedFile;
+            HttpPostedFile identity2 = fregformimg.PostedFile;
+           
+            b.front_identity_layout = imageToByteArray(identity1);
+            b.registration_form_image = imageToByteArray(identity2);
+          ;
+        }
+
         //  gusetRegistrationClass.bookRoom(b);
         int bid=gusetRegistrationClass.roomBooking(b);
         if (bid != 0)
@@ -165,5 +187,19 @@ public partial class employeguestregistration : System.Web.UI.Page
         }
           
 
+    }
+    public static byte[] imageToByteArray(HttpPostedFile postedfile)
+    {
+        string filename = Path.GetFileName(postedfile.FileName);
+        string fileextention = Path.GetExtension(filename);
+        int size = postedfile.ContentLength;
+        byte[] imgbytes = null;
+        if (fileextention.ToLower() == ".jpg" || fileextention.ToLower() == ".png")
+        {
+            Stream stream = postedfile.InputStream;
+            BinaryReader binaryreader = new BinaryReader(stream);
+            imgbytes = binaryreader.ReadBytes((int)stream.Length);
+        }
+        return imgbytes;
     }
 }
