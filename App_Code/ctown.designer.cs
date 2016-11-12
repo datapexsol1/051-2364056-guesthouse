@@ -5374,7 +5374,7 @@ public partial class total_payment : INotifyPropertyChanging, INotifyPropertyCha
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_rent", DbType="NChar(10) NOT NULL", CanBeNull=false)]
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_rent", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
 	public string total_rent
 	{
 		get
@@ -5394,7 +5394,7 @@ public partial class total_payment : INotifyPropertyChanging, INotifyPropertyCha
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_facility_total_payment", DbType="NChar(10) NOT NULL", CanBeNull=false)]
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_facility_total_payment", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
 	public string facility_total_payment
 	{
 		get
@@ -5414,7 +5414,7 @@ public partial class total_payment : INotifyPropertyChanging, INotifyPropertyCha
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_bill", DbType="NChar(10) NOT NULL", CanBeNull=false)]
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_bill", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
 	public string total_bill
 	{
 		get
@@ -5434,7 +5434,7 @@ public partial class total_payment : INotifyPropertyChanging, INotifyPropertyCha
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_paid_amount", DbType="NChar(10) NOT NULL", CanBeNull=false)]
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_paid_amount", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
 	public string paid_amount
 	{
 		get
