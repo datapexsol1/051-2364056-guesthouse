@@ -19,6 +19,7 @@ public partial class employeguestpayment : System.Web.UI.Page
         {
             if (!IsPostBack && Request.QueryString["booking"].ToString() != null)
             {
+                chequeid.Visible = false;
                 chaqueno.Visible = false;
                 taxtdiscount.Visible = false;
                 bindTable();
@@ -489,6 +490,7 @@ public partial class employeguestpayment : System.Web.UI.Page
         if (paymentDropdown.SelectedIndex == 0)
         {
             chaqueno.Visible = false;
+            chequeid.Visible = false;
             taxtdiscount.Visible = false;
             timelesscbox.Visible = false;
             Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('Error','Please Select Payment Type');</script>");
@@ -496,19 +498,26 @@ public partial class employeguestpayment : System.Web.UI.Page
         if (paymentDropdown.SelectedValue == "Cash")
         {
             chaqueno.Visible = false;
+            chequeid.Visible = false;
             taxtdiscount.Visible = true;
             timelesscbox.Visible = true;
-        }else if(paymentDropdown.SelectedValue== "Cheque")
+            setpaymenttype.InnerText = "Cash";
+        }
+        else if(paymentDropdown.SelectedValue== "Cheque")
         {
             chaqueno.Visible = true;
+            chequeid.Visible = true;
             taxtdiscount.Visible = false;
             timelesscbox.Visible = true;
+            setpaymenttype.InnerText = "Cheque";
         }
         else if (paymentDropdown.SelectedValue == "Pay later")
         {
             chaqueno.Visible = false;
+            chequeid.Visible = false;
             taxtdiscount.Visible = true;
             timelesscbox.Visible = true;
+            setpaymenttype.InnerText = "Pay later";
         }
     }
 }
