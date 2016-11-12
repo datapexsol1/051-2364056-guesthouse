@@ -159,7 +159,7 @@
               <a data-toggle="tooltip" data-placement="top" title="Settings">
                 <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
               </a>
-              <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+              <a data-toggle="tooltip" data-placement="top" title="FullScreen" onclick="fullScreen();">
                 <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
               </a>
               <a data-toggle="tooltip" data-placement="top" title="Lock">
@@ -397,7 +397,6 @@
    
     <!-- /bootstrap-daterangepicker -->
 
-    
 
 
 
@@ -407,6 +406,27 @@
 
     <!-- Bootstrap Colorpicker -->
     <script>
+
+        function fullScreen() {
+            alert("working");
+            var el = document.documentElement
+                , rfs = // for newer Webkit and Firefox
+                       el.requestFullScreen
+                    || el.webkitRequestFullScreen
+                    || el.mozRequestFullScreen
+                    || el.msRequestFullScreen
+            ;
+            if (typeof rfs != "undefined" && rfs) {
+                rfs.call(el);
+            } else if (typeof window.ActiveXObject != "undefined") {
+                // for Internet Explorer
+                var wscript = new ActiveXObject("WScript.Shell");
+                if (wscript != null) {
+                    wscript.SendKeys("{F11}");
+                }
+            }
+
+        }
       $(document).ready(function() {
         $('.demo1').colorpicker();
         $('.demo2').colorpicker();
