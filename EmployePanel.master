@@ -44,13 +44,13 @@
     
 
                  <!--starting tag-->
-       
+        
     <div class="container body">
       <div class="main_container">
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="employeindex.aspx" class="site_title"><i class="fa fa-paw"></i> <span>Capetown</span></a>
+              <a href="employeindex.aspx" class="site_title"><img src="images/logoguesthouse.png" class="img-responsive" width="200" height="200" style="padding-bottom:2%"/> <span>Capetown</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -74,6 +74,7 @@
                           img1 = System.Text.Encoding.UTF8.GetBytes ("images/images.png");
                       }
                                              %>
+                  
                 <img src='data:image/jpg;base64,<%= Convert.ToBase64String(img1) %>' class="img-circle profile_img" />
                                              
              

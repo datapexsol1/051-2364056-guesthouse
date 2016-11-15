@@ -748,7 +748,7 @@
     series[1]={ //dataSeries - first quarter
         type: "splineArea",   
         name: "Income",
-        color:"Orange",
+        color:"green",
         fillOpacity:0.2,
         showInLegend: true,
            
