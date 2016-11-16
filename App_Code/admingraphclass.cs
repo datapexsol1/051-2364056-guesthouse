@@ -572,7 +572,7 @@ public static class admingraphclass
                 //int branc_id = branchClass.getBranchID(branc);
                 IQueryable<total_payment> b = from x in db.bookings
                                               join tp in db.total_payments on x.Id equals tp.booking_id
-                                              where tp.paymentdate.Month ==DateTime.Now.Month
+                                              where tp.paymentdate.Month == DateTime.Now.Month && tp.paid_amount != null
                                               select tp;
                 foreach (total_payment x in b)
                 {
@@ -590,6 +590,7 @@ public static class admingraphclass
                                 int nvalu = w.Value + int.Parse(x.paid_amount);
                                 mydic.Remove(nkey);
                                 mydic.Add(nkey, nvalu);
+                                break;
                             }
                             else
                             {
@@ -740,14 +741,14 @@ public static class admingraphclass
                     }
                     else
                     {
-                        foreach (var w in mydic)
+                        for(int i=0;i<mydic.Count;i++)//each (var w in mydic)
                         {
-                            if (w.Key == x.paymentdate.ToShortDateString())
+                            if (mydic.ElementAt(i).Key == x.paymentdate.ToShortDateString())
                             {
-                                string nkey = w.Key;
-                                int nvalu = w.Value + int.Parse(x.paid_amount);
+                                string nkey = mydic.ElementAt(i).Key;
+                                int nvalu = mydic.ElementAt(i).Value + int.Parse(x.paid_amount);
                                 mydic.Remove(nkey);
-                                mydic.Add(nkey, nvalu);
+                                   mydic.Add(nkey, nvalu);
                             }
                             else
                             {
