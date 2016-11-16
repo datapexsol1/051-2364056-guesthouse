@@ -14,6 +14,10 @@ public partial class adminguestregistration : System.Web.UI.Page
     }
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["adminLogin"] == null)
+        {
+            Response.Redirect("adminlogin.aspx");
+        }
         string value = Request.QueryString["id"].ToString();
         selectedrooms.Text = value;
 

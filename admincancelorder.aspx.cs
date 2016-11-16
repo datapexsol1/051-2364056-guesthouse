@@ -9,6 +9,10 @@ public partial class admincancelorder : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["adminLogin"] == null)
+        {
+            Response.Redirect("adminlogin.aspx");
+        }
         int bid = employeeProfile.getEmployeBranch("kk");
         //get from session
                                                          //    brachid.Value = bid.ToString();

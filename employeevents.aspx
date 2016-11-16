@@ -25,7 +25,8 @@
     <link href="../vendors/cropper/dist/cropper.min.css" rel="stylesheet">
     <!-- Custom Theme Style -->
     <link href="../custom/custom.min.css" rel="stylesheet">
-
+    <!-- validator -->
+    <%--<script src="../vendors/validator/validator.js"></script>--%>
     
     <script>
         function activaTab(tab) {
@@ -150,41 +151,36 @@
                             <!--start add event-->
                             <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
                                 <div class="row">
-                                     <div class="col-md-5">
+                                     <div class="item col-md-5">
                                          <b>Event name</b>
-                                            <input runat="server" type="text" id="eventname" name="eventname" placeholder="Event name..." data-validation="required"    
-		 data-validation-error-msg="Enter event" class="form-control"/>
+                                            <input runat="server" type="text" id="eventname" name="eventname" placeholder="Event name..." 
+                                                data-validate-length-range="6" data-validate-words="1" required="required" class="form-control"/>
                                          </div>
                                 
-                                     <div class="col-md-5">
+                                     <div class=" col-md-5">
                                          <b>Event description</b>
                                             <input runat="server" type="text" id="eventdesc" name="eventdesc" placeholder="Event description..." class="form-control"/>
                                          </div>
                                 </div>
                                 <div class="row">
-                                     <div class="col-md-5">
+                                     <div class="item col-md-5">
                                          <b>Event start date</b>
 
-                                            <input  type="text" id="eventstartdate" data-validation="required" 
-
-		 data-validation-error-msg="Select date" name="eventstartdate"  class="form-control"/>
+                                            <input  type="text" id="eventstartdate" required="required" name="eventstartdate"  class="form-control"/>
                                          </div>
                                
-                                     <div class="col-md-5">
+                                     <div class="item col-md-5">
                                          <b>Event end date</b>
-                                            <input  type="text" id="eventenddate"  name="eventenddate" data-validation="required" 
-
-		 data-validation-error-msg="Select date"  placeholder="Select date..." class="form-control" />
+                                            <input  type="text" id="eventenddate" required="required"  name="eventenddate"   placeholder="Select date..." class="form-control" />
                                          </div>
                                 </div>
                                     
                                 <div class="row">
                         <div class="col-md-5">
-                          <div class="input-group demo2">
+                          <div class="item input-group demo2">
                               <b>Event color</b>
-                            <input type="text"  placeholder="Select color.." class="form-control" runat="server" id="eventcolor" value="#000000" data-validation="required" 
-
-		 data-validation-error-msg="Enter event color" name="eventcolor"/>
+                            <input type="text"  placeholder="Select color.." class="form-control" runat="server" id="eventcolor" value="#000000" 
+                                required="required" name="eventcolor"/>
                             <span class="input-group-addon"><i></i></span>
                           </div>
                         </div>
@@ -399,6 +395,7 @@
               console.log(start.toISOString(), end.toISOString(), label);
           });
       });
+
     </script>
 
         <script>
@@ -444,5 +441,6 @@
       });
     </script>
     <!-- /Bootstrap Colorpicker -->
+   
 </asp:Content>
 

@@ -10,7 +10,11 @@ public partial class adminexpensesreport : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!IsPostBack)
+        if (Session["adminLogin"] == null)
+        {
+            Response.Redirect("adminlogin.aspx");
+        }
+        else if(!IsPostBack)
         {
             IQueryable<branch> br = admingraphclass.getAllbranches();
             branches.Items.Add("Select Branch");

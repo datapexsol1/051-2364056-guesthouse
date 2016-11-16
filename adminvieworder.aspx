@@ -59,9 +59,10 @@
                         <div role="tabpanel" class="tab-pane fade active in" id="tab_view" aria-labelledby="home-tab">
                            <%-- <asp:Button ID="getsummary" runat="server" Text="Place Order" OnClick="getsummary_click" />
                              <asp:Button ID="savetodb" runat="server" Text="PrintBill"  />--%>
-
+                            <div class="col-md-5">
+                                Select room
                              <asp:DropDownList ID="ddrooms" runat="server" CssClass="form-control" AutoPostBack="True" OnSelectedIndexChanged="ddrooms_SelectedIndexChanged"></asp:DropDownList>
-                                        
+                                        </div>
                             <asp:Table ID="viewOrder" runat="server"  class="table table-bordered table-striped"></asp:Table>
                             <asp:Label ID="grandtotal" runat="server"  Text="Amount"></asp:Label>
     

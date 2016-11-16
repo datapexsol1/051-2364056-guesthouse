@@ -225,7 +225,7 @@
                                    <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Type Of Room</label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <div id="type" class="btn-group" data-toggle="buttons">
+                              <div id="type" class="item btn-group" data-toggle="buttons" >
                                 <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
                                   <input type="radio" name="rtype" value="business" /> &nbsp; S.G.L &nbsp;
                                 </label>
@@ -245,12 +245,11 @@
                             </div>
                           </div>
 
-                               <div class="form-group">
+                               <div class="item form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">No Of Pax <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="number" id="noofpax" name="noofpax" required="required" class="form-control col-md-7 col-xs-12" data-validation="required" 
-		 data-validation-error-msg="Enter no. of PAX" min="0"/>
+                              <input type="number" id="noofpax" name="noofpax" required="required" class="form-control col-md-7 col-xs-12" min="0"/>
                             </div>
                           </div>
                               
@@ -272,16 +271,15 @@
                               </div>
                             </div>
                           </div>
-                               <div class="form-group">
+                               <div class="item form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Room Rent <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="number" id="rrent" name="rrent" required="required" class="form-control col-md-7 col-xs-12" data-validation="required" 
-		 data-validation-error-msg="Enter Room rent" min="<%=r.minimum_room_rent %>" max ="<%=r.maximum_room_rent %>"/>
+                              <input type="number" id="rrent" name="rrent" required="required" class="form-control col-md-7 col-xs-12" value="<%=r.minimum_room_rent %>" min="<%=r.minimum_room_rent %>" max ="<%=r.maximum_room_rent %>"/>
                             </div>
                           </div>
 
-                          <div class="form-group">
+                          <div class="item form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Advance Rent <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
@@ -341,17 +339,16 @@
 
      <div class="form-group">
                             <h3>Local Guest</h3>
-                            <div class="col-md-4 col-sm-4 col-xs-12">
+                            <div class="item col-md-4 col-sm-4 col-xs-12">
                                 <label >Registration No <span class="required">*</span>
                             </label>
-                              <input type="number" id="regno" name="regno"  class="form-control col-md-7 col-xs-12" min="0" data-validation="required" 
-		 data-validation-error-msg="Enter registration no."/>
+                              <input type="text" id="regno" name="regno"  class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="1" required="required"/>
                             </div>
                           <%--</div>
 
                           <div class="form-group">--%>
                            
-                            <div class="col-md-4 col-sm-4 col-xs-12">
+                            <div class="item col-md-4 col-sm-4 col-xs-12">
                                  <label >Arrival Date <span class="required">*</span>
                             </label>
                               <%--<input type="text" class="form-control has-feedback-left" id="Arrival" placeholder="First Name" aria-describedby="inputSuccess2Status2">--%>
@@ -360,7 +357,7 @@
                             </div>
                  
                             
-                            <div class="col-md-4 col-sm-4 col-xs-12">
+                            <div class="item col-md-4 col-sm-4 col-xs-12">
                                 <label >Arrival Time</label>
                               <input id="atime"  class="form-control col-md-7 col-xs-12" type="time" name="atime" required="required"/>
                             </div>
@@ -371,12 +368,10 @@
                             
                           <div class="form-group">--%>
                             
-                            <div class="col-md-4 col-sm-4 col-xs-12">
+                            <div class="item col-md-4 col-sm-4 col-xs-12">
                                 <label>Guest Name <span class="required">*</span>
                             </label>
-                              <input type="text" id="gname" name="gname"  class="form-control col-md-7 col-xs-12" data-validation="length alphanumeric" 
-		 data-validation-length="3-25" 
-		 data-validation-error-msg="Enter guest name"/>
+                              <input type="text" id="gname" name="gname"  class="form-control col-md-7 col-xs-12" required="required" data-validate-length-range="6" data-validate-words="2"/>
                             </div>
                           </div>
 
@@ -387,10 +382,10 @@
                            
 
 
-                                  <div class="col-md-4 col-sm-4 col-xs-12">
+                                  <div class="item col-md-4 col-sm-4 col-xs-12">
                                                             <label>N.I.C No <span class="required"/>*</span>
                             </label>
-                              <input type="text" id="cnicno" name="cnicno"  class="form-control col-md-7 col-xs-12" required="required" pattern="^[0-9+]{5}-[0-9+]{7}-[0-9]{1}$" title="Enter correct cnic"/>
+                              <input type="text" id="cnicno" name="cnicno"   class="form-control col-md-7 col-xs-12" required="required" data-inputmask="'mask' : '9999-9999-9999-9999'"/>
                             </div>
 
 

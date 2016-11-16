@@ -44,6 +44,7 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+    <div id="Notify"></div>
      <div class="right_col" role="main">
           <div class="">
     <div class="page-title">
@@ -145,6 +146,6 @@
 
               
 
-         </div></div>   </div>
+         </div></div>   </div></div></div>
 </asp:Content>
 

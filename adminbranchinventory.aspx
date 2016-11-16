@@ -33,6 +33,7 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+     <div id="Notify"></div>
 <div class="right_col" role="main">
           <div class="">
     <div class="page-title">
@@ -162,7 +163,7 @@
                         <label class="control-label col-md-4 " for="room no">Room No <span class="required">*</span>
                         </label>
                          <% // int bid = employeeProfile.getEmployeBranch("kk");//get from session 
-                            string bname = employeeProfile.getEmployeBranchname("kk");%>
+                             string bname = brid.SelectedValue;%>
                                 <div class="col-md-8">
                                       <input type="text" id="alabel" name="alabel" value="<%=bname %>" class="form-control "/>
                                     </div>

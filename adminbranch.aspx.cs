@@ -7,9 +7,15 @@ using System.Web.UI.WebControls;
 
 public partial class adminbranch : System.Web.UI.Page
 {
+    string msg, type;
+    bool check;
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        if (Session["adminLogin"] == null)
+        {
+            Response.Redirect("adminlogin.aspx");
+        }
+        
     }
     protected void savebranch_click(object sender,EventArgs e)
     {
@@ -19,12 +25,19 @@ public partial class adminbranch : System.Web.UI.Page
         b.city = Request.Form["bcity"].ToString();
         b.country = Request.Form["bcountry"].ToString();
         b.address = Request.Form["badress"].ToString();
+        b.employee_id = employeeProfile.getEmployeeId(Session["adminLogin"].ToString());
         if (branchClass.addbranch(b) == true)
         {
-            //display succes msg
-        }else
-        {
-            // display error
+            msg = "Successfully stored the information";
+            type = "Success";
+            //show succesful msg
         }
+        else
+        {
+            msg = "There is some error";
+            type = "Error";
+        }
+        Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('" + type + "','" + msg + "');</script>");
+
     }
 }

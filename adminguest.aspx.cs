@@ -7,9 +7,15 @@ using System.Web.UI.WebControls;
 
 public partial class adminguest : System.Web.UI.Page
 {
+    string msg, type;
+    bool check;
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!IsPostBack)
+        if (Session["adminLogin"] == null)
+        {
+            Response.Redirect("adminlogin.aspx");
+        }
+        else if (!IsPostBack)
         {
             branch.Items.Clear();
             IQueryable<branch> br = admingraphclass.getAllbranches();

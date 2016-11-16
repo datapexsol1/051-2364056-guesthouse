@@ -1,4 +1,4 @@
-﻿    <%@ Page Title="" Language="C#" MasterPageFile="~/EmployePanel.master" AutoEventWireup="true" CodeFile="employepaysalary.aspx.cs" Inherits="employepaysalary" %>
+﻿    <%@ Page Title="" Language="C#" MasterPageFile="~/EmployePanel.master" EnableEventValidation="false" AutoEventWireup="true" CodeFile="employepaysalary.aspx.cs" Inherits="employepaysalary" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <script>
@@ -32,7 +32,7 @@
           <div class="container">
     <div class="" role="tabpanel" data-example-id="togglable-tabs">
                         <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-                          <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Pending Salary</a></li>
+                          <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true" onclick="setsalaryhistory()">Pending Salary</a></li>
                           
                           <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab1" data-toggle="tab" aria-expanded="false">View Salary History</a></li>
                             <asp:HiddenField ID="tbpaidvalue" runat="server" />
@@ -69,12 +69,18 @@
                                   <td><label id="joiningdate"><%=x.dateofjoining %> </label></td>
                                   <td><label id="Salary"><%=x.salary %></label></td>
                                  <td><label id="amounttopay"><%=x.salary %> </label></td>
-                                    <td><input type="text" id="paidamount<%=x.Id%>" name="paidamount<%=x.Id%>" onchange="updatevalue(<%=x.Id%>);"/></td>
+                                    <td><div class="item form-group">
+                                        <input type="number" id="paidamount<%=x.Id%>" class="form-control" required="required" name="paidamount<%=x.Id%>" onchange="updatevalue(<%=x.Id%>);"/>
+                                        </div>
+                                        </td>
                                     
                                     
                                     <td>
                                     <%--    <asp:Button ID="savebutton" runat="server" Text="Button"  OnClick="savebtnclick" /></td>--%>
-                                      <td><a href="#" runat="server" onserverclick="savebtnclick" style="color:green"  class="btn btn-success" >Pay</a></td>
+                                      <%--<asp:Button ID="savebutton" runat="server" Text="Button" CssClass="btn btn-success" OnClick="savebtnclick"  />--%>
+                                          <a href="#" runat="server" onserverclick="savebtnclick" style="color:green"  class="btn btn-success" >Pay</a>
+
+                                      </td>
                                               
                                               
                                 </tr>
@@ -94,7 +100,7 @@
                                  <div class="col-md-4">
                                      <label>Select employee username</label>
                                     
-                              <asp:DropDownList  runat="server" class="form-control" clientIdMode="static" ID="ddemployeename" name="ddemployeename" OnSelectedIndexChanged="ddemployeenameselectedindexchange" AutoPostBack="True" required="required">
+                              <asp:DropDownList  runat="server" class="form-control" clientIdMode="static" ID="ddemployeename" name="ddemployeename" OnSelectedIndexChanged="ddemployeenameselectedindexchange" AutoPostBack="True" >
                                       <Items>
                                            <asp:ListItem Text="Select" Value="" />
                                        </Items>
@@ -198,7 +204,14 @@
     <script src="js/datepicker/daterangepicker.js"></script>
   
 
-
+    <script>
+        function setsalaryhistory() {
+            $("input[name=inamount]").val("123");
+            $("input[name=indate]").val("01-10-2016");
+            $("input[name=inputid]").val("01-10-2016");
+            
+        }
+    </script>
     <!-- bootstrap-daterangepicker -->
     <script>
       $(document).ready(function() {
