@@ -16,7 +16,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
      
-
+     <div id="Notify"></div>
   
 
       <div class="right_col" role="main">
@@ -25,7 +25,7 @@
     <div class="row">
      <div class="col-md-12 col-sm-12 col-xs-12">
      <div class="x_content">
-          <div id="Notify"></div>
+         
   
              <div class="messagealert" id="alert_container"  style=" opacity: 0;transition: visibility 0s 2s, opacity 2s linear;">  </div> 
      <div class="col-md-9 col-sm-9 col-xs-12">
@@ -36,7 +36,7 @@
                           <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Rooms</a></li>
                           
                           <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false" onclick="insertupdatevalues()">Add Rooms</a></li>
-                          <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false" onclick="InsertAddRoomsValues()">Update Rooms</a></li>
+                          <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false" onclick="InsertAddRoomsValues()" onselect="InsertAddRoomsValues()">Update Rooms</a></li>
 
                           
                         </ul>
@@ -154,7 +154,7 @@
                       </div>
                               <div class="form-group">
                         <div class="col-md-6 col-md-offset-1">
-                            <input type="submit" runat="server" value="Save Room" causesvalidation="false" onserverclick="saveroom_click" class="btn btn-success"/>
+                            <input type="button" runat="server" value="Save Room" causesvalidation="false" onserverclick="saveroom_click" class="btn btn-success"/>
                           <%--<asp:Button ID="saveroom" runat="server" Text="Save Room" CausesValidation="false" OnClick="saveroom_click" CssClass="btn btn-success" />--%>
                         </div>
                       </div>
@@ -165,7 +165,7 @@
                               
                               
                           </div>
-                          <%--  <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
+                            <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
                                 <div class="form-group col-md-12">
                                     <label>Select room</label>
                                       <asp:DropDownList runat="server" ID="ddRoomNo" ClientIDMode="Static" OnSelectedIndexChanged="ddRoomNoIndexChanged" AutoPostBack="true"  CssClass="btn btn-default">
@@ -209,7 +209,7 @@
                                   </div>
                                     </div>
                                 <asp:Button runat="server" Text="Update" OnClick="updateRoomInfo" CssClass="btn btn-success" />
-                          </div>--%>
+                          </div>
                             
                         </div>
        
@@ -262,25 +262,30 @@
    <script>
        function InsertAddRoomsValues() {
            alert("update");
-           $("input[name=roomno]").val("000");
-           $("input[name=roomtype]").val("000");
-           $("input[name=roomsize]").val("000");
-           $("input[name=roommaxrent]").val("000");
-           $("input[name=roomminrent]").val("000");
-           $("input[name=roombranch]").val("Islamabad");
-      
+           //$("input[name=roomno]").val("000");
+           //$("input[name=roomtype]").val("000");
+           //$("input[name=roomsize]").val("000");
+           //$("input[name=roommaxrent]").val("000");
+           //$("input[name=roomminrent]").val("000");
+           //$("input[name=roombranch]").val("Islamabad");
+           $('#roomno').val("Test");
+           $('#roomtype').val("Test");
+           $('#roomsize').val("Test");
+           $('#roommaxrent').val(1);
+           $('#roomminrent').val(1);
+           $('#roombranch').val("Test");
        
        }
        function insertupdatevalues() {
            //alert("add panel");
-         <%--  $('#<%=roomnoupdate.ClientID %>').val("Test");
+          $('#<%=roomnoupdate.ClientID %>').val("Test");
                        $('#<%=roomtypeupdate.ClientID %>').val("Test");
 
                       $('#<%=roommaxrentupdate.ClientID %>').val(1);
 
                        $('#<%=roomminrentupdate.ClientID %>').val(1);
            $('#<%=roomsizeupdate.ClientID %>').val("Test");
-            $('#<%=ddRoomNo.ClientID %>').val(101);--%>
+            $('#<%=ddRoomNo.ClientID %>').val(101);
 
 
 
