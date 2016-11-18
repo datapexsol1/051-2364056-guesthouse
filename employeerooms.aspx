@@ -160,7 +160,7 @@
                       </div>
                               <div class="form-group">
                         <div class="col-md-6 col-md-offset-1">
-                          <asp:Button ID="saveroom" runat="server" Text="Save Room" OnClick="saveroom_click" CssClass="btn btn-success" />
+                          <asp:Button ID="saveroom" runat="server" Text="Save Room" CausesValidation="false" EnableViewState="true" OnClick="saveroom_click" CssClass="btn btn-success" />
                         </div>
                       </div>
                            
@@ -266,7 +266,7 @@
 
    <script>
        function InsertAddRoomsValues() {
-           //alert("update");
+           alert("update");
            $("input[name=roomno]").val("000");
            $("input[name=roomtype]").val("000");
            $("input[name=roomsize]").val("000");
@@ -283,8 +283,8 @@
        
        }
        function insertupdatevalues() {
-           //alert("add panel");
-           $("<%=roomnoupdate. MaxL ength,%>").val("101");
+           alert("add panel");
+         <%--  $("<%=roomnoupdate.ClientID%>").val("101");--%>
            $("input[name=roomnoupdate]").val("123");
            $("input[name=roomtypeupdate]").val("123");
            $("input[name=roomminrentupdate]").val("123");

@@ -352,17 +352,17 @@
                                 <label >CNIC Front Image <span class="required">*</span>
                             </label>
                      
-                              <asp:FileUpload ID="cnicfrontimg" runat="server"   class="form-control col-md-7 col-xs-12" />
+                              <asp:FileUpload ID="cnicfrontimg" runat="server"   class="form-control col-md-7 col-xs-12" required="required"/>
                             </div>
                             <div class="item col-md-4 col-sm-4 col-xs-12">
                                 <label >CNIC Back Image <span class="required">*</span>
                             </label>
-                              <asp:FileUpload  ID="cnicbackimg" runat="server"  class="form-control col-md-7 col-xs-12" />
+                              <asp:FileUpload  ID="cnicbackimg" runat="server"  class="form-control col-md-7 col-xs-12" required="required"/>
                             </div>
                  <div class="item col-md-4 col-sm-4 col-xs-12">
                                 <label >Registration Form Image <span class="required">*</span>
                             </label>
-                              <asp:FileUpload required="required" ID="regformimage" runat="server"  class="form-control col-md-7 col-xs-12"/>
+                              <asp:FileUpload required="required" ID="regformimage" runat="server" data-validation="required"  class="form-control col-md-7 col-xs-12" />
                             </div>
                  </div>
                           </div>
@@ -456,10 +456,10 @@
 
                             <div class="form-group">--%>
                            
-                            <div class="item col-md-4 col-sm-4 col-xs-12">
+                            <div class=" col-md-4 col-sm-4 col-xs-12">
                                  <label >Company Name <span class="required">*</span>
                             </label>
-                              <input type="text" id="fcname" name="fcname"  class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="1" />
+                              <input type="text" id="fcname" name="fcname"  class="form-control col-md-7 col-xs-12"  />
                             </div>
                           </div>
 
@@ -554,7 +554,7 @@
                             <div class="item col-md-6 col-sm-6 col-xs-12">
                                  <label >Permanent Adress<span class="required">*</span>
                             </label>
-                             <input name="fpaddress" id="fpaddress"  class="form-control col-md-7 col-xs-12" validate-length-range="6" data-validate-words="1"/>
+                             <input name="fpaddress" id="fpaddress"  class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="1"/>
                             </div>
                           </div>
 
@@ -655,7 +655,7 @@
                  <div class="item col-md-4 col-sm-4 col-xs-12">
                                 <label >Passport Image <span class="required">*</span>
                             </label>
-                              <asp:FileUpload  ID="passportimage" runat="server"  class="form-control col-md-7 col-xs-12" />
+                              <asp:FileUpload  ID="passportimage" runat="server"  class="form-control col-md-7 col-xs-12" required="required"/>
                             </div>
         <div class="item col-md-4 col-sm-4 col-xs-12">
                                 <label >Registration Form Image <span class="required">*</span>

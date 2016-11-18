@@ -67,6 +67,11 @@ public partial class employeguestregistration : System.Web.UI.Page
             //Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('Success','Information has been saved successfully !');</script>");
 
             //ShowMessage("Information has been saved successfully ! ", MessageType.Success);
+            //if(cnicfrontimg.HasFile == false || cnicbackimg.HasFile == false || regformimage.HasFile == false)
+            //{
+            //    Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('Error','Please upload images');</script>");
+
+            //}
 
         }
         else if (Request.Form["guestType"].ToString() == "foriegner")
