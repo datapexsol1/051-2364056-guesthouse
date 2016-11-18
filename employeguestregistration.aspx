@@ -232,7 +232,7 @@
                             </div>
 
 
-                            <div class="col-md-4 col-sm-4 col-xs-12">
+                            <div class="item col-md-4 col-sm-4 col-xs-12">
                                  <label>Date Of Birth <span class="required">*</span>
                             </label>
                               <input id="dob" name="dob" class="date-picker form-control col-md-7 col-xs-12"  type="text" required="required"/>
@@ -299,7 +299,7 @@
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                 <label >PH: No Cell<span class="required">*</span>
                             </label>
-                              <input type="number" min="0" id="pcell" name="pcell"   class="form-control col-md-7 col-xs-12" required="required" pattern="\d*" title="Enter Mobile no"/>
+                              <input type="number" min="0" id="pcell" name="pcell"   class="form-control col-md-7 col-xs-12" required="required" />
                             </div>
                           <%--</div>
 
@@ -345,24 +345,24 @@
                             <div class="item col-md-6 col-sm-6 col-xs-12">
                                  <label >Permanent Adress<span class="required">*</span>
                             </label>
-                             <input type="text" id="paddress" name="paddress"  class="form-control col-md-7 col-xs-12" />
+                             <input type="text" id="paddress" name="paddress" required="required"  class="form-control col-md-7 col-xs-12" />
                             </div>
              <div class="form-group">
                  <div class="item col-md-4 col-sm-4 col-xs-12">
                                 <label >CNIC Front Image <span class="required">*</span>
                             </label>
                      
-                              <asp:FileUpload ID="cnicfrontimg" runat="server"   class="form-control col-md-7 col-xs-12" required="required"/>
+                              <asp:FileUpload ID="cnicfrontimg" runat="server"   class="form-control col-md-7 col-xs-12" />
                             </div>
                             <div class="item col-md-4 col-sm-4 col-xs-12">
                                 <label >CNIC Back Image <span class="required">*</span>
                             </label>
-                              <asp:FileUpload  ID="cnicbackimg" runat="server"  class="form-control col-md-7 col-xs-12" required="required"/>
+                              <asp:FileUpload  ID="cnicbackimg" runat="server"  class="form-control col-md-7 col-xs-12" />
                             </div>
                  <div class="item col-md-4 col-sm-4 col-xs-12">
                                 <label >Registration Form Image <span class="required">*</span>
                             </label>
-                              <asp:FileUpload required="required" ID="regformimage" runat="server" data-validation="required"  class="form-control col-md-7 col-xs-12" />
+                              <asp:FileUpload  ID="regformimage" runat="server" data-validation="required"  class="form-control col-md-7 col-xs-12" />
                             </div>
                  </div>
                           </div>
@@ -655,7 +655,7 @@
                  <div class="item col-md-4 col-sm-4 col-xs-12">
                                 <label >Passport Image <span class="required">*</span>
                             </label>
-                              <asp:FileUpload  ID="passportimage" runat="server"  class="form-control col-md-7 col-xs-12" required="required"/>
+                              <asp:FileUpload  ID="passportimage" runat="server"  class="form-control col-md-7 col-xs-12"/>
                             </div>
         <div class="item col-md-4 col-sm-4 col-xs-12">
                                 <label >Registration Form Image <span class="required">*</span>

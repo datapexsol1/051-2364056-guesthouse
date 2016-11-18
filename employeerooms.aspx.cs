@@ -27,10 +27,16 @@ public partial class employeerooms : System.Web.UI.Page
                 roomNo[i] = x.room_no;
                 i++;
             }
-            ddRoomNo.DataSource = roomNo;
-            ddRoomNo.DataBind();
+            //ddRoomNo.DataSource = roomNo;
+            //ddRoomNo.DataBind();
         }
     }
+    protected void save_ServerClick(object sender, EventArgs e)
+    {
+        Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('" + "Success" + "','" + "hello" + "');</script>");
+
+    }
+
     protected void saveroom_click(object sender, EventArgs e)
     {
         int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
@@ -59,44 +65,44 @@ public partial class employeerooms : System.Web.UI.Page
         }
         Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('" + type + "','" + msg + "');</script>");
     }
-    protected void ddRoomNoIndexChanged(object sender, EventArgs e)
-    {
-        int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
-        string selectedRoomNo = ddRoomNo.SelectedItem.Value;
-        room rm = roomsclass.getRoomInfo(selectedRoomNo, bid);
-        roomnoupdate.Value = rm.room_no;
-        roomtypeupdate.Value = rm.room_type;
-        roomminrentupdate.Value = rm.minimum_room_rent;
-        roommaxrentupdate.Value = rm.maximum_room_rent;
-        roomsizeupdate.Value = rm.room_size;
-        ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "activaTab('tab_content3');", true);
-    }
-    protected void updateRoomInfo(object sender, EventArgs e)
-    {
-        int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
-        int eid = employeeProfile.getEmployeid(Session["loginName"].ToString());
-        room rm = new room();
-        rm.room_no = roomnoupdate.Value;
-        rm.room_type = roomtypeupdate.Value;
-        rm.minimum_room_rent = roomminrentupdate.Value;
-        rm.maximum_room_rent = roommaxrentupdate.Value;
-        rm.room_size = roomsizeupdate.Value;
-        bool check = updateRoom(rm, bid);
-        if(check==true)
-        {
-            admin_notification_class.addnotification(eid, bid, DateTime.Now, admin_notification_class.TableNames.bill.ToString(), rm.Id, admin_notification_class.CommandType.Update.ToString());
-            msg = "Successfully updated the information";
-            type = "Success";
+    //protected void ddRoomNoIndexChanged(object sender, EventArgs e)
+    //{
+    //    int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
+    //    string selectedRoomNo = ddRoomNo.SelectedItem.Value;
+    //    room rm = roomsclass.getRoomInfo(selectedRoomNo, bid);
+    //    roomnoupdate.Value = rm.room_no;
+    //    roomtypeupdate.Value = rm.room_type;
+    //    roomminrentupdate.Value = rm.minimum_room_rent;
+    //    roommaxrentupdate.Value = rm.maximum_room_rent;
+    //    roomsizeupdate.Value = rm.room_size;
+    //    ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "activaTab('tab_content3');", true);
+    //}
+    //protected void updateRoomInfo(object sender, EventArgs e)
+    //{
+    //    int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
+    //    int eid = employeeProfile.getEmployeid(Session["loginName"].ToString());
+    //    room rm = new room();
+    //    rm.room_no = roomnoupdate.Value;
+    //    rm.room_type = roomtypeupdate.Value;
+    //    rm.minimum_room_rent = roomminrentupdate.Value;
+    //    rm.maximum_room_rent = roommaxrentupdate.Value;
+    //    rm.room_size = roomsizeupdate.Value;
+    //    bool check = updateRoom(rm, bid);
+    //    if(check==true)
+    //    {
+    //        admin_notification_class.addnotification(eid, bid, DateTime.Now, admin_notification_class.TableNames.bill.ToString(), rm.Id, admin_notification_class.CommandType.Update.ToString());
+    //        msg = "Successfully updated the information";
+    //        type = "Success";
 
-        }
-        else
-        {
-            msg = "There is some error";
-            type = "Error";
-        }
-        Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('" + type + "','" + msg + "');</script>");
+    //    }
+    //    else
+    //    {
+    //        msg = "There is some error";
+    //        type = "Error";
+    //    }
+    //    Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('" + type + "','" + msg + "');</script>");
     
-    }
+    //}
     public static bool updateRoom(room rm, int bid)
     {
         ctownDataContext db = new ctownDataContext();

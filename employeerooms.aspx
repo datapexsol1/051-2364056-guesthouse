@@ -100,48 +100,42 @@
                           <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
                              
                               
-                                   <div class="form-group col-md-6">
+                                   <div class="item form-group col-md-6">
                         <label class="control-label col-md-4 " for="room no">Room No <span class="required">*</span>
                         </label>
                         <div class="col-md-8">
-                          <input type="text" id="roomno" name="roomno"  placeholder="Room No" class="form-control "  data-validation="required" 
-		 data-validation-error-msg="Room no is required !"/>
+                          <input type="text" id="roomno" name="roomno"  placeholder="Room No" class="form-control " required="required"/>
                         </div>
                       </div>
 
-                               <div class="form-group col-md-6">
+                               <div class="item form-group col-md-6">
                         <label class="control-label col-md-4 " for="room type">Room Type <span class="required">*</span>
                         </label>
                         <div class="col-md-8">
-                          <input type="text" id="roomtype" name="roomtype" data-validation="required" 
-		 data-validation-error-msg="Room Type is required !" placeholder="Room type" class="form-control "/>
+                          <input type="text" id="roomtype" name="roomtype"  required="required" placeholder="Room type" class="form-control "/>
                         </div>
                       </div>
-                               <div class="form-group col-md-6">
+                               <div class="item form-group col-md-6">
                         <label class="control-label col-md-4 " for="room size">Room Size <span class="required">*</span>
                         </label>
                         <div class="col-md-8">
-                          <input type="text" id="roomsize" name="roomsize"  placeholder="Room size" class="form-control " data-validation="required" 
-
-		 data-validation-error-msg="Room size is not in correct format"/>
+                          <input type="text" id="roomsize" name="roomsize"  placeholder="Room size" class="form-control " required="required"/>
                         </div>
                       </div>
-                               <div class="form-group col-md-6">
+                               <div class="item form-group col-md-6">
                         <label class="control-label col-md-4 " for="room rent">Max Room Rent <span class="required">*</span>
                         </label>
                         <div class="col-md-8">
                           <input type="number" id="roommaxrent" name="roommaxrent"  placeholder="Room rent max" class="form-control "
-                              min="0" data-validation="required" 
-		 data-validation-error-msg="Maximum room rent is required !"/>
+                              min="0" required="required"/>
                         </div>
                       </div>
-                               <div class="form-group col-md-6">
+                               <div class="item form-group col-md-6">
                         <label class="control-label col-md-4 " for="room rent">Min Room Rent <span class="required">*</span>
                         </label>
                         <div class="col-md-8">
                           <input type="number" id="roomminrent" name="roomminrent"  placeholder="Room Rent" class="form-control "
-                              min="0" data-validation="required" 
-		 data-validation-error-msg="Minimum room rent is required !"/>
+                              min="0" />
                         </div>
                       </div>
                                <div class="form-group col-md-6">
@@ -160,7 +154,8 @@
                       </div>
                               <div class="form-group">
                         <div class="col-md-6 col-md-offset-1">
-                          <asp:Button ID="saveroom" runat="server" Text="Save Room" CausesValidation="false" EnableViewState="true" OnClick="saveroom_click" CssClass="btn btn-success" />
+                            <input type="submit" runat="server" value="Save Room" causesvalidation="false" onserverclick="saveroom_click" class="btn btn-success"/>
+                          <%--<asp:Button ID="saveroom" runat="server" Text="Save Room" CausesValidation="false" OnClick="saveroom_click" CssClass="btn btn-success" />--%>
                         </div>
                       </div>
                            
@@ -170,7 +165,7 @@
                               
                               
                           </div>
-                            <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
+                          <%--  <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
                                 <div class="form-group col-md-12">
                                     <label>Select room</label>
                                       <asp:DropDownList runat="server" ID="ddRoomNo" ClientIDMode="Static" OnSelectedIndexChanged="ddRoomNoIndexChanged" AutoPostBack="true"  CssClass="btn btn-default">
@@ -214,7 +209,7 @@
                                   </div>
                                     </div>
                                 <asp:Button runat="server" Text="Update" OnClick="updateRoomInfo" CssClass="btn btn-success" />
-                          </div>
+                          </div>--%>
                             
                         </div>
        
@@ -273,40 +268,23 @@
            $("input[name=roommaxrent]").val("000");
            $("input[name=roomminrent]").val("000");
            $("input[name=roombranch]").val("Islamabad");
-        <%--   $("<%=ddRoomNo.ClientID%>").val("Select");
-           $("<%=roomnoupdate.ClientID%>").val("");
-           $("<%=roomtypeupdate.ClientID%>").val("");
-           $("<%=roomminrentupdate.ClientID%>").val("");
-           $("<%=roommaxrentupdate.ClientID%>").val("");
-           $("<%=roomsizeupdate.ClientID%>").val("");--%>
-           //     alert("hello");
+      
        
        }
        function insertupdatevalues() {
-           alert("add panel");
-         <%--  $("<%=roomnoupdate.ClientID%>").val("101");--%>
-           $("input[name=roomnoupdate]").val("123");
-           $("input[name=roomtypeupdate]").val("123");
-           $("input[name=roomminrentupdate]").val("123");
-           $("input[name=roommaxrentupdate]").val("123");
-           $("input[name=roomsizeupdate]").val("123");
-           <%--<% 
-       int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
-       room rm = roomsclass.getroom(bid);
-       ddRoomNo.Text = rm.room_no;
-       room rm1 = roomsclass.getRoomInfo(ddRoomNo.Text, bid);
-       roomnoupdate.Value = rm1.room_no;
-       roomtypeupdate.Value = rm1.room_type;
-       roomminrentupdate.Value = rm1.minimum_room_rent;
-       roommaxrentupdate.Value = rm1.maximum_room_rent;
-       roomsizeupdate.Value = rm1.room_size;
-       %>--%>
-           //$("input[name=roomno]").val("");
-           //$("input[name=roomtype]").val("");
-           //$("input[name=roomsize]").val("");
-           //$("input[name=roommaxrent]").val("");
-           //$("input[name=roomminrent]").val("");
-           //$("input[name=roombranch]").val("");
+           //alert("add panel");
+         <%--  $('#<%=roomnoupdate.ClientID %>').val("Test");
+                       $('#<%=roomtypeupdate.ClientID %>').val("Test");
+
+                      $('#<%=roommaxrentupdate.ClientID %>').val(1);
+
+                       $('#<%=roomminrentupdate.ClientID %>').val(1);
+           $('#<%=roomsizeupdate.ClientID %>').val("Test");
+            $('#<%=ddRoomNo.ClientID %>').val(101);--%>
+
+
+
+          
 
        }
    </script>
