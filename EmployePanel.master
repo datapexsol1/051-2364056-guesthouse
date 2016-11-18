@@ -96,28 +96,37 @@
                    
                   </li>
                    
-                 <li><a href="#"><i class="fa fa-edit"></i> Employee Information<span class="fa fa-chevron-down"></span></a>
+                 <li><a href="#"><i class="fa fa-edit"></i> Employee Panal<span class="fa fa-chevron-down"></span></a>
                       <ul class="nav child_menu">
                         <li><a href="employeeviewemployeeinfo.aspx">Employee Info</a></li>
-                      <li><a href="employepaysalary.aspx">Salary</a></li>
+                      <li><a href="employepaysalary.aspx"> Employee Salary</a></li>
                         
                         </ul>
                  </li>
 
-                  <li><a href="employeroomlayout.aspx"><i class="fa fa-edit"></i> Book Room</a>
+                 
                     
-                  </li>
-                  <li><a><i class="fa fa-desktop"></i> Employe Controls <span class="fa fa-chevron-down"></span></a>
+                
+                  <li><a><i class="fa fa-desktop"></i> Guest Panal <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
+                      <li><a href="employeroomlayout.aspx"><i class="fa fa-edit"></i> Book Room</a>  </li>
                       <li><a href="employeerooms.aspx">Rooms</a></li>
-                      <li><a href="employeguests.aspx">Guests</a></li>
-
+                      <li><a href="employeguests.aspx">Checkout Bookings</a></li>
+                      <li>  <a href="employeguesthistory.aspx">Booking History</a></li>
                       <!--  <li><a href="employeplaceorder.aspx">Order Menu</a></li>-->
-                        <li><a href="employebranchbills.aspx">Branch Bills</a></li>
-                        <li><a href="employeguest_service.aspx">Branch Service</a></li>
+                       
                         <%--<li><a href="employeguestpayment.aspx">Guests Total Bill</a></li>--%>
                     </ul>
                   </li>
+
+                      <li><a><i class="fa fa-desktop"></i>Bills Panal <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="employebranchbills.aspx">Branch Bills</a></li>
+                        <%--<li><a href="employeguestpayment.aspx">Guests Total Bill</a></li>--%>
+                    </ul>
+                  </li>
+
+
                     <li><a><i class="fa fa-building"></i> Inventory <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
 
@@ -131,7 +140,7 @@
 
 
 
-                 <li><a ><i class="fa fa-file-text-o"></i> Restaurant Services<span class="fa fa-chevron-down"></span></a>
+                 <li><a ><i class="fa fa-file-text-o"></i>Guest Restaurant Services<span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
                       <li><a href="employemenuservice.aspx">Menu Detail</a></li>
                       <li><a href="employeplaceorder.aspx">Order menu</a></li>
@@ -139,7 +148,12 @@
                        <li><a href="employecancelorder.aspx">Cancel Order</a></li>
                     </ul>
                  </li>
-                    <li><a ><i class="fa fa-file-text-o"></i> Payments<span class="fa fa-chevron-down"></span></a>
+                     <li><a ><i class="fa fa-file-text-o"></i>Guest Other Services<span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                        <li><a href="employeguest_service.aspx">Services</a></li>
+                    </ul>
+                 </li>
+                    <li><a ><i class="fa fa-file-text-o"></i>Receivable Payments<span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
                       <li><a href="employeeReceiveable.aspx">Payment Receivable</a></li>
                      
