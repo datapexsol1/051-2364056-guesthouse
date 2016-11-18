@@ -240,8 +240,8 @@
          <div style="float:right;margin-top:250px">
            
 
-                 
-                                        <asp:Button ID="btnpaid" CssClass="btn btn-success" runat="server" Text="Pay" OnClick="btnpaid_Click" />
+              
+                                        <asp:Button ID="btnpaid" CssClass="btn btn-success" runat="server" Text="Pay" CausesValidation="false" OnClick="btnpaid_Click" />
              <input type="button" id="btnPrint" value="Print Bill"  class="btn btn-default"/>
                  <%--<a href="#" data-toggle="modal" data-target="#login-modal"  class="btn btn-default">Print Bill Now</a>--%>
                  <asp:HiddenField ID="tbroombill" runat="server" />
