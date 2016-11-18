@@ -19,6 +19,7 @@ public partial class adminbranch : System.Web.UI.Page
         b.city = Request.Form["bcity"].ToString();
         b.country = Request.Form["bcountry"].ToString();
         b.address = Request.Form["badress"].ToString();
+        b.employee_id = 13;
         if (branchClass.addbranch(b) == true)
         {
             //display succes msg
