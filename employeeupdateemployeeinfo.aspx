@@ -140,12 +140,12 @@
 
                   <div class="item form-group col-md-6">
                       <b>Employee name</b>
-                      <input id="inname" name="inname" value="<%=emp.name %>" type="text" class="form-control " required="required"/>
+                      <input id="inname" name="inname"  data-validate-length-range="6"  data-validate-words="2" value="<%=emp.name %>" type="text" class="form-control " required="required"/>
                   </div>
               
-                  <div class="form-group col-md-6">
+                  <div class="item form-group col-md-6">
                       <b>Email</b>
-                      <input id="inemail" name="inemail" value="<%=emp.email %>" class="form-control " />
+                      <input type="email" id="inemail" name="inemail" value="<%=emp.email %>" required="required" class="form-control " />
                   </div>
               </div>
               <div class="row">
@@ -220,7 +220,7 @@
 
     </div>
         <%-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>--%>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+<%--<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
 <script>
 
   $.validate({
@@ -233,13 +233,13 @@
   // Restrict presentation length
   $('#presentation').restrictLength( $('#pres-max-length') );
 
-</script>   
-     <!-- jQuery -->
+</script>--%>   
+<%--     <!-- jQuery -->
    <%-- <script src="../vendors/jquery/dist/jquery.min.js"></script>--%>
     <!-- Bootstrap -->
   <%--  <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>--%>
     <!-- FastClick -->
-    <script src="../vendors/fastclick/lib/fastclick.js"></script>
+   <%-- <script src="../vendors/fastclick/lib/fastclick.js"></script>
     <!-- NProgress -->
     <script src="../vendors/nprogress/nprogress.js"></script>
     <!-- bootstrap-daterangepicker -->
@@ -251,7 +251,7 @@
     <script src="../vendors/mjolnic-bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
     <!-- jquery.inputmask -->
     <script src="../vendors/jquery.inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
-    
+    --%>
 
 
 
@@ -261,191 +261,12 @@
 
 
 
-    <!-- validator -->
-    <script src="../vendors/validator/validator.js"></script>
 
 
-    <!-- validator -->
-    <script>
-      // initialize the validator function
-      validator.message.date = 'not a real date';
-
-      // validate a field on "blur" event, a 'select' on 'change' event & a '.reuired' classed multifield on 'keyup':
-      $('form')
-        .on('blur', 'input[required], input.optional, select.required', validator.checkField)
-        .on('change', 'select.required', validator.checkField)
-        .on('keypress', 'input[required][pattern]', validator.keypress);
-
-      $('.multi.required').on('keyup blur', 'input', function() {
-        validator.checkField.apply($(this).siblings().last()[0]);
-      });
-
-      $('form').submit(function(e) {
-        e.preventDefault();
-        var submit = true;
-
-        // evaluate the form using generic validaing
-        if (!validator.checkAll($(this))) {
-          submit = false;
-        }
-
-        if (submit)
-          this.submit();
-
-        return false;
-      });
-    </script>
-    <!-- /validator -->
   
-    <!-- bootstrap-daterangepicker -->
-    <script>
-      $(document).ready(function() {
-        var cb = function(start, end, label) {
-          console.log(start.toISOString(), end.toISOString(), label);
-          $('#reportrange_right span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-        };
 
-        var optionSet1 = {
-          startDate: moment().subtract(29, 'days'),
-          endDate: moment(),
-          minDate: '01/01/2012',
-          maxDate: '12/31/2015',
-          dateLimit: {
-            days: 60
-          },
-          showDropdowns: true,
-          showWeekNumbers: true,
-          timePicker: false,
-          timePickerIncrement: 1,
-          timePicker12Hour: true,
-          ranges: {
-            'Today': [moment(), moment()],
-            'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-            'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-            'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-            'This Month': [moment().startOf('month'), moment().endOf('month')],
-            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-          },
-          opens: 'right',
-          buttonClasses: ['btn btn-default'],
-          applyClass: 'btn-small btn-primary',
-          cancelClass: 'btn-small',
-          format: 'MM/DD/YYYY',
-          separator: ' to ',
-          locale: {
-            applyLabel: 'Submit',
-            cancelLabel: 'Clear',
-            fromLabel: 'From',
-            toLabel: 'To',
-            customRangeLabel: 'Custom',
-            daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-            monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-            firstDay: 1
-          }
-        };
 
-        $('#reportrange_right span').html(moment().subtract(29, 'days').format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
-
-        $('#reportrange_right').daterangepicker(optionSet1, cb);
-
-        $('#reportrange_right').on('show.daterangepicker', function() {
-          console.log("show event fired");
-        });
-        $('#reportrange_right').on('hide.daterangepicker', function() {
-          console.log("hide event fired");
-        });
-        $('#reportrange_right').on('apply.daterangepicker', function(ev, picker) {
-          console.log("apply event fired, start/end dates are " + picker.startDate.format('MMMM D, YYYY') + " to " + picker.endDate.format('MMMM D, YYYY'));
-        });
-        $('#reportrange_right').on('cancel.daterangepicker', function(ev, picker) {
-          console.log("cancel event fired");
-        });
-
-        $('#options1').click(function() {
-          $('#reportrange_right').data('daterangepicker').setOptions(optionSet1, cb);
-        });
-
-        $('#options2').click(function() {
-          $('#reportrange_right').data('daterangepicker').setOptions(optionSet2, cb);
-        });
-
-        $('#destroy').click(function() {
-          $('#reportrange_right').data('daterangepicker').remove();
-        });
-
-      });
-    </script>
-
-    <script>
-      $(document).ready(function() {
-        var cb = function(start, end, label) {
-          console.log(start.toISOString(), end.toISOString(), label);
-          $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-        };
-
-        var optionSet1 = {
-          startDate: moment().subtract(29, 'days'),
-          endDate: moment(),
-          minDate: '01/01/2012',
-          maxDate: '12/31/2015',
-          dateLimit: {
-            days: 60
-          },
-          showDropdowns: true,
-          showWeekNumbers: true,
-          timePicker: false,
-          timePickerIncrement: 1,
-          timePicker12Hour: true,
-          ranges: {
-            'Today': [moment(), moment()],
-            'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-            'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-            'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-            'This Month': [moment().startOf('month'), moment().endOf('month')],
-            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-          },
-          opens: 'left',
-          buttonClasses: ['btn btn-default'],
-          applyClass: 'btn-small btn-primary',
-          cancelClass: 'btn-small',
-          format: 'MM/DD/YYYY',
-          separator: ' to ',
-          locale: {
-            applyLabel: 'Submit',
-            cancelLabel: 'Clear',
-            fromLabel: 'From',
-            toLabel: 'To',
-            customRangeLabel: 'Custom',
-            daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-            monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-            firstDay: 1
-          }
-        };
-        $('#reportrange span').html(moment().subtract(29, 'days').format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
-        $('#reportrange').daterangepicker(optionSet1, cb);
-        $('#reportrange').on('show.daterangepicker', function() {
-          console.log("show event fired");
-        });
-        $('#reportrange').on('hide.daterangepicker', function() {
-          console.log("hide event fired");
-        });
-        $('#reportrange').on('apply.daterangepicker', function(ev, picker) {
-          console.log("apply event fired, start/end dates are " + picker.startDate.format('MMMM D, YYYY') + " to " + picker.endDate.format('MMMM D, YYYY'));
-        });
-        $('#reportrange').on('cancel.daterangepicker', function(ev, picker) {
-          console.log("cancel event fired");
-        });
-        $('#options1').click(function() {
-          $('#reportrange').data('daterangepicker').setOptions(optionSet1, cb);
-        });
-        $('#options2').click(function() {
-          $('#reportrange').data('daterangepicker').setOptions(optionSet2, cb);
-        });
-        $('#destroy').click(function() {
-          $('#reportrange').data('daterangepicker').remove();
-        });
-      });
-    </script>
+  
 
     <script>
       $(document).ready(function() {
@@ -476,90 +297,9 @@
       });
     </script>
 
-    <script>
-      $(document).ready(function() {
-        $('#reservation').daterangepicker(null, function(start, end, label) {
-          console.log(start.toISOString(), end.toISOString(), label);
-        });
-      });
-    </script>
-    <!-- /bootstrap-daterangepicker -->
-
-    <!-- Ion.RangeSlider -->
-    <script>
-      $(document).ready(function() {
-        $("#range_27").ionRangeSlider({
-          type: "double",
-          min: 1000000,
-          max: 2000000,
-          grid: true,
-          force_edges: true
-        });
-        $("#range").ionRangeSlider({
-          hide_min_max: true,
-          keyboard: true,
-          min: 0,
-          max: 5000,
-          from: 1000,
-          to: 4000,
-          type: 'double',
-          step: 1,
-          prefix: "$",
-          grid: true
-        });
-        $("#range_25").ionRangeSlider({
-          type: "double",
-          min: 1000000,
-          max: 2000000,
-          grid: true
-        });
-        $("#range_26").ionRangeSlider({
-          type: "double",
-          min: 0,
-          max: 10000,
-          step: 500,
-          grid: true,
-          grid_snap: true
-        });
-        $("#range_31").ionRangeSlider({
-          type: "double",
-          min: 0,
-          max: 100,
-          from: 30,
-          to: 70,
-          from_fixed: true
-        });
-        $(".range_min_max").ionRangeSlider({
-          type: "double",
-          min: 0,
-          max: 100,
-          from: 30,
-          to: 70,
-          max_interval: 50
-        });
-        $(".range_time24").ionRangeSlider({
-          min: +moment().subtract(12, "hours").format("X"),
-          max: +moment().format("X"),
-          from: +moment().subtract(6, "hours").format("X"),
-          grid: true,
-          force_edges: true,
-          prettify: function(num) {
-            var m = moment(num, "X");
-            return m.format("Do MMMM, HH:mm");
-          }
-        });
-      });
-    </script>
-    <!-- /Ion.RangeSlider -->
-
+   
   
 
-    <!-- jquery.inputmask -->
-    <script>
-      $(document).ready(function() {
-        $(":input").inputmask();
-      });
-    </script>
-    <!-- /jquery.inputmask -->
+   
 </asp:Content>
 

@@ -7,10 +7,15 @@ using System.Web.UI.WebControls;
 
 public partial class adminbranchinventory : System.Web.UI.Page
 {
+    string msg, type;
+    bool check;
     protected void Page_Load(object sender, EventArgs e)
     {
-
-        if (!IsPostBack)
+        if (Session["adminLogin"] == null)
+        {
+            Response.Redirect("adminlogin.aspx");
+        }
+        else if (!IsPostBack)
         {
             brid.Items.Clear();
             IQueryable<branch> br = admingraphclass.getAllbranches();
@@ -86,9 +91,25 @@ protected void saveBAssets_click(object sender, EventArgs e)
     b.title = Request.Form["alabel1"].ToString();
     b.description = Request.Form["adescription1"].ToString();
     b.no_item = int.Parse(Request.Form["insertaitemno"].ToString());
-    branchAssetsClass.addinventry(b);
-}
-protected void branchNameSelectedIndexChange(object sender, EventArgs e)
+        b.employee_id = employeeProfile.getEmployeeId(Session["adminLogin"].ToString());
+    check = branchAssetsClass.addinventry(b);
+        if (check == true)
+        {
+            msg = "Successfully stored the information";
+            type = "Success";
+            //show succesful msg
+        }
+        else
+        {
+            msg = "There is some error";
+            type = "Error";
+        }
+        Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('" + type + "','" + msg + "');</script>");
+
+        ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "activaTab('tab_content2');", true);
+
+    }
+    protected void branchNameSelectedIndexChange(object sender, EventArgs e)
 {
     ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "activaTab('tab_content2');", true);
 
@@ -134,9 +155,23 @@ protected void updateBranchAssets_click(object sender, EventArgs e)
     ba.title = itemname.Value;
     ba.description = itemdescription.Value;
     ba.no_item = int.Parse(totalitem.Value);
-    branchAssetsClass.updateBranchAssets(ba, getAssetsID);
+    check = branchAssetsClass.updateBranchAssets(ba, getAssetsID);
+        if (check == true)
+        {
+            msg = "Successfully stored the information";
+            type = "Success";
+            //show succesful msg
+        }
+        else
+        {
+            msg = "There is some error";
+            type = "Error";
+        }
+        Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('" + type + "','" + msg + "');</script>");
 
-}
-    
+        ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "activaTab('tab_content2');", true);
+
+    }
+
 
 }

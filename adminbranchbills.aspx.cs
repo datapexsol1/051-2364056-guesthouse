@@ -7,9 +7,15 @@ using System.Web.UI.WebControls;
 
 public partial class adminbranchbills : System.Web.UI.Page
 {
+    string msg, type;
+    bool check;
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!IsPostBack)
+        if (Session["adminLogin"] == null)
+        {
+            Response.Redirect("adminlogin.aspx");
+        }
+        else if (!IsPostBack)
         {
             branch.Items.Clear();
             IQueryable<branch> br = admingraphclass.getAllbranches();
@@ -19,8 +25,8 @@ public partial class adminbranchbills : System.Web.UI.Page
                 branch.Items.Add(b.name);
             }
         }
-        int branchID = employeeProfile.getEmployeBranch("kk");
-        IQueryable<bill> bs = billclass.getAllBills(branchID);
+        //int branchID = employeeProfile.getEmployeBranch("kk");
+        //IQueryable<bill> bs = billclass.getAllBills(branchID);
         //string[] billType = new string[bs.Count() + 1];
         //billType[0] = "Select";
         //int i = 1;
@@ -47,14 +53,28 @@ protected void Button1_Click(object sender, EventArgs e)
     if (ddBillType.Text != "Select")
     {
         bill b = new bill();
-        b.BranchId = employeeProfile.getEmployeBranch("kk");//get from session
+            int branchid = branchClass.getBranchID(branch.SelectedValue);
+            b.BranchId = branchid;//get from session
         b.BillAmount = Convert.ToInt32(Request.Form["abamount"]);
         b.BillType = abtype.Value.ToString();
         b.bill_description = Request.Form["desc"];
         b.Date = Convert.ToDateTime(Request.Form["abdate"]);
-        b.employee_id = int.Parse(Session["loginId"].ToString());
-        billclass.Addbill(b);
-        ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "activaTab('tab_content1');", true);
+        b.employee_id = int.Parse(Session["adminLogin"].ToString());
+        check = billclass.Addbill(b);
+            if (check == true)
+            {
+                msg = "Successfully stored the information";
+                type = "Success";
+                //show succesful msg
+            }
+            else
+            {
+                msg = "There is some error";
+                type = "Error";
+            }
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('" + type + "','" + msg + "');</script>");
+
+            ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "activaTab('tab_content1');", true);
 
     }
 }
@@ -66,15 +86,28 @@ protected void Update_bills(object sender, EventArgs e)
     //  b.Id =int.Parse(Request.Form["ubno"].ToString());
     if (ddBillType.Text != "Select" && ddDate.Text != "Select")
     {
-        b.BranchId = employeeProfile.getEmployeBranch("kk");//get from session
-        b.BillAmount = int.Parse(ubamount.Value);// Convert.ToInt32(Request.Form["ubamount"]);
+        b.BranchId = branchClass.getBranchID(branch.SelectedValue);//get from session
+            b.BillAmount = int.Parse(ubamount.Value);// Convert.ToInt32(Request.Form["ubamount"]);
         b.BillType = ddBillType.SelectedValue.ToString();
 
         b.Date = DateTime.Parse(ddDate.SelectedValue.ToString());
-        b.employee_id = int.Parse(Session["loginId"].ToString());
+        b.employee_id = int.Parse(Session["adminLogin"].ToString());
         //    b.Date = //Convert.ToDateTime(Request.Form["ubdate"]);
-        billclass.updateBills(b, b.BranchId);
-        ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "activaTab('tab_content1');", true);
+        check = billclass.updateBills(b, b.BranchId);
+            if (check == true)
+            {
+                msg = "Successfully stored the information";
+                type = "Success";
+                //show succesful msg
+            }
+            else
+            {
+                msg = "There is some error";
+                type = "Error";
+            }
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('" + type + "','" + msg + "');</script>");
+
+            ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "activaTab('tab_content1');", true);
 
     }
 }
@@ -82,9 +115,9 @@ protected void Update_bills(object sender, EventArgs e)
 
 protected void branchBillSelectedIndexChange(object sender, EventArgs e)
 {
-    int branchID = employeeProfile.getEmployeBranch("kk");
+    int branchID = branchClass.getBranchID(branch.SelectedValue);
 
-    var bType = ddBillType.SelectedValue;
+        var bType = ddBillType.SelectedValue;
 
     var selectedBillDate = ddDate.Text;
     int id = billclass.retrieveBillItem(bType, DateTime.Parse(selectedBillDate), branchID);
@@ -97,8 +130,8 @@ protected void branchBillSelectedIndexChange(object sender, EventArgs e)
 }
 protected void billTypeSelectedIndexChange(object sender, EventArgs e)
 {
-    int branchID = employeeProfile.getEmployeBranch("kk");
-    var bType = ddBillType.SelectedValue;
+    int branchID = branchClass.getBranchID(branch.SelectedValue);
+        var bType = ddBillType.SelectedValue;
 
     ////date dropdownlist
     List<bill> bs = billclass.getBillItem(bType, branchID);

@@ -12,7 +12,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    
+    <link href="Notifications/NotificationStyle.css" rel="stylesheet" />
 
 
     <!-- Bootstrap -->
@@ -102,7 +103,7 @@
                                                 <li><a href="adminbranchbills.aspx">Branch Bills</a></li>
                                             </ul>
                                         </li>
-                                         <li><a href="adminbookroom.aspx"><i class="fa fa-edit"></i> Book Room</a></li>
+                                         <%--<li><a href="adminbookroom.aspx"><i class="fa fa-edit"></i> Book Room</a></li>--%>
                                         <li><a><i class="fa fa-building"></i> Inventory <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
 
@@ -212,6 +213,7 @@
     <script src="/signalR/hubs"></script>
                    <script src="js/ajax.js"></script>
                       <link href="build/css/style.css" rel="stylesheet" />
+                     <script src="js/NotificationJS.js"></script>
          <script>
         $(document).ready(function () {
             var job = $.connection.myHub;

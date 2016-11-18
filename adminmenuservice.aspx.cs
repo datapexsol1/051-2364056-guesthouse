@@ -7,9 +7,15 @@ using System.Web.UI.WebControls;
 
 public partial class adminmenuservice : System.Web.UI.Page
 {
+    string msg, type;
+    bool check;
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!IsPostBack)
+        if (Session["adminLogin"] == null)
+        {
+            Response.Redirect("adminlogin.aspx");
+        }
+        else if (!IsPostBack)
         {
             branch.Items.Clear();
             IQueryable<branch> br = admingraphclass.getAllbranches();
@@ -314,8 +320,21 @@ protected void saveitem_click(object sender, EventArgs e)
     rm.price = int.Parse(Request.Form["additemprice"].ToString());
     rm.quantity = Request.Form["additemquantity"].ToString();
     rm.bid = employeeProfile.getEmployeBranch(Session["adminLogin"].ToString());//get from session
-    empmenuclass.addMenuItem(rm);
-}
+    check = empmenuclass.addMenuItem(rm);
+        if (check == true)
+        {
+            msg = "Successfully stored the information";
+            type = "Success";
+            //show succesful msg
+        }
+        else
+        {
+            msg = "There is some error";
+            type = "Error";
+        }
+        Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('" + type + "','" + msg + "');</script>");
+
+    }
     protected void indexchange_click(object sender, EventArgs e)
     {
         ordersummery.Visible = false;

@@ -7,9 +7,15 @@ using System.Web.UI.WebControls;
 
 public partial class adminroominventory : System.Web.UI.Page
 {
+    string msg, type;
+    bool check;
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!IsPostBack)
+        if (Session["adminLogin"] == null)
+        {
+            Response.Redirect("adminlogin.aspx");
+        }
+        else if (!IsPostBack)
         {
             brid.Items.Clear();
             IQueryable<branch> br = admingraphclass.getAllbranches();
@@ -69,19 +75,47 @@ protected void inventorySelectedIndexChange(object sender, EventArgs e)
     r.label = Request.Form["alabel"].ToString();
     r.description = Request.Form["adescription"].ToString();
     r.total_item = int.Parse(Request.Form["insertaitemno"].ToString());
-    r.employee_id = int.Parse(Session["loginId"].ToString());
-    roomassetclass.addinventry(r);
-}
-protected void updateAssets_click(object sender, EventArgs e)
+    r.employee_id = int.Parse(Session["adminLogin"].ToString());
+    check = roomassetclass.addinventry(r);
+        if (check == true)
+        {
+            msg = "Successfully stored the information";
+            type = "Success";
+            //show succesful msg
+        }
+        else
+        {
+            msg = "There is some error";
+            type = "Error";
+        }
+        Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('" + type + "','" + msg + "');</script>");
+
+        ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "activaTab('tab_content2');", true);
+
+    }
+    protected void updateAssets_click(object sender, EventArgs e)
 {
 
     room_asset r = new room_asset();
-    r.employee_id = int.Parse(Session["loginId"].ToString());
+    r.employee_id = int.Parse(Session["adminLogin"].ToString());
     r.room_id = roomsclass.getRoomID(uroomno.Text, int.Parse(branch.Value));
     r.label = ulabel.Value;
     r.description = udescription.Value;
     r.total_item = int.Parse(uitemno.Value);
-    roomassetclass.updateInventory(r, int.Parse(inventoryId.Value));
+    check = roomassetclass.updateInventory(r, int.Parse(inventoryId.Value));
+        if (check == true)
+        {
+            msg = "Successfully stored the information";
+            type = "Success";
+            //show succesful msg
+        }
+        else
+        {
+            msg = "There is some error";
+            type = "Error";
+        }
+        Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('" + type + "','" + msg + "');</script>");
+
         ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "activaTab('tab_content2');", true);
 
     }

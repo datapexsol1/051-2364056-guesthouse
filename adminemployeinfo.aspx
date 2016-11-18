@@ -98,6 +98,10 @@
                                     {
                                         img = e.image.ToArray();
                                     }
+                                   else
+                                      {
+                                          img = System.Text.Encoding.UTF8.GetBytes ("images/images.png");
+                                      }
                                      %>
                               <img src="data:image/png;base64,<%=Convert.ToBase64String(img) %>" alt="" class="img-circle img-responsive">
                             </div>

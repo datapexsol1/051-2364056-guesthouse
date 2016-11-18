@@ -8,9 +8,14 @@ using System.Web.UI.WebControls;
 
 public partial class adminemployesignup : System.Web.UI.Page
 {
+    string msg, type;
+    bool check;
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        if (Session["adminLogin"] == null)
+        {
+            Response.Redirect("adminlogin.aspx");
+        }
     }
 
     protected void send_Click(object sender, EventArgs e)
@@ -33,6 +38,7 @@ public partial class adminemployesignup : System.Web.UI.Page
             HttpPostedFile postedfile = image.PostedFile;
             emp.image = imageToByteArray(postedfile);
         }
+        
         //if(imageuploaded.hasfile)then do this
         //     HttpPostedFile postedfile = image.PostedFile;
         // emp.image = imageToByteArray(postedfile);
@@ -41,12 +47,17 @@ public partial class adminemployesignup : System.Web.UI.Page
         bool result = employeeProfile.employeSignUp(emp);
         if (result == true)
         {
+            msg = "Successfully stored the information";
+            type = "Success";
             //show succesful msg
         }
         else
         {
-            //show error msg 
+            msg = "There is some error";
+            type = "Error";
         }
+        Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('" + type + "','" + msg + "');</script>");
+
     }
     public static byte[] imageToByteArray(HttpPostedFile postedfile)
     {

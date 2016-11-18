@@ -90,9 +90,9 @@
 
 
                                 <div class="row">
-                                     <div class="col-md-5">
+                                     <div class="item col-md-5">
                                          <b>Event title</b>
-                                            <input  type="text" id="eventname" name="eventname" value="<%=eventInfo.event_name %>"  placeholder="Event name..." class="form-control">
+                                            <input  type="text" id="eventname" required="required" data-validate-length-range="6" data-validate-words="1" name="eventname" value="<%=eventInfo.event_name %>"  placeholder="Event name..." class="form-control">
                                          </div>
                                 </div>
          <br />
@@ -104,32 +104,34 @@
                                 </div>
          <br />
                                 <div class="row">
-                                     <div class="col-md-5">
+                                     <div class="item col-md-5">
                                           
                                                       <b>Event start date</b>
-                                                    <input type="" class="form-control" id="eventstartdate" name="eventstartdate" value="<%=eventInfo.event_start_date.ToShortDateString() %>" >
+                                                    <input type="" required="required" class="form-control" id="eventstartdate" name="eventstartdate" value="<%=eventInfo.event_start_date.ToShortDateString() %>" >
                                                 
                                             <%--<input  type="datetime" id="eventstartdate" name="eventstartdate"  class="form-control"  value="<%=eventInfo.event_start_date.ToShortDateString() %>"/>--%>
                                          </div>
                                 </div>
          <br />
                                 <div class="row">
-                                     <div class="col-md-5">
+                                     <div class="item col-md-5">
                                          <b>Event end date</b>
-                                            <input  type="" id="eventenddate" name="eventenddate" value="<%=eventInfo.event_end_date.ToShortDateString() %>"  placeholder="Select date..." class="form-control" />
+                                            <input  type="" required="required" id="eventenddate" name="eventenddate" value="<%=eventInfo.event_end_date.ToShortDateString() %>"  placeholder="Select date..." class="form-control" />
                                          </div>
                                 </div>
          <br />
                                 <div class="row">
                         <div class="col-md-5">
-                          <div class="input-group demo2">
+                          <div class="item input-group demo2">
                               <b>Select color (required)</b>
-                            <input type="text"  placeholder="Select color.." class="form-control"  id="eventcolor" value="<%=eventInfo.event_color %>" name="eventcolor"/>
+                            <input type="text" required="required" placeholder="Select color.." class="form-control"  id="eventcolor" value="<%=eventInfo.event_color %>" name="eventcolor"/>
                             <span class="input-group-addon"><i></i></span>
                           </div>
                         </div>
                       </div>
-                              <asp:Button ID="eventsubmit" runat="server" Text="Update" class="btn btn-success"  AutoPostBack="false" CausesValidation="true" OnClick="eventsubmit_Click" />
+         <a href="#" runat="server" onserverclick="eventsubmit_Click" class="btn btn-success">Update</a>
+         <%--<asp:Button runat="server" Text="Update event"  OnClick="eventsubmit_Click"/>--%>
+                              <%--<asp:Button ID="eventsubmit" runat="server" Text="Update" class="btn btn-success"  AutoPostBack="true" CausesValidation="true" OnClick="eventsubmit_Click" />--%>
               <input  type="hidden" id="updatehiddenid"  runat="server"/>
 
                               

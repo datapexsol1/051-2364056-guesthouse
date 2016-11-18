@@ -8,18 +8,7 @@
            margin-left:-20px;
        }
    </style>
-   <script>
-       function InsertAddRoomsValues() {
-           $("input[name=roomno]").val("000");
-           $("input[name=roomtype]").val("000");
-           $("input[name=roomsize]").val("000");
-           $("input[name=roommaxrent]").val("000");
-           $("input[name=roomminrent]").val("000");
-           $("input[name=roombranch]").val("Islamabad");
-
-      //     alert("hello");
-       }
-   </script>
+   
 </asp:Content>
 
 
@@ -46,7 +35,7 @@
                         <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
                           <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Rooms</a></li>
                           
-                          <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Add Rooms</a></li>
+                          <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false" onclick="insertupdatevalues()">Add Rooms</a></li>
                           <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false" onclick="InsertAddRoomsValues()">Update Rooms</a></li>
 
                           
@@ -171,7 +160,7 @@
                       </div>
                               <div class="form-group">
                         <div class="col-md-6 col-md-offset-1">
-                          <asp:Button ID="saveroom" runat="server" Text="Save Room" OnClick="saveroom_click" CssClass="btn btn-success" />
+                          <asp:Button ID="saveroom" runat="server" Text="Save Room" CausesValidation="false" EnableViewState="true" OnClick="saveroom_click" CssClass="btn btn-success" />
                         </div>
                       </div>
                            
@@ -275,7 +264,52 @@
     <script src="js/datepicker/daterangepicker.js"></script>
     
 
-   
+   <script>
+       function InsertAddRoomsValues() {
+           alert("update");
+           $("input[name=roomno]").val("000");
+           $("input[name=roomtype]").val("000");
+           $("input[name=roomsize]").val("000");
+           $("input[name=roommaxrent]").val("000");
+           $("input[name=roomminrent]").val("000");
+           $("input[name=roombranch]").val("Islamabad");
+        <%--   $("<%=ddRoomNo.ClientID%>").val("Select");
+           $("<%=roomnoupdate.ClientID%>").val("");
+           $("<%=roomtypeupdate.ClientID%>").val("");
+           $("<%=roomminrentupdate.ClientID%>").val("");
+           $("<%=roommaxrentupdate.ClientID%>").val("");
+           $("<%=roomsizeupdate.ClientID%>").val("");--%>
+           //     alert("hello");
+       
+       }
+       function insertupdatevalues() {
+           alert("add panel");
+         <%--  $("<%=roomnoupdate.ClientID%>").val("101");--%>
+           $("input[name=roomnoupdate]").val("123");
+           $("input[name=roomtypeupdate]").val("123");
+           $("input[name=roomminrentupdate]").val("123");
+           $("input[name=roommaxrentupdate]").val("123");
+           $("input[name=roomsizeupdate]").val("123");
+           <%--<% 
+       int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
+       room rm = roomsclass.getroom(bid);
+       ddRoomNo.Text = rm.room_no;
+       room rm1 = roomsclass.getRoomInfo(ddRoomNo.Text, bid);
+       roomnoupdate.Value = rm1.room_no;
+       roomtypeupdate.Value = rm1.room_type;
+       roomminrentupdate.Value = rm1.minimum_room_rent;
+       roommaxrentupdate.Value = rm1.maximum_room_rent;
+       roomsizeupdate.Value = rm1.room_size;
+       %>--%>
+           //$("input[name=roomno]").val("");
+           //$("input[name=roomtype]").val("");
+           //$("input[name=roomsize]").val("");
+           //$("input[name=roommaxrent]").val("");
+           //$("input[name=roomminrent]").val("");
+           //$("input[name=roombranch]").val("");
+
+       }
+   </script>
    
 </asp:Content>
 
