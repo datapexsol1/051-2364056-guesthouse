@@ -19,7 +19,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 
-
+///////k
 
 [global::System.Data.Linq.Mapping.DatabaseAttribute(Name="guest_house_database")]
 public partial class ctownDataContext : System.Data.Linq.DataContext
