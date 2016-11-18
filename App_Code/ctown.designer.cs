@@ -19,7 +19,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 
-
+///////k
 
 [global::System.Data.Linq.Mapping.DatabaseAttribute(Name="guest_house_database")]
 public partial class ctownDataContext : System.Data.Linq.DataContext
@@ -95,7 +95,7 @@ public partial class ctownDataContext : System.Data.Linq.DataContext
   #endregion
 	
 	public ctownDataContext() : 
-			base(global::System.Configuration.ConfigurationManager.ConnectionStrings["guest_house_databaseConnectionString1"].ConnectionString, mappingSource)
+			base(global::System.Configuration.ConfigurationManager.ConnectionStrings["guest_house_databaseConnectionString"].ConnectionString, mappingSource)
 	{
 		OnCreated();
 	}
