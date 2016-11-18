@@ -9,7 +9,6 @@ public partial class employeerooms : System.Web.UI.Page
 {
     string msg, type;
     protected void Page_Load(object sender, EventArgs e)
-
     {
         if (Session["loginId"] == null)
         {

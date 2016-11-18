@@ -5,164 +5,7 @@
     <script src="js/jquery-1.10.2.min.js"></script>
     <link href="Notifications/NotificationStyle.css" rel="stylesheet" />
   
-    <script>
-        $(document).ready(function(){
-         
-            $("#s2").hide();
-            $("#s3").hide();
-           
-
-           
-        });
-
-
-        $(function () {
-            $("#pakistani").click(function () {
-                $("#s2").show();
-                $("#s3").hide();
-                $("#guestType").val("pakistani") ;
-              //  alert($("#guestType").val());
-                //    $('input[name=regno]').val("0") ;
-                 $("<%=cnicfrontimg.ClientID%>").val("");
-                 $("<%=cnicbackimg.ClientID%>").val("");
-                 $("<%=regformimage.ClientID%>").val("");
-                $("input[name=regno]").val("");
-                $("input[name=arrivaldate]").val("");
-                $("input[name=atime]").val("");
-                $("input[name=gname]").val("");
-                $("input[name=cnicno]").val("");
-                $("input[name=dob]").val("");
-                $("input[name=cname]").val("");
-                $("input[name=proffesion]").val("");
-                $("input[name=designation]").val("");
-                $("input[name=poffice]").val("");
-                $("input[name=presidence]").val("");
-                $("input[name=pcell]").val("");
-                $("input[name=departure]").val("");
-                $("input[name=dtime]").val("");
-                $("input[name=flightno]").val("");
-                $("input[name=caddress]").val("");
-                $("input[name=paddress]").val("");
-                // foreigner info
-                $("input[name=fregno]").val("000");
-                $("input[name=farrivaldate]").val("2016-01-01");
-                $("input[name=fatime]").val("18:01");
-                $("input[name=fgname]").val("00");
-                $("input[name=fcnicno]").val("000");
-                $("input[name=fdob]").val("2016-01-01");
-                $("input[name=fcname]").val("000");
-                $("input[name=fproffesion]").val("abc");
-                $("input[name=fdesignation]").val("abc");
-                $("input[name=fpoffice]").val("000");
-                $("input[name=fpresidence]").val("000");
-                $("input[name=fpcell]").val("000");
-                $("input[name=fdeparture]").val("2016-01-01");
-                $("input[name=fdtime]").val("18:01");
-                $("input[name=fflightno]").val("000");
-                $("input[name=fcaddress]").val("000");
-                $("input[name=fpaddress]").val("000");
-                $("input[name=fpassno]").val("000");
-                $("input[name=nationality]").val("000");
-                $("input[name=placeofissue]").val("18:01");
-                $("input[name=fdateofissue]").val("2016-01-01");
-                $("input[name=visano]").val("000");
-                $("input[name=validupto]").val("2016-01-01");
-                $("input[name=fcfrom]").val("00");
-                $("<%=passportimage.ClientID%>").val("<%= System.Text.Encoding.UTF8.GetBytes ("images/images.png")%>");
-                 $("<%=fregformimg.ClientID%>").val("<%= System.Text.Encoding.UTF8.GetBytes ("images/images.png")%>");
-
-            });
-        });
-
-        $(function () {
-            $("#foriegner").click(function () {
-                $("#s3").show();
-                $("#s2").hide();
-                $("#guestType").val("foriegner");
-                 $("<%=passportimage.ClientID%>").val("");
-                 $("<%=fregformimg.ClientID%>").val("");
-                $("input[name=fregno]").val("");
-                $("input[name=farrivaldate]").val("");
-                $("input[name=fatime]").val("");
-                $("input[name=fgname]").val("");
-                $("input[name=fcnicno]").val("");
-                $("input[name=fdob]").val("");
-                $("input[name=fcname]").val("");
-                $("input[name=fproffesion]").val("");
-                $("input[name=fdesignation]").val("");
-                $("input[name=fpoffice]").val("");
-                $("input[name=fpresidence]").val("");
-                $("input[name=fpcell]").val("");
-                $("input[name=fdeparture]").val("");
-                $("input[name=fdtime]").val("");
-                $("input[name=fflightno]").val("");
-                $("input[name=fcaddress]").val("");
-                $("input[name=fpaddress]").val("");
-                $("input[name=fpassno]").val("");
-                $("input[name=nationality]").val("");
-                $("input[name=placeofissue]").val("");
-                $("input[name=fdateofissue]").val("");
-                $("input[name=visano]").val("");
-                $("input[name=validupto]").val("");
-                $("input[name=fcfrom]").val("");
-                $("input[name=fgoto]").val("");
-
-
-
-
-
-
-
-
-
-
-
-
-
-              //  alert($("#guestType").val());
-                $("input[name=regno]").val("00");
-                $("input[name=arrivaldate]").val("2016-01-01");
-                $("input[name=atime]").val("18:01");
-                $("input[name=gname]").val("00");
-                $("input[name=cnicno]").val("00000-0000000-0");
-                $("input[name=dob]").val("2016-01-01");
-                $("input[name=cname]").val("00");
-                $("input[name=proffesion]").val("00");
-                $("input[name=designation]").val("00");
-                $("input[name=poffice]").val("00");
-                $("input[name=presidence]").val("00");
-                $("input[name=pcell]").val("00");
-                $("input[name=departure]").val("2016-01-01");
-                $("input[name=dtime]").val("18:01");
-                $("input[name=flightno]").val("00");
-                $("input[name=caddress]").val("00");
-                $("input[name=paddress]").val("00");
-                 $("<%=cnicfrontimg.ClientID%>").val("<%= System.Text.Encoding.UTF8.GetBytes ("images/images.png")%>");
-                 $("<%=cnicbackimg.ClientID%>").val("<%= System.Text.Encoding.UTF8.GetBytes ("images/images.png")%>");
-                 $("<%=regformimage.ClientID%>").val("<%= System.Text.Encoding.UTF8.GetBytes ("images/images.png")%>");
-            });
-        });
-        function ShowMessage(message, messagetype) {
-            var cssclass;
-            switch (messagetype) {
-                case 'Success':
-                    cssclass = 'alert-success'
-                    break;
-                case 'Error':
-                    cssclass = 'alert-danger'
-                    break;
-                case 'Warning':
-                    cssclass = 'alert-warning'
-                    break;
-                default:
-                    cssclass = 'alert-info'
-            }
-            $('#alert_container').append('<div id="alert_div" style="margin-top:40px;margin-left:10px;width:90%; -webkit-box-shadow: 3px 4px 6px #999;" class="alert fade in ' + cssclass + '"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>' + messagetype + '!</strong> <span>' + message + '</span></div>');
-        };
-
-
-
-    </script>
+   
     <style>
          .messagealert {
              text-align:center;
@@ -373,9 +216,9 @@
                             </label>
                               <input type="text" id="gname" name="gname"  class="form-control col-md-7 col-xs-12" required="required" data-validate-length-range="6" data-validate-words="2"/>
                             </div>
-                          </div>
+                          
 
-                          <div class="form-group">
+                          
                           
                           <%--</div>
                           <div class="form-group">--%>
@@ -433,20 +276,20 @@
 
                             <div class="form-group">
                            
-                            <div class="col-md-4 col-sm-4 col-xs-12">
+                            <div class="item col-md-4 col-sm-4 col-xs-12">
                                  <label >PH: No Office <span class="required">*</span>
                             </label>
-                              <input type="number" id="poffice" name="poffice"  class="form-control col-md-7 col-xs-12" 
+                              <input type="number" data-validate-minmax="10,100" min="0" id="poffice" name="poffice"  class="form-control col-md-7 col-xs-12" 
                                   />
                             </div>
                           <%--</div>
 
                             <div class="form-group">--%>
                             
-                            <div class="col-md-4 col-sm-4 col-xs-12">
+                            <div class="item col-md-4 col-sm-4 col-xs-12">
                                 <label >PH: No Residence <span class="required">*</span>
                             </label>
-                              <input type="number" id="presidence" name="presidence"  class="form-control col-md-7 col-xs-12" 
+                              <input type="number" min="0" id="presidence" name="presidence"  class="form-control col-md-7 col-xs-12" 
                                   />
                             </div>
                           </div>
@@ -456,7 +299,7 @@
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                 <label >PH: No Cell<span class="required">*</span>
                             </label>
-                              <input type="number" id="pcell" name="pcell"   class="form-control col-md-7 col-xs-12" required="required" pattern="\d*" title="Enter Mobile no"/>
+                              <input type="number" min="0" id="pcell" name="pcell"   class="form-control col-md-7 col-xs-12" required="required" pattern="\d*" title="Enter Mobile no"/>
                             </div>
                           <%--</div>
 
@@ -499,28 +342,27 @@
 
                             <div class="form-group">--%>
                             
-                            <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="item col-md-6 col-sm-6 col-xs-12">
                                  <label >Permanent Adress<span class="required">*</span>
                             </label>
-                             <input type="text" id="paddress" name="paddress"  class="form-control col-md-7 col-xs-12" data-validation="length alphanumeric" 
-		 data-validation-length="3-25" 
-		 data-validation-error-msg="Enter permanent address"/>
+                             <input type="text" id="paddress" name="paddress"  class="form-control col-md-7 col-xs-12" />
                             </div>
              <div class="form-group">
-                 <div class="col-md-4 col-sm-4 col-xs-12">
+                 <div class="item col-md-4 col-sm-4 col-xs-12">
                                 <label >CNIC Front Image <span class="required">*</span>
                             </label>
-                              <asp:FileUpload ID="cnicfrontimg" runat="server"   class="form-control col-md-7 col-xs-12" data-validation="required" data-validation-error-msg="Select CNIC image!"/>
+                     
+                              <asp:FileUpload ID="cnicfrontimg" runat="server"   class="form-control col-md-7 col-xs-12" />
                             </div>
-                            <div class="col-md-4 col-sm-4 col-xs-12">
+                            <div class="item col-md-4 col-sm-4 col-xs-12">
                                 <label >CNIC Back Image <span class="required">*</span>
                             </label>
-                              <asp:FileUpload ID="cnicbackimg" runat="server"  class="form-control col-md-7 col-xs-12" data-validation="required" data-validation-error-msg="Select CNIC image!"/>
+                              <asp:FileUpload  ID="cnicbackimg" runat="server"  class="form-control col-md-7 col-xs-12" />
                             </div>
-                 <div class="col-md-4 col-sm-4 col-xs-12">
+                 <div class="item col-md-4 col-sm-4 col-xs-12">
                                 <label >Registration Form Image <span class="required">*</span>
                             </label>
-                              <asp:FileUpload ID="regformimage" runat="server"  class="form-control col-md-7 col-xs-12" data-validation="required" data-validation-error-msg="Select Registration form image!"/>
+                              <asp:FileUpload required="required" ID="regformimage" runat="server"  class="form-control col-md-7 col-xs-12"/>
                             </div>
                  </div>
                           </div>
@@ -555,16 +397,14 @@
 
                                  <h3>Foriegn Guest</h3>
 
-                                 <div class="col-md-4 col-sm-4 col-xs-12">
+                                 <div class="item col-md-4 col-sm-4 col-xs-12">
                                 <label >Registration No <span class="required">*</span>
                             </label>
-                              <input type="text" id="fregno"  name="fregno"  class="form-control col-md-7 col-xs-12" data-validation="length alphanumeric" 
-		 data-validation-length="3-25" 
-		 data-validation-error-msg="Enter Reg#"/>
+                              <input type="text" id="fregno"  name="fregno"  class="form-control col-md-7 col-xs-12" required="required"/>
                             </div>
                           
                            
-                            <div class="col-md-4 col-sm-4 col-xs-12">
+                            <div class="item col-md-4 col-sm-4 col-xs-12">
                                  <label >Arrival Date <span class="required">*</span>
                             </label>
                               <input type="text" id="farrival" name="farrivaldate"  class="form-control col-md-7 col-xs-12" required="required"/>
@@ -573,7 +413,7 @@
 
                           <div class="form-group">
                             
-                            <div class="col-md-4 col-sm-4 col-xs-12">
+                            <div class="item col-md-4 col-sm-4 col-xs-12">
                                 <label >Arrival Time</label>
                               <input id="fatime" class="form-control col-md-7 col-xs-12" type="time" name="fatime" required="required"/>
                             </div>
@@ -581,12 +421,10 @@
                             
                           <div class="form-group">--%>
                             
-                            <div class="col-md-4 col-sm-4 col-xs-12">
+                            <div class="item col-md-4 col-sm-4 col-xs-12">
                                 <label>Guest Name <span class="required">*</span>
                             </label>
-                              <input type="text" id="fgname" name="fgname"  class="form-control col-md-7 col-xs-12" data-validation="length alphanumeric" 
-		 data-validation-length="3-25" 
-		 data-validation-error-msg="Enter guest name"/>
+                              <input type="text" id="fgname" name="fgname"  class="form-control col-md-7 col-xs-12" required="required" data-validate-length-range="6" data-validate-words="1"/>
                             </div>
                           </div>
 
@@ -597,14 +435,14 @@
                            
 
 
-                                  <div class="col-md-4 col-sm-4 col-xs-12">
-                                                            <label>N.I.C No <span class="required"/>*</span>
+                                  <div class=" col-md-4 col-sm-4 col-xs-12">
+                                                            <label>N.I.C No <span class="required">*</span>
                             </label>
                               <input type="number" id="fcnicno" name="fcnicno"  class="form-control col-md-7 col-xs-12" />
                             </div>
 
 
-                            <div class="col-md-4 col-sm-4 col-xs-12">
+                            <div class="item col-md-4 col-sm-4 col-xs-12">
                                  <label>Date Of Birth <span class="required">*</span>
                             </label>
                               <input id="fdob"  name="fdob" class="date-picker form-control col-md-7 col-xs-12"  type="text" required="required"/>
@@ -618,10 +456,10 @@
 
                             <div class="form-group">--%>
                            
-                            <div class="col-md-4 col-sm-4 col-xs-12">
+                            <div class="item col-md-4 col-sm-4 col-xs-12">
                                  <label >Company Name <span class="required">*</span>
                             </label>
-                              <input type="text" id="fcname" name="fcname"  class="form-control col-md-7 col-xs-12" />
+                              <input type="text" id="fcname" name="fcname"  class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="1" />
                             </div>
                           </div>
 
@@ -651,7 +489,7 @@
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                  <label >PH: No Office <span class="required">*</span>
                             </label>
-                              <input type="number" id="fpoffice" name="fpoffice"  class="form-control col-md-7 col-xs-12"/>
+                              <input type="number" min="0" id="fpoffice" name="fpoffice"  class="form-control col-md-7 col-xs-12"/>
                             </div>
                           <%--</div>
 
@@ -660,7 +498,7 @@
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                 <label >PH: No Residence <span class="required">*</span>
                             </label>
-                              <input type="number" id="fpresidence" name="fpresidence"  class="form-control col-md-7 col-xs-12"/>
+                              <input type="number" min="0" id="fpresidence" name="fpresidence"  class="form-control col-md-7 col-xs-12"/>
                             </div>
                           </div>
 
@@ -669,9 +507,7 @@
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                 <label >PH: No Cell<span class="required">*</span>
                             </label>
-                              <input type="number" id="fpcell" name="fpcell"  class="form-control col-md-7 col-xs-12" data-validation="required" 
-
-		 data-validation-error-msg="Enter Contact no"/>
+                              <input type="number" min="0" id="fpcell" name="fpcell"  class="form-control col-md-7 col-xs-12" data-validate-minmax="10,100"/>
                             </div>
                           <%--</div>
 
@@ -715,22 +551,18 @@
 
                             <div class="form-group">--%>
                             
-                            <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="item col-md-6 col-sm-6 col-xs-12">
                                  <label >Permanent Adress<span class="required">*</span>
                             </label>
-                             <input name="fpaddress" id="fpaddress"  class="form-control col-md-7 col-xs-12" data-validation="length alphanumeric" 
-		 data-validation-length="3-25" 
-		 data-validation-error-msg="Enter permanen address"></input>
+                             <input name="fpaddress" id="fpaddress"  class="form-control col-md-7 col-xs-12" validate-length-range="6" data-validate-words="1"/>
                             </div>
                           </div>
 
                            
-                            <div class="col-md-4 col-sm-4 col-xs-12">
+                            <div class="item col-md-4 col-sm-4 col-xs-12">
                                  <label >Passport/IC No <span class="required">*</span>
                             </label>
-                              <input type="text" id="fpassno" name="fpassno"  class="form-control col-md-7 col-xs-12" data-validation="length alphanumeric" 
-		 data-validation-length="3-25" 
-		 data-validation-error-msg="Enter Passport no"/>
+                              <input type="text" id="fpassno" name="fpassno"  class="form-control col-md-7 col-xs-12" required="required" data-validate-length-range="6" data-validate-words="1"/>
                             </div>
                           <%--</div>
 
@@ -739,9 +571,7 @@
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                 <label >Nationality <span class="required">*</span>
                             </label>
-                              <input type="text" id="nationality" name="nationality"  class="form-control col-md-7 col-xs-12" data-validation="length alphanumeric" 
-		 data-validation-length="3-25" 
-		 data-validation-error-msg="Enter nationality"/>
+                              <input type="text" id="nationality" name="nationality"  class="form-control col-md-7 col-xs-12" required="required" data-validate-length-range="6" data-validate-words="2"/>
                             </div>
                           </div>
 
@@ -768,9 +598,7 @@
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                 <label>Visa No <span class="required">*</span>
                             </label>
-                              <input type="text" id="visano" name="visano"  class="form-control col-md-7 col-xs-12" data-validation="length alphanumeric" 
-		 data-validation-length="3-25" 
-		 data-validation-error-msg="Enter visa no"/>
+                              <input type="text" id="visano" name="visano"  class="form-control col-md-7 col-xs-12" required="required" data-validate-length-range="6" data-validate-words="1"/>
                             </div>
                           <%--</div>
 
@@ -779,7 +607,7 @@
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                  <label>Valid Upto <span class="required">*</span>
                             </label>
-                              <input type="text" id="validupto" name="validupto"  class="form-control col-md-7 col-xs-12" required/>
+                              <input type="text" id="validupto" name="validupto"  class="form-control col-md-7 col-xs-12" />
                             </div>
                           </div>
 
@@ -794,12 +622,10 @@
                           <%--</div>
 
                                <div class="form-group">--%>
-                                   <div class="col-md-4 col-sm-4 col-xs-12">
+                                   <div class="item col-md-4 col-sm-4 col-xs-12">
                                  <label >Coming From <span class="required">*</span>
                             </label>
-                              <input type="text" id="fcfrom" name="fcfrom"  class="form-control col-md-7 col-xs-12" data-validation="required" 
-		 data-validation-length="3-25" 
-		 data-validation-error-msg="Data is not valid" />
+                              <input type="text" id="fcfrom" name="fcfrom"  class="form-control col-md-7 col-xs-12" required="required" />
                             </div>
                             
                             <div class="col-md-4 col-sm-4 col-xs-12">
@@ -826,20 +652,21 @@
                             </div>
         </div>
     <div class="form-group">
-                 <div class="col-md-4 col-sm-4 col-xs-12">
+                 <div class="item col-md-4 col-sm-4 col-xs-12">
                                 <label >Passport Image <span class="required">*</span>
                             </label>
-                              <asp:FileUpload ID="passportimage" runat="server"  class="form-control col-md-7 col-xs-12" data-validation="required" data-validation-error-msg="Select Passport image!"/>
+                              <asp:FileUpload  ID="passportimage" runat="server"  class="form-control col-md-7 col-xs-12" />
                             </div>
-        <div class="col-md-4 col-sm-4 col-xs-12">
+        <div class="item col-md-4 col-sm-4 col-xs-12">
                                 <label >Registration Form Image <span class="required">*</span>
                             </label>
-                              <asp:FileUpload ID="fregformimg"  runat="server"  class="form-control col-md-7 col-xs-12" data-validation="required" data-validation-error-msg="Select Registration form image!"/>
+                              <asp:FileUpload ID="fregformimg"  runat="server"  class="form-control col-md-7 col-xs-12" />
                             </div>
         </div>
     </div>
                   <div style="padding-top:15px;" class="alignright col-md-2 col-sm-2 col-xs-12">
-      <asp:Button ID="Save" runat="server" Text="Register Guest" OnClick="Save_Click"  CausesValidation="false" class="btn btn-success"/>
+                      <a href="#" runat="server" onserverclick="Save_Click" class="btn btn-success">Register </a>
+      <%--<asp:Button ID="Save" runat="server" Text="Register Guest" OnClick="Save_Click" CausesValidation="false" class="btn btn-success"/>--%>
          
      </div>
 
@@ -851,9 +678,9 @@
                       </div>
                     </div>
                  </div>
-                
+     <%--           
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>--%>
       
 <script>
 
@@ -1126,6 +953,169 @@
             });
           });
         </script>
+     <script>
+        $(document).ready(function(){
+         
+            $("#s2").hide();
+            $("#s3").hide();
+           
+
+           
+        });
+
+
+        $(function () {
+            $("#pakistani").click(function () {
+                $("#s2").show();
+                $("#s3").hide();
+                $("#guestType").val("pakistani") ;
+                //alert($("#guestType").val());
+                //    $('input[name=regno]').val("0") ;
+           $("<%=cnicfrontimg.ClientID%>").val("");
+                 $("<%=cnicbackimg.ClientID%>").val("");
+                 $("<%=regformimage.ClientID%>").val("");
+                $("input[name=regno]").val("");
+                $("input[name=arrivaldate]").val("");
+                $("input[name=atime]").val("");
+                $("input[name=gname]").val("");
+                $("input[name=cnicno]").val("");
+                $("input[name=dob]").val("");
+                $("input[name=cname]").val("");
+                $("input[name=proffesion]").val("");
+                $("input[name=designation]").val("");
+                $("input[name=poffice]").val("");
+                $("input[name=presidence]").val("");
+                $("input[name=pcell]").val("");
+                $("input[name=departure]").val("");
+                $("input[name=dtime]").val("");
+                $("input[name=flightno]").val("");
+                $("input[name=caddress]").val("");
+                $("input[name=paddress]").val("");
+                // foreigner info
+                $("input[name=fregno]").val("abc abc");
+                $("input[name=farrivaldate]").val("2016-01-01");
+                $("input[name=fatime]").val("18:01");
+                $("input[name=fgname]").val("abc abc");
+                $("input[name=fcnicno]").val("000");
+                $("input[name=fdob]").val("2016-01-01");
+                $("input[name=fcname]").val("abc abc");
+                $("input[name=fproffesion]").val("abc");
+                $("input[name=fdesignation]").val("abc");
+                $("input[name=fpoffice]").val("000");
+                $("input[name=fpresidence]").val("abc abc");
+                $("input[name=fpcell]").val("000");
+                $("input[name=fdeparture]").val("2016-01-01");
+                $("input[name=fdtime]").val("18:01");
+                $("input[name=fflightno]").val("000");
+                $("input[name=fcaddress]").val("000");
+                $("input[name=fpaddress]").val("abc abc");
+                $("input[name=fpassno]").val("000");
+                $("input[name=nationality]").val("000");
+                $("input[name=placeofissue]").val("18:01");
+                $("input[name=fdateofissue]").val("2016-01-01");
+                $("input[name=visano]").val("000");
+                $("input[name=validupto]").val("2016-01-01");
+                $("input[name=fcfrom]").val("abc");
+                $('<%=passportimage%>').attr('src', "images/images.png");
+                
+             <%--   $("<%=passportimage.ClientID%>").val("<%= System.Text.Encoding.UTF8.GetBytes ("images/images.png")%>");
+                 $("<%=fregformimg.ClientID%>").val("<%= System.Text.Encoding.UTF8.GetBytes ("images/images.png")%>");--%>
+
+            });
+        });
+
+        $(function () {
+            $("#foriegner").click(function () {
+                $("#s3").show();
+                $("#s2").hide();
+                $("#guestType").val("foriegner");
+                $("<%=passportimage.ClientID%>").val("");
+                 $("<%=fregformimg.ClientID%>").val("");
+                $("input[name=fregno]").val("");
+                $("input[name=farrivaldate]").val("");
+                $("input[name=fatime]").val("");
+                $("input[name=fgname]").val("");
+                $("input[name=fcnicno]").val("");
+                $("input[name=fdob]").val("");
+                $("input[name=fcname]").val("");
+                $("input[name=fproffesion]").val("");
+                $("input[name=fdesignation]").val("");
+                $("input[name=fpoffice]").val("");
+                $("input[name=fpresidence]").val("");
+                $("input[name=fpcell]").val("");
+                $("input[name=fdeparture]").val("");
+                $("input[name=fdtime]").val("");
+                $("input[name=fflightno]").val("");
+                $("input[name=fcaddress]").val("");
+                $("input[name=fpaddress]").val("");
+                $("input[name=fpassno]").val("");
+                $("input[name=nationality]").val("");
+                $("input[name=placeofissue]").val("");
+                $("input[name=fdateofissue]").val("");
+                $("input[name=visano]").val("");
+                $("input[name=validupto]").val("");
+                $("input[name=fcfrom]").val("");
+                $("input[name=fgoto]").val("");
+
+
+
+
+
+
+
+
+
+
+
+
+
+              //  alert($("#guestType").val());
+                $("input[name=regno]").val("abc abc");
+                $("input[name=arrivaldate]").val("2016-01-01");
+                $("input[name=atime]").val("18:01");
+                $("input[name=gname]").val("00");
+                $("input[name=cnicno]").val("00000-0000000-0");
+                $("input[name=dob]").val("2016-01-01");
+                $("input[name=cname]").val("abc abc");
+                $("input[name=proffesion]").val("00");
+                $("input[name=designation]").val("00");
+                $("input[name=poffice]").val("00");
+                $("input[name=presidence]").val("00");
+                $("input[name=pcell]").val("00");
+                $("input[name=departure]").val("2016-01-01");
+                $("input[name=dtime]").val("18:01");
+                $("input[name=flightno]").val("00");
+                $("input[name=caddress]").val("00");
+                $("input[name=paddress]").val("abc abcs");
+                
+                
+              <%-- //$("<%=cnicfrontimg.ClientID%>").attr("src", "images/images.png");
+                $("<%=cnicfrontimg.ClientID%>").val("<%= System.Text.Encoding.UTF8.GetBytes ("images/images.png")%>");
+                 $("<%=cnicbackimg.ClientID%>").val("<%= System.Text.Encoding.UTF8.GetBytes ("images/images.png")%>");
+                 $("<%=regformimage.ClientID%>").val("<%= System.Text.Encoding.UTF8.GetBytes ("images/images.png")%>");--%>
+            });
+        });
+        function ShowMessage(message, messagetype) {
+            var cssclass;
+            switch (messagetype) {
+                case 'Success':
+                    cssclass = 'alert-success'
+                    break;
+                case 'Error':
+                    cssclass = 'alert-danger'
+                    break;
+                case 'Warning':
+                    cssclass = 'alert-warning'
+                    break;
+                default:
+                    cssclass = 'alert-info'
+            }
+            $('#alert_container').append('<div id="alert_div" style="margin-top:40px;margin-left:10px;width:90%; -webkit-box-shadow: 3px 4px 6px #999;" class="alert fade in ' + cssclass + '"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>' + messagetype + '!</strong> <span>' + message + '</span></div>');
+        };
+
+
+
+    </script>
         <!-- /bootstrap-daterangepicker -->
     <script src="js/NotificationJS.js"></script>
 </asp:Content>

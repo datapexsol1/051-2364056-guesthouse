@@ -26,9 +26,9 @@ public partial class employeguestregistration : System.Web.UI.Page
 
            string value =Request.QueryString["id"].ToString();
             selectedrooms.Text = value;
-          
+            //ScriptManager.RegisterOnSubmitStatement(Page, GetType(), "Onsubmit1", string.Format(@"var button = $find('{0}');button.set_enabled(true);", Save.ClientID));
             // Save_Click(sender, e);
-            
+
         }
 
     }
