@@ -214,7 +214,7 @@
                             <div class="item col-md-4 col-sm-4 col-xs-12">
                                 <label>Guest Name <span class="required">*</span>
                             </label>
-                              <input type="text" id="gname" name="gname"  class="form-control col-md-7 col-xs-12" required="required" data-validate-length-range="6" data-validate-words="2"/>
+                              <input type="text" id="gname" name="gname"  class="form-control col-md-7 col-xs-12" required="required" data-validate-length-range="6" data-validate-words="1"/>
                             </div>
                           
 
