@@ -48,7 +48,7 @@ public class roomassetclass
         ra.description = r.description;
         ra.total_item = r.total_item;
         int check = (from y in db.room_assets
-                     where y.label == ra.label
+                     where y.id == inventryid
                      select y).Count();
         if (check == 1)
         {

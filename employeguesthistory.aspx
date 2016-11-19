@@ -91,7 +91,7 @@
                                        %>
                                 <tr>
                                   
-                                    <td><a href="employepaymentdetail.aspx?booking=<%=b.b_id%>"<label style="color:red">Check Out</label></a></td>
+                                    <td><a href="employepaymentdetail.aspx?booking=<%=b.b_id%>"<label style="color:red">View Booking Detail</label></a></td>
                                       <td><label id="image">"Not added yet"</label></td>
                                       <td><label id="checkin"><%=b.b_checkinDate%> </label></td>
                                       <td><label id="checkout"><%=b.b_checkoutdate%> </label></td>
@@ -162,7 +162,7 @@
                                           %>
                                  <tr>
 
-                                     <td><a href="employepaymentdetail.aspx?booking=<%=fb.b_id%>"><label>Check Out</label></a></td>
+                                     <td><a href="employepaymentdetail.aspx?booking=<%=fb.b_id%>"><label>View Booking Detail</label></a></td>
                                       <td><label id="fimage"><%="not yet"%></label></td>
                                       <td><label id="fcheckin"><%=fb.b_checkinDate %></label></td>
                                       <td><label id="fcheckout"><%=fb.b_checkoutdate %></label></td>
