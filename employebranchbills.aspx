@@ -86,7 +86,8 @@
             }
         }
         <%}
-        catch (Exception ex){
+        catch (Exception ex)
+        {
 
         }%>
        
@@ -177,9 +178,9 @@
                               </thead>
                               <tbody>
                                 <tr>
-                                    <td> <asp:DropDownList  runat="server" class="form-control" clientIdMode="static" ID="ddBillType" name="ddBillType" AutoPostBack="True" OnSelectedIndexChanged="billTypeSelectedIndexChange" required>
+                                    <td> <asp:DropDownList  runat="server" class="form-control" clientIdMode="static" ID="ddBillType" name="ddBillType" AutoPostBack="true" OnSelectedIndexChanged="billTypeSelectedIndexChange" required>
                                       <Items>
-                                           <asp:ListItem Text="Select" Value="" />
+                                           <asp:ListItem Text="Select" Value="Select" />
                                           <asp:ListItem value="Electricity" Text="Electricity"></asp:ListItem>
                                           <asp:ListItem value="Gas" Text="Gas"></asp:ListItem>
                                           <asp:ListItem value="Water" Text="Water"></asp:ListItem>
@@ -352,6 +353,41 @@
           document.getElementById('<%=ddBillType.ClientID %>').value = 'Select';
             document.getElementById('<%=ubamount.ClientID %>').value = '';
 
+      };
+        function mybillfunction(){
+            <%
+        int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
+        var bType = ddBillType.SelectedValue;
+
+        ////date dropdownlist
+        List<bill> bs = billclass.getBillItem(bType, bid);
+
+        string[] billType = new string[bs.Count() + 1];
+        billType[0] = "Select";
+        int i = 1;
+        foreach (var x in bs)
+        {
+            //int result = int.Parse((DateTime.Now.Day - x.Date.Day).ToString());
+            //if (result == 1 || result == 0)
+            //{
+
+            billType[i] = x.Date.ToShortDateString();
+            i++;
+            //}
+
+        }
+        ddDate.DataSource = billType;
+        ddDate.DataBind();
+
+
+        ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "activaTab('tab_content2');", true);
+        %>
+        }
+        function activaTab(tab) {
+
+            $('.nav-tabs a[href="#' + tab + '"]').tab('show');
+
+            //alert("working");
         };
     </script>
  <!-- bootstrap-daterangepicker -->

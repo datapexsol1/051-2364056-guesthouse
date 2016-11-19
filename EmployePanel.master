@@ -40,7 +40,7 @@
     
 </head>
 <body class="nav-md">
-      <form id="antoform2" runat="server" method="post" role="form" validate >
+      <form id="antoform2" runat="server" method="post" role="form" novalidate="novalidate"  >
     
 
                  <!--starting tag-->

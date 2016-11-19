@@ -11,7 +11,11 @@ public partial class employebranchbills : System.Web.UI.Page
     bool addcheck, updatecheck;
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!IsPostBack)
+        if (Session["loginName"] == null)
+        {
+            Response.Redirect("employelogin.aspx");
+        }
+        else if (!IsPostBack)
         {
             int branchID = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
             IQueryable<bill> bs = billclass.getAllBills(branchID);
@@ -191,6 +195,8 @@ public partial class employebranchbills : System.Web.UI.Page
     }
     protected void billTypeSelectedIndexChange(object sender, EventArgs e)
     {
+        ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "activaTab('tab_content2');", true);
+
         int branchID = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
         var bType = ddBillType.SelectedValue;
 

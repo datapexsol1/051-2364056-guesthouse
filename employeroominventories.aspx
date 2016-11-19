@@ -52,7 +52,8 @@
                                               foreach (var x in r)
                                               { %>
                                              <option value='<%=x.Id %>'><%= x.room_no %></option>
-                                           <%} %>
+                                           <%} 
+                                               %>
                                 </select>
                       </div>
          <a href="#" runat="server" onserverclick="Button1_Click" class="btn btn-success">View</a>

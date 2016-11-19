@@ -75,7 +75,7 @@ public partial class employeerooms : System.Web.UI.Page
         roomminrentupdate.Value = rm.minimum_room_rent;
         roommaxrentupdate.Value = rm.maximum_room_rent;
         roomsizeupdate.Value = rm.room_size;
-        ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "activaTab('tab_content3');", true);
+        ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "activaTab('tab_content2');", true);
     }
     protected void updateRoomInfo(object sender, EventArgs e)
     {
