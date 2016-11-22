@@ -13,6 +13,14 @@ public class roomassetclass
     {
        
     }
+    public static int getRoomId(string rno)
+    {
+        ctownDataContext db = db = new ctownDataContext();
+        int id = (from x in db.rooms
+                     where x.room_no == rno
+                     select x.Id).First();
+        return id;
+    }
     public static bool addinventry(room_asset r)
     {
         try

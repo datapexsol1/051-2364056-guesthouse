@@ -139,11 +139,13 @@ public partial class employebranchinventory : System.Web.UI.Page
         var branchName = ddbranchname.SelectedValue;
         int branchId = branchClass.getBranchID(branchName);
         var selectedValue = ((DropDownList)sender).SelectedValue;
-        Branch_asset bs = branchAssetsClass.getBranchAssets(branchId,selectedValue);
-        itemname.Value = bs.title;
-        itemdescription.Value = bs.description;
-        totalitem.Value = bs.no_item.ToString();
-        branchassets.Value = branchId.ToString();
+        if (selectedValue != "" || selectedValue != "Select") {
+            Branch_asset bs = branchAssetsClass.getBranchAssets(branchId, selectedValue);
+            itemname.Value = bs.title;
+            itemdescription.Value = bs.description;
+            totalitem.Value = bs.no_item.ToString();
+            branchassets.Value = branchId.ToString();
+        }
         ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "activaTab('tab_content2');", true);
     }
     protected void updateBranchAssets_click(object sender, EventArgs e)

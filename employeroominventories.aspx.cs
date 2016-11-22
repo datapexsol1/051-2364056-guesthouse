@@ -31,7 +31,8 @@ public partial class employeroominventories : System.Web.UI.Page
             uroomno.DataSource = rooms;
             uroomno.DataBind();
             branch.Value = bid.ToString();
-            
+            ddRoomNo.DataSource = rooms;
+            ddRoomNo.DataBind();
           //  Response.Redirect("#tab_add");
         }
 
@@ -75,6 +76,7 @@ public partial class employeroominventories : System.Web.UI.Page
         int eid = employeeProfile.getEmployeid(Session["loginName"].ToString());
         int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
         room_asset r = new room_asset();
+        //r.room_id = roomassetclass.getRoomId(Request.Form["rno"].ToString());
         r.room_id = int.Parse(Request.Form["rno"].ToString());
         r.label = Request.Form["alabel"].ToString();
         r.description = Request.Form["adescription"].ToString();
@@ -121,6 +123,47 @@ public partial class employeroominventories : System.Web.UI.Page
         }
         Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('" + type + "','" + msg + "');</script>");
     }
+    protected void ddRoomNoSelectedIndexChanges(object sender, EventArgs e)
+    {
+        TableRow tRow1 = new TableRow();
+        assetsViewTable.Rows.Add(tRow1);
+        TableCell tCell1 = new TableCell();
+        tCell1.Text = "RoomNo ";
+        tRow1.Cells.Add(tCell1);
+        TableCell tCell2 = new TableCell();
+        tCell2.Text = "Item Name";
+        tRow1.Cells.Add(tCell2);
+        TableCell tCell3 = new TableCell();
+        tCell3.Text = "Description";
+        tRow1.Cells.Add(tCell3);
+        TableCell tCell4 = new TableCell();
+        tCell4.Text = "Total Item";
+        tRow1.Cells.Add(tCell4);
+        // }
+        int roomid = roomassetclass.getRoomId(ddRoomNo.SelectedValue);//ddRoomNo.SelectedValue;
+       // int roomid = int.Parse(Request["rnovxxxx"].ToString());
+        int branchid = int.Parse(branch.Value);
+
+
+        IQueryable<room_asset> rom = roomassetclass.getAllRoomAssets(branchid, roomid);
+        foreach (var x in rom)
+        {
+            TableRow tRow = new TableRow();
+            assetsViewTable.Rows.Add(tRow);
+            TableCell tCellr = new TableCell();
+            tCellr.Text = x.room_id.ToString();
+            tRow.Cells.Add(tCellr);
+            TableCell tCellrn = new TableCell();
+            tCellrn.Text = x.label;
+            tRow.Cells.Add(tCellrn);
+            TableCell tCellrd = new TableCell();
+            tCellrd.Text = x.description;
+            tRow.Cells.Add(tCellrd);
+            TableCell tCellri = new TableCell();
+            tCellri.Text = x.total_item.ToString();
+            tRow.Cells.Add(tCellri);
+        }
+    }
 
     protected void Button1_Click(object sender, EventArgs e)
     {
@@ -142,7 +185,8 @@ public partial class employeroominventories : System.Web.UI.Page
         tCell4.Text = "Total Item";
         tRow1.Cells.Add(tCell4);
         // }
-        int roomid=int.Parse(Request["rnovxxxx"].ToString());
+        //int roomid = roomassetclass.getRoomId(ddRoomNo.SelectedValue);//ddRoomNo.SelectedValue;
+        int roomid = int.Parse(Request["rnovxxxx"].ToString());
         int branchid = int.Parse(branch.Value);
        
         
@@ -167,6 +211,11 @@ public partial class employeroominventories : System.Web.UI.Page
 
 
       
+    }
+
+    protected void View_Click(object sender, EventArgs e)
+    {
+
     }
 }
    
