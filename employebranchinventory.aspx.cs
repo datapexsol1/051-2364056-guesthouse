@@ -87,28 +87,37 @@ public partial class employebranchinventory : System.Web.UI.Page
     }
     protected void saveBAssets_click(object sender, EventArgs e)
     {
-        int eid = employeeProfile.getEmployeid(Session["loginName"].ToString());
-        int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
-        room_asset r = new room_asset();
-        Branch_asset b = new Branch_asset();
-        b.employee_id = eid;
-        b.bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());//int.Parse(Request.Form["branch"].ToString());
-        b.title = Request.Form["alabel1"].ToString();
-        b.description = Request.Form["adescription"].ToString();
-        b.no_item = int.Parse(Request.Form["aitemno"].ToString());
-        check = branchAssetsClass.addinventry(b);
-        if (check == true) {
-            msg = "Successfully stored the information";
-            type = "Success";
-    }
-        else
+        try
         {
-            msg = "There is some error";
-            type = "Error";
-        }
-        Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('" + type + "','" + msg + "');</script>");
-        ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "activaTab('tab_content3');", true);
+            int eid = employeeProfile.getEmployeid(Session["loginName"].ToString());
+            int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
+            room_asset r = new room_asset();
+            Branch_asset b = new Branch_asset();
+            b.employee_id = eid;
+            b.bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());//int.Parse(Request.Form["branch"].ToString());
+            b.title = Request.Form["alabel1"].ToString();
+            b.description = Request.Form["adescription"].ToString();
+            b.no_item = int.Parse(Request.Form["aitemno"].ToString());
+            check = branchAssetsClass.addinventry(b);
+            if (check == true)
+            {
+                msg = "Successfully stored the information";
+                type = "Success";
+            }
+            else
+            {
+                msg = "There is some error";
+                type = "Error";
+            }
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('" + type + "','" + msg + "');</script>");
+            ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "activaTab('tab_content3');", true);
 
+        }
+        catch (Exception ex)
+        {
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('Error','" + ex.Message + "');</script>");
+
+        }
     }
     protected void branchNameSelectedIndexChange(object sender, EventArgs e)
     {
@@ -150,33 +159,40 @@ public partial class employebranchinventory : System.Web.UI.Page
     }
     protected void updateBranchAssets_click(object sender, EventArgs e)
     {
-        int eid = employeeProfile.getEmployeid(Session["loginName"].ToString());
-        int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
-        Branch_asset ba = new Branch_asset();
+        try
+        {
+            int eid = employeeProfile.getEmployeid(Session["loginName"].ToString());
+            int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
+            Branch_asset ba = new Branch_asset();
 
-        int getBranchId = branchClass.getBranchID(ddbranchname.Text);
-        int getAssetsID = branchAssetsClass.getBranchAssetsId(getBranchId,dditemname.SelectedValue.ToString());// getting branch assets item id
-                                                                                                               // ba.bid =
-        ba.employee_id = eid;
-        ba.title = itemname.Value;
-        ba.description = itemdescription.Value;
-        ba.no_item = int.Parse(totalitem.Value);
-        check = branchAssetsClass.updateBranchAssets(ba, getAssetsID);
-        if (check == true)
-        {
-            admin_notification_class.addnotification(eid, bid, DateTime.Now, admin_notification_class.TableNames.rooms.ToString(), ba.id, admin_notification_class.CommandType.Update.ToString());
-            msg = "Successfully stored the information";
-            type = "Success";
-   
-    }
-        else
-        {
-            msg = "There is some error";
-            type = "Error";
+            int getBranchId = branchClass.getBranchID(ddbranchname.Text);
+            int getAssetsID = branchAssetsClass.getBranchAssetsId(getBranchId, dditemname.SelectedValue.ToString());// getting branch assets item id
+                                                                                                                    // ba.bid =
+            ba.employee_id = eid;
+            ba.title = itemname.Value;
+            ba.description = itemdescription.Value;
+            ba.no_item = int.Parse(totalitem.Value);
+            check = branchAssetsClass.updateBranchAssets(ba, getAssetsID);
+            if (check == true)
+            {
+                admin_notification_class.addnotification(eid, bid, DateTime.Now, admin_notification_class.TableNames.rooms.ToString(), ba.id, admin_notification_class.CommandType.Update.ToString());
+                msg = "Successfully stored the information";
+                type = "Success";
+
+            }
+            else
+            {
+                msg = "There is some error";
+                type = "Error";
+            }
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('" + type + "','" + msg + "');</script>");
+            ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "activaTab('tab_content2');", true);
         }
-        Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('" + type + "','" + msg + "');</script>");
-        ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "activaTab('tab_content2');", true);
+        catch (Exception ex)
+        {
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('Error','" + ex.Message + "');</script>");
+        }
     }
-    
 
-}
+
+    }

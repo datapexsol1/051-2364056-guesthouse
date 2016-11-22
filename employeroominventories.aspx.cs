@@ -71,57 +71,72 @@ public partial class employeroominventories : System.Web.UI.Page
 
         //    udescription.Value = ;
     }
-  protected void saveAssets_click(object sender, EventArgs e)
+    protected void saveAssets_click(object sender, EventArgs e)
     {
-        int eid = employeeProfile.getEmployeid(Session["loginName"].ToString());
-        int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
-        room_asset r = new room_asset();
-        //r.room_id = roomassetclass.getRoomId(Request.Form["rno"].ToString());
-        r.room_id = int.Parse(Request.Form["rno"].ToString());
-        r.label = Request.Form["alabel"].ToString();
-        r.description = Request.Form["adescription"].ToString();
-        r.total_item =int.Parse(Request.Form["insertaitemno"].ToString());
-        r.employee_id = eid;//int.Parse(Session["loginId"].ToString());
-        check = roomassetclass.addinventry(r);
-        if (check == true)
+        try
         {
-            admin_notification_class.addnotification(eid, bid, DateTime.Now, admin_notification_class.TableNames.rooms.ToString(), 0, admin_notification_class.CommandType.Add.ToString());
-            msg = "Successfully stored the information";
-            type = "Success";
+            int eid = employeeProfile.getEmployeid(Session["loginName"].ToString());
+            int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
+            room_asset r = new room_asset();
+            //r.room_id = roomassetclass.getRoomId(Request.Form["rno"].ToString());
+            r.room_id = int.Parse(Request.Form["rno"].ToString());
+            r.label = Request.Form["alabel"].ToString();
+            r.description = Request.Form["adescription"].ToString();
+            r.total_item = int.Parse(Request.Form["insertaitemno"].ToString());
+            r.employee_id = eid;//int.Parse(Session["loginId"].ToString());
+            check = roomassetclass.addinventry(r);
+            if (check == true)
+            {
+                admin_notification_class.addnotification(eid, bid, DateTime.Now, admin_notification_class.TableNames.rooms.ToString(), 0, admin_notification_class.CommandType.Add.ToString());
+                msg = "Successfully stored the information";
+                type = "Success";
+
+            }
+            else
+            {
+                msg = "There is some error";
+                type = "Error";
+            }
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('" + type + "','" + msg + "');</script>");
+        }
+        catch (Exception ex)
+        {
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('Error','" + ex.Message + "');</script>");
 
         }
-        else
-        {
-            msg = "There is some error";
-            type = "Error";
-        }
-        Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('" + type + "','" + msg + "');</script>");
     }
     protected void updateAssets_click(object sender, EventArgs e)
     {
-        
-        room_asset r = new room_asset();
-        r.employee_id = int.Parse(Session["loginId"].ToString());
-        r.room_id = roomsclass.getRoomID(uroomno.Text, int.Parse(branch.Value));
-        r.label = ulabel.Value;
-        r.description = udescription.Value;
-        r.total_item = int.Parse(uitemno.Value);
-       check = roomassetclass.updateInventory(r, int.Parse(inventoryId.Value));
-        int eid = employeeProfile.getEmployeid(Session["loginName"].ToString());
-        int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
-        if (check == true)
+        try
         {
-            admin_notification_class.addnotification(eid, bid, DateTime.Now, admin_notification_class.TableNames.rooms.ToString(), r.id, admin_notification_class.CommandType.Update.ToString());
-            msg = "Successfully stored the information";
-            type = "Success";
+            room_asset r = new room_asset();
+            r.employee_id = int.Parse(Session["loginId"].ToString());
+            r.room_id = roomsclass.getRoomID(uroomno.Text, int.Parse(branch.Value));
+            r.label = ulabel.Value;
+            r.description = udescription.Value;
+            r.total_item = int.Parse(uitemno.Value);
+            check = roomassetclass.updateInventory(r, int.Parse(inventoryId.Value));
+            int eid = employeeProfile.getEmployeid(Session["loginName"].ToString());
+            int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
+            if (check == true)
+            {
+                admin_notification_class.addnotification(eid, bid, DateTime.Now, admin_notification_class.TableNames.rooms.ToString(), r.id, admin_notification_class.CommandType.Update.ToString());
+                msg = "Successfully stored the information";
+                type = "Success";
+
+            }
+            else
+            {
+                msg = "There is some error";
+                type = "Error";
+            }
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('" + type + "','" + msg + "');</script>");
+        }
+        catch (Exception ex)
+        {
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('Error','" + ex.Message + "');</script>");
 
         }
-        else
-        {
-            msg = "There is some error";
-            type = "Error";
-        }
-        Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('" + type + "','" + msg + "');</script>");
     }
     protected void ddRoomNoSelectedIndexChanges(object sender, EventArgs e)
     {
@@ -213,9 +228,6 @@ public partial class employeroominventories : System.Web.UI.Page
       
     }
 
-    protected void View_Click(object sender, EventArgs e)
-    {
-
-    }
+ 
 }
    
