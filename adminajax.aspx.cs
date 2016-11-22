@@ -257,9 +257,9 @@ public partial class adminajax : System.Web.UI.Page
     [WebMethod]
     public static IEnumerable<admin_notification> GetData()
     {
-        var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["guest_house_databaseConnectionString"].ConnectionString);
-        SqlDependency.Stop(ConfigurationManager.ConnectionStrings["guest_house_databaseConnectionString"].ConnectionString);
-        SqlDependency.Start(ConfigurationManager.ConnectionStrings["guest_house_databaseConnectionString"].ConnectionString);
+        var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["guest_house_databaseConnectionString1"].ConnectionString);
+        SqlDependency.Stop(ConfigurationManager.ConnectionStrings["guest_house_databaseConnectionString1"].ConnectionString);
+        SqlDependency.Start(ConfigurationManager.ConnectionStrings["guest_house_databaseConnectionString1"].ConnectionString);
         connection.Open();
         //   string com1 = "select count(Id) from dbo.Products";
         using (SqlCommand com = new SqlCommand("select Id,eid,branch_id,time,table_name,Changed_row_id,operation_type,seen from admin_notification", connection))
@@ -283,7 +283,50 @@ public partial class adminajax : System.Web.UI.Page
                 Changed_row_id = x.GetInt32(5),
                 operation_type = x.GetString(6),
                 seen = x.GetString(7)
-               
+
+
+            }
+            ).ToList();
+
+
+        }
+    }
+         [WebMethod]
+    public static IEnumerable<online_guest_booking> GetWebsitebooking()
+    {
+        var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["guest_house_databaseConnectionString1"].ConnectionString);
+        SqlDependency.Stop(ConfigurationManager.ConnectionStrings["guest_house_databaseConnectionString1"].ConnectionString);
+        SqlDependency.Start(ConfigurationManager.ConnectionStrings["guest_house_databaseConnectionString1"].ConnectionString);
+        connection.Open();
+        //   string com1 = "select count(Id) from dbo.Products";
+        using (SqlCommand com = new SqlCommand(@"select Id,branch_id,check_in_date,check_out_date,no_of_guest,request_time,guest_name,guest_cnic_passport,guest_phone,guest_email,no_of_room,room_type,seen
+from dbo.online_guest_booking
+where seen = 'no'; ", connection))
+        {
+            com.Notification = null;
+            SqlDependency dependency = new SqlDependency(com);
+            dependency.OnChange += new OnChangeEventHandler(dependency_OnChange);
+            if (connection.State == ConnectionState.Closed)
+
+                connection.Open();
+
+            var reader = com.ExecuteReader();
+
+            return reader.Cast<IDataRecord>().Select(x => new online_guest_booking
+            {
+                Id = x.GetInt32(0),
+                branch_id = x.GetInt32(1),
+                check_in_date = x.GetDateTime(2),
+                check_out_date = x.GetDateTime(3),
+                no_of_guest =x.GetInt32(4),
+                request_time = x.GetDateTime(5),
+                guest_name = x.GetString(6),
+                guest_cnic_passport = x.GetString(7),
+                guest_phone = x.GetString(8),
+                guest_email = x.GetString(9),
+                no_of_room = x.GetInt32(10),
+                room_type = x.GetString(11),
+                seen = x.GetString(12),
 
             }
             ).ToList();

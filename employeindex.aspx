@@ -148,7 +148,7 @@
         
     <!-- jQuery -->
     <script src="js/ajax.js"></script>
-  <%--   <script src="Scripts/jquery-1.10.2.js"></script>--%>
+     <script src="Scripts/jquery-1.10.2.js"></script>
      <script src="../vendors/jquery/dist/jquery.min.js"></script>
     <script src="Scripts/jquery.signalR-2.1.2.js"></script>
     <script src="Scripts/jquery.signalR-2.2.1.min.js"></script>
@@ -251,7 +251,7 @@
                 var hue = 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')';
                 
                 var primaryAsset =eventTitle[i] ;
-                var release_Date =  formatDate(startDate[i]);
+                var release_Date =  startDate[i];
                 var end_Date = endDate[i];
                 var eve_desc = eventDisc[i];
                 var eve_color = color[i];
