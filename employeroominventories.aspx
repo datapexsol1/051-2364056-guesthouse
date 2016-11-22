@@ -1,6 +1,22 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EmployePanel.master" AutoEventWireup="true" CodeFile="employeroominventories.aspx.cs" Inherits="employeroominventories" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+       <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+<script>
+
+  $.validate({
+    modules : 'location, date, security, file',
+    onModulesLoaded : function() {
+      $('#country').suggestCountry();
+    }
+  });
+
+  // Restrict presentation length
+  $('#presentation').restrictLength( $('#pres-max-length') );
+
+</script>
+
+      <!-- jQuery -->
     <script>
         function activaTab(tab) {
             $('.nav-tabs a[href="#' + tab + '"]').tab('show');
@@ -44,7 +60,8 @@
                         
                              <%  int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());//get from session %>
                                    <input type="hidden" name="branch" id="branch"  runat="server"/>
-                                  <select  id="rnovxxxx" name="rnovxxxx"  class="form-control col-md-7 col-xs-12" required="required" >
+                                  <select  id="rnovxxxx"  o name="rnovxxxx"  class="form-control col-md-7 col-xs-12" data-validation="required" 
+		 data-validation-error-msg="Select room no  !">
                                          <option value="">Select Room</option>
                                           <%  
 
@@ -56,7 +73,8 @@
                                                %>
                                 </select>
                       </div>
-         <a href="#" runat="server" onserverclick="Button1_Click" class="btn btn-success">View</a>
+         <asp:Button  runat="server" ID="id" Text="View" OnClick="Button1_Click" class="btn btn-success"/>
+         <%--<a href="#" runat="server" onserverclick="Button1_Click" class="btn btn-success">View</a>--%>
 
       <%--<asp:Button ID="Button1" runat="server" Text="View" OnClick="Button1_Click" class="btn btn-success" />--%>   
                                       </div>

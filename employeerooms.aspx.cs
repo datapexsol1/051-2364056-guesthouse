@@ -9,6 +9,7 @@ public partial class employeerooms : System.Web.UI.Page
 {
     string msg, type;
     protected void Page_Load(object sender, EventArgs e)
+
     {
         if (Session["loginId"] == null)
         {
@@ -31,12 +32,6 @@ public partial class employeerooms : System.Web.UI.Page
             ddRoomNo.DataBind();
         }
     }
-    protected void save_ServerClick(object sender, EventArgs e)
-    {
-        Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('" + "Success" + "','" + "hello" + "');</script>");
-
-    }
-
     protected void saveroom_click(object sender, EventArgs e)
     {
         int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
@@ -75,7 +70,8 @@ public partial class employeerooms : System.Web.UI.Page
         roomminrentupdate.Value = rm.minimum_room_rent;
         roommaxrentupdate.Value = rm.maximum_room_rent;
         roomsizeupdate.Value = rm.room_size;
-        ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "activaTab('tab_content2');", true);
+        ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "activaTab('tab_content3');", true);
+
     }
     protected void updateRoomInfo(object sender, EventArgs e)
     {
@@ -88,7 +84,7 @@ public partial class employeerooms : System.Web.UI.Page
         rm.maximum_room_rent = roommaxrentupdate.Value;
         rm.room_size = roomsizeupdate.Value;
         bool check = updateRoom(rm, bid);
-        if (check == true)
+        if(check==true)
         {
             admin_notification_class.addnotification(eid, bid, DateTime.Now, admin_notification_class.TableNames.bill.ToString(), rm.Id, admin_notification_class.CommandType.Update.ToString());
             msg = "Successfully updated the information";
@@ -101,13 +97,13 @@ public partial class employeerooms : System.Web.UI.Page
             type = "Error";
         }
         Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('" + type + "','" + msg + "');</script>");
-
+    
     }
     public static bool updateRoom(room rm, int bid)
     {
         ctownDataContext db = new ctownDataContext();
         var ra = (from x in db.rooms
-                  where x.branch_id == bid
+                  where x.branch_id == bid && x.room_no==rm.room_no
                   select x).First();
 
         ra.room_no = rm.room_no;

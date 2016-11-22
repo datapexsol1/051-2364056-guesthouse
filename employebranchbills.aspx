@@ -219,7 +219,8 @@
                                       
                                       
                                          <%--<input type="date" id="ubdate" name="ubdate"  placeholder="Date" class="form-control "/>--%></td>
-                                                                    <td> <input type="number" id="ubamount" name="ubamount" runat="server" placeholder="Bill Amount" class="form-control " required="required"/></td>
+                                                                    <td> <input type="number" id="ubamount" name="ubamount" runat="server" placeholder="Bill Amount" class="form-control " data-validation="required" 
+		 data-validation-error-msg="Bill Amount is required !"/></td>
 
                                     <td>
                                         <%--<input type="submit" runat="server" id="send" onserverclick="Update_bills" causesvalidation="false" />--%>
@@ -246,8 +247,9 @@
                             <div class="col-md-4">
                              <label >Bill Amount <span class="required">*</span></label>
 
-                              <input type="number" id="abamount" min="0" name="abamount" required="required" 
-                                  aria-required="true"  placeholder="Amount" class="form-control"/>
+                              <input type="number" id="abamount" min="0" name="abamount" 
+                                  aria-required="true"  placeholder="Amount" data-validation="required" 
+		 data-validation-error-msg="Bill amount is required !" class="form-control"/>
 
                             </div>
                                   
@@ -255,7 +257,7 @@
                                 
                         <div class="col-md-4">
                             <label>Bill Type <span class="required">*</span></label>
-                             <select class="form-control" id="abtype" name="abtype"  onchange="setHomeRent();" runat="server" required="required">
+                             <select class="form-control" id="abtype" name="abtype"  onchange="setHomeRent();" runat="server">
                                             <option value="0">Select</option>
                                         
                                  <option value="Electricity" id="abtype1">Electricity</option>
@@ -280,7 +282,8 @@
                         
                         <div class="col-md-4">
                             <label >Date <span class="required">*</span></label>
-                          <input type="text" id="abdate" name="abdate" data-format="dd-mm-yyyy"  placeholder="Date" class="form-control " required="required"/>
+                          <input type="text" id="abdate" name="abdate" data-format="dd-mm-yyyy"  placeholder="Date" class="form-control " data-validation="required" 
+		 data-validation-error-msg="Bill Date is required !"/>
                         </div>
                       
                 <div class="form-group col-md-12">
@@ -392,7 +395,22 @@
     </script>
  <!-- bootstrap-daterangepicker -->
    
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+<script>
 
+  $.validate({
+    modules : 'location, date, security, file',
+    onModulesLoaded : function() {
+      $('#country').suggestCountry();
+    }
+  });
+
+  // Restrict presentation length
+  $('#presentation').restrictLength( $('#pres-max-length') );
+
+</script>
+
+      <!-- jQuery -->
 
 </asp:Content>
 
