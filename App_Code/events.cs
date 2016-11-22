@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Globalization;
 
 /// <summary>
 /// Summary description for events
@@ -82,7 +83,13 @@ public class events
                                          join even in db.event_calenders on x.Id equals even.employee_id
                                          where x.branch_id == bid
                                          select even;
-                               
+             //change the format of date 
+
+        foreach(event_calender c in ec)
+        {
+            c.event_start_date = DateTime.Parse(c.event_start_date.ToString("dd/M/yyyy", CultureInfo.InvariantCulture));
+                c.event_end_date= DateTime.Parse(c.event_end_date.ToString("dd/M/yyyy", CultureInfo.InvariantCulture));
+        }
                                
         return ec;
     }
