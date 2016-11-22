@@ -120,7 +120,6 @@ public partial class employebranchbills : System.Web.UI.Page
             }
 
            
-            ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "activaTab('tab_content1');", true);
             
         }
         if (addcheck == true)
@@ -136,9 +135,10 @@ public partial class employebranchbills : System.Web.UI.Page
             type = "Error";
         }
         Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('" + type + "','" + msg + "');</script>");
+        ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "activaTab('tab_content1');", true);
 
     }
-   
+
     protected void Update_bills(object sender, EventArgs e)
     {
        

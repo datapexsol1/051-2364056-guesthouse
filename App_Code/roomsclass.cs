@@ -15,6 +15,32 @@ public class roomsclass
         // TODO: Add constructor logic here
         //
     }
+    public static bool updateRoom(room rm, int bid)
+    {
+        ctownDataContext db = new ctownDataContext();
+        var ra = (from x in db.rooms
+                  where x.branch_id == bid && x.room_no == rm.room_no
+                  select x).First();
+
+        ra.room_no = rm.room_no;
+        ra.room_type = rm.room_type;
+        ra.minimum_room_rent = rm.minimum_room_rent;
+        ra.maximum_room_rent = rm.maximum_room_rent;
+        ra.room_size = rm.room_size;
+
+        int check = (from y in db.rooms
+                     where y.Id == ra.Id
+                     select y).Count();
+        if (check == 1)
+        {
+            db.SubmitChanges();
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
     public static room getroom(int bid)
     {
         ctownDataContext db = new ctownDataContext();
