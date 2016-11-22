@@ -17,10 +17,23 @@
          });
          //submitting temporary values in add panel 
          function submitTempValue(){
-          //   alert("update panel");
-        
 
+             $("input[name=alabel1]").val("abc");
+             $("input[name=adescription]").val("abc");
+             $("input[name=aitemno]").val(1);
+             document.getElementById('<%=itemname.ClientID %>').value = '';
+            document.getElementById('<%=itemdescription.ClientID %>').value = '';
+            document.getElementById('<%=totalitem.ClientID %>').value = '';
              
+         }
+         function updateTempValue() {
+            document.getElementById('<%=itemname.ClientID %>').value = 'abc';
+            document.getElementById('<%=itemdescription.ClientID %>').value = 'abc';
+            document.getElementById('<%=totalitem.ClientID %>').value = 1;
+             $("input[name=alabel1]").val("");
+             $("input[name=adescription]").val("");
+             $("input[name=aitemno]").val("");
+
          }
 
          
@@ -42,7 +55,7 @@
                           </li>
                           <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false" onclick="submitTempValue()" >Update Assets</a>
                           </li>
-                          <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false"  onclick="myFunction()">Add Assets</a>
+                          <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false"  onclick="updateTempValue()">Add Assets</a>
                           </li>
                             
                           
@@ -96,14 +109,14 @@
                               <tbody>
                                 <tr>
                                   <td>
-                                      <asp:DropDownList  runat="server" class="form-control" clientIdMode="static" ID="ddbranchname" name="ddbranchname" AutoPostBack="True" OnSelectedIndexChanged="branchNameSelectedIndexChange" required>
+                                      <asp:DropDownList  runat="server" class="form-control" clientIdMode="static" ID="ddbranchname" name="ddbranchname" AutoPostBack="True" OnSelectedIndexChanged="branchNameSelectedIndexChange" >
                                       <Items>
                                            <asp:ListItem Text="Select" Value="" />
                                        </Items>
                                       </asp:DropDownList>
                                   </td>
                                   <td>
-                                      <asp:DropDownList  runat="server" clientIdMode="static" class="form-control" ID="dditemname" name="dditemname" AutoPostBack="True" OnSelectedIndexChanged="itemNameSelectedIndexChange" required>
+                                      <asp:DropDownList  runat="server" clientIdMode="static" class="form-control" ID="dditemname" name="dditemname" AutoPostBack="True" OnSelectedIndexChanged="itemNameSelectedIndexChange" >
                                           <Items>
                                            <asp:ListItem Text="Select" Value="" />
                                        </Items>
@@ -112,11 +125,12 @@
                                         <option value="0">Select</option>
                                         </select>-->
                                   </td>
-                                  <td> <input type="text" id="itemname" name="itemname"  placeholder="Label" class="form-control " runat="server"/></td>
-                                  <td>  <input type="text" id="itemdescription" name="itemdescription"  placeholder="Description" class="form-control " runat="server"/></td>
-                                  <td>   <input type="number" id="totalitem" name="totalitem" min="1"  placeholder="Number Of Items" class="form-control " runat="server"/></td>
-                                  <td><a href="#" onserverclick="updateBranchAssets_click" runat="server" class="btn btn-success">Update</a>
-                                        <%--<asp:Button ID="send" runat="server" Text="Update" CausesValidation="false"  class="btn btn-success" OnClick="updateBranchAssets_click" />--%>
+                                  <td> <input type="text" id="itemname" name="itemname"  placeholder="Label" class="form-control " runat="server" data-validation="required" data-validation-error-msg="Item name is required !"/></td>
+                                  <td>  <input type="text" id="itemdescription" name="itemdescription"  placeholder="Description" class="form-control " runat="server" data-validation="required" data-validation-error-msg="Item description is required !"/></td>
+                                  <td>   <input type="number" id="totalitem" name="totalitem" min="1"  placeholder="Number Of Items" class="form-control " runat="server" data-validation="required" data-validation-error-msg="Total item is required !"/></td>
+                                  <td>
+                                      <%--<a href="#" onserverclick="updateBranchAssets_click" runat="server" class="btn btn-success">Update</a>--%>
+                                        <asp:Button ID="send" runat="server" Text="Update" class="btn btn-success" OnClick="updateBranchAssets_click" />
 
                                   </td>
                                 </tr>
@@ -168,14 +182,16 @@
                         <label class="control-label col-md-4" for="room size">Number of Item <span class="required">*</span>
                         </label>
                         <div class="col-md-8">
-                          <input type="number" id="aitemno" name="aitemno"  placeholder="Number Of Items" class="form-control " required="required"/>
+                          <input type="number" id="aitemno" name="aitemno" data-validation="required" 
+
+		 data-validation-error-msg="Enter item no"  placeholder="Number Of Items" class="form-control " />
                         </div>
                       </div>
                            
                               <div class="form-group">
                         <div class="col-md-6 col-md-offset-11">
-                            <a href="#" onserverclick="saveBAssets_click" runat="server" class="btn btn-success">Add</a>
-                        <%--<asp:Button ID="SaveAssets" runat="server" OnClick="saveBAssets_click"  Text="SaveAssets" CssClass="btn btn-success" />--%>
+                            <%--<a href="#" onserverclick="saveBAssets_click" runat="server" class="btn btn-success">Add</a>--%>
+                        <asp:Button ID="SaveAssets" runat="server" OnClick="saveBAssets_click"  Text="SaveAssets" CssClass="btn btn-success" />
                         </div>
                       </div>
                             </div>

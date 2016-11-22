@@ -57,7 +57,7 @@ public class events
         int check = (from y in db.event_calenders
                      where y.event_name == updatedEvent.event_name && y.event_description==updatedEvent.event_description && y.event_color == updatedEvent.event_color
                      select y).Count();
-        if (check == 0)
+        if (check == 1)
         {
             db.SubmitChanges();
             checkbool = true;
