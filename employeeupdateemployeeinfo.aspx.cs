@@ -27,47 +27,53 @@ public partial class employeeupdateemployeeinfo : System.Web.UI.Page
         }
     }
     protected void update_Click(object sender, EventArgs e)
-    {        
-        int branchid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
-        int eid = employeeProfile.getEmployeeIDbyusername(Session["loginName"].ToString());
-        int updateId = int.Parse(Request.QueryString["id"]);
-        employee emp = new employee();
-        
-        emp.name = Request.Form["inname"].ToString();
-        emp.email = Request.Form["inemail"];
-        emp.employee_no = Request.Form["inempno"];
-        emp.cnic = Request.Form["incnic"];
-        emp.designation = Request.Form["indesig"];
-        emp.dateofjoining = DateTime.Parse(Request.Form["injoiningdate"]);// injoiningdate.Value);// DateTime.Parse(Request.Form["injoiningdate"].ToString());
-        emp.address = Request.Form["inaddress"];
-        emp.salary = int.Parse(Request.Form["insalary"]);
-       
-        if (imageupload.HasFile)
-        {
-    
-            HttpPostedFile postedfile = imageupload.PostedFile;
-            emp.image = imageToByteArray(postedfile);
-        
-        }
+    {
+        try {
+            int branchid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
+            int eid = employeeProfile.getEmployeeIDbyusername(Session["loginName"].ToString());
+            int updateId = int.Parse(Request.QueryString["id"]);
+            employee emp = new employee();
 
-        bool check = employeeProfile.updateEmployeeInfo(emp, updateId, branchid);
-        
-        admin_notification_class.addnotification(eid,branchid,DateTime.Now,admin_notification_class.TableNames.employee.ToString(), updateId, admin_notification_class.CommandType.Update.ToString());
-        if (check == true)
+            emp.name = Request.Form["inname"].ToString();
+            emp.email = Request.Form["inemail"];
+            emp.employee_no = Request.Form["inempno"];
+            emp.cnic = Request.Form["incnic"];
+            emp.designation = Request.Form["indesig"];
+            emp.dateofjoining = DateTime.Parse(Request.Form["injoiningdate"]);// injoiningdate.Value);// DateTime.Parse(Request.Form["injoiningdate"].ToString());
+            emp.address = Request.Form["inaddress"];
+            emp.salary = int.Parse(Request.Form["insalary"]);
+
+            if (imageupload.HasFile)
+            {
+
+                HttpPostedFile postedfile = imageupload.PostedFile;
+                emp.image = imageToByteArray(postedfile);
+
+            }
+
+            bool check = employeeProfile.updateEmployeeInfo(emp, updateId, branchid);
+
+            admin_notification_class.addnotification(eid, branchid, DateTime.Now, admin_notification_class.TableNames.employee.ToString(), updateId, admin_notification_class.CommandType.Update.ToString());
+            if (check == true)
+            {
+                msg = "Successfully updated";
+                type = "Success";
+                ScriptManager.RegisterClientScriptBlock(this, typeof(Page), "redirectJS", "setTimeout(function() { window.location.replace('employeeviewemployeeinfo.aspx') }, 4500);", true);
+
+            }
+            else
+            {
+                msg = "There is some error";
+                type = "Error";
+            }
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('" + type + "','" + msg + "');</script>");
+            //  Response.Redirect("employeeviewemployeeinfo.aspx");
+            //ShowMessage(msg, type);
+        }catch(Exception ex)
         {
-            msg = "Successfully updated";
-            type = "Success";
-            ScriptManager.RegisterClientScriptBlock(this, typeof(Page), "redirectJS", "setTimeout(function() { window.location.replace('employeeviewemployeeinfo.aspx') }, 4500);", true);
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('" + "Error" + "','" + ex.Message + "');</script>");
 
         }
-        else
-        {
-            msg = "There is some error";
-            type = "Error";
-        }
-        Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('"+type+"','" + msg + "');</script>");
-      //  Response.Redirect("employeeviewemployeeinfo.aspx");
-        //ShowMessage(msg, type);
     }
           public static byte[] imageToByteArray(HttpPostedFile postedfile)
     {

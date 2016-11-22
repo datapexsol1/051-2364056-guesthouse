@@ -148,7 +148,7 @@
         
     <!-- jQuery -->
     <script src="js/ajax.js"></script>
-     <script src="Scripts/jquery-1.10.2.js"></script>
+  <%--   <script src="Scripts/jquery-1.10.2.js"></script>--%>
      <script src="../vendors/jquery/dist/jquery.min.js"></script>
     <script src="Scripts/jquery.signalR-2.1.2.js"></script>
     <script src="Scripts/jquery.signalR-2.2.1.min.js"></script>

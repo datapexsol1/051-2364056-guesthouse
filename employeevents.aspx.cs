@@ -17,43 +17,41 @@ public partial class employeevents : System.Web.UI.Page
     }
     protected void eventsubmit_Click(object sender, EventArgs e)
     {
-
-        int branchID = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
-        int employID = int.Parse(Session["loginId"].ToString());
-        event_calender ev = new event_calender();
+        try {
+            int branchID = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
+            int employID = int.Parse(Session["loginId"].ToString());
+            event_calender ev = new event_calender();
             ev.event_name = eventname.Value;
             ev.event_description = eventdesc.Value;
-        ev.event_start_date = DateTime.Parse(Request.Form["eventstartdate"]);//eventstartdate.Value);// DateTime.Parse(Request.Form["eventstartdate"].ToString());
-        ev.event_end_date = DateTime.Parse(Request.Form["eventenddate"]);//.Value);//Request.Form["eventenddate"].ToString());
+            ev.event_start_date = DateTime.Parse(Request.Form["eventstartdate"]);//eventstartdate.Value);// DateTime.Parse(Request.Form["eventstartdate"].ToString());
+            ev.event_end_date = DateTime.Parse(Request.Form["eventenddate"]);//.Value);//Request.Form["eventenddate"].ToString());
             ev.event_color = eventcolor.Value;
-        ev.employee_id = employID;
-           bool check = events.addEvent(ev);
+            ev.employee_id = employID;
+            bool check = events.addEvent(ev);
 
-        if (check == true)
+            if (check == true)
+            {
+                msg = "Success fully added the event ! ";
+                type = "Success";
+                //   Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('Success','Successfully updated information');</script>");
+                admin_notification_class.addnotification(employID, branchID, DateTime.Now, admin_notification_class.TableNames.event_calender.ToString(), employID, admin_notification_class.CommandType.Add.ToString());
+                ScriptManager.RegisterClientScriptBlock(this, typeof(Page), "redirectJS", "setTimeout(function() { window.location.replace('employeevents.aspx') }, 4500);", true);
+
+            }
+            else
+            {
+                msg = "There is some error in adding the information";
+                type = "Error";
+                // Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('Error','Successfully updated information');</script>");
+
+            }
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('" + type + "','" + msg + "');</script>");
+            //  ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "activaTab('tab_content2');", true);
+        }catch(Exception ex)
         {
-            msg = "Success fully added the event ! ";
-            type = "Success";
-            //   Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('Success','Successfully updated information');</script>");
-            admin_notification_class.addnotification(employID,branchID,DateTime.Now,admin_notification_class.TableNames.event_calender.ToString(),employID,admin_notification_class.CommandType.Add.ToString());
-            ScriptManager.RegisterClientScriptBlock(this, typeof(Page), "redirectJS", "setTimeout(function() { window.location.replace('employeevents.aspx') }, 4500);", true);
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('" + "Error" + "','" + ex.Message + "');</script>");
 
         }
-        else
-        {
-            msg = "There is some error in adding the information";
-            type = "Error";
-           // Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('Error','Successfully updated information');</script>");
-
-        }
-        Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('"+type+"','"+msg+"');</script>");
-        //  ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "activaTab('tab_content2');", true);
-
     }
-    //protected void delete_CLick(object sender, EventArgs e)
-    //{
-       
-    //    //   int id = int.Parse((sender as Control).ID.ToString());// int.Parse(Request.Form["id"].ToString());
-    //    //do something with roomId
-
-    //}
+  
 }
