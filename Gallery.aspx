@@ -28,6 +28,7 @@ http://www.templatemo.com/tm-475-holiday
 	<script type="text/javascript" src="js/jquery.flexslider-min.js"></script>
    	<script type="text/javascript" src="js/templatemo-script.js"></script>      		<!-- Templatemo Script -->
 	<script>
+        ///let me show yyou i have change on connection string .
 	    // HTML document is loaded. DOM is ready.
 	    $(function () {
 
