@@ -23,6 +23,8 @@ public class branchClass
                          x.Id }).Count();
         if (count == 0)
         {
+            //every thing works perfect on local host
+            //Then there is connectionstring issue. mi
             db.branches.InsertOnSubmit(b);
             db.SubmitChanges();
             return true;
