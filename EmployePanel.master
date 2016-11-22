@@ -259,12 +259,11 @@
             var $tb1 = $('#menu1');
             
             $.ajax({
-                url: 'adminajax.aspx/GetData',
+                url: 'adminajax.aspx/GetWebsitebooking',
                 contentType: "application/json;charset=utf-8",
                 dataType: "json",
                 type: "POST",
                 success: function (data) {
-                    debugger;
                     if (data.d.length > 0) {
                         var newData = data.d;
                       //  alert(JSON.stringify(data.d));
@@ -279,8 +278,8 @@
                        
                                        
                         for (var i = 0; i < newData.length; i++) {
-                            var dateobj = new Date(parseInt(newData[i].time.substr(6)));
-                            rows.push('<li><a><span><span id="not_name">'+newData[i].table_name+'</span><span class="time" id="not_time">'+timeSince(dateobj)+'</span> </span><span class="message" id="bid"></span> </a></li>');
+                            var dateobj = new Date(parseInt(newData[i].request_time.substr(6)));
+                            rows.push('<li><a><span><span id="not_name">Capetown Website Booking</span><span class="time" id="not_time">'+timeSince(dateobj)+'</span> </span><span class="message" id="bid"></span> </a></li>');
                         }
                         rows.push('<li><div class="text-center"> <a><strong>See All Alerts</strong><i class="fa fa-angle-right"></i></a></div> </li>');
                         $tb1.append(rows.join(''));
