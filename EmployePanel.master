@@ -96,7 +96,7 @@
                    
                   </li>
                    
-                 <li><a href="#"><i class="fa fa-edit"></i> Employee Panal<span class="fa fa-chevron-down"></span></a>
+                 <li><a href="#"><i class="fa fa-edit"></i> Employee Panel<span class="fa fa-chevron-down"></span></a>
                       <ul class="nav child_menu">
                         <li><a href="employeeviewemployeeinfo.aspx">Employee Info</a></li>
                       <li><a href="employepaysalary.aspx"> Employee Salary</a></li>
@@ -107,9 +107,9 @@
                  
                     
                 
-                  <li><a><i class="fa fa-desktop"></i> Guest Panal <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-desktop"></i> Guest Panel <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="employeroomlayout.aspx"><i class="fa fa-edit"></i> Book Room</a>  </li>
+                      <li><a href="employeroomlayout.aspx"> Book Room</a>  </li>
                       <li><a href="employeerooms.aspx">Rooms</a></li>
                       <li><a href="employeguests.aspx">Checkout Bookings</a></li>
                       <li>  <a href="employeguesthistory.aspx">Booking History</a></li>
@@ -119,7 +119,7 @@
                     </ul>
                   </li>
 
-                      <li><a><i class="fa fa-desktop"></i>Bills Panal <span class="fa fa-chevron-down"></span></a>
+                      <li><a><i class="fa fa-desktop"></i>Bills Panel <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="employebranchbills.aspx">Branch Bills</a></li>
                         <%--<li><a href="employeguestpayment.aspx">Guests Total Bill</a></li>--%>
@@ -264,7 +264,6 @@
                 dataType: "json",
                 type: "POST",
                 success: function (data) {
-                    debugger;
                     if (data.d.length > 0) {
                         var newData = data.d;
                       //  alert(JSON.stringify(data.d));
@@ -280,7 +279,7 @@
                                        
                         for (var i = 0; i < newData.length; i++) {
                             var dateobj = new Date(parseInt(newData[i].request_time.substr(6)));
-                            rows.push('<li><a><span><span id="not_name">CapeTOwn Website Booking</span><span class="time" id="not_time">'+timeSince(dateobj)+'</span> </span><span class="message" id="bid"></span> </a></li>');
+                            rows.push('<li><a><span><span id="not_name">Capetown Website Booking</span><span class="time" id="not_time">'+timeSince(dateobj)+'</span> </span><span class="message" id="bid"></span> </a></li>');
                         }
                         rows.push('<li><div class="text-center"> <a><strong>See All Alerts</strong><i class="fa fa-angle-right"></i></a></div> </li>');
                         $tb1.append(rows.join(''));

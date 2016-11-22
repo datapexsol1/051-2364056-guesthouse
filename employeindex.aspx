@@ -148,7 +148,7 @@
         
     <!-- jQuery -->
     <script src="js/ajax.js"></script>
-     <script src="Scripts/jquery-1.10.2.js"></script>
+  <%--   <script src="Scripts/jquery-1.10.2.js"></script>--%>
      <script src="../vendors/jquery/dist/jquery.min.js"></script>
     <script src="Scripts/jquery.signalR-2.1.2.js"></script>
     <script src="Scripts/jquery.signalR-2.2.1.min.js"></script>
@@ -213,17 +213,6 @@
     </script>--%>
       
     <script>
-        function formatDate(date) {
-            var d = new Date(date),
-                month = '' + (d.getMonth() + 1),
-                day = '' + d.getDate(),
-                year = d.getFullYear();
-
-            if (month.length < 2) month = '0' + month;
-            if (day.length < 2) day = '0' + day;
-
-            return [day, month, year].join('-');
-        }
         <%
         IQueryable<event_calender> eve = events.retrieveAllEvents(Session["loginName"].ToString());
         int i = 0; %>
@@ -249,14 +238,13 @@
             for(var i = 0;i < eventTitle.length;i++)
             {
                 var hue = 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')';
-                
-                var primaryAsset =eventTitle[i] ;
-                var release_Date =  startDate[i];
+
+                var primaryAsset = eventTitle[i];
+                var release_Date = startDate[i];
                 var end_Date = endDate[i];
                 var eve_desc = eventDisc[i];
                 var eve_color = color[i];
                 var insertEvents = [];
-              
                 insertEvents =
                 {
                     title: 'Title : '+primaryAsset+'\nDescription : '+eve_desc,
@@ -279,12 +267,11 @@
                 },
                 editable: false,
                 weekends: true, 
-                events: getEvent,
-               
+                events: getEvent
 
             });
         });
-       
+
      
     </script>
     <!-- /FullCalendar -->
