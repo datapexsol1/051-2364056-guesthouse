@@ -110,19 +110,19 @@
                        <input type="text" id="updesc" name="updesc"  runat="server" aria-required="true" placeholder="Description" class="form-control"/>
 
                     </div>
-                   <div class="col-md-4">
+                   <div class="item col-md-4">
                        <label >Quantity <span class="required">*</span></label>
-                       <input type="number" min="0" id="upqty" name="upqty"  runat="server" aria-required="true"   class="form-control"/>
+                       <input type="number" min="0" id="upqty" name="upqty" required="required"  runat="server" aria-required="true"   class="form-control"/>
 
                     </div>
-                   <div class="col-md-4">
+                   <div class="item col-md-4">
                        <label >Cost <span class="required">*</span></label>
-                       <input type="number" min="0" id="upcost" name="upcost"  runat="server" aria-required="true"  value="0" class="form-control"/>
+                       <input type="number" min="0" id="upcost" required="required" name="upcost"  runat="server" aria-required="true"   class="form-control"/>
 
                     </div>
                 </div>
-<a href="" runat="server" onserverclick="Update_service" class="btn btn-success">Update service</a>
-               <%--<asp:Button runat="server" Text="Update service" ID="UpdateId" CssClass="btn btn-success" OnClick="Update_service"/>--%>
+<%--<a href="" runat="server" onserverclick="Update_service" class="btn btn-success">Update service</a>--%>
+               <asp:Button runat="server" Text="Update service" ID="UpdateId" CssClass="btn btn-success" OnClick="Update_service"/>
 
 
 

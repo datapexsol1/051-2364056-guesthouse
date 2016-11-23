@@ -11,7 +11,11 @@ public partial class employemenuservice : System.Web.UI.Page
     bool check;
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!IsPostBack)
+        if (Session["loginId"] == null)
+        {
+            Response.Redirect("employelogin.aspx");
+        }
+        else if (!IsPostBack)
         {
             ordersummery.Visible = false;
             savetodb.Visible = false;
@@ -160,163 +164,176 @@ public partial class employemenuservice : System.Web.UI.Page
     }
     protected void getsummary_click(object sender, EventArgs e)
     {
+        try { 
         int eid = employeeProfile.getEmployeid(Session["loginName"].ToString());
         int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
-        if (itemid.Value == "" && nofitem.Value == "")
-        {
-            //  bookingid.Value= "";
-            bindMenu();
-        }
-        else
-        {
-            double totalprice = 0;
-            string str = itemid.Value;
-            string[] words = str.Split(',');
-            string[] value = new string[words.Length];
-            int i = 0;
-            foreach (string w in words)
+            if (itemid.Value == "" && nofitem.Value == "")
             {
-                value[i] = null;
-                value[i] = Request.Form["noitem" + w].ToString();
-                i++;
+                //  bookingid.Value= "";
+                bindMenu();
             }
-
-
-            menuview.Visible = false;
-            ordersummery.Visible = true;
-            TableRow hrow = new TableRow();
-            hrow.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
-            ordersummery.Rows.Add(hrow);
-            TableCell date = new TableCell();
-            date.Text = "<h4>Date" + DateTime.Now.ToString() + "</h4>";
-            date.ColumnSpan = 2;
-
-            hrow.Cells.Add(date);
-            TableCell roomno = new TableCell();
-            roomno.Text = "Room_no :101";
-            roomno.ColumnSpan = 2;
-            hrow.Cells.Add(roomno);
-            TableRow tRow1 = new TableRow();
-            tRow1.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
-            ordersummery.Rows.Add(tRow1);
-            TableCell tCell2 = new TableCell();
-            tCell2.Text = "Item name";
-            tRow1.Cells.Add(tCell2);
-            TableCell tCell4 = new TableCell();
-            tCell4.Text = "Item Quantity";
-            tRow1.Cells.Add(tCell4);
-            TableCell tCell3 = new TableCell();
-            tCell3.Text = "Item price";
-            tRow1.Cells.Add(tCell3);
-            TableCell tCell5 = new TableCell();
-            tCell5.Text = "Total Price";
-            tRow1.Cells.Add(tCell5);
-            int bidx = int.Parse(bookingid.Value);//BRANCHID
-            IQueryable<room_service_menu> menu = empmenuclass.getMenuItem(bidx);
-            int l = 0;
-            placed_order p = new placed_order();
-            foreach (room_service_menu x in menu)
+            else
             {
-
-                foreach (string k in words)
+                double totalprice = 0;
+                string str = itemid.Value;
+                string[] words = str.Split(',');
+                string[] value = new string[words.Length];
+                int i = 0;
+                foreach (string w in words)
                 {
-                    if (x.Id == int.Parse(k))
-                    {
-                        TableRow tRow = new TableRow();
-                        ordersummery.Rows.Add(tRow);
-                        //TableCell tCellr = new TableCell();
-                        //tCellr.Text = x.type.ToString();
-                        //tRow.Cells.Add(tCellr);
-                        TableCell tCellrn = new TableCell();
-                        tCellrn.Text = x.item_name;
-
-                        //  tCellrn.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
-                        tRow.Cells.Add(tCellrn);
-                        TableCell tCellri = new TableCell();
-                        tCellri.Text = value[l];
-                        // tCellri.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
-                        tRow.Cells.Add(tCellri);
-                        TableCell tCellrd = new TableCell();
-                        tCellrd.Text = x.price.ToString();
-                        //  tCellrd.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
-                        tRow.Cells.Add(tCellrd);
-                        TableCell tCelltoalp = new TableCell();
-                        tCelltoalp.Text = (x.price * int.Parse(value[l])).ToString();
-                        totalprice += x.price * int.Parse(value[l]);
-                        // tCelltoalp.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
-                        tRow.Cells.Add(tCelltoalp);
-
-                        //code to get booking id
-
-
-
-
-                        p.booking_id = bookingRoomClass.getbookingid(roombranch.Text);
-                        p.room_no = roombranch.Text;
-                        p.item_id = x.Id;
-                        p.quantity = int.Parse(value[l]);
-                        p.date = DateTime.Now;
-                        p.delivery = "no";
-                        check = empmenuclass.placeOrder(p);
-                        if (check == true)
-                        {
-                            admin_notification_class.addnotification(eid, bid, DateTime.Now, admin_notification_class.TableNames.placed_order.ToString(), 0, admin_notification_class.CommandType.Add.ToString());
-                            msg = "Successfully placed order";
-                            type = "Success";
-
-                        }
-                        else
-                        {
-                            msg = "There is some error";
-                            type = "Error";
-                        }
-                        Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('" + type + "','" + msg + "');</script>");
-                        l++;
-
-                    }
+                    value[i] = null;
+                    value[i] = Request.Form["noitem" + w].ToString();
+                    i++;
                 }
 
+
+                menuview.Visible = false;
+                ordersummery.Visible = true;
+                TableRow hrow = new TableRow();
+                hrow.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
+                ordersummery.Rows.Add(hrow);
+                TableCell date = new TableCell();
+                date.Text = "<h4>Date" + DateTime.Now.ToString() + "</h4>";
+                date.ColumnSpan = 2;
+
+                hrow.Cells.Add(date);
+                TableCell roomno = new TableCell();
+                roomno.Text = "Room_no :101";
+                roomno.ColumnSpan = 2;
+                hrow.Cells.Add(roomno);
+                TableRow tRow1 = new TableRow();
+                tRow1.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
+                ordersummery.Rows.Add(tRow1);
+                TableCell tCell2 = new TableCell();
+                tCell2.Text = "Item name";
+                tRow1.Cells.Add(tCell2);
+                TableCell tCell4 = new TableCell();
+                tCell4.Text = "Item Quantity";
+                tRow1.Cells.Add(tCell4);
+                TableCell tCell3 = new TableCell();
+                tCell3.Text = "Item price";
+                tRow1.Cells.Add(tCell3);
+                TableCell tCell5 = new TableCell();
+                tCell5.Text = "Total Price";
+                tRow1.Cells.Add(tCell5);
+                int bidx = int.Parse(bookingid.Value);//BRANCHID
+                IQueryable<room_service_menu> menu = empmenuclass.getMenuItem(bidx);
+                int l = 0;
+                placed_order p = new placed_order();
+                foreach (room_service_menu x in menu)
+                {
+
+                    foreach (string k in words)
+                    {
+                        if (x.Id == int.Parse(k))
+                        {
+                            TableRow tRow = new TableRow();
+                            ordersummery.Rows.Add(tRow);
+                            //TableCell tCellr = new TableCell();
+                            //tCellr.Text = x.type.ToString();
+                            //tRow.Cells.Add(tCellr);
+                            TableCell tCellrn = new TableCell();
+                            tCellrn.Text = x.item_name;
+
+                            //  tCellrn.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
+                            tRow.Cells.Add(tCellrn);
+                            TableCell tCellri = new TableCell();
+                            tCellri.Text = value[l];
+                            // tCellri.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
+                            tRow.Cells.Add(tCellri);
+                            TableCell tCellrd = new TableCell();
+                            tCellrd.Text = x.price.ToString();
+                            //  tCellrd.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
+                            tRow.Cells.Add(tCellrd);
+                            TableCell tCelltoalp = new TableCell();
+                            tCelltoalp.Text = (x.price * int.Parse(value[l])).ToString();
+                            totalprice += x.price * int.Parse(value[l]);
+                            // tCelltoalp.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
+                            tRow.Cells.Add(tCelltoalp);
+
+                            //code to get booking id
+
+
+
+
+                            p.booking_id = bookingRoomClass.getbookingid(roombranch.Text);
+                            p.room_no = roombranch.Text;
+                            p.item_id = x.Id;
+                            p.quantity = int.Parse(value[l]);
+                            p.date = DateTime.Now;
+                            p.delivery = "no";
+                            check = empmenuclass.placeOrder(p);
+                            if (check == true)
+                            {
+                                admin_notification_class.addnotification(eid, bid, DateTime.Now, admin_notification_class.TableNames.placed_order.ToString(), 0, admin_notification_class.CommandType.Add.ToString());
+                                msg = "Successfully placed order";
+                                type = "Success";
+
+                            }
+                            else
+                            {
+                                msg = "There is some error";
+                                type = "Error";
+                            }
+                            Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('" + type + "','" + msg + "');</script>");
+                            l++;
+
+                        }
+                    }
+
+                }
+
+                TableRow totalbill = new TableRow();
+                totalbill.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
+                totalbill.ForeColor = System.Drawing.Color.Cyan;
+                ordersummery.Rows.Add(totalbill);
+
+                TableCell tb = new TableCell();
+                tb.Text = "Total BIll:" + totalprice;
+                tb.ColumnSpan = 5;
+                totalbill.Cells.Add(tb);
+
+
+                getsummary.Visible = false;
+                savetodb.Visible = true;
+
             }
-
-            TableRow totalbill = new TableRow();
-            totalbill.BackColor = System.Drawing.ColorTranslator.FromHtml("#212121");
-            totalbill.ForeColor = System.Drawing.Color.Cyan;
-            ordersummery.Rows.Add(totalbill);
-
-            TableCell tb = new TableCell();
-            tb.Text = "Total BIll:" + totalprice;
-            tb.ColumnSpan = 5;
-            totalbill.Cells.Add(tb);
-
-
-            getsummary.Visible = false;
-            savetodb.Visible = true;
+        }
+        catch(Exception ex)
+        {
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('Error','" + ex.Message + "');</script>");
 
         }
     }
     protected void saveitem_click(object sender, EventArgs e)
     {
-        int eid = employeeProfile.getEmployeid(Session["loginName"].ToString());
-        int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
-        room_service_menu rm = new room_service_menu();
-        rm.type = Request.Form["addtype"].ToString();
-        rm.item_name = Request.Form["additemname"].ToString();
-        rm.price = int.Parse(Request.Form["additemprice"].ToString());
-        rm.quantity = Request.Form["additemquantity"].ToString();
-        rm.bid = bid;// employeeProfile.getEmployeBranch(Session["loginName"].ToString());//get from session
-        check = empmenuclass.addMenuItem(rm);
-        if (check == true)
+        try {
+            int eid = employeeProfile.getEmployeid(Session["loginName"].ToString());
+            int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
+            room_service_menu rm = new room_service_menu();
+            rm.type = Request.Form["addtype"].ToString();
+            rm.item_name = Request.Form["additemname"].ToString();
+            rm.price = int.Parse(Request.Form["additemprice"].ToString());
+            rm.quantity = Request.Form["additemquantity"].ToString();
+            rm.bid = bid;// employeeProfile.getEmployeBranch(Session["loginName"].ToString());//get from session
+            check = empmenuclass.addMenuItem(rm);
+            if (check == true)
+            {
+                admin_notification_class.addnotification(eid, bid, DateTime.Now, admin_notification_class.TableNames.placed_order.ToString(), rm.Id, admin_notification_class.CommandType.Add.ToString());
+                msg = "Successfully stored the information";
+                type = "Success";
+
+            }
+            else
+            {
+                msg = "There is some error";
+                type = "Error";
+            }
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('" + type + "','" + msg + "');</script>");
+        }catch(Exception ex)
         {
-            admin_notification_class.addnotification(eid, bid, DateTime.Now, admin_notification_class.TableNames.placed_order.ToString(), rm.Id, admin_notification_class.CommandType.Add.ToString());
-            msg = "Successfully stored the information";
-            type = "Success";
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('Error','" + ex.Message + "');</script>");
 
         }
-        else
-        {
-            msg = "There is some error";
-            type = "Error";
-        }
-        Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('" + type + "','" + msg + "');</script>");
     }
 }
