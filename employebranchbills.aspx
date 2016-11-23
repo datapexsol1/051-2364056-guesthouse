@@ -162,9 +162,9 @@
                                 <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab" >
                                     
 
-                                     <div style="overflow:auto;white-space:nowrap;">
+                                     <div class="table-responsive">
                                          <div id="updatePanelID">
-                                                    <table class="data table table-striped no-margin">
+                                                    <table style="max-width:150%">
                               <thead>
                                  <tr>
 <%--                                  <th>Bill Id</th>--%>

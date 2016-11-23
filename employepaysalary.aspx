@@ -45,7 +45,7 @@
 
 
                             <!-- start recent activity -->
-                           <div>
+                           <div class="table table-responsive">
                            <table class="table tbl">
                               <thead class="thead-inverse">
                                 <tr>

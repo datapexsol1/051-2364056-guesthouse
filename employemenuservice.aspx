@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EmployePanel.master" AutoEventWireup="true" CodeFile="employemenuservice.aspx.cs" Inherits="employemenuservice" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <div id="Notify"></div>
@@ -36,10 +37,10 @@
                       <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
                         <li role="presentation" class="active"><a href="#tab_view" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">View menu</a>
                         </li>
-                        <li role="presentation" class=""><a href="#tab_add" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Add item</a>
+                        <li role="presentation" class=""><a href="#tab_add" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false" onclick="setTempUpdate()">Add item</a>
                         </li>
 
-                          <li role="presentation" class=""><a href="#tab_update" role="tab" id="profile-tab1" data-toggle="tab" aria-expanded="false">Update item</a>
+                          <li role="presentation" class=""><a href="#tab_update" role="tab" id="profile-tab1" data-toggle="tab" aria-expanded="false" onclick="setTempAddVal()">Update item</a>
                         </li>
 
                     
@@ -110,8 +111,8 @@
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Item name</label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="text" class="form-control" name="additemname" data-validation="length alphanumeric" 
-		 data-validation-length="3-25" 
+                          <input type="text" class="form-control" name="additemname" data-validation="required" 
+
 		 data-validation-error-msg="Enter item name" placeholder="Enter item name"/>
                         </div>
                       </div>
@@ -133,8 +134,8 @@
                       <br />
                       <div class="form-group">
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                         <a href="" runat="server" onserverclick="saveitem_click" class="btn btn-success">Save</a>
-                            <%--<asp:Button ID="Button1" runat="server" Text="Save"  class="btn btn-success" onclick="saveitem_click"/>--%>
+                         <%--<a href="" runat="server" onserverclick="saveitem_click" class="btn btn-success">Save</a>--%>
+                            <asp:Button ID="Button1" runat="server" Text="Save"  class="btn btn-success" OnClick="saveitem_click"/>
 
                         </div>
                       </div>
@@ -155,8 +156,22 @@
                         
                        
                             <label>Select type</label>
-                          <select class="form-control" data-validation="required" 
-		 data-validation-error-msg="Select type">
+                           <asp:DropDownList runat="server" ID="ddtype" AutoPostBack="true" ClientIDMode="Static" OnSelectedIndexChanged="ddtypeindexchange" CssClass="form-control">
+
+                            <asp:ListItem value="">Select</asp:ListItem>
+                            <asp:ListItem>Breakfast</asp:ListItem>
+                            <asp:ListItem>Soups</asp:ListItem>
+                            <asp:ListItem>BBQ special</asp:ListItem>
+                            <asp:ListItem>Chicken</asp:ListItem>
+                            <asp:ListItem>Handies</asp:ListItem>
+                              <asp:ListItem>Mutton</asp:ListItem>
+                              <asp:ListItem>Rice & roti</asp:ListItem>
+                              <asp:ListItem>Tandoori</asp:ListItem>
+                              <asp:ListItem>Sea foods</asp:ListItem>
+                              <asp:ListItem>Salad</asp:ListItem>
+                              <asp:ListItem>Cold & hot drinks</asp:ListItem>
+                           </asp:DropDownList>
+                         <%-- <select class="form-control" >
                               <option value="">Select</option>
                             <option>Breakfast</option>
                             <option>Soups</option>
@@ -169,7 +184,7 @@
                               <option>Sea foods</option>
                               <option>Salad</option>
                               <option>Cold & hot drinks</option>
-                          </select>
+                          </select>--%>
                         </div>
                       </div>
                        <div class="col-md-6">
@@ -177,11 +192,13 @@
                         
                         
                             <label >Select Item</label>
-                          <select class="form-control" data-validation="required" 
-		 data-validation-error-msg="Select item">
+                          <asp:DropDownList ID="dditem" runat="server" OnSelectedIndexChanged="dditemchange" AutoPostBack="true" CssClass="form-control">
+
+                          </asp:DropDownList>
+                          <%--<select class="form-control" >
                             <option value="">choose item</option>
                             
-                          </select>
+                          </select>--%>
                         </div>
                       </div>
                        </div>
@@ -192,7 +209,7 @@
                        
                         
                              <label >Edit type (optional)</label>
-                          <input type="text" class="form-control" placeholder="Enter type"/>
+                          <input type="text" id="uptype" name="uptype" runat="server" class="form-control" placeholder="Enter type"/>
                         </div>
                       </div>
                            <div class="col-md-6">
@@ -201,7 +218,7 @@
                         
                              <label >Edit item (optional)</label>
 
-                          <input type="text" class="form-control" placeholder="Enter item name"/>
+                          <input type="text" id="upitem" name="upitem" runat="server" class="form-control" placeholder="Enter item name"/>
                         </div>
                       </div>
                            </div>
@@ -211,8 +228,7 @@
                         
                         
                             <label >Price</label>
-                          <input type="number" class="form-control" placeholder="Enter Price" min="0" data-validation="required" 
-		 data-validation-error-msg="Enter price"/>
+                          <input type="number" id="upprice" name="upprice" runat="server" class="form-control" placeholder="Enter Price" min="0" />
                         </div>
                       </div>
                           <div class="col-md-6">
@@ -220,8 +236,7 @@
                         
                         
                             <label ">Quantity</label>
-                          <input type="text" class="form-control" placeholder="Enter Quantity" min="0" data-validation="required" 
-		 data-validation-error-msg="Enter quantity"/>
+                          <input type="text" class="form-control" id="upqty" runat="server" name="upqty" placeholder="Enter Quantity" min="0" />
                         </div>
 
                       </div>
@@ -230,16 +245,15 @@
                       <br />
                       <div class="form-group">
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                          <button type="submit" class="btn btn-success">Submit</button>
+                            <asp:Button runat="server" OnClick="update_click" Text="Update" CssClass="btn btn-success"/>
+                          <input type="hidden" id="ipitemId" runat="server" name="ipitemId" />
                         </div>
                       </div>
                       </div></div>
                               </div>
                         </div>
                           <!--end update activity-->
-                          <div role="tabpanel" class="tab-pane fade" id="tab_delete" aria-labelledby="profile-tab">
-                          <p>delete content</p>
-                        </div>
+                        
                       </div>
                     </div>
 
@@ -257,6 +271,38 @@
               
 
          </div></div>   </div>
+        <script>
+        function activaTab(tab) {
+            $('.nav-tabs a[href="#' + tab + '"]').tab('show');
+            //alert("working");
+        };
+        
+              
+           
+        function setTempUpdate() {
+   
+             document.getElementById('<%=uptype.ClientID %>').value = 'abc';
+            document.getElementById('<%=upitem.ClientID %>').value = 'abc';
+            document.getElementById('<%=upprice.ClientID %>').value = 1;
+
+            document.getElementById('<%=upqty.ClientID %>').value = 1;
+            $('#addtype').val("Select");
+            $("input[name=additemname]").val("");
+            $("input[name=additemprice]").val("");
+            $("input[name=additemquantity]").val("");
+        }
+        function setTempAddVal() {
+            $('#addtype').val("Sea foods");
+            $("input[name=additemname]").val("abc");
+            $("input[name=additemprice]").val(1);
+            $("input[name=additemquantity]").val(1);
+            document.getElementById('<%=uptype.ClientID %>').value = '';
+            document.getElementById('<%=upitem.ClientID %>').value = '';
+            document.getElementById('<%=upprice.ClientID %>').value = "";
+
+            document.getElementById('<%=upqty.ClientID %>').value = "";
+        }
+    </script>
       <!-- validator -->
     <script src="../vendors/validator/validator.js"></script>
      <!-- validator -->
@@ -274,20 +320,7 @@
         validator.checkField.apply($(this).siblings().last()[0]);
       });
 
-      $('form').submit(function(e) {
-        e.preventDefault();
-        var submit = true;
-
-        // evaluate the form using generic validaing
-        if (!validator.checkAll($(this))) {
-          submit = false;
-        }
-
-        if (submit)
-          this.submit();
-
-        return false;
-      });
+     
     </script>
     <!-- /validator -->
        

@@ -88,15 +88,18 @@
                          <!-- start view activity -->
                       <div id="myTabContent" class="tab-content">
                         <div role="tabpanel" class="tab-pane fade active in" id="tab_view" aria-labelledby="home-tab">
-                            <asp:Button ID="getsummary" runat="server" Text="Place Order" OnClick="getsummary_click" CssClass="btn btn-success" />
-                             <asp:Button ID="savetodb" runat="server" Text="PrintBill"  />
-
-                             <asp:DropDownList  runat="server" class="form-control" ID="roombranch" name="roombranch" required="required" onchange="getchangedvalue()">
+                            <div class="row">
+                            <div class="col-md-5">
+                            <b>Select Room No *</b>
+                             <asp:DropDownList  runat="server" class="form-control" ID="roombranch" name="roombranch" data-validation="required" data-validation-error-msg="Room no is required !" onchange="getchangedvalue()">
                                                       
                                                    
                                          
                                                </asp:DropDownList> 
-                                        
+                                 </div> 
+                                </div>     
+                            <br /> 
+                            <div class="row">
                            <asp:Table class="data table table-striped no-margin"  ID="menuview"  runat="server">
                              
                             
@@ -104,6 +107,7 @@
                                
                              
                            </asp:Table>
+                                </div>
                              <asp:Table class="data table table-striped no-margin" ID="ordersummery"  runat="server">
                              
                             
@@ -111,9 +115,9 @@
                                
                              
                            </asp:Table>
-                          <div role="tabpanel" class="tab-pane fade" id="tab_delete" aria-labelledby="profile-tab">
-                          <p>delete content</p>
-                        </div>
+                         
+                            <asp:Button ID="getsummary" runat="server" Text="Place Order" OnClick="getsummary_click" CssClass="btn btn-success" />
+                             <asp:Button ID="savetodb" runat="server" Text="PrintBill"  />
                       </div>
                     </div>
 
