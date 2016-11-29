@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AdminPanel.master" AutoEventWireup="true" CodeFile="adminmenuservice.aspx.cs" Inherits="adminmenuservice" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
-     <script>
+ <script>
         function xyz(value) {
             if ( $('#tbox' + value).is(":checked"))
             {
@@ -34,7 +34,8 @@
             }
             
         }
-        function getchangedvalue() {
+     function getchangedvalue() {
+         //alert("abc");
             alert( $('#<%=roombranch.ClientID%>').val());
         
             $('#<%=roomno.ClientID%>').val($('#<%=roombranch.ClientID%>').val()); 
@@ -92,7 +93,7 @@
                   <div class="x_content">
 
 
-                    <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                   <div class="" role="tabpanel" data-example-id="togglable-tabs">
                      <%-- <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
                         <li role="presentation" class="active"><a href="#tab_view" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Place order</a>
                         </li>--%>
@@ -103,16 +104,18 @@
                          <!-- start view activity -->
                       <div id="myTabContent" class="tab-content">
                         <div role="tabpanel" class="tab-pane fade active in" id="tab_view" aria-labelledby="home-tab">
-                            <br /><br />
-                            <asp:Button ID="getsummary" runat="server" Text="Place Order" OnClick="getsummary_click" CssClass="btn btn-success" />
-                             <asp:Button ID="savetodb" runat="server" Text="PrintBill"  />
-
-                             <asp:DropDownList  runat="server" class="form-control" ID="roombranch"  EnableViewState="true" name="roombranch" required="required" onchange="getchangedvalue()">
+                            <div class="row">
+                            <div class="col-md-5">
+                            <b> Room No *</b>
+                             <asp:DropDownList  runat="server" class="form-control" ID="roombranch" name="roombranch" data-validation="required" data-validation-error-msg="Room no is required !" onchange="getchangedvalue()">
                                                       
                                                    
                                          
                                                </asp:DropDownList> 
-                                        
+                                 </div> 
+                                </div>     
+                            <br /> 
+                            <div class="row">
                            <asp:Table class="data table table-striped no-margin"  ID="menuview"  runat="server">
                              
                             
@@ -120,6 +123,8 @@
                                
                              
                            </asp:Table>
+                                </div>
+                            <div id="print">
                              <asp:Table class="data table table-striped no-margin" ID="ordersummery"  runat="server">
                              
                             
@@ -127,10 +132,11 @@
                                
                              
                            </asp:Table>
-                          <div role="tabpanel" class="tab-pane fade" id="tab_delete" aria-labelledby="profile-tab">
-                          <p>delete content</p>
+                         </div>
+                            <asp:Button ID="getsummary" runat="server" Text="Place Order" OnClick="getsummary_click" CssClass="btn btn-success" />
+                             <asp:Button ID="savetodb" runat="server" Visible="false" CssClass="btn btn-default" Text="PrintBill"  />
+                       <input type="button" id="btnPrint" value="Print "  class="btn btn-default"/>
                         </div>
-                      </div>
                     </div>
 
                   </div>
@@ -146,6 +152,43 @@
 
               
 
-         </div></div>   </div></div></div>
+         </div></div>   </div>
+         <script>
+        $(function () {
+            $("#btnPrint").click(function () {
+                //alert("hello");
+<%--                $("#type").show();
+               var v = "<%=paymentDropdown.SelectedValue.ToString()%>";
+               // alert(v);
+                document.getElementById('setpaymenttype').innerText = v;--%>
+                //$("input[name=setpaymenttype]").val(v);
+                //$("tbpayType").val(v);
+                
+                var contents = $("#print").html();
+                var frame1 = $('<iframe />');
+                frame1[0].name = "frame1";
+                frame1.css({ "position": "absolute", "top": "-1000000px" });
+                $("body").append(frame1);
+                var frameDoc = frame1[0].contentWindow ? frame1[0].contentWindow : frame1[0].contentDocument.document ? frame1[0].contentDocument.document : frame1[0].contentDocument;
+                frameDoc.document.open();
+                //Create a new HTML document.
+                frameDoc.document.write('<html><head><title>CapeTown guest house</title>');
+                frameDoc.document.write('</head><body style="-webkit-print-color-adjust: exact;background-color:white; height: 950px;left: 0; right: 0; background-repeat: no-repeat; background-size:700px 500px;align-content:center;>');
+                //Append the external CSS file.
+
+
+                //Append the DIV contents.
+                frameDoc.document.write(contents);
+                frameDoc.document.write('</body></html>');
+                frameDoc.document.close();
+                setTimeout(function () {
+                    window.frames["frame1"].focus();
+                    window.frames["frame1"].print();
+                    frame1.remove();
+                }, 500);
+            });
+        });
+
+    </script>
 </asp:Content>
 

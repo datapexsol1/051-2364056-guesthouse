@@ -15,6 +15,13 @@ public class events
         // TODO: Add constructor logic here
         //
     }
+    //public static int getEventId()
+    //{
+    //    ctownDataContext db = db = new ctownDataContext();
+    //    int id = (from x in db.event_calenders
+    //              where x.event_name == nameof && x.event_description == db && x.event_start_date == sd && x.event_end_date == ed && x.event_color == ec
+    //              select x.Id).First();
+    //}
     public static bool addEvent(event_calender ev)
     {
         try
@@ -85,11 +92,11 @@ public class events
                                          select even;
              //change the format of date 
 
-        foreach(event_calender c in ec)
-        {
-            c.event_start_date = DateTime.Parse(c.event_start_date.ToString("dd/M/yyyy", CultureInfo.InvariantCulture));
-                c.event_end_date= DateTime.Parse(c.event_end_date.ToString("dd/M/yyyy", CultureInfo.InvariantCulture));
-        }
+        //foreach(event_calender c in ec)
+        //{
+        //    c.event_start_date = DateTime.Parse(c.event_start_date.ToString("dd/M/yyyy", CultureInfo.InvariantCulture));
+        //        c.event_end_date= DateTime.Parse(c.event_end_date.ToString("dd/M/yyyy", CultureInfo.InvariantCulture));
+        //}
                                
         return ec;
     }

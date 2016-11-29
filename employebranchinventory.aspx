@@ -161,8 +161,7 @@
                               <div class="form-group col-md-6">
                                     <label class="control-label col-md-4 " for="room no">Item  <span class="required">*</span> </label>
                                     <div class="col-md-8">
-                                      <input type="text" id="alabel1" name="alabel1" placeholder="Label" class="form-control " data-validation="length alphanumeric" 
-		 data-validation-length="3-25" 
+                                      <input type="text" id="alabel1" name="alabel1" placeholder="Label" class="form-control " data-validation="required"
 		 data-validation-error-msg="Enter item name"/>
                                     </div>
                               </div>
@@ -172,8 +171,7 @@
                         <label class="control-label col-md-4 " for="room type">Item Description <span class="required">*</span>
                         </label>
                         <div class="col-md-8">
-                          <input type="text" id="adescription" name="adescription"  placeholder="Description" class="form-control " data-validation="length alphanumeric" 
-		 data-validation-length="3-25" 
+                          <input type="text" id="adescription" name="adescription"  placeholder="Description" class="form-control " data-validation="required" 
 		 data-validation-error-msg="Enter item description"/>
                         </div>
                       </div>
@@ -182,7 +180,7 @@
                         <label class="control-label col-md-4" for="room size">Number of Item <span class="required">*</span>
                         </label>
                         <div class="col-md-8">
-                          <input type="number" id="aitemno" name="aitemno" data-validation="required" 
+                          <input type="number" id="aitemno" min="1" name="aitemno" data-validation="required" 
 
 		 data-validation-error-msg="Enter item no"  placeholder="Number Of Items" class="form-control " />
                         </div>

@@ -52,6 +52,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <div id="Notify"></div>
+   <input type="text" id="eventid" runat="server"/>
     <%  
         event_calender eventInfo = new event_calender();
         if (!string.IsNullOrEmpty(Request.QueryString["id"]))

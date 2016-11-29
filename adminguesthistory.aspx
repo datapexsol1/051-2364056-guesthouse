@@ -1,5 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EmployePanel.master" AutoEventWireup="true" CodeFile="employeguesthistory.aspx.cs" Inherits="employeguests" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AdminPanel.master" AutoEventWireup="true" CodeFile="adminguesthistory.aspx.cs" Inherits="adminguesthistory" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 
@@ -9,12 +8,27 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
-      <div class="right_col" role="main">
-    <div class="row">
-     <div class="col-md-12 col-sm-12 col-xs-12">
-     <div class="x_content">
-     <div class="col-md-9 col-sm-9 col-xs-12">
-         <h3>Guests</h3>
+     <div class="right_col" role="main">
+          <div class="">
+    <div class="page-title">
+              <div class="title_left">
+                   <h3>Guests</h3>
+              </div>
+
+              <div class="title_right">
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                  <div class="input-group">
+                      <span class="input-group-btn">
+                              <button class="btn btn-default" type="button" disabled="disabled">Select branch!</button>
+                          </span>
+                  <asp:DropDownList ID="branch" runat="server"  AutoPostBack="true" ClientIDMode="Static"  CssClass="form-control"></asp:DropDownList>
+
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+      <div class="clearfix"></div>
     <div class="" role="tabpanel" data-example-id="togglable-tabs">
                         <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
                           <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Local Guests</a>
@@ -56,18 +70,20 @@
                               <tbody>
                                   <%--should get bid and get element with that bid --%>
                                   <% 
-                                       int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
-                                      guestBookingAttributes[] bookings=gusetRegistrationClass.getlocalClienthistor(bid);
-                                      foreach (guestBookingAttributes b in bookings)
+                                      if (branch.SelectedValue != "Select Branch")
                                       {
-                                          try
+                                          int bid = branchClass.getBranchID(branch.SelectedValue);//employeeProfile.getEmployeBranch(Session["loginName"].ToString());
+                                          guestBookingAttributes[] bookings = gusetRegistrationClass.getlocalClienthistor(bid);
+                                          foreach (guestBookingAttributes b in bookings)
                                           {
-                                              if (b.b_id != 0)
+                                              try
                                               {
+                                                  if (b.b_id != 0)
+                                                  {
                                        %>
                                 <tr>
                                   
-                                    <td><a href="employepaymentdetail.aspx?booking=<%=b.b_id%>"<label style="color:red">View Booking Detail</label></a></td>
+                                    <td><a href="adminpaymentdetail.aspx?booking=<%=b.b_id%>"<label style="color:red">View Booking Detail</label></a></td>
                                       <td><label id="image">"Not added yet"</label></td>
                                       <td><label id="checkin"><%=b.b_checkinDate%> </label></td>
                                       <td><label id="checkout"><%=b.b_checkoutdate%> </label></td>
@@ -90,7 +106,9 @@
 
                                   </tr>
                                   <%}
-        } catch (Exception ex) { } } %>
+                                          }
+                                          catch (Exception ex) { }
+                                      } %>
                               </tbody>
                             </table>
                                    </div>
@@ -134,7 +152,7 @@
                               <tbody>
                                   <% guestBookingAttributes[] fbooking = gusetRegistrationClass.getforignerClienthistory(bid);
                                       foreach (guestBookingAttributes fb in fbooking)
-                                      { 
+                                      {
                                           %>
                                  <tr>
 
@@ -168,72 +186,15 @@
 
 
                                   </tr>
-                                  <%} %>
+                                  <%}
+                                      } %>
                               </tbody>
                             </table>
                                     </div>
                             <!-- end user projects -->
 
                           </div>
-                          <%--<div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
-                               <table class="data table table-striped no-margin">
-                              <thead>
-                                <tr>
-                                  <th>#</th>
-                                  <th>Project Name</th>
-                                  <th>Client Company</th>
-                                  <th class="hidden-phone">Hours Spent</th>
-                                  <th>Contribution</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                <tr>
-                                  <td>1</td>
-                                  <td>New Company Takeover Review</td>
-                                  <td>Deveint Inc</td>
-                                  <td class="hidden-phone">18</td>
-                                  <td class="vertical-align-mid">
-                                    <div class="progress">
-                                      <div class="progress-bar progress-bar-success" data-transitiongoal="35"></div>
-                                    </div>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>2</td>
-                                  <td>New Partner Contracts Consultanci</td>
-                                  <td>Deveint Inc</td>
-                                  <td class="hidden-phone">13</td>
-                                  <td class="vertical-align-mid">
-                                    <div class="progress">
-                                      <div class="progress-bar progress-bar-danger" data-transitiongoal="15"></div>
-                                    </div>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>3</td>
-                                  <td>Partners and Inverstors report</td>
-                                  <td>Deveint Inc</td>
-                                  <td class="hidden-phone">30</td>
-                                  <td class="vertical-align-mid">
-                                    <div class="progress">
-                                      <div class="progress-bar progress-bar-success" data-transitiongoal="45"></div>
-                                    </div>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>4</td>
-                                  <td>New Company Takeover Review</td>
-                                  <td>Deveint Inc</td>
-                                  <td class="hidden-phone">28</td>
-                                  <td class="vertical-align-mid">
-                                    <div class="progress">
-                                      <div class="progress-bar progress-bar-success" data-transitiongoal="75"></div>
-                                    </div>
-                                  </td>
-                                </tr>
-                              </tbody>
-                            </table>
-                          </div>--%>
+                         
                         </div>
                       </div>
          </div>
@@ -244,25 +205,6 @@
     
 
 
-    <%--  <!-- jQuery -->
-    <%--<script src="../vendors/jquery/dist/jquery.min.js"></script>--%>
-    <!-- Bootstrap -->
-   <%-- <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-    <!-- FastClick -->
-    <script src="../vendors/fastclick/lib/fastclick.js"></script>
-    <!-- NProgress -->
-    <script src="../vendors/nprogress/nprogress.js"></script>
-    <!-- morris.js -->
-    <script src="../vendors/raphael/raphael.min.js"></script>
-    <script src="../vendors/morris.js/morris.min.js"></script>
-    <!-- bootstrap-progressbar -->
-    <script src="../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
-    <!-- bootstrap-daterangepicker -->
-    <script src="js/moment/moment.min.js"></script>
-    <script src="js/datepicker/daterangepicker.js"></script>
-    
-    <!-- Custom Theme Scripts -->
-    <script src="../build/js/custom.min.js"></script>--%>
 
    
 

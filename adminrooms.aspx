@@ -1,11 +1,38 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AdminPanel.master" AutoEventWireup="true" CodeFile="adminrooms.aspx.cs" Inherits="adminrooms" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
-     <style>
+
+
+   <style>
        .tbl{
            margin-left:-20px;
        }
    </style>
+   <script>
+       function activaTab(tab) {
+
+           $('.nav-tabs a[href="#' + tab + '"]').tab('show');
+
+           //alert("working");
+       };
+       function InsertAddRoomsValues() {
+           $("input[name=roomno]").val("000");
+           $("input[name=roomtype]").val("000");
+           $("input[name=roomsize]").val("000");
+           $("input[name=roommaxrent]").val("000");
+           $("input[name=roomminrent]").val("000");
+           $("input[name=roombranch]").val("Islamabad");
+
+       }
+       function removeValue() {
+           $("input[name=roomno]").val("");
+           $("input[name=roomtype]").val("");
+           $("input[name=roomsize]").val("");
+           $("input[name=roommaxrent]").val("");
+           $("input[name=roomminrent]").val("");
+           $("input[name=roombranch]").val("");
+       }
+   </script>
    
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
@@ -26,7 +53,7 @@
                       <span class="input-group-btn">
                               <button class="btn btn-default" type="button" disabled="disabled">Select branch!</button>
                           </span>
-                  <asp:DropDownList ID="branch" runat="server"  AutoPostBack="true" ClientIDMode="Static"  CssClass="form-control"></asp:DropDownList>
+                  <asp:DropDownList ID="branch" runat="server" OnSelectedIndexChanged="branchIndexChange"  AutoPostBack="true" ClientIDMode="Static"  CssClass="form-control"></asp:DropDownList>
 
                     
                   </div>
@@ -45,8 +72,9 @@
                         <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
                           <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Rooms</a></li>
                           
-                          <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Add Rooms</a></li>
-                            
+                          <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false" onclick="removeValue()">Add Rooms</a></li>
+                          <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false" onclick="InsertAddRoomsValues()">Update Rooms</a></li>
+
                           
                         </ul>
                         <div id="myTabContent" class="tab-content">
@@ -64,9 +92,7 @@
 
 
                             <!-- start recent activity -->
-                    <%--<asp:DropDownList ID="branch" runat="server"  AutoPostBack="true" ClientIDMode="Static"></asp:DropDownList>--%>
-                             
-
+                           
                            <table class="table tbl">
                               <thead class="thead-inverse">
                                 <tr>
@@ -79,19 +105,11 @@
                                 </tr>
                               </thead>
                               <tbody>
-                                  <% 
-    if (branch.SelectedValue == "Select Branch")
-    {
-
-    }//get all branches
-    else
-    {
-                                          int branchid = branchClass.getBranchID(branch.SelectedValue);
-        //IQueryable<room> branchRooms = roomsclass.getAllRooms(employeeProfile.getEmployeBranch("kk"));
-        IQueryable<room> branchRooms = roomsclass.getAllRooms(branchid);
-
-        foreach (var r in branchRooms)
-        { %>
+                                  <%  if (branch.SelectedValue != "Select Branch")
+                                            {
+                                                IQueryable<room> branchRooms = roomsclass.getAllRooms(branchClass.getBranchID(branch.SelectedValue));
+                                                foreach (var r in branchRooms)
+                                                { %>
                                 <tr>
                                   <td><label id="froomid"><%=r.room_no%></label></td>
                                   <td><label id="froomtype"><%=r.room_type %></label></td>
@@ -99,17 +117,16 @@
                                   <td> <label id="froomrent"><%=r.maximum_room_rent %></label></td>
                                   <td><label id="froombranch"><%=r.branch_id %></label></td>
                                     <% if (r.availbilty == "yes")
-    { %>
+                                            { %>
                                               <td><label id="availbiltyroomy" style="color:green">Available</label></td>
                                               <%}
-    else
-    { %>
+                                            else
+                                            { %>
                                               <td><label id="availbiltyroomn" style="color:red">Booked</label></td>
                                                <%} %>
                                 </tr>
                                   <%}
-    }
-     %>
+                                            } %>
                                
                               </tbody>
                             </table>
@@ -120,7 +137,7 @@
                          
                             
                             
-                          <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
+                          <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
                              
                               
                                    <div class="form-group col-md-6">
@@ -144,8 +161,8 @@
                         <label class="control-label col-md-4 " for="room size">Room Size <span class="required">*</span>
                         </label>
                         <div class="col-md-8">
-                          <input type="text" id="roomsize" name="roomsize"  placeholder="Room size" class="form-control " data-validation="length alphanumeric" 
-		 data-validation-length="3-12" 
+                          <input type="text" id="roomsize" name="roomsize"  placeholder="Room size" class="form-control " data-validation="required" 
+
 		 data-validation-error-msg="Room size is not in correct format"/>
                         </div>
                       </div>
@@ -167,11 +184,11 @@
 		 data-validation-error-msg="Minimum room rent is required !"/>
                         </div>
                       </div>
-                               <div class="form-group col-md-6">
+                           <%--    <div class="form-group col-md-6">
                         <label class="control-label col-md-4 " for="branch no">Branch <span class="required">*</span>
                         </label>
                         <div class="col-md-8">
-                        <select class="form-control" name="roombranch" required="required">
+                        <select class="form-control" name="roombranch" >
                              <option value="">Select</option>
                              <% IQueryable<branch> brachdata=branchClass.getBrachesinfo();
                                           foreach (var b in brachdata)
@@ -180,28 +197,80 @@
                                       <%} %>
                             </select>
                         </div>
-                      </div>
+                      </div>--%>
                               <div class="form-group">
-                        <div class="col-md-6 col-md-offset-11">
-                          <asp:Button ID="saveroom" runat="server" Text="Save Room" OnClick="saveroom_click" />
+                        <div class="col-md-6 col-md-offset-1">
+                          <asp:Button ID="saveroom" runat="server" Text="Save Room" OnClick="saveroom_click" CssClass="btn btn-success" />
                         </div>
                       </div>
-                              
+                           
                               
                               
                               
                               
                               
                           </div>
+                            <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
+                                <div class="form-group col-md-12">
+                                      <asp:DropDownList runat="server" ID="ddRoomNo" ClientIDMode="Static" OnSelectedIndexChanged="ddRoomNoIndexChanged" AutoPostBack="true" data-validation="required" required="required"
+		 data-validation-error-msg="Room no is required !"  CssClass="btn btn-default">
+                                      </asp:DropDownList> 
+                                </div>
+                                <div class="row">
+                                  <div class="form-group col-md-6">
+                                    <label class="control-label col-md-4 " for="room rent">Room No (optional) <span class="required">*</span></label>
+                                    <div class="col-md-8">
+                                      <input type="text" id="roomnoupdate" name="roomnoupdate" readonly runat="server" placeholder="Select Room no"  class="form-control "/>
+                                    </div>
+                                  </div>
+                                <div class="form-group col-md-6">
+                                    <label class="control-label col-md-4 " for="room rent">Room type (optional) <span class="required">*</span></label>
+                                    <div class="col-md-8">
+                                      <input type="text" id="roomtypeupdate" name="roomtypeupdate" runat="server"  placeholder="Select Room type" class="form-control " data-validation="required" 
+		 data-validation-error-msg="Room type is required !"/>
+                                    </div>
+                                  </div>
+                                    </div>
+                                
+                                <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label class="control-label col-md-4 " for="room rent">Minimum Room rent (optional) <span class="required">*</span></label>
+                                    <div class="col-md-8">
+                                      <input type="number" id="roomminrentupdate" data-validation="required" 
+		 data-validation-error-msg="Minimum room rent is required !" name="roomminrentupdate" runat="server"  placeholder="Select minimum Room Rent" class="form-control "/>
+                                    </div>
+                                  </div>
+                                    <div class="form-group col-md-6">
+                                    <label class="control-label col-md-4 " for="room rent">Maximum Room rent (optional) <span class="required">*</span></label>
+                                    <div class="col-md-8">
+                                      <input type="number"  data-validation="required" 
+		 data-validation-error-msg="Max room rent is required !" id="roommaxrentupdate" name="roommaxrentupdate" runat="server"  placeholder="Select maximum Room type" class="form-control "/>
+                                    </div>
+                                  </div>
+                                    </div>
+                                <div class="row">
+                                  <div class="form-group col-md-6">
+                                    <label class="control-label col-md-4 " for="room rent">Room Size (optional) <span class="required">*</span></label>
+                                    <div class="col-md-8">
+                                      <input type="text" id="roomsizeupdate"  data-validation="required" 
+		 data-validation-error-msg="RoomSize is required !" name="roomsizeupdate" runat="server" placeholder="Select Room size" class="form-control "/>
+                                    </div>
+                                  </div>
+                                    </div>
+                                <asp:Button runat="server" Text="Update" OnClick="updateRoomInfo" CssClass="btn btn-success" />
+                          </div>
+                            
                         </div>
+       
                       </div>
+                  
          </div>
          </div>
          </div>
         </div>
           </div>
     </div>
-   </div>
+     <%--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>--%>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
 <script>
 
@@ -218,20 +287,6 @@
 </script>
 
       <!-- jQuery -->
-    <!-- Bootstrap -->
-    <!-- FastClick -->
-    <script src="../vendors/fastclick/lib/fastclick.js"></script>
-    <!-- NProgress -->
-    <script src="../vendors/nprogress/nprogress.js"></script>
-    <!-- morris.js -->
-    <script src="../vendors/raphael/raphael.min.js"></script>
-    <script src="../vendors/morris.js/morris.min.js"></script>
-    <!-- bootstrap-progressbar -->
-    <script src="../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
-    <!-- bootstrap-daterangepicker -->
-    <script src="js/moment/moment.min.js"></script>
-    <script src="js/datepicker/daterangepicker.js"></script>
-    
    
 
     
