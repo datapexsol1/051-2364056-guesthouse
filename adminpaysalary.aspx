@@ -1,7 +1,7 @@
-﻿    <%@ Page Title="" Language="C#" MasterPageFile="~/EmployePanel.master" EnableEventValidation="false" AutoEventWireup="true" CodeFile="employepaysalary.aspx.cs" Inherits="employepaysalary" %>
+﻿<%@ Page Title="" Language="C#" EnableViewState="true" MasterPageFile="~/AdminPanel.master" AutoEventWireup="true" CodeFile="adminpaysalary.aspx.cs" Inherits="adminpaysalary" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
-    <script>
+     <script>
         function updatevalue(x) {
             var val ="#paidamount"+x;//"#paidamount"+val;
            
@@ -20,15 +20,29 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <div id="Notify"></div>
      <div class="messagealert" id="alert_container"  style=" opacity: 0;transition: visibility 0s 2s, opacity 2s linear;">  </div>  
-    <% int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
-                               List<employee> emp = employeeProfile.getunpaidemploye(bid);
-         %> 
+    
      <div class="right_col" role="main">
-    <div class="row">
-     <div class="col-md-12 col-sm-12 col-xs-12">
-     <div class="x_content">
-     <div class="col-md-9 col-sm-9 col-xs-12">
-         <h3>Employee Salary</h3>
+          <div class="">
+    <div class="page-title">
+              <div class="title_left">
+                   <h3>EmployeeSalary</h3>
+              </div>
+
+              <div class="title_right">
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                  <div class="input-group">
+                      <span class="input-group-btn">
+                              <b style="float:right">Select branch!</b>
+                          </span>
+                  <asp:DropDownList ID="brid" runat="server"  AutoPostBack="true" OnSelectedIndexChanged="branchindexchange" ClientIDMode="Static"  CssClass="form-control"></asp:DropDownList>
+
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+      <div class="clearfix"></div>
+
           <div class="container">
     <div class="" role="tabpanel" data-example-id="togglable-tabs">
                         <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
@@ -41,7 +55,16 @@
                         </ul>
                         <div id="myTabContent" class="tab-content">
                           <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
-
+<%  if (brid.SelectedValue == "Select Branch")
+    {
+        //show all branch bills details 
+    }
+    else
+    {
+        int bid = branchClass.getBranchID(brid.SelectedValue);
+        // int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
+        List<employee> emp = employeeProfile.getunpaidemploye(bid);
+         %>
 
 
                             <!-- start recent activity -->
@@ -84,7 +107,8 @@
                                               
                                               
                                 </tr>
-                                 <%} %>
+                                 <%}
+                                     }%>
                                
                               </tbody>
                             </table>
@@ -129,7 +153,7 @@
                                     <td><label id="empamount"  runat="server"></label></td>
                                     <td><label  id="empdate"   runat="server" ></label></td>
                                     <td><a href="#" runat="server" class="btn btn-success" onserverclick="updateSalary">Update</a></td>
-                                  <td> <input id="inputid" type="text"  runat="server" /></td>
+                                  <td> <input id="inputid" type="hidden"  runat="server" /></td>
                                     
                                     
                                          
@@ -141,8 +165,13 @@
                                    <div runat="server" id="tbupdate" >
                                       <table class="table tbl" >
                                           <%
-                                  int hiddenid = int.Parse(inputid.Value);
-                                      employesalary em = employeeProfile.retrieveSalaryInfo(hiddenid);
+                                              if (brid.SelectedValue != "Select Branch")
+                                              {
+                                                  if (ddemployeename.SelectedValue != "" || ddemployeename.SelectedValue != "Select")
+                                                  {
+                                                      int hiddenid = int.Parse(inputid.Value.ToString());
+                                                      employesalary em = employeeProfile.retrieveSalaryInfo(hiddenid);
+                                                 
                                    %>
                               <thead class="thead-inverse">
                                 <tr>
@@ -166,7 +195,9 @@
                                     <td><input  id="indate" name="indate" type="" value="<%=em.payment_date.ToShortDateString() %>" class="form-control"  /></td>
                                     <td><a href="#" runat="server" class="btn btn-success" onserverclick="updateSalary2">Update</a></td>
                                   <td> <input id="Hidden1" type="hidden"  runat="server" /></td>
-                                    
+                                    <% }}
+        
+     %>
                                     
                                          
                                 </tr>
@@ -212,155 +243,8 @@
             
         }
     </script>
-    <!-- bootstrap-daterangepicker -->
-    <script>
-      $(document).ready(function() {
-        var cb = function(start, end, label) {
-          console.log(start.toISOString(), end.toISOString(), label);
-          $('#reportrange_right span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-        };
-
-        var optionSet1 = {
-          startDate: moment().subtract(29, 'days'),
-          endDate: moment(),
-          minDate: '01/01/2012',
-          maxDate: '12/31/2015',
-          dateLimit: {
-            days: 60
-          },
-          showDropdowns: true,
-          showWeekNumbers: true,
-          timePicker: false,
-          timePickerIncrement: 1,
-          timePicker12Hour: true,
-          ranges: {
-            'Today': [moment(), moment()],
-            'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-            'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-            'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-            'This Month': [moment().startOf('month'), moment().endOf('month')],
-            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-          },
-          opens: 'right',
-          buttonClasses: ['btn btn-default'],
-          applyClass: 'btn-small btn-primary',
-          cancelClass: 'btn-small',
-          format: 'MM/DD/YYYY',
-          separator: ' to ',
-          locale: {
-            applyLabel: 'Submit',
-            cancelLabel: 'Clear',
-            fromLabel: 'From',
-            toLabel: 'To',
-            customRangeLabel: 'Custom',
-            daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-            monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-            firstDay: 1
-          }
-        };
-
-        $('#reportrange_right span').html(moment().subtract(29, 'days').format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
-
-        $('#reportrange_right').daterangepicker(optionSet1, cb);
-
-        $('#reportrange_right').on('show.daterangepicker', function() {
-          console.log("show event fired");
-        });
-        $('#reportrange_right').on('hide.daterangepicker', function() {
-          console.log("hide event fired");
-        });
-        $('#reportrange_right').on('apply.daterangepicker', function(ev, picker) {
-          console.log("apply event fired, start/end dates are " + picker.startDate.format('MMMM D, YYYY') + " to " + picker.endDate.format('MMMM D, YYYY'));
-        });
-        $('#reportrange_right').on('cancel.daterangepicker', function(ev, picker) {
-          console.log("cancel event fired");
-        });
-
-        $('#options1').click(function() {
-          $('#reportrange_right').data('daterangepicker').setOptions(optionSet1, cb);
-        });
-
-        $('#options2').click(function() {
-          $('#reportrange_right').data('daterangepicker').setOptions(optionSet2, cb);
-        });
-
-        $('#destroy').click(function() {
-          $('#reportrange_right').data('daterangepicker').remove();
-        });
-
-      });
-    </script>
-
-    <script>
-      $(document).ready(function() {
-        var cb = function(start, end, label) {
-          console.log(start.toISOString(), end.toISOString(), label);
-          $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-        };
-
-        var optionSet1 = {
-          startDate: moment().subtract(29, 'days'),
-          endDate: moment(),
-          minDate: '01/01/2012',
-          maxDate: '12/31/2015',
-          dateLimit: {
-            days: 60
-          },
-          showDropdowns: true,
-          showWeekNumbers: true,
-          timePicker: false,
-          timePickerIncrement: 1,
-          timePicker12Hour: true,
-          ranges: {
-            'Today': [moment(), moment()],
-            'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-            'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-            'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-            'This Month': [moment().startOf('month'), moment().endOf('month')],
-            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-          },
-          opens: 'left',
-          buttonClasses: ['btn btn-default'],
-          applyClass: 'btn-small btn-primary',
-          cancelClass: 'btn-small',
-          format: 'MM/DD/YYYY',
-          separator: ' to ',
-          locale: {
-            applyLabel: 'Submit',
-            cancelLabel: 'Clear',
-            fromLabel: 'From',
-            toLabel: 'To',
-            customRangeLabel: 'Custom',
-            daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-            monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-            firstDay: 1
-          }
-        };
-        $('#reportrange span').html(moment().subtract(29, 'days').format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
-        $('#reportrange').daterangepicker(optionSet1, cb);
-        $('#reportrange').on('show.daterangepicker', function() {
-          console.log("show event fired");
-        });
-        $('#reportrange').on('hide.daterangepicker', function() {
-          console.log("hide event fired");
-        });
-        $('#reportrange').on('apply.daterangepicker', function(ev, picker) {
-          console.log("apply event fired, start/end dates are " + picker.startDate.format('MMMM D, YYYY') + " to " + picker.endDate.format('MMMM D, YYYY'));
-        });
-        $('#reportrange').on('cancel.daterangepicker', function(ev, picker) {
-          console.log("cancel event fired");
-        });
-        $('#options1').click(function() {
-          $('#reportrange').data('daterangepicker').setOptions(optionSet1, cb);
-        });
-        $('#options2').click(function() {
-          $('#reportrange').data('daterangepicker').setOptions(optionSet2, cb);
-        });
-        $('#destroy').click(function() {
-          $('#reportrange').data('daterangepicker').remove();
-        });
-      });
-    </script>
+    
+  
 
     <script>
       $(document).ready(function() {
@@ -376,13 +260,7 @@
       });
     </script>
 
-        <script>
-          $(document).ready(function() {
-            $('#reservation').daterangepicker(null, function(start, end, label) {
-              console.log(start.toISOString(), end.toISOString(), label);
-            });
-          });
-        </script>
-        <!-- /bootstrap-daterangepicker -->
+        
 </asp:Content>
+
 

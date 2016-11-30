@@ -176,7 +176,7 @@
 
 
 
-
+                
 <div id="s2">
  <div  class="form-vertical">
 
@@ -185,7 +185,7 @@
                             <div class="item col-md-4 col-sm-4 col-xs-12">
                                 <label >Registration No <span class="required">*</span>
                             </label>
-                              <input type="text" id="regno" name="regno"  class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="1" required="required"/>
+                              <input type="text" id="regno" readonly name="regno"  class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="1" required="required"/>
                             </div>
                           <%--</div>
 
@@ -400,7 +400,7 @@
                                  <div class="item col-md-4 col-sm-4 col-xs-12">
                                 <label >Registration No <span class="required">*</span>
                             </label>
-                              <input type="text" id="fregno"  name="fregno"  class="form-control col-md-7 col-xs-12" required="required"/>
+                              <input type="text" readonly id="fregno"  name="fregno"  class="form-control col-md-7 col-xs-12" required="required"/>
                             </div>
                           
                            
@@ -704,155 +704,7 @@
   
 
 
-    <!-- bootstrap-daterangepicker -->
-    <script>
-      $(document).ready(function() {
-        var cb = function(start, end, label) {
-          console.log(start.toISOString(), end.toISOString(), label);
-          $('#reportrange_right span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-        };
-
-        var optionSet1 = {
-          startDate: moment().subtract(29, 'days'),
-          endDate: moment(),
-          minDate: '01/01/2012',
-          maxDate: '12/31/2015',
-          dateLimit: {
-            days: 60
-          },
-          showDropdowns: true,
-          showWeekNumbers: true,
-          timePicker: false,
-          timePickerIncrement: 1,
-          timePicker12Hour: true,
-          ranges: {
-            'Today': [moment(), moment()],
-            'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-            'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-            'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-            'This Month': [moment().startOf('month'), moment().endOf('month')],
-            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-          },
-          opens: 'right',
-          buttonClasses: ['btn btn-default'],
-          applyClass: 'btn-small btn-primary',
-          cancelClass: 'btn-small',
-          format: 'MM/DD/YYYY',
-          separator: ' to ',
-          locale: {
-            applyLabel: 'Submit',
-            cancelLabel: 'Clear',
-            fromLabel: 'From',
-            toLabel: 'To',
-            customRangeLabel: 'Custom',
-            daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-            monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-            firstDay: 1
-          }
-        };
-
-        $('#reportrange_right span').html(moment().subtract(29, 'days').format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
-
-        $('#reportrange_right').daterangepicker(optionSet1, cb);
-
-        $('#reportrange_right').on('show.daterangepicker', function() {
-          console.log("show event fired");
-        });
-        $('#reportrange_right').on('hide.daterangepicker', function() {
-          console.log("hide event fired");
-        });
-        $('#reportrange_right').on('apply.daterangepicker', function(ev, picker) {
-          console.log("apply event fired, start/end dates are " + picker.startDate.format('MMMM D, YYYY') + " to " + picker.endDate.format('MMMM D, YYYY'));
-        });
-        $('#reportrange_right').on('cancel.daterangepicker', function(ev, picker) {
-          console.log("cancel event fired");
-        });
-
-        $('#options1').click(function() {
-          $('#reportrange_right').data('daterangepicker').setOptions(optionSet1, cb);
-        });
-
-        $('#options2').click(function() {
-          $('#reportrange_right').data('daterangepicker').setOptions(optionSet2, cb);
-        });
-
-        $('#destroy').click(function() {
-          $('#reportrange_right').data('daterangepicker').remove();
-        });
-
-      });
-    </script>
-
-    <script>
-      $(document).ready(function() {
-        var cb = function(start, end, label) {
-          console.log(start.toISOString(), end.toISOString(), label);
-          $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-        };
-
-        var optionSet1 = {
-          startDate: moment().subtract(29, 'days'),
-          endDate: moment(),
-          minDate: '01/01/2012',
-          maxDate: '12/31/2015',
-          dateLimit: {
-            days: 60
-          },
-          showDropdowns: true,
-          showWeekNumbers: true,
-          timePicker: false,
-          timePickerIncrement: 1,
-          timePicker12Hour: true,
-          ranges: {
-            'Today': [moment(), moment()],
-            'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-            'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-            'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-            'This Month': [moment().startOf('month'), moment().endOf('month')],
-            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-          },
-          opens: 'left',
-          buttonClasses: ['btn btn-default'],
-          applyClass: 'btn-small btn-primary',
-          cancelClass: 'btn-small',
-          format: 'MM/DD/YYYY',
-          separator: ' to ',
-          locale: {
-            applyLabel: 'Submit',
-            cancelLabel: 'Clear',
-            fromLabel: 'From',
-            toLabel: 'To',
-            customRangeLabel: 'Custom',
-            daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-            monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-            firstDay: 1
-          }
-        };
-        $('#reportrange span').html(moment().subtract(29, 'days').format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
-        $('#reportrange').daterangepicker(optionSet1, cb);
-        $('#reportrange').on('show.daterangepicker', function() {
-          console.log("show event fired");
-        });
-        $('#reportrange').on('hide.daterangepicker', function() {
-          console.log("hide event fired");
-        });
-        $('#reportrange').on('apply.daterangepicker', function(ev, picker) {
-          console.log("apply event fired, start/end dates are " + picker.startDate.format('MMMM D, YYYY') + " to " + picker.endDate.format('MMMM D, YYYY'));
-        });
-        $('#reportrange').on('cancel.daterangepicker', function(ev, picker) {
-          console.log("cancel event fired");
-        });
-        $('#options1').click(function() {
-          $('#reportrange').data('daterangepicker').setOptions(optionSet1, cb);
-        });
-        $('#options2').click(function() {
-          $('#reportrange').data('daterangepicker').setOptions(optionSet2, cb);
-        });
-        $('#destroy').click(function() {
-          $('#reportrange').data('daterangepicker').remove();
-        });
-      });
-    </script>
+  
 
     <script>
       $(document).ready(function() {
@@ -968,13 +820,28 @@
             $("#pakistani").click(function () {
                 $("#s2").show();
                 $("#s3").hide();
-                $("#guestType").val("pakistani") ;
+                $("#guestType").val("pakistani");
+                <%
+         bool check = false;
+         while (check != true)
+         {
+             Random ran = new Random();
+             int rand = ran.Next(0, 10000);
+              check = guestBookingAttributes.checkRegNo("RG-"+rand.ToString());
+             if (check == true)
+             {
+                             %>
+                $("input[name=regno]").val("RG-"+<%=rand%>);
+                <%
+                 break;
+             }
+         }%>
                 //alert($("#guestType").val());
                 //    $('input[name=regno]').val("0") ;
            $("<%=cnicfrontimg.ClientID%>").val("");
                  $("<%=cnicbackimg.ClientID%>").val("");
                  $("<%=regformimage.ClientID%>").val("");
-                $("input[name=regno]").val("");
+                
                 $("input[name=arrivaldate]").val("");
                 $("input[name=atime]").val("");
                 $("input[name=gname]").val("");
@@ -1029,9 +896,24 @@
                 $("#s3").show();
                 $("#s2").hide();
                 $("#guestType").val("foriegner");
+                <%
+         bool fcheck = false;
+         while (fcheck != true)
+         {
+             Random fr = new Random();
+             int frand = fr.Next(0, 10000);
+             fcheck = guestBookingAttributes.checkRegNo("RG-"+frand.ToString());
+             if (fcheck == true)
+             {
+                             %>
+                
                 $("<%=passportimage.ClientID%>").val("");
                  $("<%=fregformimg.ClientID%>").val("");
-                $("input[name=fregno]").val("");
+                $("input[name=fregno]").val("RG-"+<%=frand%>);
+                <%
+                 break;
+             }
+         }%>
                 $("input[name=farrivaldate]").val("");
                 $("input[name=fatime]").val("");
                 $("input[name=fgname]").val("");

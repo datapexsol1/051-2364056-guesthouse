@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -49,7 +50,7 @@ public partial class employebranchbills : System.Web.UI.Page
                 b.BranchId = bid;// employeeProfile.getEmployeBranch(Session["loginName"].ToString());//get from session
                 b.BillAmount = Convert.ToInt32(Request.Form["abamount"]);
                 b.bill_description = Request.Form["desc"];
-                b.Date = Convert.ToDateTime(Request.Form["abdate"]);
+                b.Date = DateTime.ParseExact(Request.Form["abdate"], "dd-MM-yyyy", CultureInfo.InvariantCulture);// Convert.ToDateTime(Request.Form["abdate"]);
                 //checking if bill already exist
                 if (abtype.Value == "Electricity" || abtype.Value == "Gas" || abtype.Value == "Water" || abtype.Value == "Nayatel")
                 {

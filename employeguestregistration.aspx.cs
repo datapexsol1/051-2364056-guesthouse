@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -43,7 +44,7 @@ public partial class employeguestregistration : System.Web.UI.Page
                 g.reg_no = Request.Form["regno"];
                 g.guest_name = Request.Form["gname"];
                 g.cnic = Request.Form["cnicno"];
-                g.date_of_birth = DateTime.Parse(Request.Form["dob"]);
+                g.date_of_birth = DateTime.ParseExact(Request.Form["dob"], "dd-MM-yyyy", CultureInfo.InvariantCulture);// DateTime.Parse(Request.Form["dob"]);
                 g.company_name = Request.Form["cname"];
                 g.complete__address = Request.Form["sawat "];
                 g.profession = Request.Form["proffesion"];
@@ -80,7 +81,7 @@ public partial class employeguestregistration : System.Web.UI.Page
                 g.reg_no = Request.Form["fregno"];
                 g.guest_name = Request.Form["fgname"];
                 g.cnic = Request.Form["fcnicno"];
-                g.date_of_birth = DateTime.Parse(Request.Form["fdob"]);
+                g.date_of_birth = DateTime.ParseExact(Request.Form["fdob"], "dd-MM-yyyy", CultureInfo.InvariantCulture); ;//DateTime.Parse(Request.Form["fdob"]);
                 g.company_name = Request.Form["fcaddress"];
                 g.complete__address = Request.Form["sawat "];
                 g.profession = Request.Form["fproffesion"];
@@ -92,9 +93,9 @@ public partial class employeguestregistration : System.Web.UI.Page
                 g.f_passport_no = Request.Form["fpassno"];
                 g.f_nationality = Request.Form["nationality"];
                 g.place_of_issue = Request.Form["placeofissue"];
-                g.f_passport_issue_date = DateTime.Parse(Request.Form["fdateofissue"]);
+                g.f_passport_issue_date = DateTime.ParseExact(Request.Form["fdateofissue"], "dd-MM-yyyy", CultureInfo.InvariantCulture); //DateTime.Parse(Request.Form["fdateofissue"]);
                 g.f_visa_number = Request.Form["visano"];
-                g.f_visa_valid_upto = DateTime.Parse(Request.Form["validupto"]);
+                g.f_visa_valid_upto = DateTime.ParseExact(Request.Form["validupto"], "dd-MM-yyyy", CultureInfo.InvariantCulture);//DateTime.Parse(Request.Form["validupto"]);
                 g.f_purpose_of_vist = Request.Form["visit"];
                 g.f_coming_from = Request.Form["fcfrom"];
                 g.f_going_to = Request.Form["fgoto"];
@@ -128,7 +129,7 @@ public partial class employeguestregistration : System.Web.UI.Page
 
             booking b = new booking();
             b.branch_id = int.Parse(Request.Form["branch"].ToString());
-            b.check_in_date = DateTime.Now;
+            b.check_in_date = DateTime.Now;//ateTime.Now;
             //  b.room_id = roomsclass.getRoomID(Request.Form["rno"].ToString(), int.Parse(Request.Form["branch"].ToString()));
             b.employee_id = employeeProfile.getEmployeid(Session["loginName"].ToString());//get employe username from sessions
             g.employee_id = employID;

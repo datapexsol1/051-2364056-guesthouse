@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EmployePanel.master" AutoEventWireup="true" CodeFile="employeguestpayment.aspx.cs" Inherits="employeguestpayment" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AdminPanel.master" AutoEventWireup="true" CodeFile="adminpaymentdetail.aspx.cs" Inherits="adminpaymentdetail" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <style>
@@ -113,7 +113,6 @@
      <div class="x_content">
      <div class="col-md-9 col-sm-9 col-xs-12">
          <div id="printPaymentpage">
-             <img src="img/logo.png" width="100px" height="100" />
          <h3>Guest Payment</h3>
          <hr style="border:dashed;" />
          <div>
@@ -151,56 +150,19 @@
              <br />
              <div style="float:right;">
                   
-                 <label id="gbill" style="background-color:goldenrod;width:100%;text-align:center;font-size:x-large"><u>Bill  </u></label>
-                 <br />
-                 <div id="paymenttype">
-                  <asp:DropDownList ID="paymentDropdown"  runat="server" AutoPostBack="True" CausesValidation="True" OnSelectedIndexChanged="paymentDropdown_SelectedIndexChanged">
-                    <asp:ListItem>Select Payment Method</asp:ListItem>       
-                    <asp:ListItem>Cash</asp:ListItem>
-                     <asp:ListItem>Cheque</asp:ListItem>
-                     <asp:ListItem>Pay later</asp:ListItem>
-
-                          </asp:DropDownList>
-                     </div><br />
-                 <div id="type">
-                     <b>Payment type</b>
-                  <label name="setpaymenttype" runat="server" id="setpaymenttype" ></label>
-
-                 </div>
-                 <br />
-                 <b>Room Rent</b>
-                 <asp:Label Font-Bold="true" ID="lbroomrent" runat="server"></asp:Label>
-                 <br />
-                 <b> Facilities </b>
-                 <asp:Label Font-Bold="true" ID="lbfacilities" runat="server"></asp:Label>
-                 <br />
-                 <b>Tax</b>
-                 <asp:Label Font-Bold="true" ID="lbtax" runat="server"></asp:Label>
-                      <br />
-                       <b>Total Bill</b>
-                 <asp:Label Font-Bold="true" ID="tbill" runat="server"></asp:Label>
-                 <br />
-                     
-                       <b>Advance</b>
-                 <asp:Label Font-Bold="true" ID="lbadvance" runat="server"></asp:Label>
-                 <br />
-                                     <label id="chequeid" runat="server" ><u>Chaque No:<asp:TextBox ID="chaqueno" runat="server" placeholder="Enter cheque no."></asp:TextBox> </u></label><br />
-
-
-             <label id="gtotal" ><u>Remaining Bill : </u></label>
-                 <asp:Label Font-Bold="true" ID="Gtotal" runat="server"></asp:Label>
-                      <asp:HiddenField ID="gtotaltb" runat="server" />
-             <br />
-                  <label id="gtotal1"><u>Paid Amount : </u></label>
                
-                 <asp:Textbox ID="tbpaidamount" runat="server"></asp:Textbox>  
+                                    
+
+
+           
+             <br />
+                 
+               
+                 
                
                  <!-- if stay hours is less than 6 hours-->
                
-                            <div id="cb">
-                                <asp:CheckBox ID="timelesscbox" ClientIDMode="Static" runat="server" Text="RentDiscount" AutoPostBack="true" OnCheckedChanged="checkedchange"  />
-                                <asp:CheckBox ID="taxtdiscount" ClientIDMode="Static" runat="server" Text="Tax Discount" AutoPostBack="true" OnCheckedChanged="tax_discount"  />
-</div>
+
                  <br />
                 <%--  --%><%--<asp:DropDownList ID="paymentDropdown" runat="server" AutoPostBack="True" CausesValidation="True" OnSelectedIndexChanged="paymentDropdown_SelectedIndexChanged">
                     <asp:ListItem>Select Payment Method</asp:ListItem>       
@@ -241,16 +203,14 @@
          <div style="float:right;margin-top:250px">
            
 
-              
-                                        <asp:Button ID="btnpaid" CssClass="btn btn-success" runat="server" Text="Pay" CausesValidation="false" OnClick="btnpaid_Click" />
+                 
+                                  
              <input type="button" id="btnPrint" value="Print Bill"  class="btn btn-default"/>
-                          <input type="button" id="btn" value="Print "  class="btn btn-default"/>
-
                  <%--<a href="#" data-toggle="modal" data-target="#login-modal"  class="btn btn-default">Print Bill Now</a>--%>
-                 <asp:HiddenField ID="tbroombill" runat="server" />
+                <%-- <asp:HiddenField ID="tbroombill" runat="server" />
                  <asp:HiddenField ID="tbfacilitebill" runat="server" />
                   <asp:HiddenField ID="taxdiscountH" runat="server" />
-             <asp:HiddenField ID="tbpayType" runat="server" />
+             <asp:HiddenField ID="tbpayType" runat="server" />--%>
              </div>
          <!--popup start-->
                          <%-- <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
@@ -323,17 +283,9 @@
          <input id="totalbill" type="hidden" runat="server" />
             </div>
      <script>
-         $(function () {
+        $(function () {
             $("#btnPrint").click(function () {
                 //alert("hello");
-                <%
-         if (bookingRoomClass.checkBookingRoomcheckout(int.Parse(tbbid.Value)) == true)
-         {
-             if (paymentDropdown.SelectedIndex != 0)
-             {
-                 // setpaymenttype.Value = paymentDropdown.SelectedValue;
-                 // setpaymenttype.Value = paymentDropdown.SelectedValue;
-         %>
 <%--                $("#type").show();
                var v = "<%=paymentDropdown.SelectedValue.ToString()%>";
                // alert(v);
@@ -364,50 +316,6 @@
                     window.frames["frame1"].print();
                     frame1.remove();
                 }, 500);
-               <%}
-         else
-         {%>
-                         ShowNotification('Error', 'Select Payment type');
-                <%
-             }
-
-
-         }
-         else
-         {%>
-                ShowNotification('Error', 'Pay bill first to print the bill');
-        <% }%>
-            });
-        });
-
-        $(function () {
-            $("#btn").click(function () {
-  
-                $("#cb").hide();
-                $("#paymenttype").hide();
-                var contents = $("#printPaymentpage").html();
-                var frame1 = $('<iframe />');
-                frame1[0].name = "frame1";
-                frame1.css({ "position": "absolute", "top": "-1000000px" });
-                $("body").append(frame1);
-                var frameDoc = frame1[0].contentWindow ? frame1[0].contentWindow : frame1[0].contentDocument.document ? frame1[0].contentDocument.document : frame1[0].contentDocument;
-                frameDoc.document.open();
-                //Create a new HTML document.
-                frameDoc.document.write('<html><head><title>CapeTown guest house</title>');
-                frameDoc.document.write('</head><body style="-webkit-print-color-adjust: exact;background-color:white; height: 950px;left: 0; right: 0; background-repeat: no-repeat; background-size:700px 500px;align-content:center;>');
-                //Append the external CSS file.
-
-
-                //Append the DIV contents.
-                frameDoc.document.write(contents);
-                frameDoc.document.write('</body></html>');
-                frameDoc.document.close();
-                setTimeout(function () {
-                    window.frames["frame1"].focus();
-                    window.frames["frame1"].print();
-                    frame1.remove();
-                }, 500);
-             
             });
         });
 

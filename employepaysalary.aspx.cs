@@ -18,23 +18,41 @@ public partial class employepaysalary : System.Web.UI.Page
         }
         else if (!IsPostBack)
         {
-            int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
-            List<employee> emp = employeeProfile.getunpaidemploye(bid);
-            //IQueryable<employee> bemploye = employeeProfile.getAllEmployee(bid);
-            IQueryable<employee> bemploye = employeeProfile.getAllEmployeeUserName(bid);
-            List<string> lname = new List<string>();
-            lname.Add("Select");
-            foreach (employee em in bemploye)
-            {
-                lname.Add(em.username);
-            }
-            ddemployeename.DataSource = lname;
-            ddemployeename.DataBind();
-            table.Visible = false;
-            tbupdate.Visible = false;
+            //int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
+            //List<employee> emp = employeeProfile.getunpaidemploye(bid);
+            ////IQueryable<employee> bemploye = employeeProfile.getAllEmployee(bid);
+            //IQueryable<employee> bemploye = employeeProfile.getAllEmployeeUserName(bid);
+            //List<string> lname = new List<string>();
+            //lname.Add("Select");
+            //foreach (employee em in bemploye)
+            //{
+            //    lname.Add(em.username);
+            //}
+            //ddemployeename.DataSource = lname;
+            //ddemployeename.DataBind();
+            //table.Visible = false;
+            //tbupdate.Visible = false;
+            employeUsernameBind();
 
         }
 
+    }
+    protected void employeUsernameBind()
+    {
+        int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
+        List<employee> emp = employeeProfile.getunpaidemploye(bid);
+        //IQueryable<employee> bemploye = employeeProfile.getAllEmployee(bid);
+        IQueryable<employee> bemploye = employeeProfile.getAllEmployeeUserName(bid);
+        List<string> lname = new List<string>();
+        lname.Add("Select");
+        foreach (employee em in bemploye)
+        {
+            lname.Add(em.username);
+        }
+        ddemployeename.DataSource = lname;
+        ddemployeename.DataBind();
+        table.Visible = false;
+        tbupdate.Visible = false;
     }
     protected void savebtnclick(object sender, EventArgs e)
     {
@@ -164,6 +182,7 @@ public partial class employepaysalary : System.Web.UI.Page
                 type = "Error";
             }
             Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('" + type + "','" + msg + "');</script>");
+            employeUsernameBind();
         }
         catch(Exception ex)
         {

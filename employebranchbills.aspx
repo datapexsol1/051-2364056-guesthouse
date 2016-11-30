@@ -20,10 +20,14 @@
             document.getElementById('<%=ddDate.ClientID %>').value =  '123' ;
             document.getElementById('<%=ubamount.ClientID %>').value = 123;
 
-<%--            document.getElementById('abamount').value = "";
+            <%--            document.getElementById('abamount').value = "";
                 document.getElementById('<%=abtype.ClientID %>').value = "";
                 document.getElementById('abdate').value = '';
                 document.getElementById('desc').value = "";--%>
+             document.getElementById('abamount').value = '';
+            document.getElementById('<%=abtype.ClientID %>').value = "";
+            document.getElementById('abdate').value = '';
+            document.getElementById('desc').value = "";
         }
         function setAddVal() {
                 <%try
@@ -34,9 +38,12 @@
             document.getElementById('abdate').value = '01-10-1991';
             document.getElementById('desc').value = "123";
 
-          <%-- document.getElementById('<%=ddBillType.ClientID %>').value = '';
+            <%-- document.getElementById('<%=ddBillType.ClientID %>').value = '';
             document.getElementById('<%=ddDate.ClientID %>').value =  '' ;
             document.getElementById('<%=ubamount.ClientID %>').value = "";--%>
+            document.getElementById('<%=ddBillType.ClientID %>').value = '';
+            document.getElementById('<%=ddDate.ClientID %>').value =  '' ;
+            document.getElementById('<%=ubamount.ClientID %>').value = '';
 
         }
         function setHomeRent() {

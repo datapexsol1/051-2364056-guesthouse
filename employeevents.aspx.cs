@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -23,8 +24,8 @@ public partial class employeevents : System.Web.UI.Page
             event_calender ev = new event_calender();
             ev.event_name = eventname.Value;
             ev.event_description = eventdesc.Value;
-            ev.event_start_date = DateTime.Parse(Request.Form["eventstartdate"]);//eventstartdate.Value);// DateTime.Parse(Request.Form["eventstartdate"].ToString());
-            ev.event_end_date = DateTime.Parse(Request.Form["eventenddate"]);//.Value);//Request.Form["eventenddate"].ToString());
+            ev.event_start_date = DateTime.ParseExact(Request.Form["eventstartdate"], "dd-MM-yyyy", CultureInfo.InvariantCulture); //DateTime.Parse(Request.Form["eventstartdate"]);//eventstartdate.Value);// DateTime.Parse(Request.Form["eventstartdate"].ToString());
+            ev.event_end_date = DateTime.ParseExact(Request.Form["eventenddate"], "dd-MM-yyyy", CultureInfo.InvariantCulture);//DateTime.Parse(Request.Form["eventenddate"]);//.Value);//Request.Form["eventenddate"].ToString());
             ev.event_color = eventcolor.Value;
             ev.employee_id = employID;
             bool check = events.addEvent(ev);

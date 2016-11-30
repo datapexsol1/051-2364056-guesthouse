@@ -19,7 +19,7 @@
                       <span class="input-group-btn">
                               <button class="btn btn-default" type="button" disabled="disabled">Select branch!</button>
                           </span>
-                  <asp:DropDownList ID="branch" runat="server"  AutoPostBack="true" ClientIDMode="Static"  CssClass="form-control"></asp:DropDownList>
+                  <asp:DropDownList ID="branch" runat="server" OnSelectedIndexChanged="branchIndexChange"  AutoPostBack="true" ClientIDMode="Static"  CssClass="form-control"></asp:DropDownList>
 
                     
                   </div>
@@ -46,7 +46,7 @@
                   <div class="x_content">
 
 
-                    <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                   <div class="" role="tabpanel" data-example-id="togglable-tabs">
                      <%-- <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
                         <li role="presentation" class="active"><a href="#tab_view" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Place order</a>
                         </li>--%>
@@ -59,12 +59,11 @@
                         <div role="tabpanel" class="tab-pane fade active in" id="tab_view" aria-labelledby="home-tab">
                            <%-- <asp:Button ID="getsummary" runat="server" Text="Place Order" OnClick="getsummary_click" />
                              <asp:Button ID="savetodb" runat="server" Text="PrintBill"  />--%>
-                            <div class="col-md-5">
-                                Select room
-                             <asp:DropDownList ID="ddrooms" runat="server" CssClass="form-control" AutoPostBack="True" OnSelectedIndexChanged="ddrooms_SelectedIndexChanged"></asp:DropDownList>
-                                        </div>
+                            <b>Select Room</b>
+                             <asp:DropDownList ID="ddrooms" runat="server" CssClass="form-control " AutoPostBack="True" OnSelectedIndexChanged="ddrooms_SelectedIndexChanged"></asp:DropDownList>
+                                        
                             <asp:Table ID="viewOrder" runat="server"  class="table table-bordered table-striped"></asp:Table>
-                            <asp:Label ID="grandtotal" runat="server"  Text="Amount"></asp:Label>
+                            <asp:Label ID="grandtotal" runat="server"  Text=""></asp:Label>
     
                           <div role="tabpanel" class="tab-pane fade" id="tab_delete" aria-labelledby="profile-tab">
                           <p>delete content</p>
@@ -85,7 +84,10 @@
 
               
 
-         </div></div>   </div></div>
+         </div></div>   </div>
+
+
+
 
 </asp:Content>
 

@@ -98,6 +98,17 @@ public class employeeProfile
            
         
     }
+    public static employee getAdminInfo(string username)
+    {
+        ctownDataContext db = new ctownDataContext();
+
+        employee emp = (from x in db.employees
+
+                                   where x.username == username && x.login_type == "Admin"
+                       select x).First();
+        return emp;
+
+    }
     public static IQueryable<employee> getAllEmployee(int branchId)
     {
         ctownDataContext db = new ctownDataContext();
@@ -338,6 +349,41 @@ public class employeeProfile
             return false;
         }
         
+    }
+    public static bool updateProfile(employee emp, int adminID)
+    {
+        ctownDataContext db = new ctownDataContext();
+        try
+        {
+            var ra = (from x in db.employees
+                      where x.login_type == "Admin" && x.Id == adminID
+                      select x).First();
+            ra.name = emp.name;
+            ra.email = emp.email;
+            ra.password = emp.password;
+            if (emp.image != null)
+            {
+                ra.image = emp.image;
+            }
+
+            int check = (from y in db.employees
+                         where y.login_type == "Admin" && y.Id == adminID
+                         select y).Count();
+            if (check == 1)
+            {
+                db.SubmitChanges();
+                return true;
+
+            }
+            else
+            {
+                return false;
+            }
+        }
+        catch
+        {
+            return false;
+        }
     }
     public static int getEmployeeId(string username)
     {

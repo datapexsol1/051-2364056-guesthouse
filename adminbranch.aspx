@@ -1,7 +1,20 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AdminPanel.master" AutoEventWireup="true" CodeFile="adminbranch.aspx.cs" Inherits="adminbranch" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+<script>
 
+  $.validate({
+    modules : 'location, date, security, file',
+    onModulesLoaded : function() {
+      $('#country').suggestCountry();
+    }
+  });
+
+  // Restrict presentation length
+  $('#presentation').restrictLength( $('#pres-max-length') );
+
+</script>     
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
@@ -59,7 +72,8 @@
 
 
                                <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
-                               <table class="data table table-striped no-margin">
+                               <div class="table-responsive">
+                                   <table class=" data table table-striped no-margin">
                               <thead>
                                 <tr>
                                   <th>Branch NO</th>
@@ -72,17 +86,19 @@
                               </thead>
                               <tbody>
                                 <tr>
-                                  <td><input type="text" name="bno" id="bno"/></td>
-                                  <td><input type="text" name="bname" id="abname"/></td>
-                                    <td><input type="text" name="bcity" id="abcity"/></td>
-                                  <td><input type="text" name="bcountry" id="abcountry"/></td>
-                                  <td><input type="text" name="badress" id="abadress"/></td>
+                                  <td><input type="text" name="bno" id="bno"  data-validation="required" data-validation-error-msg="Branch no is required !" /></td>
+                                  <td><input type="text" name="bname" id="abname" data-validation="required" data-validation-error-msg="Branch name is required !"/></td>
+                                    <td><input type="text" name="bcity" id="abcity" data-validation="required" data-validation-error-msg="Branch city is required !"/></td>
+                                  <td><input type="text" name="bcountry" id="abcountry" data-validation="required" data-validation-error-msg="Branch country is required !"/></td>
+                                  <td><input type="text" name="badress" id="abadress" data-validation="required" data-validation-error-msg="Branch full address is required !"/></td>
                                     
                                  
                                 </tr>  
-                                  <tr><td colspan="1"><asp:Button ID="savebranch" runat="server" Text="Save Branch" onclick="savebranch_click" /></td></tr> 
                               </tbody>
                             </table>
+                                   </div>
+                            <asp:Button ID="savebranch" runat="server" Text="Save Branch" onclick="savebranch_click" CssClass="btn btn-primary"/>
+
                         </div>
                             
         

@@ -66,7 +66,7 @@ public class guestservice_class
 
                                       //  join r in db.rooms on x.roomid equals r.Id  
                                         orderby x.roomid descending
-                                where x.checkout==null  && r.room_no==roomNo && r.branch_id == bid
+                                where x.checkout==null  && r.room_no==roomNo && r.branch_id == bid 
                                 select x).First();
 
         return bookingRoomInfo;
