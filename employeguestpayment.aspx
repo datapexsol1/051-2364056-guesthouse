@@ -113,6 +113,7 @@
      <div class="x_content">
      <div class="col-md-9 col-sm-9 col-xs-12">
          <div id="printPaymentpage">
+             <img src="img/logo.png" width="100px" height="100" />
          <h3>Guest Payment</h3>
          <hr style="border:dashed;" />
          <div>
@@ -243,6 +244,8 @@
               
                                         <asp:Button ID="btnpaid" CssClass="btn btn-success" runat="server" Text="Pay" CausesValidation="false" OnClick="btnpaid_Click" />
              <input type="button" id="btnPrint" value="Print Bill"  class="btn btn-default"/>
+                          <input type="button" id="btn" value="Print "  class="btn btn-default"/>
+
                  <%--<a href="#" data-toggle="modal" data-target="#login-modal"  class="btn btn-default">Print Bill Now</a>--%>
                  <asp:HiddenField ID="tbroombill" runat="server" />
                  <asp:HiddenField ID="tbfacilitebill" runat="server" />
@@ -320,7 +323,7 @@
          <input id="totalbill" type="hidden" runat="server" />
             </div>
      <script>
-        $(function () {
+         $(function () {
             $("#btnPrint").click(function () {
                 //alert("hello");
                 <%
@@ -374,6 +377,37 @@
          {%>
                 ShowNotification('Error', 'Pay bill first to print the bill');
         <% }%>
+            });
+        });
+
+        $(function () {
+            $("#btn").click(function () {
+  
+                $("#cb").hide();
+                $("#paymenttype").hide();
+                var contents = $("#printPaymentpage").html();
+                var frame1 = $('<iframe />');
+                frame1[0].name = "frame1";
+                frame1.css({ "position": "absolute", "top": "-1000000px" });
+                $("body").append(frame1);
+                var frameDoc = frame1[0].contentWindow ? frame1[0].contentWindow : frame1[0].contentDocument.document ? frame1[0].contentDocument.document : frame1[0].contentDocument;
+                frameDoc.document.open();
+                //Create a new HTML document.
+                frameDoc.document.write('<html><head><title>CapeTown guest house</title>');
+                frameDoc.document.write('</head><body style="-webkit-print-color-adjust: exact;background-color:white; height: 950px;left: 0; right: 0; background-repeat: no-repeat; background-size:700px 500px;align-content:center;>');
+                //Append the external CSS file.
+
+
+                //Append the DIV contents.
+                frameDoc.document.write(contents);
+                frameDoc.document.write('</body></html>');
+                frameDoc.document.close();
+                setTimeout(function () {
+                    window.frames["frame1"].focus();
+                    window.frames["frame1"].print();
+                    frame1.remove();
+                }, 500);
+             
             });
         });
 

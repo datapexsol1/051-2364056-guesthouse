@@ -76,4 +76,20 @@ public class guestBookingAttributes
         image = null;
 
     }
+    public static bool checkRegNo(string reg)
+    {
+        ctownDataContext Database = new ctownDataContext();
+        int count = (from x in Database.guests
+                     where x.reg_no == reg     //for checking already existance of client
+                     select x).Count();
+        if (count == 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
+    }
 }

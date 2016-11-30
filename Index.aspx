@@ -99,6 +99,8 @@
   font-size: 12px;
 }
     </style>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+
 </asp:Content>
 
 
@@ -120,20 +122,13 @@
 		    </li>
 		    <li>
 			    <div class="tm-banner-inner">
-					<h1 class="tm-banner-title">Lorem <span class="tm-yellow-text">Ipsum</span> Dolor</h1>
+					<h1 class="tm-banner-title">Cape <span class="tm-yellow-text">Town</span> </h1>
 					<p class="tm-banner-subtitle">Wonderful Destinations</p>
 					<a href="#more" class="tm-banner-link">Learn More</a>	
 				</div>
 		      <img src="img/banner-2.jpg" alt="Image" />
 		    </li>
-		    <li>
-			    <div class="tm-banner-inner">
-					<h1 class="tm-banner-title">Proin <span class="tm-yellow-text">Gravida</span> Nibhvell</h1>
-					<p class="tm-banner-subtitle">Velit Auctor</p>
-					<a href="#more" class="tm-banner-link">Learn More</a>	
-				</div>
-		      <img src="img/banner-3.jpg" alt="Image" />
-		    </li>
+		   
 		  </ul>
 		</div>	
 	</section>
@@ -164,7 +159,8 @@
 									<div class="tm-form-inner">
 										<div class="form-group">
 
-							            	 <select class="form-control" id="branchcity" name="branchcity">
+							            	 <select class="form-control" id="branchcity" name="branchcity" data-validation="required" 
+		 data-validation-error-msg="City is required !">
                                                  
 							            	 	<option value="">Select Branch</option>
 							            	 	<%
@@ -180,7 +176,8 @@
 							          	</div>
 							          	<div class="form-group">
 							                <div class='input-group date' id='datetimepicker1'>
-							                    <input type='text' class="form-control" name="gcheckindate" id="gcheckindate" placeholder="Check-in Date" />
+							                    <input type='datetime' class="form-control" name="gcheckindate" id="gcheckindate" placeholder="Check-in Date" data-validation="required" 
+		 data-validation-error-msg="check in date is required !"/>
 							                    <span class="input-group-addon">
 							                        <span class="fa fa-calendar"></span>
 							                    </span>
@@ -188,14 +185,16 @@
 							            </div>
 							          	<div class="form-group">
 							                <div class='input-group date' id='datetimepicker2'>
-							                    <input type='text' class="form-control" name="gcheckoutdate" id="gcheckoutdate" placeholder="Check-out Date" />
+							                    <input type='text' data-validation="required" 
+		 data-validation-error-msg="CheckOut date is required !" class="form-control" name="gcheckoutdate" id="gcheckoutdate" placeholder="Check-out Date" />
 							                    <span class="input-group-addon">
 							                        <span class="fa fa-calendar"></span>
 							                    </span>
 							                </div>
 							            </div>
 							            <div class="form-group margin-bottom-0">
-							                <select class="form-control" name="gnoofguest" id="gnoofguest">
+							                <select class="form-control" name="gnoofguest" id="gnoofguest" data-validation="required" 
+		 data-validation-error-msg="No. of guests is required !">
 							            	 	<option value=""> Select no of Guests</option>
 							            	 	<option value="1">1</option>
 												<option value="2">2</option>
@@ -217,14 +216,27 @@
     	  <div class="modal-dialog">
 				<div class="loginmodal-container">
 					<h1>Online Booking</h1><br>
-				  <div>
-					<input type="text" name="gname" id="gname" placeholder="Enter name..." class="form-control"/>
-					<input type="text" name="gcnic" id="gcnic" placeholder="Enter Cnic/ Passport no..." class="form-control"/>
-                      <input type="number" name="gcontact" id="gcontact" placeholder="Enter Contact no..." class="form-control"/>
-                      <br />
-                      <input type="email" name="gemail" id="gemail" placeholder="Enter Email..." class="form-control"/>
-                      <br />
-                      <select class="form-control" name="noofrooms" id="noofrooms">
+				  <div class="col-md-12">
+					<input type="text" name="gname" id="gname" placeholder="Enter name..." class="form-control" data-validation="required" 
+		 data-validation-error-msg="Name is required !"/>
+                      </div>
+                    <div class="col-md-12">
+					<input type="text" name="gcnic" id="gcnic" placeholder="Enter Cnic/ Passport no..." class="form-control" data-validation="required" 
+		 data-validation-error-msg="Passport/ CNIC is required !"/>
+                        </div>
+                      <div class="col-md-12">
+                        <input type="number" name="gcontact" id="gcontact" placeholder="Enter Contact no..." class="form-control" data-validation="required" 
+		 data-validation-error-msg="Contact no. is required !"/>
+                          </div>
+                    
+                          <div class="col-md-12">
+                      <input type="email" name="gemail" id="gemail" placeholder="Enter Email..." class="form-control" data-validation="required" 
+		 data-validation-error-msg="Email is required !"/>
+                              </div>
+                     
+                              <div class="col-md-12">
+                      <select class="form-control" name="noofrooms" id="noofrooms" data-validation="required" 
+		 data-validation-error-msg="No. of rooms is required !">
 							            	 	<option value="">Select no. of rooms</option>
 							            	 	<option value="1">1</option>
 												<option value="2">2</option>
@@ -232,8 +244,11 @@
 												<option value="4">4</option>
 												<option value="5p">5+</option>
 					    </select>
-                      <br />
-                      <select class="form-control" name="roomtype" id="roomtype">
+                                  </div>
+                      
+                                  <div class="col-md-12">
+                      <select class="form-control" name="roomtype" id="roomtype" data-validation="required" 
+		 data-validation-error-msg="Room type is required !">
 						    <option value="">Select Room Type</option>
 							<option value="S.G.L">S.G.L</option>
                           <option value="B.D.L">B.D.L</option>
@@ -242,12 +257,16 @@
                           <option value="ROYAL SUITE">ROYAL SUITE</option>
 												
 					    </select> 
-                      <br />
-                      
-                      <input type="checkbox" id="termcheck" name="termcheck"/><a href="#" style="color: black" ><u> I accept all the terms and conditions !</u></a>
-                      <asp:Button runat="server" ID="gbooking" OnClick="gbooking_click" Text="Book Room" class="tm-yellow-btn"/>
+                                      </div>
+                     
+                      <div class="col-md-12">
+                      <input type="checkbox" id="termcheck" name="termcheck" data-validation="required" 
+		 data-validation-error-msg="Term and condition is required to be selected !"/>
+                          <a href="#" style="color: black"  ><u> I accept all the terms and conditions !</u></a>
+                      </div>
+                          <asp:Button runat="server" ID="gbooking" OnClick="gbooking_click" Text="Book Room" class="tm-yellow-btn"/>
 					<%--<input type="submit" name="gbook" class="tm-yellow-btn" value="Book room">--%>
-				  </div>
+				  
 				</div>
 			</div>
 		  </div>
@@ -402,7 +421,23 @@
 		</div>
 	</section>
 
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+<script>
 
+  $.validate({
+    modules : 'location, date, security, file',
+    onModulesLoaded : function() {
+      $('#country').suggestCountry();
+    }
+  });
+
+  // Restrict presentation length
+  $('#presentation').restrictLength( $('#pres-max-length') );
+
+</script>
+
+      <!-- jQuery -->
 
         <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>      		<!-- jQuery -->
   	<script type="text/javascript" src="js/moment.js"></script>							<!-- moment.js -->

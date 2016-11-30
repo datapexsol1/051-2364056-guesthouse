@@ -5,8 +5,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
 
-
-
      <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -48,10 +46,9 @@ http://www.templatemo.com/tm-475-holiday
 	  				<nav class="tm-nav">
 						<ul>
 							<li><a href="Index.aspx" class="active">Home</a></li>
-							
 							<li><a href="LifeStyle.aspx">Booking</a></li>
                             <li><a href="Gallery.aspx">Gallery</a></li>
-                            <li><a href="About.aspx">About</a></li>s
+                            <li><a href="About.aspx">About</a></li>
 							<li><a href="Contact.aspx">Contact</a></li>
                            <li><a href="guestlogin.aspx">Login</a></li>
 						</ul>
