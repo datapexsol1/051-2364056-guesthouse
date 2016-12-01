@@ -14,6 +14,15 @@ public class bookingclass
         // TODO: Add constructor logic here
         //
     }
+    public static guest getguestdetail(int bookingId)
+    {
+        ctownDataContext db = new ctownDataContext();
+        guest g = (from x in db.guests
+                   join y in db.bookings on x.Id equals y.guest_id
+                   where y.Id == bookingId
+                   select x).First(); 
+        return g;
+    }
     public static bookingRoomAttr[] getBookingDetail(int bid)
     {
         ctownDataContext db = new ctownDataContext();

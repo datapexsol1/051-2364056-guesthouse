@@ -64,6 +64,7 @@ public partial class employeguestpayment : System.Web.UI.Page
             advanc = 0;
         }
         TableRow tRow1 = new TableRow();
+      
         bookingtable.Rows.Add(tRow1);
         TableCell tCell1 = new TableCell();
         tCell1.Text = "RoomNo ";

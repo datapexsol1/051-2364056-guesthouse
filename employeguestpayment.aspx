@@ -113,14 +113,72 @@
      <div class="x_content">
      <div class="col-md-9 col-sm-9 col-xs-12">
          <div id="printPaymentpage">
-             <img src="img/logo.png" width="100px" height="100" />
-         <h3>Guest Payment</h3>
+             <div class="row">
+                 <table id="logoid" border="0" width="100%">
+                     <tr>
+                         <td><img src="img/logo.png" width="200" height="200"/></td>
+                         <td style="text-align:center;font-family:Magneto"><b style="font-size:xx-large">Cape Town</b></td>
+                         <td style="text-align:center;font-size:large">
+                 
+                             <label>House NO. 10 Street 12 <br />
+                             F-7/2 Islamabad<br />
+                             Ph. 0518318731-2<br />
+                             NTN#4263282-0</label>
+
+                         </td>
+                     </tr>
+                 </table>
+             </div>
+             <br />
+             <%
+                 int bookingId = int.Parse(Request.QueryString["booking"]);
+                 guest g = bookingclass.getguestdetail(bookingId);
+                  %>
+             <hr style="border:dashed;" />
+             <div class="row">
+                 <h3>Guest Information</h3>
+                 <table  width="80%" class="table table-bordered table-striped">
+                     <tr style="text-align:left">
+                         <th>Registration #</th>
+                         <th>Guest Name</th>
+                         <th>CNIC</th>
+                         <th>Address</th>
+                         <th>Contact</th>
+                     </tr>
+                     <tr style="text-align:left">
+                         <td><%=g.reg_no %></td>
+                         <td><%=g.guest_name %></td>
+                         <td><%=g.cnic %><%=g.f_passport_no %></td>
+                         <td><%=g.permanent_address %></td>
+                         <td><%=g.mobile %></td>
+                     </tr>
+                 </table>
+
+             </div>
+<%--             <div class="row">
+             <div class="col-md-3" style="float:left;width:20%">
+                 <img src="img/logo.png" width="200" height="200"/>
+             </div>
+             <div class="col-md-3">
+         <h3 style="text-align:center;width:20%;float:left">Guest Payment</h3>
+                 </div>
+             <div class="col-md-6" style="">
+                 <h5>Cape Town</h5>
+                 
+                 <h5>House NO. 10 Street 12</h5>
+                 <h5>F-7/2 Islamabad</h5>
+                 <h5>Ph. 0518318731.2</h5>
+                 <h5>NTN#4263282-0</h5>
+                 </div>
+                 </div>--%>
+             <div class="clearfix"></div>
          <hr style="border:dashed;" />
+                 
          <div>
              <asp:HiddenField ID="roomCheckout" runat="server" />
              <h3>Room Payment</h3>
                <div style="overflow:auto;white-space:nowrap;">
-                   <asp:Table ID="bookingtable" runat="server" class="table table-bordered table-striped">
+                   <asp:Table ID="bookingtable" runat="server" Width="100%" class="table table-bordered table-striped">
 
 
 
@@ -323,6 +381,9 @@
          <input id="totalbill" type="hidden" runat="server" />
             </div>
      <script>
+         $(document).ready(function () {
+             $("#logoid").hide();
+         });
          $(function () {
             $("#btnPrint").click(function () {
                 //alert("hello");
@@ -341,6 +402,7 @@
                 //$("input[name=setpaymenttype]").val(v);
                 //$("tbpayType").val(v);
                 $("#cb").hide();
+                $("#logoid").show();
                 $("#paymenttype").hide();
                 var contents = $("#printPaymentpage").html();
                 var frame1 = $('<iframe />');
@@ -382,7 +444,7 @@
 
         $(function () {
             $("#btn").click(function () {
-  
+                $("#logoid").show();
                 $("#cb").hide();
                 $("#paymenttype").hide();
                 var contents = $("#printPaymentpage").html();
