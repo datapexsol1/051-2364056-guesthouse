@@ -15,8 +15,7 @@
   $('#presentation').restrictLength( $('#pres-max-length') );
 
 </script>
-
-      <!-- jQuery -->
+       <!-- jQuery -->
     <script>
         function activaTab(tab) {
             $('.nav-tabs a[href="#' + tab + '"]').tab('show');
@@ -41,9 +40,11 @@
             $("input[name=insertaitemno]").val('');
         }
     </script>
+  
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <div id="Notify"></div>
+    
+     <div id="Notify"></div>
    <div class="right_col" role="main">
           <div class="">
     <div class="page-title">
@@ -67,15 +68,13 @@
               </div>
             </div>
       <div class="clearfix"></div>
-
-            <div class="row">
+                <div class="row">
      <div class="col-md-12 col-sm-12 col-xs-12">
      <div class="x_content">
      <div class="col-md-9 col-sm-9 col-xs-12">
 
-
-    <div class="" role="tabpanel" data-example-id="togglable-tabs">
-                        <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+         <div class="" role="tabpanel" data-example-id="togglable-tabs">
+              <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
                           <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="false">Room Assets</a>
                           </li>
                           <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false" onclick="addval()">Update Assets</a>
@@ -85,46 +84,27 @@
                             
                           
                         </ul>
+             </div>
+          <div id="myTabContent" class="tab-content">
 
-        </div>
-
-   <div id="myTabContent" class="tab-content">
-                          <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
-     <div style="overflow:auto;">
-      
-                                                   
-                         <div class="form-group col-md-5">
-
-                        
-                        
-                             <%  int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());//get from session %>
+              <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
+                  <%  if (brid.SelectedValue != "Select Branch")
+    {
+        int bid = branchClass.getBranchID(brid.SelectedValue);%>
                                    <input type="hidden" name="branch" id="branch"  runat="server"/>
-                             
-                             
-                             <%--<select  id="rnovxxxx" name="rnovxxxx"  class="form-control col-md-7 col-xs-12" data-validation="required" 
-		 data-validation-error-msg="Select room no  !">
-                                         <option value="">Select Room</option>--%>
-                                          <%  
+                              <%  
 
-                                              IQueryable<room> r = roomsclass.getAllRooms(bid);
-                                              //foreach (var x in r)
-                                              //{ %>
-                                             <%--<option value='<%=x.Id %>'><%= x.room_no %></option>--%>
-                                           <%//} 
-                                               %>
-                                <%--</select>--%>
+        IQueryable<room> r = roomsclass.getAllRooms(bid);
+
+    %>
+                                           
+                                
                       
-         <%--<asp:Button  runat="server" ID="id" Text="View" OnClick="View_Click" class="btn btn-success"/>--%>
                              <b>Select Room no</b>
          <asp:DropDownList runat="server" ID="ddRoomNo" AutoPostBack="True" CssClass="form-control col-md-7 col-xs-12" OnSelectedIndexChanged="ddRoomNoSelectedIndexChanges">
                               
                              </asp:DropDownList>     
-                             </div>
-         <%--<a href="#" runat="server" onserverclick="Button1_Click" class="btn btn-success">View</a>--%>
-
-      <%--<asp:Button ID="Button1" runat="server" Text="View" OnClick="Button1_Click" class="btn btn-success" />--%>   
-                                      </div>
-                             
+           
                              
                            <asp:Table class="data table table-striped no-margin" ID="assetsViewTable"  runat="server">
                              
@@ -133,15 +113,9 @@
                                
                              
                            </asp:Table>
-      </div>
-                              
-
-
-                                <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
-
-
-                                     <div style="overflow:auto;white-space:nowrap;">
-       <table class="data table table-striped no-margin">
+              </div>
+               <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
+                   <table class="data table table-striped no-margin">
                               <thead>
                                 <tr>
                                   <th>Room No</th>
@@ -188,16 +162,11 @@
                               </tbody>
                             </table>
    <input type="hidden" id="inventoryId" name="inventoryId"   runat="server"/>
-
-      </div>
-
-
-                              </div>
-
-
-           <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
-                             
-                           <div class="form-group">
+                   </div>
+              <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
+                                            
+                   
+                        <div class="form-group">
                         
                         <div class="col-md-6">
                             <label >Room No</label>
@@ -205,17 +174,16 @@
                                      <option value=''>Select Room</option>
                                       <%  
 
-                                        //  IQueryable<room> r = roomsclass.getAllRooms(bid);
+                                          //  IQueryable<room> r = roomsclass.getAllRooms(bid);
                                           foreach (var x in r)
                                           { %>
                                          <option value='<%=x.Id %>'><%= x.room_no %></option>
-                                       <%} %>
+                                       <%}
+                                           } %>
                                   </select>
                         </div>
                       </div>   
-
-
-                        <div class="form-group">
+                   <div class="form-group">
                         
                         <div class="col-md-6">
                             <label >Item</label>
@@ -251,31 +219,14 @@
                         <asp:Button ID="SaveAssets" runat="server" OnClick="saveAssets_click" Text="Save" class="btn btn-success"/>
                         </div>
                       </div>
-                            </div>
-         </div>
+                  </div>
 
-         </div>
-        </div>
+          </div></div>
          </div>
          </div>
          </div>
-    <%--  
-     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>--%>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
-<script>
-
-  $.validate({
-    modules : 'location, date, security, file',
-    onModulesLoaded : function() {
-      $('#country').suggestCountry();
-    }
-  });
-
-  // Restrict presentation length
-  $('#presentation').restrictLength( $('#pres-max-length') );
-
-</script>     
-
+         </div>
+              </div>
 
 </asp:Content>
 

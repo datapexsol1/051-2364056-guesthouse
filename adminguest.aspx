@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    
+   <%-- 
      <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Meta, title, CSS, favicons, etc. -->
@@ -22,7 +22,7 @@
 
     <!-- Custom Theme Style -->
     <link href="../build/css/custom.min.css" rel="stylesheet">
-  </head>
+  </head>--%>
 
 
    <div class="right_col" role="main">
@@ -297,7 +297,7 @@
     
 </div></div>
 
-      <!-- jQuery -->
+     <%-- <!-- jQuery -->
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
     <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -315,9 +315,9 @@
     <script src="js/datepicker/daterangepicker.js"></script>
     
     <!-- Custom Theme Scripts -->
-    <script src="../build/js/custom.min.js"></script>
+    <script src="../build/js/custom.min.js"></script>--%>
 
-    <script>
+   <%-- <script>
         $(function () {
             Morris.Bar({
                 element: 'graph_bar',
@@ -421,6 +421,6 @@
             });
         });
     </script>
-    <!-- /datepicker -->
+    <!-- /datepicker -->--%>
 </asp:Content>
 

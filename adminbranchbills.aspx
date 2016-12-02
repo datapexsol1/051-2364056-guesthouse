@@ -383,32 +383,34 @@
       };
         function mybillfunction(){
             <%
-        int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
-        var bType = ddBillType.SelectedValue;
-
-        ////date dropdownlist
-        List<bill> bs = billclass.getBillItem(bType, bid);
-
-        string[] billType = new string[bs.Count() + 1];
-        billType[0] = "Select";
-        int i = 1;
-        foreach (var x in bs)
+        if (branch.SelectedValue != "Select Branch")
         {
-            //int result = int.Parse((DateTime.Now.Day - x.Date.Day).ToString());
-            //if (result == 1 || result == 0)
-            //{
+            int bid = branchClass.getBranchID(branch.SelectedValue);//employeeProfile.getEmployeBranch(Session["loginName"].ToString());
+            var bType = ddBillType.SelectedValue;
 
-            billType[i] = x.Date.ToShortDateString();
-            i++;
-            //}
+            ////date dropdownlist
+            List<bill> bs = billclass.getBillItem(bType, bid);
 
-        }
-        ddDate.DataSource = billType;
-        ddDate.DataBind();
+            string[] billType = new string[bs.Count() + 1];
+            billType[0] = "Select";
+            int i = 1;
+            foreach (var x in bs)
+            {
+                //int result = int.Parse((DateTime.Now.Day - x.Date.Day).ToString());
+                //if (result == 1 || result == 0)
+                //{
+
+                billType[i] = x.Date.ToShortDateString();
+                i++;
+                //}
+
+            }
+            ddDate.DataSource = billType;
+            ddDate.DataBind();
 
 
-        ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "activaTab('tab_content2');", true);
-        %>
+            ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "activaTab('tab_content2');", true);
+        }%>
         }
         function activaTab(tab) {
 
