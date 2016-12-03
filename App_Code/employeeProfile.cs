@@ -15,6 +15,34 @@ public class employeeProfile
         // TODO: Add constructor logic here
         //
     }
+    public static List<employepaymentrecivableAttributes> getGuestInfo(int bid)
+    {
+        ctownDataContext db = new ctownDataContext();
+        var g = from x in db.guests
+                              join y in db.bookings on x.Id equals y.guest_id
+                              join z in db.booking_Rooms on y.Id equals z.bookingId
+                              join r in db.rooms on z.roomid equals r.Id
+                              where y.branch_id == bid
+                              select new
+                              {
+                                  guest = x,
+                                  booking = y,
+                                  booking_Room = z,
+                                  room = r
+                                  
+                              };
+        List<employepaymentrecivableAttributes> guestinfo = new List<employepaymentrecivableAttributes>();
+        foreach (var x in g)
+        {
+            employepaymentrecivableAttributes temp = new employepaymentrecivableAttributes();
+            temp.b = x.booking;
+            temp.br = x.booking_Room;
+            temp.g = x.guest;
+            temp.r = x.room;
+            guestinfo.Add(temp);
+        }
+            return guestinfo;
+    }
     public static bool addemployesalary(employesalary es)
     {
         ctownDataContext db = new ctownDataContext();
