@@ -64,7 +64,7 @@
         <div class="col-md-4">
          Select date
        
-      <input id="datewincome" class="form-control"/>
+      <input id="datewincome" required="required" data-validation="required" data-validation-error-msg="Date is required !" class="form-control"/>
             </div>
              </div>
          <div class="row">

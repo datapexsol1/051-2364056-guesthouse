@@ -4678,9 +4678,22 @@ ul.notifications {
     }
 
 .daterangepicker.picker_4 table.table-condensed thead tr:first-child {
-    background: #34495E;
+    background: #172D44;
     color: #ECF0F1;
 }
+.daterangepicker.picker_5 table.table-condensed tbody td {
+  background: #800000;
+  color:white;
+  border: 1px solid #fff;
+  padding: 4px 7px; }
+
+.daterangepicker.picker_5 table.table-condensed tbody td.active {
+  background: white;
+  color: #172D44; }
+
+.daterangepicker.picker_5 table.table-condensed thead tr:first-child {
+  background: #172D44;
+  color: blue; }
 
 .xdisplay_input {
     width: 240px;

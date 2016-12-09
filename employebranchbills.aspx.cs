@@ -20,6 +20,8 @@ public partial class employebranchbills : System.Web.UI.Page
         {
             int branchID = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
             IQueryable<bill> bs = billclass.getAllBills(branchID);
+            ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "activaTab('tab_content1');", true);
+
 
 
         }

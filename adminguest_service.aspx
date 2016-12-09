@@ -20,7 +20,7 @@
     <div id="Notify"></div>
 
       <div class="right_col" role="main">
-         
+         <div class="">
     <div class="page-title">
         <div class="">
                           <div class="title_left">
@@ -229,8 +229,8 @@
          </div>
         </div>
          </div>
- <div class="clearfix"></div>
-          </div>
+             </div>
+</div>
     <!-- bootstrap-daterangepicker -->
     <script src="js/moment/moment.min.js"></script>
     <script src="js/datepicker/daterangepicker.js"></script>

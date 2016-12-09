@@ -53,6 +53,7 @@ public partial class employeguestregistration : System.Web.UI.Page
                 g.office_phone = Request.Form["poffice"];
                 g.residence = Request.Form["presidence"];
                 g.mobile = Request.Form["pcell"];
+                g.f_purpose_of_vist = Request.Form["lvisit"];
                 /* g.f_passport_no = null;
                  g.f_nationality = null;
                  g.place_of_issue = null;

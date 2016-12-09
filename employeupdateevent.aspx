@@ -1,29 +1,29 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EmployePanel.master" AutoEventWireup="true" CodeFile="employeupdateevent.aspx.cs" Inherits="employeupdateevent" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
-     <!-- Bootstrap -->
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+    <!-- Bootstrap -->
     <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <!-- NProgress -->
     <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
-            <!-- Ion.RangeSlider -->
+    <!-- Ion.RangeSlider -->
     <link href="../vendors/normalize-css/normalize.css" rel="stylesheet">
     <link href="../vendors/ion.rangeSlider/css/ion.rangeSlider.css" rel="stylesheet">
     <link href="../vendors/ion.rangeSlider/css/ion.rangeSlider.skinFlat.css" rel="stylesheet">
     <!-- Bootstrap Colorpicker -->
     <link href="../vendors/mjolnic-bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css" rel="stylesheet">
-    
+
 
 
     <link href="../vendors/cropper/dist/cropper.min.css" rel="stylesheet">
     <!-- Custom Theme Style -->
     <link href="../custom/custom.min.css" rel="stylesheet">
     <style>
-    .messagealert {
+        .messagealert {
             width: 100%;
             position: fixed;
-             top:0px;
+            top: 0px;
             z-index: 100000;
             padding: 0;
             font-size: 15px;
@@ -50,97 +50,108 @@
         }
     </script>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <div id="Notify"></div>
-   <input type="text" id="eventid" runat="server"/>
-    <%  
-        event_calender eventInfo = new event_calender();
-        if (!string.IsNullOrEmpty(Request.QueryString["id"]))
-        {
-            string eventid = Request.QueryString["id"].ToString();
-            updatehiddenid.Value = eventid;
-            if (!string.IsNullOrEmpty(Request.QueryString["del"]))
-            {
-                if (Request.QueryString["del"].ToString() == "true")
-                {
-                    event_calender eve = new event_calender();
-                    bool check = events.deleteEvent(eve, int.Parse(eventid));
-                    if(check == true)
-        ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "ShowMessage(deleted);", true);
-                    Response.Redirect("employeevents.aspx?msg=done");
-                }
-            }
-            else
-            {
-                eventInfo = events.retrieveSelectedEvent(int.Parse(eventid));
-            }
+    <input type="hidden" id="eventid" runat="server" />
 
-        }
-
-        %>
 
     <div class="right_col" role="main">
-    <div class="row">
-     <div class="col-md-12 col-sm-12 col-xs-12">
-     <div class="x_content">
-     <div class="col-md-9 col-sm-9 col-xs-12">
-                       <div class="messagealert" id="alert_container"  style=" opacity: 0;transition: visibility 0s 2s, opacity 2s linear;">  </div>  
-	
-         <h3>Update Events</h3>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_content">
+                    <div class="col-md-9 col-sm-9 col-xs-12">
+                        <div class="messagealert" id="alert_container" style="opacity: 0; transition: visibility 0s 2s, opacity 2s linear;"></div>
 
+                        <h3>Update Events</h3>
 
+                        <%  
+                            event_calender eventInfo = new event_calender();
+                            if (!string.IsNullOrEmpty(Request.QueryString["id"]))
+                            {
+                                string eventid = Request.QueryString["id"].ToString();
+                                updatehiddenid.Value = eventid;
+                                if (!string.IsNullOrEmpty(Request.QueryString["del"]))
+                                {
+                                    if (Request.QueryString["del"].ToString() == "true")
+                                    {
+                                        event_calender eve = new event_calender();
+                                        bool check = events.deleteEvent(eve, int.Parse(eventid));
+                                        if (check == true)
+                                            ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "ShowMessage(deleted);", true);
+                                        Response.Redirect("employeevents.aspx?msg=done");
+                                    }
+                                }
+                                else
+                                {
+                                    eventInfo = events.retrieveSelectedEvent(int.Parse(eventid));
+                                }
 
-                                <div class="row">
-                                     <div class="item col-md-5">
-                                         <b>Event title</b>
-                                            <input  type="text" id="eventname" required="required" data-validate-length-range="6" data-validate-words="1" name="eventname" value="<%=eventInfo.event_name %>"  placeholder="Event name..." class="form-control">
-                                         </div>
-                                </div>
-         <br />
-                                <div class="row">
-                                     <div class="col-md-5">
-                                         <b>Event description</b>
-                                            <input  type="text" id="eventdesc" name="eventdesc" value="<%=eventInfo.event_description %>" placeholder="Event description..." class="form-control"/>
-                                         </div>
-                                </div>
-         <br />
-                                <div class="row">
-                                     <div class="item col-md-5">
-                                          
-                                                      <b>Event start date</b>
-                                                    <input type="" required="required" class="form-control" id="eventstartdate" name="eventstartdate" value="<%=eventInfo.event_start_date.ToShortDateString() %>" >
-                                                
-                                            <%--<input  type="datetime" id="eventstartdate" name="eventstartdate"  class="form-control"  value="<%=eventInfo.event_start_date.ToShortDateString() %>"/>--%>
-                                         </div>
-                                </div>
-         <br />
-                                <div class="row">
-                                     <div class="item col-md-5">
-                                         <b>Event end date</b>
-                                            <input  type="" required="required" id="eventenddate" name="eventenddate" value="<%=eventInfo.event_end_date.ToShortDateString() %>"  placeholder="Select date..." class="form-control" />
-                                         </div>
-                                </div>
-         <br />
-                                <div class="row">
-                        <div class="col-md-5">
-                          <div class="item input-group demo2">
-                              <b>Select color (required)</b>
-                            <input type="text" required="required" placeholder="Select color.." class="form-control"  id="eventcolor" value="<%=eventInfo.event_color %>" name="eventcolor"/>
-                            <span class="input-group-addon"><i></i></span>
-                          </div>
+                            }
+
+                        %>
+
+                        <div class="row">
+                            <div class="item col-md-5">
+                                <b>Event title</b>
+                                <input type="text" id="eventname" required="required" data-validate-length-range="6" data-validate-words="1" name="eventname" value="<%=eventInfo.event_name %>" placeholder="Event name..." class="form-control">
+                            </div>
                         </div>
-                      </div>
-         <a href="#" runat="server" onserverclick="eventsubmit_Click" class="btn btn-success">Update</a>
-         <%--<asp:Button runat="server" Text="Update event"  OnClick="eventsubmit_Click"/>--%>
-                              <%--<asp:Button ID="eventsubmit" runat="server" Text="Update" class="btn btn-success"  AutoPostBack="true" CausesValidation="true" OnClick="eventsubmit_Click" />--%>
-              <input  type="hidden" id="updatehiddenid"  runat="server"/>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-5">
+                                <b>Event description</b>
+                                <input type="text" id="eventdesc" name="eventdesc" value="<%=eventInfo.event_description %>" placeholder="Event description..." class="form-control" />
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="item col-md-5">
 
-                              
-     </div>
-         </div>
-         </div></div></div>                         
-                              
-                <!-- jQuery -->
+                                <b>Event start date</b>
+                                <div class="input-prepend input-group">
+                                    <span class="add-on input-group-addon"><i class="glyphicon glyphicon-calendar fa fa-calendar"></i></span>
+                                    <input type="" required="required" class="form-control" id="eventstartdate" name="eventstartdate" value="<%=eventInfo.event_start_date.ToString("dd-MM-yyyy") %>">
+                                </div>
+
+                                <%--<input  type="datetime" id="eventstartdate" name="eventstartdate"  class="form-control"  value="<%=eventInfo.event_start_date.ToShortDateString() %>"/>--%>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="item col-md-5">
+                                <b>Event end date</b>
+                                <div class="input-prepend input-group">
+                                    <span class="add-on input-group-addon"><i class="glyphicon glyphicon-calendar fa fa-calendar"></i></span>
+                                    <input type="" required="required" id="eventenddate" name="eventenddate" value="<%=eventInfo.event_end_date.ToString("dd-MM-yyyy") %>" placeholder="Select date..." class="form-control" />
+
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-5">
+                                <b>Select color (required)</b>
+                                <div class="item input-group demo2">
+
+                                    <input type="text" required="required" placeholder="Select color.." class="form-control" id="eventcolor" value="<%=eventInfo.event_color %>" name="eventcolor" />
+                                    <span class="input-group-addon"><i></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#" runat="server" onserverclick="eventsubmit_Click" class="btn btn-success">Update</a>
+                        <%--<asp:Button runat="server" Text="Update event"  OnClick="eventsubmit_Click"/>--%>
+                        <%--<asp:Button ID="eventsubmit" runat="server" Text="Update" class="btn btn-success"  AutoPostBack="true" CausesValidation="true" OnClick="eventsubmit_Click" />--%>
+                        <input type="hidden" id="updatehiddenid" runat="server" />
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <%--  <!-- jQuery -->
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
     <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -154,214 +165,86 @@
     <!-- Ion.RangeSlider -->
     <script src="../vendors/ion.rangeSlider/js/ion.rangeSlider.min.js"></script>
     <!-- Bootstrap Colorpicker -->
-    <script src="../vendors/mjolnic-bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
-      <!-- bootstrap-daterangepicker -->
-    <script>
-      $(document).ready(function() {
-        var cb = function(start, end, label) {
-          console.log(start.toISOString(), end.toISOString(), label);
-          $('#reportrange_right span').html(start.format("dd-mm-yy") + ' - ' + end.format("dd-mm-yy"));
-        };
+    <script src="../vendors/mjolnic-bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>--%>
+    <!-- bootstrap-daterangepicker -->
 
-        var optionSet1 = {
-          startDate: moment().subtract(29, 'days'),
-          endDate: moment(),
-          minDate: '01/01/2012',
-          maxDate: '12/31/2015',
-          dateLimit: {
-            days: 60
-          },
-          showDropdowns: true,
-          showWeekNumbers: true,
-          timePicker: false,
-          timePickerIncrement: 1,
-          timePicker12Hour: true,
-          ranges: {
-            'Today': [moment(), moment()],
-            'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-            'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-            'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-            'This Month': [moment().startOf('month'), moment().endOf('month')],
-            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-          },
-          opens: 'right',
-          buttonClasses: ['btn btn-default'],
-          applyClass: 'btn-small btn-primary',
-          cancelClass: 'btn-small',
-          format: "dd-mm-yy",
-          separator: ' to ',
-          locale: {
-            applyLabel: 'Submit',
-            cancelLabel: 'Clear',
-            fromLabel: 'From',
-            toLabel: 'To',
-            customRangeLabel: 'Custom',
-            daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-            monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-            firstDay: 1
-          }
-        };
 
-        $('#reportrange_right span').html(moment().subtract(29, 'days').format("dd-mm-yy") + ' - ' + moment().format("dd-mm-yy"));
 
-        $('#reportrange_right').daterangepicker(optionSet1, cb);
-
-        $('#reportrange_right').on('show.daterangepicker', function() {
-          console.log("show event fired");
-        });
-        $('#reportrange_right').on('hide.daterangepicker', function() {
-          console.log("hide event fired");
-        });
-        $('#reportrange_right').on('apply.daterangepicker', function(ev, picker) {
-            console.log("apply event fired, start/end dates are " + picker.startDate.format("dd-mm-yy") + " to " + picker.endDate.format("dd-mm-yy"));
-        });
-        $('#reportrange_right').on('cancel.daterangepicker', function(ev, picker) {
-          console.log("cancel event fired");
-        });
-
-        $('#options1').click(function() {
-          $('#reportrange_right').data('daterangepicker').setOptions(optionSet1, cb);
-        });
-
-        $('#options2').click(function() {
-          $('#reportrange_right').data('daterangepicker').setOptions(optionSet2, cb);
-        });
-
-        $('#destroy').click(function() {
-          $('#reportrange_right').data('daterangepicker').remove();
-        });
-
-      });
-    </script>
 
     <script>
-      $(document).ready(function() {
-        var cb = function(start, end, label) {
-          console.log(start.toISOString(), end.toISOString(), label);
-          $('#reportrange span').html(start.format("dd-mm-yy") + ' - ' + end.format("dd-mm-yy"));
-        };
+        $(document).ready(function () {
+            //'#eventstartdate
+            
+        });
 
-        var optionSet1 = {
-          startDate: moment().subtract(29, 'days'),
-          endDate: moment(),
-          minDate: '01/01/2012',
-          maxDate: '12/31/2015',
-          dateLimit: {
-            days: 60
-          },
-          showDropdowns: true,
-          showWeekNumbers: true,
-          timePicker: false,
-          timePickerIncrement: 1,
-          timePicker12Hour: true,
-          ranges: {
-            'Today': [moment(), moment()],
-            'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-            'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-            'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-            'This Month': [moment().startOf('month'), moment().endOf('month')],
-            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-          },
-          opens: 'left',
-          buttonClasses: ['btn btn-default'],
-          applyClass: 'btn-small btn-primary',
-          cancelClass: 'btn-small',
-          format: "dd-mm-yy",
-          separator: ' to ',
-          locale: {
-            applyLabel: 'Submit',
-            cancelLabel: 'Clear',
-            fromLabel: 'From',
-            toLabel: 'To',
-            customRangeLabel: 'Custom',
-            daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-            monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-            firstDay: 1
-          }
-        };
-        $('#reportrange span').html(moment().subtract(29, 'days').format("dd-mm-yy") + ' - ' + moment().format("dd-mm-yy"));
-        $('#reportrange').daterangepicker(optionSet1, cb);
-        $('#reportrange').on('show.daterangepicker', function() {
-          console.log("show event fired");
-        });
-        $('#reportrange').on('hide.daterangepicker', function() {
-          console.log("hide event fired");
-        });
-        $('#reportrange').on('apply.daterangepicker', function(ev, picker) {
-            console.log("apply event fired, start/end dates are " + picker.startDate.format('D MMMM, YYYY') + " to " + picker.endDate.format('D MMMM, YYYY'));
-        });
-        $('#reportrange').on('cancel.daterangepicker', function(ev, picker) {
-          console.log("cancel event fired");
-        });
-        $('#options1').click(function() {
-          $('#reportrange').data('daterangepicker').setOptions(optionSet1, cb);
-        });
-        $('#options2').click(function() {
-          $('#reportrange').data('daterangepicker').setOptions(optionSet2, cb);
-        });
-        $('#destroy').click(function() {
-          $('#reportrange').data('daterangepicker').remove();
-        });
-      });
-    </script>
-
-    <script>
-        
-       
-      $(document).ready(function() {
-      
-          $('#eventstartdate').daterangepicker({
-          singleDatePicker: true,
-          calender_style: "picker_2"
-        }, function(start, end, label) {
-          console.log(start.toISOString(), end.toISOString(), label);
-        });
-     
-       
-      });
-      $(document).ready(function () {
-
-          $('#eventenddate').daterangepicker({
-              singleDatePicker: true,
-              calender_style: "picker_2"
-          }, function (start, end, label) {
-              console.log(start.toISOString(), end.toISOString(), label);
-          });
-      });
-    </script>
-
-        <script>
-          $(document).ready(function() {
-            $('#reservation').daterangepicker(null, function(start, end, label) {
-              console.log(start.toISOString(), end.toISOString(), label);
+        $(document).ready(function () {
+            var d = new Date();
+            var mm = d.getMonth() + 1;
+            var yy = d.getFullYear();
+            $('#eventstartdate').daterangepicker({
+                //singleDatePicker: true,
+                //calender_style: "picker_2"
+                singleDatePicker: true,
+                minDate: '01-' + mm + '-' + yy,
+                buttonClasses: ['btn btn-default'],
+                applyClass: 'btn-small btn-primary',
+                calender_style: "picker_5",
+                startDate: '01-' + mm + '-' + yy,
+                showDropdowns: true
+            }, function (start, end, label) {
+                console.log(start.toISOString(), end.toISOString(), label);
             });
-          });
-        </script>
-        <!-- /bootstrap-daterangepicker -->
 
-  
 
- 
-   
+       
+            $('#eventenddate').daterangepicker({
+                //singleDatePicker: true,
+                //calender_style: "picker_2"
+                singleDatePicker: true,
+                minDate: '01-' + mm + '-' + yy,
+                buttonClasses: ['btn btn-default'],
+                applyClass: 'btn-small btn-primary',
+                calender_style: "picker_5",
+                startDate: '01-' + mm + '-' + yy,
+                showDropdowns: true
+            }, function (start, end, label) {
+                console.log(start.toISOString(), end.toISOString(), label);
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('#reservation').daterangepicker(null, function (start, end, label) {
+                console.log(start.toISOString(), end.toISOString(), label);
+            });
+        });
+    </script>
+    <!-- /bootstrap-daterangepicker -->
+
+
+
+
+
     <!-- Bootstrap Colorpicker -->
     <script>
-      $(document).ready(function() {
-        $('.demo1').colorpicker();
-        $('.demo2').colorpicker();
+        $(document).ready(function () {
+            $('.demo1').colorpicker();
+            $('.demo2').colorpicker();
 
-        $('#demo_forceformat').colorpicker({
-            format: 'rgba',
-            horizontal: true
+            $('#demo_forceformat').colorpicker({
+                format: 'rgba',
+                horizontal: true
+            });
+
+            $('#demo_forceformat3').colorpicker({
+                format: 'rgba',
+            });
+
+            $('.demo-auto').colorpicker();
         });
-
-        $('#demo_forceformat3').colorpicker({
-            format: 'rgba',
-        });
-
-        $('.demo-auto').colorpicker();
-      });
     </script>
-    <!-- /Bootstrap Colorpicker -->       
+    <!-- /Bootstrap Colorpicker -->
 
 </asp:Content>
 

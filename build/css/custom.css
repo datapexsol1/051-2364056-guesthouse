@@ -1,4 +1,4 @@
-@charset "UTF-8";
+﻿@charset "UTF-8";
 .left_col {
   background: #2A3F54; }
 
@@ -3931,6 +3931,20 @@ ul.notifications {
 .daterangepicker.picker_4 table.table-condensed thead tr:first-child {
   background: #34495E;
   color: #ECF0F1; }
+
+.daterangepicker.picker_5 table.table-condensed tbody td {
+  background: #800000;
+  color:green;
+  border: 1px solid #fff;
+  padding: 4px 7px; }
+
+.daterangepicker.picker_5 table.table-condensed tbody td.active {
+  background: pink;
+  color: blue; }
+
+.daterangepicker.picker_5 table.table-condensed thead tr:first-child {
+  background: #800000;
+  color: green; }
 
 .xdisplay_input {
   width: 240px;

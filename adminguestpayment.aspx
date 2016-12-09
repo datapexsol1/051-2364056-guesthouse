@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EmployePanel.master" AutoEventWireup="true" CodeFile="employeguestpayment.aspx.cs" Inherits="employeguestpayment" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AdminPanel.master" AutoEventWireup="true" CodeFile="adminguestpayment.aspx.cs" Inherits="adminguestpayment" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <style>
@@ -225,11 +225,11 @@
 
                           </asp:DropDownList>
                      </div><br />
-                 <b id="type">
+                 <div id="type">
                      <b>Payment type</b>
                   <label name="setpaymenttype" runat="server" id="setpaymenttype" ></label>
 
-                 </b>
+                 </div>
                  <br />
                  <b id="roomrent">Room Rent
                  <asp:Label Font-Bold="true" ID="lbroomrent" runat="server"></asp:Label></b>
@@ -454,12 +454,11 @@
                 $("#logoid").show();
                 $("#cb").hide();
                 $("#paymenttype").hide();
-               $("#facilities").hide();
+              //  $("#facilities").hide();
                 // $("#facilities").style.marginTop = "50px";
-               // $("#facility").css('margin-top', 5000 );
+                $("#facility").css('margin-top', 5000 );
                // document.getElementById("facility").style.marginTop = "7500px";
-                $("#facility").hide();
-                //$("#facility").hide(); 
+               // $("#facility").hide();
                 var totalbill =$("#<%=tbill.ClientID%>").text() ; //document.getElementById(<%=tbill.ClientID%>).val;//$("#<%=tbill.ClientID%>").val(); 
                 var facility = $("#<%=lbfacilities.ClientID%>").text();
                 var tax = $("#<%=lbtax.ClientID%>").text();
