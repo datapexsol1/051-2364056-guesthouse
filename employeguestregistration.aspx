@@ -1,12 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EmployePanel.master" AutoEventWireup="true" CodeFile="employeguestregistration.aspx.cs" Inherits="employeguestregistration" EnableEventValidation="false" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
-    <script src="../vendors/jquery/dist/jquery.min.js"></script>
-    <script src="js/jquery-1.10.2.min.js"></script>
+   <%-- <script src="../vendors/jquery/dist/jquery.min.js"></script>
+    <script src="js/jquery-1.10.2.min.js"></script>--%>
     <link href="Notifications/NotificationStyle.css" rel="stylesheet" />
-  
+
    
-    <style>
+    <%--<style>
          .messagealert {
              text-align:center;
              font-size:xx-large;
@@ -17,7 +17,7 @@
             padding: 0;
             font-size: 15px;
         }
-    </style>
+    </style>--%>
 </asp:Content>
 
 
@@ -25,7 +25,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
         <div id="Notify"></div>
-     <div class="" id="alert_container"  style=" opacity: 0;transition: visibility 0s 2s, opacity 2s linear;">  </div>  
+<%--     <div class="messagealert" id="alert_container"  style=" opacity: 0;transition: visibility 0s 2s, opacity 2s linear;">  </div>  --%>
     <div class="right_col" role="main">
           <div class="">
                      	  
@@ -196,7 +196,7 @@
                             </label>
                               <%--<input type="text" class="form-control has-feedback-left" id="Arrival" placeholder="First Name" aria-describedby="inputSuccess2Status2">--%>
 
-                              <input type="text" id="Arrival" name="arrivaldate" class="form-control col-md-7 col-xs-12" required="required"/>
+                              <input  id="Arrival" name="arrivaldate" type="text" value= "<%=DateTime.Now.ToShortDateString() %>" class="form-control col-md-7 col-xs-12" required="required"/>
                             </div>
                  
                             
@@ -235,7 +235,7 @@
                             <div class="item col-md-4 col-sm-4 col-xs-12">
                                  <label>Date Of Birth <span class="required">*</span>
                             </label>
-                              <input id="dob" name="dob" class="date-picker form-control col-md-7 col-xs-12"  type="text" required="required"/>
+                              <input id="dob" name="dob" class="date-picker form-control col-md-7 col-xs-12"  value="<%=DateTime.Now.ToShortDateString() %>"    type="text" required="required"/>
                             </div>
                           </div>
                             
@@ -308,7 +308,7 @@
                             <div class="col-md-4 col-sm-4 col-xs-12">
                              <label>Departure Date <span class="required">*</span>
                             </label>
-                              <input type="text" id="Depature" name="departure"  class="form-control col-md-7 col-xs-12"/>
+                              <input type="text" id="Depature" name="departure"  class="form-control col-md-7 col-xs-12"  value="<%=DateTime.Now.ToShortDateString() %>"/>
                             </div>
                           </div>
 
@@ -347,6 +347,22 @@
                             </label>
                              <input type="text" id="paddress" name="paddress" required="required"  class="form-control col-md-7 col-xs-12" />
                             </div>
+           <div class="row">
+       <div style="padding-top:10px;" class="form-horizontal form-label-left col-md-6 col-sm-6 col-xs-12">
+                                <label class="col-md-4 col-sm-4 col-xs-12">Purpose of Visit</label>
+                              <div id="lpurpose" style="padding-left:5px;" data-toggle="buttons">
+                                <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                                  <input type="radio" name="lvisit" value="business"/> &nbsp; Business &nbsp;
+                                </label>
+                                <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                                  <input type="radio" name="lvisit" value="transit"/> Transit
+                                </label>
+                                  <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                                  <input type="radio" name="lvisit" value="vacation"/> Leasure/Vacation
+                                </label>
+                              </div>
+                            </div>
+        </div>
              <div class="form-group">
                  <div class="item col-md-4 col-sm-4 col-xs-12">
                                 <label >CNIC Front Image <span class="required">*</span>
@@ -407,7 +423,7 @@
                             <div class="item col-md-4 col-sm-4 col-xs-12">
                                  <label >Arrival Date <span class="required">*</span>
                             </label>
-                              <input type="text" id="farrival" name="farrivaldate"  class="form-control col-md-7 col-xs-12" required="required"/>
+                              <input type="text" id="farrival" name="farrivaldate"  value="<%=DateTime.Now.ToShortDateString() %>"  class="form-control col-md-7 col-xs-12" required="required"/>
                             </div>
                           </div>
 
@@ -445,7 +461,7 @@
                             <div class="item col-md-4 col-sm-4 col-xs-12">
                                  <label>Date Of Birth <span class="required">*</span>
                             </label>
-                              <input id="fdob"  name="fdob" class="date-picker form-control col-md-7 col-xs-12"  type="text" required="required"/>
+                              <input id="fdob"  value="<%=DateTime.Now.ToShortDateString() %>"  name="fdob" class="date-picker form-control col-md-7 col-xs-12"  type="text" required="required"/>
                             </div>
                           </div>
                             
@@ -516,7 +532,7 @@
                             <div class="col-md-4 col-sm-4 col-xs-12">
                              <label>Departure Date <span class="required">*</span>
                             </label>
-                              <input type="text" id="fdeparture" name="fdeparture"  class="form-control col-md-7 col-xs-12" />
+                              <input type="text"  value="<%=DateTime.Now.ToShortDateString() %>" id="fdeparture" name="fdeparture"  class="form-control col-md-7 col-xs-12" />
                             </div>
                           </div>
 
@@ -589,7 +605,7 @@
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                 <label>Date Of Issue <span class="required">*</span>
                             </label>
-                              <input type="text" id="dateofissue" name="fdateofissue"  class="form-control col-md-7 col-xs-12" required/>
+                              <input type="text"  value="<%=DateTime.Now.ToShortDateString() %>" id="dateofissue" name="fdateofissue"  class="form-control col-md-7 col-xs-12" required/>
                             </div>
                           </div>
 
@@ -607,7 +623,7 @@
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                  <label>Valid Upto <span class="required">*</span>
                             </label>
-                              <input type="text" id="validupto" name="validupto"  class="form-control col-md-7 col-xs-12" />
+                              <input type="text"  value="<%=DateTime.Now.ToShortDateString() %>" id="validupto" name="validupto"  class="form-control col-md-7 col-xs-12" />
                             </div>
                           </div>
 
@@ -665,9 +681,9 @@
         </div>
     </div>
                   <div style="padding-top:15px;" class="alignright col-md-2 col-sm-2 col-xs-12">
-                      <a href="#" runat="server" onserverclick="Save_Click" class="btn btn-success" onclick=" return checkimages();">Register </a>
+                      <a href="#" runat="server" onserverclick="Save_Click" class="btn btn-success">Register </a>
       <%--<asp:Button ID="Save" runat="server" Text="Register Guest" OnClick="Save_Click" CausesValidation="false" class="btn btn-success"/>--%>
-                    
+         
      </div>
 
 
@@ -696,119 +712,142 @@
 
 </script>
      <!-- jQuery -->
-    <script src="../vendors/jquery/dist/jquery.min.js"></script>
+    <%--<script src="../vendors/jquery/dist/jquery.min.js"></script>
 
     <!-- bootstrap-daterangepicker -->
     <script src="js/moment/moment.min.js"></script>
-    <script src="js/datepicker/daterangepicker.js"></script>
+    <script src="js/datepicker/daterangepicker.js"></script>--%>
   
 
 
   
 
     <script>
-        function checkimages(){
-
-            if($('#guestType').val()=="pakistani"){
-                if($('#<%=cnicfrontimg.ClientID %>').val()=="" ||$('#<%=cnicbackimg.ClientID %>').val()=="" ||$('#<%=regformimage.ClientID %>').val()==""){
-                    alert("fucking owrking ");
-                    ShowMessage1('Error','Please Select Scaned CNIC or Passport Copies');
-                 
-                    return false; 
-                }
-            }
-           else if($('#guestType').val()=="foriegner"){
-                if($('#<%=cnicfrontimg.ClientID %>').val()==""){
-                    alert("fucking owrking ");
-                    return false; 
-                }
-            }
-           
-        }
-
-
       $(document).ready(function() {
-      
+          var d = new Date();
+          var mm = d.getMonth()+1;
+          var yy = d.getFullYear();
+
+
+         
+
           $('#Arrival').daterangepicker({
-          singleDatePicker: true,
-          calender_style: "picker_2"
-        }, function(start, end, label) {
-          console.log(start.toISOString(), end.toISOString(), label);
-        });
+              singleDatePicker: true,
+              minDate:'01-'+mm+'-'+yy ,
+              buttonClasses: ['btn btn-default'],
+              applyClass: 'btn-small btn-primary',
+             calender_style: "picker_5",
+          startDate: '01-'+mm+'-'+yy,
+              showDropdowns:true
+          }, function (start, end, label) {
+             
+              
+              
+          });
      
        
-      });
-      $(document).ready(function () {
-
+      
           $('#dob').daterangepicker({
+              //singleDatePicker: true,
+              //calender_style: "picker_2"
               singleDatePicker: true,
-              calender_style: "picker_2"
+              minDate:'01-'+mm+'-'+yy ,
+              buttonClasses: ['btn btn-default'],
+              applyClass: 'btn-small btn-primary',
+              calender_style: "picker_5",
+              startDate: '01-'+mm+'-'+yy,
+              showDropdowns:true
           }, function (start, end, label) {
               console.log(start.toISOString(), end.toISOString(), label);
           });
 
 
-      });
-      $(document).ready(function () {
-
+    
           $('#Depature').daterangepicker({
+              //singleDatePicker: true,
+              //calender_style: "picker_2"
               singleDatePicker: true,
-              calender_style: "picker_2"
+              minDate:'01-'+mm+'-'+yy ,
+              buttonClasses: ['btn btn-default'],
+              applyClass: 'btn-small btn-primary',
+              calender_style: "picker_5",
+              startDate: '01-'+mm+'-'+yy,
+              showDropdowns:true
           }, function (start, end, label) {
               console.log(start.toISOString(), end.toISOString(), label);
           });
 
-
-      });
-      $(document).ready(function () {
 
           $('#farrival').daterangepicker({
+              //singleDatePicker: true,
+              //calender_style: "picker_2"
               singleDatePicker: true,
-              calender_style: "picker_2"
+              minDate:'01-'+mm+'-'+yy ,
+              buttonClasses: ['btn btn-default'],
+              applyClass: 'btn-small btn-primary',
+              calender_style: "picker_5",
+              startDate: '01-'+mm+'-'+yy,
+              showDropdowns:true
           }, function (start, end, label) {
               console.log(start.toISOString(), end.toISOString(), label);
           });
 
-
-      });
-      $(document).ready(function () {
 
           $('#fdeparture').daterangepicker({
+              //singleDatePicker: true,
+              //calender_style: "picker_2"
               singleDatePicker: true,
-              calender_style: "picker_2"
+              minDate:'01-'+mm+'-'+yy ,
+              buttonClasses: ['btn btn-default'],
+              applyClass: 'btn-small btn-primary',
+              calender_style: "picker_5",
+              startDate: '01-'+mm+'-'+yy,
+              showDropdowns:true
           }, function (start, end, label) {
               console.log(start.toISOString(), end.toISOString(), label);
           });
 
-
-      });
-      $(document).ready(function () {
 
           $('#dateofissue').daterangepicker({
+              //singleDatePicker: true,
+              //calender_style: "picker_2"
               singleDatePicker: true,
-              calender_style: "picker_2"
+              minDate:'01-'+mm+'-'+yy ,
+              buttonClasses: ['btn btn-default'],
+              applyClass: 'btn-small btn-primary',
+              calender_style: "picker_5",
+              startDate: '01-'+mm+'-'+yy,
+              showDropdowns:true
           }, function (start, end, label) {
               console.log(start.toISOString(), end.toISOString(), label);
           });
 
-
-      });
-      $(document).ready(function () {
 
           $('#validupto').daterangepicker({
+              //singleDatePicker: true,
+              //calender_style: "picker_2"
               singleDatePicker: true,
-              calender_style: "picker_2"
+              minDate:'01-'+mm+'-'+yy ,
+              buttonClasses: ['btn btn-default'],
+              applyClass: 'btn-small btn-primary',
+              calender_style: "picker_5",
+              startDate: '01-'+mm+'-'+yy,
+              showDropdowns:true
           }, function (start, end, label) {
               console.log(start.toISOString(), end.toISOString(), label);
           });
 
 
-      });
-      $(document).ready(function () {
-
           $('#fdob').daterangepicker({
+              //singleDatePicker: true,
+              //calender_style: "picker_2"
               singleDatePicker: true,
-              calender_style: "picker_2"
+              minDate:'01-'+mm+'-'+yy ,
+              buttonClasses: ['btn btn-default'],
+              applyClass: 'btn-small btn-primary',
+              calender_style: "picker_5",
+              startDate: '01-'+mm+'-'+yy,
+              showDropdowns:true
           }, function (start, end, label) {
               console.log(start.toISOString(), end.toISOString(), label);
           });
@@ -818,13 +857,13 @@
       
     </script>
 
-        <script>
+       <%-- <script>
           $(document).ready(function() {
             $('#reservation').daterangepicker(null, function(start, end, label) {
               console.log(start.toISOString(), end.toISOString(), label);
             });
           });
-        </script>
+        </script>--%>
      <script>
         $(document).ready(function(){
          
@@ -862,36 +901,36 @@
                  $("<%=cnicbackimg.ClientID%>").val("");
                  $("<%=regformimage.ClientID%>").val("");
                 
-                $("input[name=arrivaldate]").val("");
+                //$("input[name=arrivaldate]").val("");
                 $("input[name=atime]").val("");
                 $("input[name=gname]").val("");
                 $("input[name=cnicno]").val("");
-                $("input[name=dob]").val("");
+              //  $("input[name=dob]").val("");
                 $("input[name=cname]").val("");
                 $("input[name=proffesion]").val("");
                 $("input[name=designation]").val("");
                 $("input[name=poffice]").val("");
                 $("input[name=presidence]").val("");
                 $("input[name=pcell]").val("");
-                $("input[name=departure]").val("");
+              //  $("input[name=departure]").val("");
                 $("input[name=dtime]").val("");
                 $("input[name=flightno]").val("");
                 $("input[name=caddress]").val("");
                 $("input[name=paddress]").val("");
                 // foreigner info
                 $("input[name=fregno]").val("abc abc");
-                $("input[name=farrivaldate]").val("2016-01-01");
+              //  $("input[name=farrivaldate]").val("2016-01-01");
                 $("input[name=fatime]").val("18:01");
                 $("input[name=fgname]").val("abc abc");
                 $("input[name=fcnicno]").val("000");
-                $("input[name=fdob]").val("2016-01-01");
+              //  $("input[name=fdob]").val("2016-01-01");
                 $("input[name=fcname]").val("abc abc");
                 $("input[name=fproffesion]").val("abc");
                 $("input[name=fdesignation]").val("abc");
                 $("input[name=fpoffice]").val("000");
                 $("input[name=fpresidence]").val("abc abc");
                 $("input[name=fpcell]").val("000");
-                $("input[name=fdeparture]").val("2016-01-01");
+               // $("input[name=fdeparture]").val("2016-01-01");
                 $("input[name=fdtime]").val("18:01");
                 $("input[name=fflightno]").val("000");
                 $("input[name=fcaddress]").val("000");
@@ -899,9 +938,9 @@
                 $("input[name=fpassno]").val("000");
                 $("input[name=nationality]").val("000");
                 $("input[name=placeofissue]").val("18:01");
-                $("input[name=fdateofissue]").val("2016-01-01");
+               // $("input[name=fdateofissue]").val("2016-01-01");
                 $("input[name=visano]").val("000");
-                $("input[name=validupto]").val("2016-01-01");
+              //  $("input[name=validupto]").val("2016-01-01");
                 $("input[name=fcfrom]").val("abc");
                 $('<%=passportimage%>').attr('src', "images/images.png");
                 
@@ -934,18 +973,18 @@
                  break;
              }
          }%>
-                $("input[name=farrivaldate]").val("");
+                //$("input[name=farrivaldate]").val("");
                 $("input[name=fatime]").val("");
                 $("input[name=fgname]").val("");
                 $("input[name=fcnicno]").val("");
-                $("input[name=fdob]").val("");
+               // $("input[name=fdob]").val("");
                 $("input[name=fcname]").val("");
                 $("input[name=fproffesion]").val("");
                 $("input[name=fdesignation]").val("");
                 $("input[name=fpoffice]").val("");
                 $("input[name=fpresidence]").val("");
                 $("input[name=fpcell]").val("");
-                $("input[name=fdeparture]").val("");
+               // $("input[name=fdeparture]").val("");
                 $("input[name=fdtime]").val("");
                 $("input[name=fflightno]").val("");
                 $("input[name=fcaddress]").val("");
@@ -953,9 +992,9 @@
                 $("input[name=fpassno]").val("");
                 $("input[name=nationality]").val("");
                 $("input[name=placeofissue]").val("");
-                $("input[name=fdateofissue]").val("");
+              //  $("input[name=fdateofissue]").val("");
                 $("input[name=visano]").val("");
-                $("input[name=validupto]").val("");
+             //   $("input[name=validupto]").val("");
                 $("input[name=fcfrom]").val("");
                 $("input[name=fgoto]").val("");
 
@@ -973,18 +1012,18 @@
 
               //  alert($("#guestType").val());
                 $("input[name=regno]").val("abc abc");
-                $("input[name=arrivaldate]").val("2016-01-01");
+               // $("input[name=arrivaldate]").val("2016-01-01");
                 $("input[name=atime]").val("18:01");
                 $("input[name=gname]").val("00");
                 $("input[name=cnicno]").val("00000-0000000-0");
-                $("input[name=dob]").val("2016-01-01");
+              //  $("input[name=dob]").val("2016-01-01");
                 $("input[name=cname]").val("abc abc");
                 $("input[name=proffesion]").val("00");
                 $("input[name=designation]").val("00");
                 $("input[name=poffice]").val("00");
                 $("input[name=presidence]").val("00");
                 $("input[name=pcell]").val("00");
-                $("input[name=departure]").val("2016-01-01");
+               // $("input[name=departure]").val("2016-01-01");
                 $("input[name=dtime]").val("18:01");
                 $("input[name=flightno]").val("00");
                 $("input[name=caddress]").val("00");
@@ -997,27 +1036,28 @@
                  $("<%=regformimage.ClientID%>").val("<%= System.Text.Encoding.UTF8.GetBytes ("images/images.png")%>");--%>
             });
         });
-        function ShowMessage1(message, messagetype) {
-            var cssclass;
-            switch (messagetype) {
-                case 'Success':
-                    cssclass = 'alert-success'
-                    break;
-                case 'Error':
-                    cssclass = 'alert-danger'
-                    break;
-                case 'Warning':
-                    cssclass = 'alert-warning'
-                    break;
-                default:
-                    cssclass = 'alert-info'
-            }
-            $('alert_container').append('<div id="alert_div" style="margin-top:40px;margin-left:10px;width:90%; -webkit-box-shadow: 3px 4px 6px #999;" class="alert fade in ' + cssclass + '"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>' + messagetype + '!</strong> <span>' + message + '</span></div>');
-        };
+        //function ShowMessage(message, messagetype) {
+        //    var cssclass;
+        //    switch (messagetype) {
+        //        case 'Success':
+        //            cssclass = 'alert-success'
+        //            break;
+        //        case 'Error':
+        //            cssclass = 'alert-danger'
+        //            break;
+        //        case 'Warning':
+        //            cssclass = 'alert-warning'
+        //            break;
+        //        default:
+        //            cssclass = 'alert-info'
+        //    }
+        //    $('#alert_container').append('<div id="alert_div" style="margin-top:40px;margin-left:10px;width:90%; -webkit-box-shadow: 3px 4px 6px #999;" class="alert fade in ' + cssclass + '"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>' + messagetype + '!</strong> <span>' + message + '</span></div>');
+        //};
 
 
 
     </script>
         <!-- /bootstrap-daterangepicker -->
     <script src="js/NotificationJS.js"></script>
+  
 </asp:Content>

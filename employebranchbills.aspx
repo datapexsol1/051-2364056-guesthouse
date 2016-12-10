@@ -13,7 +13,7 @@
         };
        
         function myfunction() {
-            alert("adsa");
+         //   alert("adsa");
             var d = new Date();
             d.setDate(0);
             document.getElementById('<%=ddBillType.ClientID %>').value = 'Water';
@@ -22,11 +22,9 @@
 
             <%--            document.getElementById('abamount').value = "";
                 document.getElementById('<%=abtype.ClientID %>').value = "";
-                document.getElementById('abdate').value = '';
                 document.getElementById('desc').value = "";--%>
              document.getElementById('abamount').value = '';
             document.getElementById('<%=abtype.ClientID %>').value = "";
-            document.getElementById('abdate').value = '';
             document.getElementById('desc').value = "";
         }
         function setAddVal() {
@@ -35,7 +33,6 @@
             //$("input[name=abamount]").val("123");
             document.getElementById('abamount').value = 123;
             document.getElementById('<%=abtype.ClientID %>').value = "Water";
-            document.getElementById('abdate').value = '01-10-1991';
             document.getElementById('desc').value = "123";
 
             <%-- document.getElementById('<%=ddBillType.ClientID %>').value = '';
@@ -73,7 +70,7 @@
              %>
                 
                 document.getElementById('abamount').value = 242000 + <%=increment * d3 %> ;
-        <%
+                <%
         }
         // var newDate = myDate.AddYears(-1);
         if (b != null)
@@ -93,10 +90,11 @@
             }
         }
         <%}
-        catch (Exception ex)
-        {
+            catch (Exception ex)
+            {
 
-        }%>
+            }
+        %>
        
     </script>
 
@@ -289,7 +287,7 @@
                         
                         <div class="col-md-4">
                             <label >Date <span class="required">*</span></label>
-                          <input type="text" id="abdate" name="abdate" data-format="dd-mm-yyyy"  placeholder="Date" class="form-control " data-validation="required" 
+                          <input type="text" id="abdate" name="abdate"  value="123"  placeholder="Date" class="form-control " data-validation="required" 
 		 data-validation-error-msg="Bill Date is required !"/>
                         </div>
                       
@@ -331,10 +329,19 @@
   
     <script>
       $(document).ready(function() {
-      
+          var d = new Date();
+          var mm = d.getMonth() + 1;
+          var yy = d.getFullYear();
           $('#abdate').daterangepicker({
-          singleDatePicker: true,
-          calender_style: "picker_2"
+          //singleDatePicker: true,
+              //calender_style: "picker_2"
+              singleDatePicker: true,
+              minDate: '01-' + mm + '-' + yy,
+              buttonClasses: ['btn btn-default'],
+              applyClass: 'btn-small btn-primary',
+              calender_style: "picker_5",
+              startDate: '01-' + mm + '-' + yy,
+              showDropdowns: true
         }, function(start, end, label) {
           console.log(start.toISOString(), end.toISOString(), label);
         });

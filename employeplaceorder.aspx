@@ -8,16 +8,16 @@
                 
                 if ($('#<%=itemid.ClientID%>').val() == "") {
                     $('#<%=itemid.ClientID%>').val(value);
-                    alert($('#<%=itemid.ClientID%>').val());
+                    //alert($('#<%=itemid.ClientID%>').val());
                 }
                 else {
                     var val = $('#<%=itemid.ClientID%>').val();
                     val += "," + value;
                     $('#<%=itemid.ClientID%>').val(val);
-                    alert($('#<%=itemid.ClientID%>').val());
+                    //alert($('#<%=itemid.ClientID%>').val());
                 }
                 var x = $('#noitem' + value).val();
-                alert("id of item :" + value + "Value of item :" + x);
+                //alert("id of item :" + value + "Value of item :" + x);
             }
             else {
                 var mystr = $('#<%=itemid.ClientID%>').val();
@@ -28,17 +28,17 @@
                     abc = abc.replace(value, '');
                   
                     $('#<%=itemid.ClientID%>').val(abc);
-                    alert($('#<%=itemid.ClientID%>').val());
+                    //alert($('#<%=itemid.ClientID%>').val());
                 
                 
             }
             
         }
         function getchangedvalue() {
-            alert( $('#<%=roombranch.ClientID%>').val());
+            //alert( $('#<%=roombranch.ClientID%>').val());
         
             $('#<%=roomno.ClientID%>').val($('#<%=roombranch.ClientID%>').val()); 
-                alert($('#<%=roomno.ClientID%>').val());
+                //alert($('#<%=roomno.ClientID%>').val());
            
         }
     </script>

@@ -20,9 +20,10 @@
     <div id="Notify"></div>
 
       <div class="right_col" role="main">
-         
+         <div class="">
     <div class="page-title">
-              <div class="title_left">
+        <div class="">
+                          <div class="title_left">
                  <h3>Branch Services</h3>
               </div>
 
@@ -38,8 +39,8 @@
                   </div>
                 </div>
               </div>
-            </div>
-      <div class="clearfix"></div>
+           </div>
+      <%--<div class="clearfix"></div>--%>
  
     <div class="row">
      <div class="col-md-12 col-sm-12 col-xs-12">
@@ -228,8 +229,8 @@
          </div>
         </div>
          </div>
- 
-
+             </div>
+</div>
     <!-- bootstrap-daterangepicker -->
     <script src="js/moment/moment.min.js"></script>
     <script src="js/datepicker/daterangepicker.js"></script>

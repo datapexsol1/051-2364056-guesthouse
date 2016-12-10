@@ -36,8 +36,8 @@ public partial class employeupdateevent : System.Web.UI.Page
             event_calender ev = new event_calender();
             ev.event_name = Request.Form["eventname"].ToString();
             ev.event_description = Request.Form["eventdesc"].ToString();
-            ev.event_start_date = DateTime.ParseExact(Request.Form["eventstartdate"], "dd-MM-yyyy", CultureInfo.InvariantCulture); ;//DateTime.Parse(Request.Form["eventstartdate"].ToString());
-            ev.event_end_date = DateTime.ParseExact(Request.Form["eventenddate"], "dd-MM-yyyy", CultureInfo.InvariantCulture); ;// DateTime.Parse(Request.Form["eventenddate"].ToString());
+            ev.event_start_date = DateTime.ParseExact(Request.Form["eventstartdate"], "dd-MM-yyyy", CultureInfo.InvariantCulture);//DateTime.Parse(Request.Form["eventstartdate"].ToString());
+            ev.event_end_date = DateTime.ParseExact(Request.Form["eventenddate"], "dd-MM-yyyy", CultureInfo.InvariantCulture); //DateTime.ParseExact(Request.Form["eventenddate"], "dd-MM-yyyy", CultureInfo.InvariantCulture); ;// DateTime.Parse(Request.Form["eventenddate"].ToString());
             ev.event_color = Request.Form["eventcolor"].ToString();
             ev.employee_id = employID;
             bool check = events.updateEvent(ev, id);

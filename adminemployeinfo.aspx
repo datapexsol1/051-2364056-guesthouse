@@ -59,7 +59,7 @@
 
 
                       <div class="clearfix"></div>
-
+                       
                     
                          <% 
                              List<employee> employes = null;
@@ -71,15 +71,88 @@
                              {
                                  employes = employeeProfile.getAllEmployee(branch.SelectedValue).ToList<employee>();
                              }
+                          
+                       
 
                              foreach (employee e in employes)
                              {
+                                    byte[] img1 = null;
+                      if (e.image != null)
+                      {
+                          img1 = e.image.ToArray();
+                      }
+                      else
+                      {
+                          img1 = System.Text.Encoding.UTF8.GetBytes ("images/images.png");
+                      }
 
                              %>
 
                       
+                      <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
+                                           
+                        <div class="well profile_view">
+                          <div class="col-sm-12">
+                            <h4 class="brief"><i><%=e.designation %></i></h4>
+                            <div class="left col-xs-7">
+                              <h2><%=e.name %></h2>
+                              <p><strong>About: </strong> <%=e.designation %></p>
+                              <ul class="list-unstyled">
+                                <li><i class="fa fa-building"></i> Address:<%=e.address %> </li>
+                                <li><i class="fa fa-phone"></i> Phone #:<%=e.employee_no %> </li>
+                              </ul>
+                            </div>
+                            <div class="right col-xs-5 text-center">
+                              <img src='data:image/jpg;base64,<%= Convert.ToBase64String(img1) %>' alt="" class="img-circle img-responsive">
+                            </div>
+                          </div>
+                          
+                        </div>
+                     </div>
 
-                      <div class="col-md-5 col-sm-5 col-xs-12 profile_details">
+
+
+
+
+
+
+
+
+
+                         <%} %>
+
+                     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                      <%--<div class="col-md-5 col-sm-5 col-xs-12 profile_details">
                         <div class="well profile_view">
                           <div class="col-sm-12">
                             <h4 class="brief"><i><%=e.designation %></i></h4>
@@ -109,17 +182,11 @@
                           <div class="col-xs-12 bottom text-center">
                          
 
-                          <%--  <div class="col-xs-12 col-sm-6 emphasis">
-                              <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-user">
-                                </i> <i class="fa fa-comments-o"></i> </button>
-                              <button type="button" class="btn btn-primary btn-xs">
-                                <i class="fa fa-user"> </i> View Profile
-                              </button>
-                            </div>--%>
+                        
                           </div>
                         </div>
-                      </div>
-                      <%} %>
+                      </div>--%>
+                   
               
 
                     </div>

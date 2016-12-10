@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    
+   <%-- 
      <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Meta, title, CSS, favicons, etc. -->
@@ -22,7 +22,7 @@
 
     <!-- Custom Theme Style -->
     <link href="../build/css/custom.min.css" rel="stylesheet">
-  </head>
+  </head>--%>
 
 
    <div class="right_col" role="main">
@@ -115,7 +115,7 @@
                                                   {
                                        %>
                                 <tr>
-                                    <td><a href="employeguestpayment.aspx?booking=<%=b.b_id%>"<label style="color:red">Check Out</label></a></td>
+                                    <td><a href="adminguestpayment.aspx?booking=<%=b.b_id%>"<label style="color:red">Check Out</label></a></td>
                                       <td><label id="image">"Not added yet"</label></td>
                                       <td><label id="checkin"><%=b.b_checkinDate%> </label></td>
                                       <td><label id="checkout"><%=b.b_checkoutdate%> </label></td>
@@ -190,7 +190,7 @@
                                           %>
                                  <tr>
 
-                                     <td><a href="employeguestpayment.aspx?booking=<%=fb.b_id%>"><label>Check Out</label></a></td>
+                                     <td><a href="adminguestpayment.aspx?booking=<%=fb.b_id%>"><label>Check Out</label></a></td>
                                       <td><label id="fimage"><%="not yet"%></label></td>
                                       <td><label id="fcheckin"><%=fb.b_checkinDate %></label></td>
                                       <td><label id="fcheckout"><%=fb.b_checkoutdate %></label></td>
@@ -228,65 +228,7 @@
                             <!-- end user projects -->
 
                           </div>
-                          <%--<div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
-                               <table class="data table table-striped no-margin">
-                              <thead>
-                                <tr>
-                                  <th>#</th>
-                                  <th>Project Name</th>
-                                  <th>Client Company</th>
-                                  <th class="hidden-phone">Hours Spent</th>
-                                  <th>Contribution</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                <tr>
-                                  <td>1</td>
-                                  <td>New Company Takeover Review</td>
-                                  <td>Deveint Inc</td>
-                                  <td class="hidden-phone">18</td>
-                                  <td class="vertical-align-mid">
-                                    <div class="progress">
-                                      <div class="progress-bar progress-bar-success" data-transitiongoal="35"></div>
-                                    </div>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>2</td>
-                                  <td>New Partner Contracts Consultanci</td>
-                                  <td>Deveint Inc</td>
-                                  <td class="hidden-phone">13</td>
-                                  <td class="vertical-align-mid">
-                                    <div class="progress">
-                                      <div class="progress-bar progress-bar-danger" data-transitiongoal="15"></div>
-                                    </div>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>3</td>
-                                  <td>Partners and Inverstors report</td>
-                                  <td>Deveint Inc</td>
-                                  <td class="hidden-phone">30</td>
-                                  <td class="vertical-align-mid">
-                                    <div class="progress">
-                                      <div class="progress-bar progress-bar-success" data-transitiongoal="45"></div>
-                                    </div>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>4</td>
-                                  <td>New Company Takeover Review</td>
-                                  <td>Deveint Inc</td>
-                                  <td class="hidden-phone">28</td>
-                                  <td class="vertical-align-mid">
-                                    <div class="progress">
-                                      <div class="progress-bar progress-bar-success" data-transitiongoal="75"></div>
-                                    </div>
-                                  </td>
-                                </tr>
-                              </tbody>
-                            </table>
-                          </div>--%>
+                         
                         </div>
                       </div>
          </div>
@@ -297,130 +239,5 @@
     
 </div></div>
 
-      <!-- jQuery -->
-    <script src="../vendors/jquery/dist/jquery.min.js"></script>
-    <!-- Bootstrap -->
-    <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-    <!-- FastClick -->
-    <script src="../vendors/fastclick/lib/fastclick.js"></script>
-    <!-- NProgress -->
-    <script src="../vendors/nprogress/nprogress.js"></script>
-    <!-- morris.js -->
-    <script src="../vendors/raphael/raphael.min.js"></script>
-    <script src="../vendors/morris.js/morris.min.js"></script>
-    <!-- bootstrap-progressbar -->
-    <script src="../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
-    <!-- bootstrap-daterangepicker -->
-    <script src="js/moment/moment.min.js"></script>
-    <script src="js/datepicker/daterangepicker.js"></script>
-    
-    <!-- Custom Theme Scripts -->
-    <script src="../build/js/custom.min.js"></script>
-
-    <script>
-        $(function () {
-            Morris.Bar({
-                element: 'graph_bar',
-                data: [
-                  { "period": "Jan", "Hours worked": 80 },
-                  { "period": "Feb", "Hours worked": 125 },
-                  { "period": "Mar", "Hours worked": 176 },
-                  { "period": "Apr", "Hours worked": 224 },
-                  { "period": "May", "Hours worked": 265 },
-                  { "period": "Jun", "Hours worked": 314 },
-                  { "period": "Jul", "Hours worked": 347 },
-                  { "period": "Aug", "Hours worked": 287 },
-                  { "period": "Sep", "Hours worked": 240 },
-                  { "period": "Oct", "Hours worked": 211 }
-                ],
-                xkey: 'period',
-                hideHover: 'auto',
-                barColors: ['#26B99A', '#34495E', '#ACADAC', '#3498DB'],
-                ykeys: ['Hours worked', 'sorned'],
-                labels: ['Hours worked', 'SORN'],
-                xLabelAngle: 60,
-                resize: true
-            });
-
-            $MENU_TOGGLE.on('click', function () {
-                $(window).resize();
-            });
-        });
-    </script>
-
-    <!-- datepicker -->
-    <script type="text/javascript">
-        $(document).ready(function () {
-
-            var cb = function (start, end, label) {
-                console.log(start.toISOString(), end.toISOString(), label);
-                $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-                //alert("Callback has fired: [" + start.format('MMMM D, YYYY') + " to " + end.format('MMMM D, YYYY') + ", label = " + label + "]");
-            }
-
-            var optionSet1 = {
-                startDate: moment().subtract(29, 'days'),
-                endDate: moment(),
-                minDate: '01/01/2012',
-                maxDate: '12/31/2015',
-                dateLimit: {
-                    days: 60
-                },
-                showDropdowns: true,
-                showWeekNumbers: true,
-                timePicker: false,
-                timePickerIncrement: 1,
-                timePicker12Hour: true,
-                ranges: {
-                    'Today': [moment(), moment()],
-                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                    'This Month': [moment().startOf('month'), moment().endOf('month')],
-                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-                },
-                opens: 'left',
-                buttonClasses: ['btn btn-default'],
-                applyClass: 'btn-small btn-primary',
-                cancelClass: 'btn-small',
-                format: 'MM/DD/YYYY',
-                separator: ' to ',
-                locale: {
-                    applyLabel: 'Submit',
-                    cancelLabel: 'Clear',
-                    fromLabel: 'From',
-                    toLabel: 'To',
-                    customRangeLabel: 'Custom',
-                    daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-                    monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-                    firstDay: 1
-                }
-            };
-            $('#reportrange span').html(moment().subtract(29, 'days').format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
-            $('#reportrange').daterangepicker(optionSet1, cb);
-            $('#reportrange').on('show.daterangepicker', function () {
-                console.log("show event fired");
-            });
-            $('#reportrange').on('hide.daterangepicker', function () {
-                console.log("hide event fired");
-            });
-            $('#reportrange').on('apply.daterangepicker', function (ev, picker) {
-                console.log("apply event fired, start/end dates are " + picker.startDate.format('MMMM D, YYYY') + " to " + picker.endDate.format('MMMM D, YYYY'));
-            });
-            $('#reportrange').on('cancel.daterangepicker', function (ev, picker) {
-                console.log("cancel event fired");
-            });
-            $('#options1').click(function () {
-                $('#reportrange').data('daterangepicker').setOptions(optionSet1, cb);
-            });
-            $('#options2').click(function () {
-                $('#reportrange').data('daterangepicker').setOptions(optionSet2, cb);
-            });
-            $('#destroy').click(function () {
-                $('#reportrange').data('daterangepicker').remove();
-            });
-        });
-    </script>
-    <!-- /datepicker -->
 </asp:Content>
 

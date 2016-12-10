@@ -299,11 +299,12 @@
             });
         }
     </script>
+                              
 
 
                     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                     </asp:ContentPlaceHolder>
-
+                    <div class="clearfix"></div>
                     <!-- footer content -->
                     <footer>
                         <div class="pull-right">

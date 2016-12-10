@@ -1,169 +1,158 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AdminPanel.master" AutoEventWireup="true" CodeFile="adminmenuservice.aspx.cs" Inherits="adminmenuservice" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
- <script>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+    <script>
         function xyz(value) {
-            if ( $('#tbox' + value).is(":checked"))
-            {
-                
+            if ($('#tbox' + value).is(":checked")) {
+
                 if ($('#<%=itemid.ClientID%>').val() == "") {
                     $('#<%=itemid.ClientID%>').val(value);
-                    alert($('#<%=itemid.ClientID%>').val());
+                    <%--alert($('#<%=itemid.ClientID%>').val());--%>
                 }
                 else {
                     var val = $('#<%=itemid.ClientID%>').val();
                     val += "," + value;
                     $('#<%=itemid.ClientID%>').val(val);
-                    alert($('#<%=itemid.ClientID%>').val());
+                    //alert($('#<%=itemid.ClientID%>').val());
                 }
                 var x = $('#noitem' + value).val();
-                alert("id of item :" + value + "Value of item :" + x);
+                //alert("id of item :" + value + "Value of item :" + x);
             }
             else {
                 var mystr = $('#<%=itemid.ClientID%>').val();
-                    var avoid = value + ',';
-                   
+                var avoid = value + ',';
 
-                    var abc = mystr.replace(avoid, '');
-                    abc = abc.replace(value, '');
-                  
-                    $('#<%=itemid.ClientID%>').val(abc);
-                    alert($('#<%=itemid.ClientID%>').val());
-                
-                
+
+                var abc = mystr.replace(avoid, '');
+                abc = abc.replace(value, '');
+
+                $('#<%=itemid.ClientID%>').val(abc);
+                //alert($('#<%=itemid.ClientID%>').val());
+
+
             }
-            
+
         }
-     function getchangedvalue() {
-         //alert("abc");
-            alert( $('#<%=roombranch.ClientID%>').val());
-        
-            $('#<%=roomno.ClientID%>').val($('#<%=roombranch.ClientID%>').val()); 
-                alert($('#<%=roomno.ClientID%>').val());
-           
-        }
+        function getchangedvalue() {
+            //alert("abc");
+            alert($('#<%=roombranch.ClientID%>').val());
+
+         $('#<%=roomno.ClientID%>').val($('#<%=roombranch.ClientID%>').val());
+         alert($('#<%=roomno.ClientID%>').val());
+
+     }
     </script>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <div id="Notify"></div>
-     <div class="right_col" role="main">
-          <div class="">
-    <div class="page-title">
-              <div class="title_left">
-<h3>Order Menu items</h3>
+    <div class="right_col" role="main">
+        <div class="">
+            <div class="page-title">
+                <div class="title_left">
+                    <h3>Order Menu items</h3>
 
-              </div>
-
-              <div class="title_right">
-                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                  <div class="input-group">
-                      <span class="input-group-btn">
-                              <button class="btn btn-default" type="button" disabled="disabled">Select branch!</button>
-                          </span>
-                            <asp:DropDownList ID="branch" runat="server"  AutoPostBack="true" ClientIDMode="Static" CssClass="form-control" OnSelectedIndexChanged="indexchange_click"></asp:DropDownList>
-
-                    
-                  </div>
                 </div>
-              </div>
+
+                <div class="title_right">
+                    <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button" disabled="disabled">Select branch!</button>
+                            </span>
+                            <asp:DropDownList ID="branch" runat="server" AutoPostBack="true" ClientIDMode="Static" CssClass="form-control" OnSelectedIndexChanged="indexchange_click"></asp:DropDownList>
+
+
+                        </div>
+                    </div>
+                </div>
             </div>
-      <div class="clearfix"></div>
+            <div class="clearfix"></div>
             <input type="hidden" id="itemid" runat="server" />
-    <input type="hidden" id="nofitem" runat="server" />
-    <input type="hidden" id="bookingid" runat="server" />
-     <input type="hidden" id="roomno" runat="server" />
-          <div class="">
-            
-
-            <div class="clearfix"></div>  
-     <div class="">
-              <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
-                  <div class="x_title">
-                    
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                    
-                      <li><a class="close-link"><i class="fa fa-close"></i></a>
-                      </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
+            <input type="hidden" id="nofitem" runat="server" />
+            <input type="hidden" id="bookingid" runat="server" />
+            <input type="hidden" id="roomno" runat="server" />
+            <div class="">
 
 
-                   <div class="" role="tabpanel" data-example-id="togglable-tabs">
-                     <%-- <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                <div class="clearfix"></div>
+                <div class="">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="x_panel">
+                            <div class="x_title">
+
+                                <ul class="nav navbar-right panel_toolbox">
+                                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                    </li>
+
+                                    <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                    </li>
+                                </ul>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
+
+
+                                <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                                    <%-- <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
                         <li role="presentation" class="active"><a href="#tab_view" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Place order</a>
                         </li>--%>
 
 
                     
                       </ul>
-                         <!-- start view activity -->
-                      <div id="myTabContent" class="tab-content">
-                        <div role="tabpanel" class="tab-pane fade active in" id="tab_view" aria-labelledby="home-tab">
-                            <div class="row">
-                            <div class="col-md-5">
-                            <b> Room No *</b>
-                             <asp:DropDownList  runat="server" class="form-control" ID="roombranch" name="roombranch" data-validation="required" data-validation-error-msg="Room no is required !" onchange="getchangedvalue()">
-                                                      
-                                                   
-                                         
-                                               </asp:DropDownList> 
-                                 </div> 
-                                </div>     
-                            <br /> 
-                            <div class="row">
-                           <asp:Table class="data table table-striped no-margin"  ID="menuview"  runat="server">
-                             
-                            
-                             
-                               
-                             
-                           </asp:Table>
+                        
+                                    <!-- start view activity -->
+                                    <div id="myTabContent" class="tab-content">
+                                        <div role="tabpanel" class="tab-pane fade active in" id="tab_view" aria-labelledby="home-tab">
+                                            <div class="row">
+                                                <div class="col-md-5">
+                                                    <b>Room No *</b>
+                                                    <asp:DropDownList runat="server" class="form-control" ID="roombranch" name="roombranch" data-validation="required" data-validation-error-msg="Room no is required !" onchange="getchangedvalue()">
+                                                    </asp:DropDownList>
+                                                </div>
+                                            </div>
+                                            <br />
+                                            <div class="row">
+                                                <asp:Table class="data table table-striped no-margin" ID="menuview" runat="server">
+                                                </asp:Table>
+                                            </div>
+                                            <div id="print">
+                                                <asp:Table class="data table table-striped no-margin" ID="ordersummery" runat="server">
+                                                </asp:Table>
+                                            </div>
+                                            <asp:Button ID="getsummary" runat="server" Text="Place Order" OnClick="getsummary_click" CssClass="btn btn-success" />
+                                            <asp:Button ID="savetodb" runat="server" Visible="false" CssClass="btn btn-default" Text="Save" />
+                                            <%--<input type="button" id="btnPrint" value="Print " class="btn btn-default" />--%>
+                                        </div>
+                                    </div>
+
                                 </div>
-                            <div id="print">
-                             <asp:Table class="data table table-striped no-margin" ID="ordersummery"  runat="server">
-                             
-                            
-                             
-                               
-                             
-                           </asp:Table>
-                         </div>
-                            <asp:Button ID="getsummary" runat="server" Text="Place Order" OnClick="getsummary_click" CssClass="btn btn-success" />
-                             <asp:Button ID="savetodb" runat="server" Visible="false" CssClass="btn btn-default" Text="PrintBill"  />
-                       <input type="button" id="btnPrint" value="Print "  class="btn btn-default"/>
+                            </div>
                         </div>
+
+
+
+
+
+
+
+
+
+
                     </div>
-
-                  </div>
                 </div>
-              </div>
-
-
-             
-
-
-           
-
-
-              
-
-         </div></div>   </div>
-         <script>
-        $(function () {
-            $("#btnPrint").click(function () {
-                //alert("hello");
+            </div></div></div>
+            <script>
+                $(function () {
+                    $("#btnPrint").click(function () {
+                        //alert("hello");
 <%--                $("#type").show();
                var v = "<%=paymentDropdown.SelectedValue.ToString()%>";
                // alert(v);
                 document.getElementById('setpaymenttype').innerText = v;--%>
                 //$("input[name=setpaymenttype]").val(v);
                 //$("tbpayType").val(v);
-                
+
                 var contents = $("#print").html();
                 var frame1 = $('<iframe />');
                 frame1[0].name = "frame1";
