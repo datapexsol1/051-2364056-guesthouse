@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -62,10 +63,18 @@ public partial class employeerooms : System.Web.UI.Page
     }
     protected void updateTempbooking_click(object sender, EventArgs e)
     {
+
+        string temp = checkindate.Value;
+        string temp1 = DateTime.Now.ToShortTimeString();
+        string newdate = temp + temp1;
         online_guest_booking b = new online_guest_booking();
-        b.check_in_date = DateTime.Parse(checkindate.Value);
-         b.check_out_date = DateTime.Parse(checkoutdate.Value);
-       b.guest_name = gname.Value;
+        if (checkindate.Value != "" && checkoutdate.Value != "")
+        {
+            b.check_in_date = DateTime.ParseExact(newdate, "dd-MM-yyyy HH:mm:ss", CultureInfo.InvariantCulture);// DateTime.Parse(checkindate.Value);
+            b.check_out_date = DateTime.ParseExact(checkoutdate.Value, "dd-MM-yyyy", CultureInfo.InvariantCulture);//DateTime.Parse(checkoutdate.Value);
+
+        }
+        b.guest_name = gname.Value;
         b.guest_phone = gphone.Value;
         b.no_of_guest = int.Parse(noofguest.Value);
          b.no_of_room= roomnonew.Value;
