@@ -19,7 +19,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 
-///////k
+
 
 [global::System.Data.Linq.Mapping.DatabaseAttribute(Name="guest_house_database")]
 public partial class ctownDataContext : System.Data.Linq.DataContext
@@ -56,9 +56,6 @@ public partial class ctownDataContext : System.Data.Linq.DataContext
   partial void Insertevent_calender(event_calender instance);
   partial void Updateevent_calender(event_calender instance);
   partial void Deleteevent_calender(event_calender instance);
-  partial void Insertfacility_payment(facility_payment instance);
-  partial void Updatefacility_payment(facility_payment instance);
-  partial void Deletefacility_payment(facility_payment instance);
   partial void Insertforeigner(foreigner instance);
   partial void Updateforeigner(foreigner instance);
   partial void Deleteforeigner(foreigner instance);
@@ -193,14 +190,6 @@ public partial class ctownDataContext : System.Data.Linq.DataContext
 		get
 		{
 			return this.GetTable<event_calender>();
-		}
-	}
-	
-	public System.Data.Linq.Table<facility_payment> facility_payments
-	{
-		get
-		{
-			return this.GetTable<facility_payment>();
 		}
 	}
 	
@@ -482,7 +471,7 @@ public partial class admin_notification : INotifyPropertyChanging, INotifyProper
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_seen", DbType="VarChar(3) NOT NULL", CanBeNull=false)]
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_seen", DbType="VarChar(5)")]
 	public string seen
 	{
 		get
@@ -757,6 +746,10 @@ public partial class booking : INotifyPropertyChanging, INotifyPropertyChanged
 	
 	private System.Data.Linq.Binary _registration_form_image;
 	
+	private string _referance_by_name;
+	
+	private string _referance_by_contact;
+	
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -783,6 +776,10 @@ public partial class booking : INotifyPropertyChanging, INotifyPropertyChanged
     partial void Onback_identity_layoutChanged();
     partial void Onregistration_form_imageChanging(System.Data.Linq.Binary value);
     partial void Onregistration_form_imageChanged();
+    partial void Onreferance_by_nameChanging(string value);
+    partial void Onreferance_by_nameChanged();
+    partial void Onreferance_by_contactChanging(string value);
+    partial void Onreferance_by_contactChanged();
     #endregion
 	
 	public booking()
@@ -1006,6 +1003,46 @@ public partial class booking : INotifyPropertyChanging, INotifyPropertyChanged
 				this._registration_form_image = value;
 				this.SendPropertyChanged("registration_form_image");
 				this.Onregistration_form_imageChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_referance_by_name", DbType="VarChar(25)")]
+	public string referance_by_name
+	{
+		get
+		{
+			return this._referance_by_name;
+		}
+		set
+		{
+			if ((this._referance_by_name != value))
+			{
+				this.Onreferance_by_nameChanging(value);
+				this.SendPropertyChanging();
+				this._referance_by_name = value;
+				this.SendPropertyChanged("referance_by_name");
+				this.Onreferance_by_nameChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_referance_by_contact", DbType="VarChar(25)")]
+	public string referance_by_contact
+	{
+		get
+		{
+			return this._referance_by_contact;
+		}
+		set
+		{
+			if ((this._referance_by_contact != value))
+			{
+				this.Onreferance_by_contactChanging(value);
+				this.SendPropertyChanging();
+				this._referance_by_contact = value;
+				this.SendPropertyChanged("referance_by_contact");
+				this.Onreferance_by_contactChanged();
 			}
 		}
 	}
@@ -2339,188 +2376,6 @@ public partial class event_calender : INotifyPropertyChanging, INotifyPropertyCh
 	}
 }
 
-[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.facility_payment")]
-public partial class facility_payment : INotifyPropertyChanging, INotifyPropertyChanged
-{
-	
-	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-	
-	private int _Id;
-	
-	private string _booking_id;
-	
-	private string _item_detail;
-	
-	private string _item_cost;
-	
-	private System.DateTime _date_time;
-	
-	private int _employee_id;
-	
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void Onbooking_idChanging(string value);
-    partial void Onbooking_idChanged();
-    partial void Onitem_detailChanging(string value);
-    partial void Onitem_detailChanged();
-    partial void Onitem_costChanging(string value);
-    partial void Onitem_costChanged();
-    partial void Ondate_timeChanging(System.DateTime value);
-    partial void Ondate_timeChanged();
-    partial void Onemployee_idChanging(int value);
-    partial void Onemployee_idChanged();
-    #endregion
-	
-	public facility_payment()
-	{
-		OnCreated();
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-	public int Id
-	{
-		get
-		{
-			return this._Id;
-		}
-		set
-		{
-			if ((this._Id != value))
-			{
-				this.OnIdChanging(value);
-				this.SendPropertyChanging();
-				this._Id = value;
-				this.SendPropertyChanged("Id");
-				this.OnIdChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_booking_id", DbType="NVarChar(25) NOT NULL", CanBeNull=false)]
-	public string booking_id
-	{
-		get
-		{
-			return this._booking_id;
-		}
-		set
-		{
-			if ((this._booking_id != value))
-			{
-				this.Onbooking_idChanging(value);
-				this.SendPropertyChanging();
-				this._booking_id = value;
-				this.SendPropertyChanged("booking_id");
-				this.Onbooking_idChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_item_detail", DbType="NVarChar(25) NOT NULL", CanBeNull=false)]
-	public string item_detail
-	{
-		get
-		{
-			return this._item_detail;
-		}
-		set
-		{
-			if ((this._item_detail != value))
-			{
-				this.Onitem_detailChanging(value);
-				this.SendPropertyChanging();
-				this._item_detail = value;
-				this.SendPropertyChanged("item_detail");
-				this.Onitem_detailChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_item_cost", DbType="NVarChar(25) NOT NULL", CanBeNull=false)]
-	public string item_cost
-	{
-		get
-		{
-			return this._item_cost;
-		}
-		set
-		{
-			if ((this._item_cost != value))
-			{
-				this.Onitem_costChanging(value);
-				this.SendPropertyChanging();
-				this._item_cost = value;
-				this.SendPropertyChanged("item_cost");
-				this.Onitem_costChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_date_time", DbType="DateTime NOT NULL")]
-	public System.DateTime date_time
-	{
-		get
-		{
-			return this._date_time;
-		}
-		set
-		{
-			if ((this._date_time != value))
-			{
-				this.Ondate_timeChanging(value);
-				this.SendPropertyChanging();
-				this._date_time = value;
-				this.SendPropertyChanged("date_time");
-				this.Ondate_timeChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_employee_id", DbType="Int NOT NULL")]
-	public int employee_id
-	{
-		get
-		{
-			return this._employee_id;
-		}
-		set
-		{
-			if ((this._employee_id != value))
-			{
-				this.Onemployee_idChanging(value);
-				this.SendPropertyChanging();
-				this._employee_id = value;
-				this.SendPropertyChanged("employee_id");
-				this.Onemployee_idChanged();
-			}
-		}
-	}
-	
-	public event PropertyChangingEventHandler PropertyChanging;
-	
-	public event PropertyChangedEventHandler PropertyChanged;
-	
-	protected virtual void SendPropertyChanging()
-	{
-		if ((this.PropertyChanging != null))
-		{
-			this.PropertyChanging(this, emptyChangingEventArgs);
-		}
-	}
-	
-	protected virtual void SendPropertyChanged(String propertyName)
-	{
-		if ((this.PropertyChanged != null))
-		{
-			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-		}
-	}
-}
-
 [global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.foreigners")]
 public partial class foreigner : INotifyPropertyChanging, INotifyPropertyChanged
 {
@@ -2996,7 +2851,7 @@ public partial class guest_service : INotifyPropertyChanging, INotifyPropertyCha
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_room_no", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_room_no", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
 	public string room_no
 	{
 		get
@@ -3937,7 +3792,7 @@ public partial class online_guest_booking : INotifyPropertyChanging, INotifyProp
 	
 	private int _no_of_guest;
 	
-	private System.DateTime _request_time;
+	private System.Nullable<System.DateTime> _request_time;
 	
 	private string _guest_name;
 	
@@ -3947,11 +3802,21 @@ public partial class online_guest_booking : INotifyPropertyChanging, INotifyProp
 	
 	private string _guest_email;
 	
-	private int _no_of_room;
+	private string _no_of_room;
 	
 	private string _room_type;
 	
 	private string _seen;
+	
+	private string _referance_by_name;
+	
+	private string _referance_by_contact;
+	
+	private string _cancel_booking;
+	
+	private string _Comments;
+	
+	private string _room_rent;
 	
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -3967,7 +3832,7 @@ public partial class online_guest_booking : INotifyPropertyChanging, INotifyProp
     partial void Oncheck_out_dateChanged();
     partial void Onno_of_guestChanging(int value);
     partial void Onno_of_guestChanged();
-    partial void Onrequest_timeChanging(System.DateTime value);
+    partial void Onrequest_timeChanging(System.Nullable<System.DateTime> value);
     partial void Onrequest_timeChanged();
     partial void Onguest_nameChanging(string value);
     partial void Onguest_nameChanged();
@@ -3977,12 +3842,22 @@ public partial class online_guest_booking : INotifyPropertyChanging, INotifyProp
     partial void Onguest_phoneChanged();
     partial void Onguest_emailChanging(string value);
     partial void Onguest_emailChanged();
-    partial void Onno_of_roomChanging(int value);
+    partial void Onno_of_roomChanging(string value);
     partial void Onno_of_roomChanged();
     partial void Onroom_typeChanging(string value);
     partial void Onroom_typeChanged();
     partial void OnseenChanging(string value);
     partial void OnseenChanged();
+    partial void Onreferance_by_nameChanging(string value);
+    partial void Onreferance_by_nameChanged();
+    partial void Onreferance_by_contactChanging(string value);
+    partial void Onreferance_by_contactChanged();
+    partial void Oncancel_bookingChanging(string value);
+    partial void Oncancel_bookingChanged();
+    partial void OnCommentsChanging(string value);
+    partial void OnCommentsChanged();
+    partial void Onroom_rentChanging(string value);
+    partial void Onroom_rentChanged();
     #endregion
 	
 	public online_guest_booking()
@@ -4090,8 +3965,8 @@ public partial class online_guest_booking : INotifyPropertyChanging, INotifyProp
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_request_time", DbType="DateTime NOT NULL")]
-	public System.DateTime request_time
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_request_time", DbType="DateTime")]
+	public System.Nullable<System.DateTime> request_time
 	{
 		get
 		{
@@ -4170,7 +4045,7 @@ public partial class online_guest_booking : INotifyPropertyChanging, INotifyProp
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_guest_email", DbType="NVarChar(25) NOT NULL", CanBeNull=false)]
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_guest_email", DbType="NVarChar(25)")]
 	public string guest_email
 	{
 		get
@@ -4190,8 +4065,8 @@ public partial class online_guest_booking : INotifyPropertyChanging, INotifyProp
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_no_of_room", DbType="Int NOT NULL")]
-	public int no_of_room
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_no_of_room", DbType="VarChar(50)")]
+	public string no_of_room
 	{
 		get
 		{
@@ -4210,7 +4085,7 @@ public partial class online_guest_booking : INotifyPropertyChanging, INotifyProp
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_room_type", DbType="NVarChar(15) NOT NULL", CanBeNull=false)]
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_room_type", DbType="NVarChar(15)")]
 	public string room_type
 	{
 		get
@@ -4246,6 +4121,106 @@ public partial class online_guest_booking : INotifyPropertyChanging, INotifyProp
 				this._seen = value;
 				this.SendPropertyChanged("seen");
 				this.OnseenChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_referance_by_name", DbType="VarChar(25)")]
+	public string referance_by_name
+	{
+		get
+		{
+			return this._referance_by_name;
+		}
+		set
+		{
+			if ((this._referance_by_name != value))
+			{
+				this.Onreferance_by_nameChanging(value);
+				this.SendPropertyChanging();
+				this._referance_by_name = value;
+				this.SendPropertyChanged("referance_by_name");
+				this.Onreferance_by_nameChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_referance_by_contact", DbType="VarChar(15)")]
+	public string referance_by_contact
+	{
+		get
+		{
+			return this._referance_by_contact;
+		}
+		set
+		{
+			if ((this._referance_by_contact != value))
+			{
+				this.Onreferance_by_contactChanging(value);
+				this.SendPropertyChanging();
+				this._referance_by_contact = value;
+				this.SendPropertyChanged("referance_by_contact");
+				this.Onreferance_by_contactChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cancel_booking", DbType="VarChar(15)")]
+	public string cancel_booking
+	{
+		get
+		{
+			return this._cancel_booking;
+		}
+		set
+		{
+			if ((this._cancel_booking != value))
+			{
+				this.Oncancel_bookingChanging(value);
+				this.SendPropertyChanging();
+				this._cancel_booking = value;
+				this.SendPropertyChanged("cancel_booking");
+				this.Oncancel_bookingChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Comments", DbType="VarChar(300)")]
+	public string Comments
+	{
+		get
+		{
+			return this._Comments;
+		}
+		set
+		{
+			if ((this._Comments != value))
+			{
+				this.OnCommentsChanging(value);
+				this.SendPropertyChanging();
+				this._Comments = value;
+				this.SendPropertyChanged("Comments");
+				this.OnCommentsChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_room_rent", DbType="VarChar(50)")]
+	public string room_rent
+	{
+		get
+		{
+			return this._room_rent;
+		}
+		set
+		{
+			if ((this._room_rent != value))
+			{
+				this.Onroom_rentChanging(value);
+				this.SendPropertyChanging();
+				this._room_rent = value;
+				this.SendPropertyChanged("room_rent");
+				this.Onroom_rentChanged();
 			}
 		}
 	}
@@ -5047,6 +5022,8 @@ public partial class room : INotifyPropertyChanging, INotifyPropertyChanged
 	
 	private int _employee_id;
 	
+	private string _temporarybooked;
+	
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -5069,6 +5046,8 @@ public partial class room : INotifyPropertyChanging, INotifyPropertyChanged
     partial void OnavailbiltyChanged();
     partial void Onemployee_idChanging(int value);
     partial void Onemployee_idChanged();
+    partial void OntemporarybookedChanging(string value);
+    partial void OntemporarybookedChanged();
     #endregion
 	
 	public room()
@@ -5252,6 +5231,26 @@ public partial class room : INotifyPropertyChanging, INotifyPropertyChanged
 				this._employee_id = value;
 				this.SendPropertyChanged("employee_id");
 				this.Onemployee_idChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_temporarybooked", DbType="VarChar(5)")]
+	public string temporarybooked
+	{
+		get
+		{
+			return this._temporarybooked;
+		}
+		set
+		{
+			if ((this._temporarybooked != value))
+			{
+				this.OntemporarybookedChanging(value);
+				this.SendPropertyChanging();
+				this._temporarybooked = value;
+				this.SendPropertyChanged("temporarybooked");
+				this.OntemporarybookedChanged();
 			}
 		}
 	}
