@@ -46,7 +46,7 @@ public partial class employeonlinevieworder : System.Web.UI.Page
                 guest_cnic_passport = x.GetString(7),
                 guest_phone = x.GetString(8),
                 guest_email = x.GetString(9),
-                no_of_room = x.GetInt32(10),
+                no_of_room = x.GetString(50),
                 room_type = x.GetString(11),
 
             }

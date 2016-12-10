@@ -21,6 +21,20 @@ public class bookingRoomClass
             db.SubmitChanges();
         }
     }
+    public static void Cancel_booking_Room(List<string> cb)
+    {
+        ctownDataContext db = new ctownDataContext();
+        foreach (string c in cb)
+        {
+            room cancelroom = (from x in db.rooms
+                               where x.room_no == c
+                               select x).First();
+            cancelroom.temporarybooked = "no";
+            cancelroom.availbilty = "yes";
+            db.SubmitChanges();
+        }
+    }
+   
     public static int getbookingid(string roomno)
     {
 

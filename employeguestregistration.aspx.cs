@@ -36,7 +36,10 @@ public partial class employeguestregistration : System.Web.UI.Page
    
     protected void Save_Click(object sender, EventArgs e)
     {
-        try {
+        try
+        {
+            booking b = new booking();
+            bool checkimages = false;
             int employID = int.Parse(Session["loginId"].ToString());
             guest g = new guest();
             if (Request.Form["guestType"].ToString() == "pakistani")
@@ -67,10 +70,20 @@ public partial class employeguestregistration : System.Web.UI.Page
                  g.flight_no = null;*/
                 g.advance = int.Parse(Request.Form["advance"]);
                 g.guest_type = "local";
+                if (cnicfrontimg.HasFile && cnicbackimg.HasFile && regformimage.HasFile)
+                {
+                    checkimages = true;
+                    HttpPostedFile identity1 = cnicfrontimg.PostedFile;
+                    HttpPostedFile identity2 = cnicbackimg.PostedFile;
+                    HttpPostedFile regform = regformimage.PostedFile;
+                    b.front_identity_layout = imageToByteArray(identity1);
+                    b.back_identity_layout = imageToByteArray(identity2);
+                    b.registration_form_image = imageToByteArray(regform);
+                }
                 //Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('Success','Information has been saved successfully !');</script>");
 
                 //ShowMessage("Information has been saved successfully ! ", MessageType.Success);
-                //if(cnicfrontimg.HasFile == false || cnicbackimg.HasFile == false || regformimage.HasFile == false)
+                //if (cnicfrontimg.HasFile == false || cnicbackimg.HasFile == false || regformimage.HasFile == false)
                 //{
                 //    Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('Error','Please upload images');</script>");
 
@@ -108,7 +121,16 @@ public partial class employeguestregistration : System.Web.UI.Page
                 g.advance = int.Parse(Request.Form["advance"]);
                 //ShowMessage("Information has been saved successfully ! ", MessageType.Success);
 
+                if (passportimage.HasFile && fregformimg.HasFile)
+                {
+                    HttpPostedFile identity1 = passportimage.PostedFile;
+                    HttpPostedFile identity2 = fregformimg.PostedFile;
 
+                    b.front_identity_layout = imageToByteArray(identity1);
+                    b.registration_form_image = imageToByteArray(identity2);
+                    checkimages = true;
+
+                }
             }
             else
             {
@@ -128,70 +150,72 @@ public partial class employeguestregistration : System.Web.UI.Page
             // farrivaldate
             // fatime
 
-            booking b = new booking();
-            b.branch_id = int.Parse(Request.Form["branch"].ToString());
-            b.check_in_date = DateTime.Now;//ateTime.Now;
-            //  b.room_id = roomsclass.getRoomID(Request.Form["rno"].ToString(), int.Parse(Request.Form["branch"].ToString()));
-            b.employee_id = employeeProfile.getEmployeid(Session["loginName"].ToString());//get employe username from sessions
-            g.employee_id = employID;
-            b.guest_id = gusetRegistrationClass.insertGuestinfo(g);//will insert guest data to db and return the id of the guest
-            b.check_out_date = null;
-            //   b.booking_rent = Request.Form["rrent"].ToString();
-            b.guest_reg_card_arr_date = "111";
-            b.no_of_pax = Request.Form["noofpax"].ToString();
-            if (cnicfrontimg.HasFile && cnicbackimg.HasFile && regformimage.HasFile)
+            if (checkimages == true)
             {
-                HttpPostedFile identity1 = cnicfrontimg.PostedFile;
-                HttpPostedFile identity2 = cnicbackimg.PostedFile;
-                HttpPostedFile regform = regformimage.PostedFile;
-                b.front_identity_layout = imageToByteArray(identity1);
-                b.back_identity_layout = imageToByteArray(identity2);
-                b.registration_form_image = imageToByteArray(regform);
+                b.branch_id = int.Parse(Request.Form["branch"].ToString());
+                b.check_in_date = DateTime.Now;//ateTime.Now;
+                                               //  b.room_id = roomsclass.getRoomID(Request.Form["rno"].ToString(), int.Parse(Request.Form["branch"].ToString()));
+                b.employee_id = employeeProfile.getEmployeid(Session["loginName"].ToString());//get employe username from sessions
+                g.employee_id = employID;
+                b.guest_id = gusetRegistrationClass.insertGuestinfo(g);//will insert guest data to db and return the id of the guest
+                b.check_out_date = null;
+                //   b.booking_rent = Request.Form["rrent"].ToString();
+                b.guest_reg_card_arr_date = "111";
+                b.no_of_pax = Request.Form["noofpax"].ToString();
+                //if (cnicfrontimg.HasFile && cnicbackimg.HasFile && regformimage.HasFile)
+                //{
 
+
+                //}
+                //for foreigner
+                //if (passportimage.HasFile && fregformimg.HasFile)
+                //{
+                //    HttpPostedFile identity1 = passportimage.PostedFile;
+                //    HttpPostedFile identity2 = fregformimg.PostedFile;
+
+                //    b.front_identity_layout = imageToByteArray(identity1);
+                //    b.registration_form_image = imageToByteArray(identity2);
+
+                //}
+
+                //  gusetRegistrationClass.bookRoom(b);
+                int bid = gusetRegistrationClass.roomBooking(b);
+                if (bid != 0)
+                {
+                    string[] roomsbooked = selectedrooms.Text.Split(',');
+                    booking_Room[] r = new booking_Room[roomsbooked.Length];
+
+                    for (int i = 0; i < roomsbooked.Length; i++)
+                    {
+                        r[i] = new booking_Room();
+                        r[i].roomid = roomsclass.getRoomID(roomsbooked[i], int.Parse(Request.Form["branch"].ToString()));
+                        r[i].booking_rent = Request.Form["rrent"].ToString();
+                        r[i].checkout = null;
+                        r[i].bookingId = bid;//.Parse(Request.Form["branch"].ToString());
+
+                    }
+
+                    bool check = gusetRegistrationClass.bookRooms(r);
+                    if (check == true)
+                    {
+                        admin_notification_class.addnotification(employeeProfile.getEmployeid(Session["loginName"].ToString()), bid, DateTime.Now, admin_notification_class.TableNames.guests.ToString(), employeeProfile.getEmployeid(Session["loginName"].ToString()), admin_notification_class.CommandType.Add.ToString());
+                        msg = "Successfully updated the information";
+                        type = "Success";
+
+                    }
+                    else
+                    {
+                        msg = "There is some error";
+                        type = "Error";
+                    }
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('" + type + "','" + msg + "');</script>");
+
+                }
             }
-            //for foreigner
-            if (passportimage.HasFile && fregformimg.HasFile)
+            else
             {
-                HttpPostedFile identity1 = passportimage.PostedFile;
-                HttpPostedFile identity2 = fregformimg.PostedFile;
-
-                b.front_identity_layout = imageToByteArray(identity1);
-                b.registration_form_image = imageToByteArray(identity2);
-                ;
-            }
-
-            //  gusetRegistrationClass.bookRoom(b);
-            int bid = gusetRegistrationClass.roomBooking(b);
-            if (bid != 0)
-            {
-                string[] roomsbooked = selectedrooms.Text.Split(',');
-                booking_Room[] r = new booking_Room[roomsbooked.Length];
-
-                for (int i = 0; i < roomsbooked.Length; i++)
-                {
-                    r[i] = new booking_Room();
-                    r[i].roomid = roomsclass.getRoomID(roomsbooked[i], int.Parse(Request.Form["branch"].ToString()));
-                    r[i].booking_rent = Request.Form["rrent"].ToString();
-                    r[i].checkout = null;
-                    r[i].bookingId = bid;//.Parse(Request.Form["branch"].ToString());
-
-                }
-
-                bool check = gusetRegistrationClass.bookRooms(r);
-                if (check == true)
-                {
-                    admin_notification_class.addnotification(employeeProfile.getEmployeid(Session["loginName"].ToString()), bid, DateTime.Now, admin_notification_class.TableNames.guests.ToString(), employeeProfile.getEmployeid(Session["loginName"].ToString()), admin_notification_class.CommandType.Add.ToString());
-                    msg = "Successfully updated the information";
-                    type = "Success";
-
-                }
-                else
-                {
-                    msg = "There is some error";
-                    type = "Error";
-                }
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('" + type + "','" + msg + "');</script>");
-
+                msg= "Please Select Scaned CNIC or Passport Copies";
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('" + type + "','"+msg+"');</script>");
             }
 
         }catch(Exception ex)
