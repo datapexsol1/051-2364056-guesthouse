@@ -25,7 +25,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
         <div id="Notify"></div>
-     <div class="messagealert" id="alert_container"  style=" opacity: 0;transition: visibility 0s 2s, opacity 2s linear;">  </div>  
+     <div class="" id="alert_container"  style=" opacity: 0;transition: visibility 0s 2s, opacity 2s linear;">  </div>  
     <div class="right_col" role="main">
           <div class="">
                      	  
@@ -665,9 +665,9 @@
         </div>
     </div>
                   <div style="padding-top:15px;" class="alignright col-md-2 col-sm-2 col-xs-12">
-                      <a href="#" runat="server" onserverclick="Save_Click" class="btn btn-success">Register </a>
+                      <a href="#" runat="server" onserverclick="Save_Click" class="btn btn-success" onclick=" return checkimages();">Register </a>
       <%--<asp:Button ID="Save" runat="server" Text="Register Guest" OnClick="Save_Click" CausesValidation="false" class="btn btn-success"/>--%>
-         
+                    
      </div>
 
 
@@ -707,6 +707,26 @@
   
 
     <script>
+        function checkimages(){
+
+            if($('#guestType').val()=="pakistani"){
+                if($('#<%=cnicfrontimg.ClientID %>').val()=="" ||$('#<%=cnicbackimg.ClientID %>').val()=="" ||$('#<%=regformimage.ClientID %>').val()==""){
+                    alert("fucking owrking ");
+                    ShowMessage1('Error','Please Select Scaned CNIC or Passport Copies');
+                 
+                    return false; 
+                }
+            }
+           else if($('#guestType').val()=="foriegner"){
+                if($('#<%=cnicfrontimg.ClientID %>').val()==""){
+                    alert("fucking owrking ");
+                    return false; 
+                }
+            }
+           
+        }
+
+
       $(document).ready(function() {
       
           $('#Arrival').daterangepicker({
@@ -977,7 +997,7 @@
                  $("<%=regformimage.ClientID%>").val("<%= System.Text.Encoding.UTF8.GetBytes ("images/images.png")%>");--%>
             });
         });
-        function ShowMessage(message, messagetype) {
+        function ShowMessage1(message, messagetype) {
             var cssclass;
             switch (messagetype) {
                 case 'Success':
@@ -992,7 +1012,7 @@
                 default:
                     cssclass = 'alert-info'
             }
-            $('#alert_container').append('<div id="alert_div" style="margin-top:40px;margin-left:10px;width:90%; -webkit-box-shadow: 3px 4px 6px #999;" class="alert fade in ' + cssclass + '"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>' + messagetype + '!</strong> <span>' + message + '</span></div>');
+            $('alert_container').append('<div id="alert_div" style="margin-top:40px;margin-left:10px;width:90%; -webkit-box-shadow: 3px 4px 6px #999;" class="alert fade in ' + cssclass + '"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>' + messagetype + '!</strong> <span>' + message + '</span></div>');
         };
 
 

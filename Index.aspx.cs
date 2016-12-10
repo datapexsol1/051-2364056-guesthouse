@@ -27,7 +27,7 @@ public partial class Index : System.Web.UI.Page
             ogb.guest_cnic_passport = Request.Form["gcnic"];
             ogb.guest_phone = Request.Form["gcontact"];
             ogb.guest_email = Request.Form["gemail"];
-            ogb.no_of_room = int.Parse(Request.Form["noofrooms"]);
+            ogb.no_of_room = Request.Form["noofrooms"];
             ogb.room_type = Request.Form["roomtype"];
             ogb.request_time = DateTime.Now;
             

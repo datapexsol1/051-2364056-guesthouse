@@ -10,13 +10,32 @@
        }
    </style>
    <script>
-       function activaTab(tab) {
+    
+       
+              function activaTab(tab) {
 
-           $('.nav-tabs a[href="#' + tab + '"]').tab('show');
+                  $('.nav-tabs a[href="#' + tab + '"]').tab('show');
+                  $('#updateroomavalibilty').hide();
+
 
            //alert("working");
        };
-       function InsertAddRoomsValues() {
+
+
+              function showupdatediv(tab) {
+
+                  $('.nav-tabs a[href="#' + tab + '"]').tab('show');
+                  $('#roomavalibilty').hide("slow", function () { });
+
+                  //alert("working");
+              };
+              //function bookingtabactivate(tab) {
+
+              //    $('.nav-tabs a[href="#' + tab + '"]').tab('show');
+
+              //    //alert("working");
+              //};
+              function InsertAddRoomsValues() {
            $("input[name=roomno]").val("000");
            $("input[name=roomtype]").val("000");
            $("input[name=roomsize]").val("000");
@@ -40,6 +59,21 @@
            $("input[name=roomminrent]").val("");
            $("input[name=roombranch]").val("");
        }
+       function readonlyfalse() {
+           alert("working");
+         //  $('#comments').removeAttr("readonly");
+           if ($("#comments").attr("readonly", false)) {
+               $("#comments").attr("readonly", true);
+           };
+       }
+       function readonlytrue() {
+           $("#comments").attr("readonly", true);
+       }
+       function btnupdatefunctions() {
+           alert("sdasd");
+           InsertAddRoomsValues();
+       
+       }
    </script>
 </asp:Content>
 
@@ -47,7 +81,7 @@
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-     
+    <asp:HiddenField ID="hroomno" runat="server" />
 
   
         <div id="Notify"></div>
@@ -84,7 +118,7 @@
 
 
                             <!-- start recent activity -->
-                           
+                           <div id="roomavalibilty">
                            <table class="table tbl">
                               <thead class="thead-inverse">
                                 <tr>
@@ -106,23 +140,201 @@
                                   <td><label id="froomsize"><%=r.room_size%></label></td>
                                   <td> <label id="froomrent"><%=r.maximum_room_rent %></label></td>
                                   <td><label id="froombranch"><%=r.branch_id %></label></td>
+                                   
                                     <% if (r.availbilty == "yes")
                                         { %>
                                               <td><label id="availbiltyroomy" style="color:green">Available</label></td>
                                               <%}
-                                                else
-                                                { %>
+    else
+    {
+        if (r.temporarybooked == "yes")
+        {
+                                                       %>
+                                              <td><label id="availbiltyroomn" style="color:red">Temporary Booked</label></td>
+                                           <%--//dnt change any thing in error its working --%>
+                                             <td><label id="Updateroomg"><input type="button" id="<%=r.room_no %>" class="xyz" value="Cancel/Detail" </label>
+                                                 
+                                                 <label id="Updateroombooking"><input type="button" id="bookbutton" value="Book"/></label></td>
+
+                                            
+                                                    
+
+                                                
+                                   
+                                               <%}
+    else
+    {
+                                                     %>
                                               <td><label id="availbiltyroomn" style="color:red">Booked</label></td>
-                                               <%} %>
+                                               <%}
+    }%>
                                 </tr>
                                   <%} %>
                                
                               </tbody>
                             </table>
+                               </div>
+                              <div id="updateroomavalibilty">
+                                    <h1>Booking Detail</h1>
+                                     <div id="s2">
+ <div  class="form-vertical">
+
+     <div class="form-group">
+                            
+                           
+                          <%--</div>
+
+                          <div class="form-group">--%>
+                           
+                            <div class="item col-md-6 col-sm-4 col-xs-12">
+                                 <label >Check In Date<span class="required">*</span>
+                            </label>
+                              <%--<input type="text" class="form-control has-feedback-left" id="Arrival" placeholder="First Name" aria-describedby="inputSuccess2Status2">--%>
+
+                              <input type="text" runat="server" id="checkindate" name="checkindate" class="form-control col-md-7 col-xs-12" />
+                            </div>
+                 
+                            
+                            <div class="item col-md-6 col-sm-4 col-xs-12">
+                                 <label >Check out Date<span class="required">*</span>
+                            </label>
+                              <%--<input type="text" class="form-control has-feedback-left" id="Arrival" placeholder="First Name" aria-describedby="inputSuccess2Status2">--%>
+
+                              <input type="text" id="checkoutdate" runat="server" name="checkoutdate" class="form-control col-md-7 col-xs-12" />
+                            </div>
+                         
+                  </div>
+
+                          <div class="form-group">
+                          <%--</div>
+                            
+                          <div class="form-group">--%>
+                            
+                            <div class="item col-md-4 col-sm-4 col-xs-12">
+                                <label>Guest Name <span class="required">*</span>
+                            </label>
+                              <input type="text" id="gname" name="gname"  runat="server"  class="form-control col-md-7 col-xs-12" />
+                            </div>
+                          
+
+                          
+                          
+                          <%--</div>
+                          <div class="form-group">--%>
+                           
+
+
+                                  <div class="item col-md-4 col-sm-4 col-xs-12">
+                                                            <label>N.I.C No / Passport <span class="required"/>*</span>
+                            </label>
+                              <input type="text" id="cnicno" name="cnicno"  runat="server"   class="form-control col-md-7 col-xs-12" />
+                            </div>
+
+
+                          
+                          </div>
+                            
+                          <div class="form-group">
+
+                        
+                          <%--</div>
+
+                            <div class="form-group">--%>
+                           
+                            <div class="form-group">
+                             
+                           <div class="item col-md-4 col-sm-4 col-xs-12">
+                                 <label >Guest Phone <span class="required">*</span>
+                            </label>
+                              <input type="number"  id="gphone" name="gphone"  runat="server"  class="form-control col-md-7 col-xs-12" 
+                                  />
+                            </div>
+                          <%--</div>
+
+                             <div class="form-group">--%>
+                                
+                        
+                          
+                          </div>
+
+                          
+
+                            <div class="form-group">
+                            
+                         
+                          <%--</div>
+
+                             <div class="form-group">--%>
+                                 <div class="col-md-4 col-sm-4 col-xs-12">
+                                 <label >Guest Email <span class="required">*</span>
+                            </label>
+                              <input type="text" id="gemail" name="gemail"  runat="server" class="form-control col-md-7 col-xs-12"/>
+                            </div>
+                                 <div class="col-md-4 col-sm-4 col-xs-12">
+                                 <label >No of Guest<span class="required">*</span>
+                            </label>
+                              <input type="text" id="noofguest" name="noofguest"   runat="server" class="form-control col-md-7 col-xs-12"/>
+                            </div>
+                          </div>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                             <label>Room_Rent <span class="required">*</span>
+                            </label>
+                              <input type="text" id="roomrent" name="roomrent"  runat="server"  class="form-control col-md-7 col-xs-12"/>
+                            </div>
+
+                          </div>
+
+                            <div class="form-group">
+                          
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                  <label>Referance by</label>
+                              <input id="referanceby" name="referanceby"  runat="server" class="form-control col-md-7 col-xs-12" type="text" />
+                            </div>
+                          <%--</div>
+
+                            <div class="form-group">--%>
+
+                          
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                  <label>Referance by phone</label>
+                              <input id="referancephone" name="referancephone"  runat="server" class="form-control col-md-7 col-xs-12" type="text" />
+                            </div>
+                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                  <label>Selected Room No</label>
+                              <input id="roomnonew" name="roomnonew"  runat="server" class="form-control col-md-7 col-xs-12" type="text"/>
+                            </div>
+                                <div class="col-md-12 col-sm-4 col-xs-12">
+                                  <label>Comments</label>
+                              <textarea id="comments" name="comments"   runat="server" class="form-control col-md-7 col-xs-12"  >Comments:</textarea>
+                            </div>
+
+                                  <div class="col-md-12 col-sm-8 col-xs-12">
+                            
+                                      <asp:HiddenField ID="tbookingid" runat="server" />
+                            </div>
+                          </div>
+
+
+
+     
+
+     </div>
+    </div>
+                                  <asp:Button ID="Button1" runat="server" Text="Update" OnClick="updateTempbooking_click" OnClientClick="btnupdatefunctions();" UseSubmitBehavior="false" />
+                                  <asp:Button ID="Button2" runat="server" Text="Update information" OnClick="updateTempbooking_click" OnClientClick="btnupdatefunctions();" UseSubmitBehavior="false" />     
+                                  <input type="button" id="Button3"  value="CancelBookingfalse"  onclick="readonlyfalse();" />    
+                                  <input type="button" id="Button4"  value="CancelBookingtrue"  onclick="readonlytrue();" /> 
+                                     
+                            </div>
+                                 
+                                 
+                                 
+
+                              </div>
                             <!-- end recent activity -->
                               
-
-                 </div>
+                            
+                 
                          
                             
                             
@@ -262,6 +474,48 @@
      <%--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>--%>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
 <script>
+   
+   
+    $(document).ready(function () {
+        if ($('#<%=hroomno.ClientID%>').val() == "") {
+            $('#updateroomavalibilty').hide();
+        }
+       
+
+        $('#<%=checkindate.ClientID%>').daterangepicker({
+            singleDatePicker: true,
+            calender_style: "picker_2",
+            showDropdowns: true
+        });
+        ///dob 
+        $('#<%=checkoutdate.ClientID%>').daterangepicker({
+            //singleDatePicker: true,
+            // calender_style: "picker_2"
+            singleDatePicker: true,
+            showDropdowns: true
+        });
+        //
+          
+        //
+         
+       
+        $(".xyz").click(function() {
+           $('#<%=hroomno.ClientID%>').val(this.id);
+           $('#roomavalibilty').hide("slow", function () { });
+           $('#updateroomavalibilty').show(2000);
+           __doPostBack("mybtn", roomno)
+          
+       });
+       
+       
+       
+      
+       
+
+    });
+
+
+
 
   $.validate({
     modules : 'location, date, security, file',

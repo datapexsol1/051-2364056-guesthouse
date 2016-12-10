@@ -105,7 +105,7 @@
                  </li>
 
                  
-                    
+                   
                 
                   <li><a><i class="fa fa-desktop"></i> Guest Panel <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
@@ -113,6 +113,7 @@
                       <li><a href="employeerooms.aspx">Rooms</a></li>
                       <li><a href="employeguests.aspx">Checkout Bookings</a></li>
                       <li>  <a href="employeguesthistory.aspx">Booking History</a></li>
+                        <li>  <a href="employetemproomlayout.aspx">Temporary Room Booking</a></li>
                       <!--  <li><a href="employeplaceorder.aspx">Order Menu</a></li>-->
                        
                         <%--<li><a href="employeguestpayment.aspx">Guests Total Bill</a></li>--%>
@@ -244,9 +245,43 @@
       <script src="../vendors/jquery/dist/jquery.min.js"></script>
     <script src="Scripts/jquery.signalR-2.1.2.js"></script>
     <script src="Scripts/jquery.signalR-2.2.1.min.js"></script>
+          
     <script src="/signalR/hubs"></script>
-            <script src="../vendors/validator/validator.js"></script>
+            <script src="js/jquery-ui.js"></script>
+              <script src="../vendors/validator/validator.js"></script>
+    <script src="js/datepicker/daterangepicker.js"></script>
          <script>
+             
+      // initialize the validator function
+      validator.message.date = 'not a real date';
+
+      // validate a field on "blur" event, a 'select' on 'change' event & a '.reuired' classed multifield on 'keyup':
+      $('form')
+        .on('blur', 'input[required], input.optional, select.required', validator.checkField)
+        .on('change', 'select.required', validator.checkField)
+        .on('keypress', 'input[required][pattern]', validator.keypress);
+
+      $('.multi.required').on('keyup blur', 'input', function() {
+        validator.checkField.apply($(this).siblings().last()[0]);
+      });
+
+      $('form').submit(function(e) {
+        e.preventDefault();
+        var submit = true;
+
+        // evaluate the form using generic validaing
+        if (!validator.checkAll($(this))) {
+          submit = false;
+        }
+
+        if (submit)
+          this.submit();
+
+        return false;
+      });
+    
+
+
         $(document).ready(function () {
             var job = $.connection.myHub;
             job.client.displayStatus = function () {
@@ -325,7 +360,7 @@
 <script src="vendors/fullcalendar/dist/fullcalendar.js"></script>
               <!-- bootstrap-daterangepicker -->
     <script src="js/moment/moment.min.js"></script>
-    <script src="js/datepicker/daterangepicker.js"></script>
+    
   
 
 
@@ -382,8 +417,8 @@
     <script src="../vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>--%>
     <!-- bootstrap-daterangepicker -->
     <script src="js/moment/moment.min.js"></script>
-    <script src="js/datepicker/daterangepicker.js"></script>
-
+     
+          
         <!-- Ion.RangeSlider -->
     <%--<script src="../vendors/ion.rangeSlider/js/ion.rangeSlider.min.js"></script>--%>
     <!-- Bootstrap Colorpicker -->
@@ -440,7 +475,7 @@
                       <!-- validator -->
    
                   <!-- validator -->
-    <script>
+    <%--<script>
       // initialize the validator function
       validator.message.date = 'not a real date';
 
@@ -454,25 +489,25 @@
         validator.checkField.apply($(this).siblings().last()[0]);
       });
 
-      //$('form').submit(function(e) {
-      //  e.preventDefault();
-      //  var submit = true;
+      $('form').submit(function(e) {
+        e.preventDefault();
+        var submit = true;
 
-      //  // evaluate the form using generic validaing
-      //  if (!validator.checkAll($(this))) {
-      //    submit = false;
-      //  }
+        // evaluate the form using generic validaing
+        if (!validator.checkAll($(this))) {
+          submit = false;
+        }
 
-      //  if (submit)
-      //    this.submit();
+        if (submit)
+          this.submit();
 
-      //  return false;
-      //});
-    </script>
+        return false;
+      });
+    </script>--%>
     <!-- /validator -->
  <%--         <script src="js/NotificationJS.js"></script>--%>
    <%--        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>--%>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+<%--<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>--%>
 
   </form> 
 </body>
