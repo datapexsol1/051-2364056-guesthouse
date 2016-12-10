@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="guest_house_database" Class="ctownDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=DESKTOP-PLPMAOO;Initial Catalog=guest_house_database;Integrated Security=True;Encrypt=False;TrustServerCertificate=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="guest_house_databaseConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=DESKTOP-ET1M3I1;Initial Catalog=guest_house_database;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="guest_house_databaseConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.admin_notification" Member="admin_notifications">
     <Type Name="admin_notification">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -9,7 +9,7 @@
       <Column Name="table_name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Changed_row_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="operation_type" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="seen" Type="System.String" DbType="VarChar(3) NOT NULL" CanBeNull="false" />
+      <Column Name="seen" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.bill" Member="bills">
@@ -21,6 +21,23 @@
       <Column Name="BranchId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="bill_description" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
       <Column Name="employee_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.booking" Member="bookings">
+    <Type Name="booking">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="guest_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="employee_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="check_in_date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="check_out_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="branch_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="guest_reg_card_arr_date" Type="System.String" DbType="NVarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="no_of_pax" Type="System.String" DbType="NVarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="front_identity_layout" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="back_identity_layout" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="registration_form_image" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="referance_by_name" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="referance_by_contact" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.booking_Room" Member="booking_Rooms">
@@ -92,16 +109,6 @@
       <Column Name="employee_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
-  <Table Name="dbo.facility_payment" Member="facility_payments">
-    <Type Name="facility_payment">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="booking_id" Type="System.String" DbType="NVarChar(25) NOT NULL" CanBeNull="false" />
-      <Column Name="item_detail" Type="System.String" DbType="NVarChar(25) NOT NULL" CanBeNull="false" />
-      <Column Name="item_cost" Type="System.String" DbType="NVarChar(25) NOT NULL" CanBeNull="false" />
-      <Column Name="date_time" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="employee_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
   <Table Name="dbo.foreigners" Member="foreigners">
     <Type Name="foreigner">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -125,7 +132,7 @@
       <Column Name="date_time" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="employee_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="type" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
-      <Column Name="room_no" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="room_no" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
       <Column Name="item_quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="branch_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </Type>
@@ -170,6 +177,28 @@
       <Column Name="employee_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
+  <Table Name="dbo.online_guest_booking" Member="online_guest_bookings">
+    <Type Name="online_guest_booking">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="branch_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="check_in_date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="check_out_date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="no_of_guest" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="request_time" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="guest_name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="guest_cnic_passport" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="guest_phone" Type="System.String" DbType="NVarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="guest_email" Type="System.String" DbType="NVarChar(25)" CanBeNull="true" />
+      <Column Name="no_of_room" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="room_type" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
+      <Column Name="seen" Type="System.String" DbType="VarChar(3) NOT NULL" CanBeNull="false" />
+      <Column Name="referance_by_name" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="referance_by_contact" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Column Name="cancel_booking" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Column Name="Comments" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
+      <Column Name="room_rent" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.other_requirement" Member="other_requirements">
     <Type Name="other_requirement">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -211,37 +240,6 @@
       <Column Name="employee_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
-  <Table Name="dbo.total_payment" Member="total_payments">
-    <Type Name="total_payment">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="booking_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="total_rent" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
-      <Column Name="facility_total_payment" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
-      <Column Name="total_bill" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
-      <Column Name="paid_amount" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
-      <Column Name="paymentdate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="employee_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="chaqueno" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
-      <Column Name="payment_type" Type="System.String" DbType="VarChar(13)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.booking" Member="bookings">
-    <Type Name="booking">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="guest_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="employee_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="check_in_date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="check_out_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="branch_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="guest_reg_card_arr_date" Type="System.String" DbType="NVarChar(25) NOT NULL" CanBeNull="false" />
-      <Column Name="no_of_pax" Type="System.String" DbType="NVarChar(25) NOT NULL" CanBeNull="false" />
-      <Column Name="front_identity_layout" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="back_identity_layout" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="registration_form_image" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="referance_by_name" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
-      <Column Name="referance_by_contact" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.rooms" Member="rooms">
     <Type Name="room">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -256,26 +254,18 @@
       <Column Name="temporarybooked" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.online_guest_booking" Member="online_guest_bookings">
-    <Type Name="online_guest_booking">
+  <Table Name="dbo.total_payment" Member="total_payments">
+    <Type Name="total_payment">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="branch_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="check_in_date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="check_out_date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="no_of_guest" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="request_time" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="guest_name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="guest_cnic_passport" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="guest_phone" Type="System.String" DbType="NVarChar(25) NOT NULL" CanBeNull="false" />
-      <Column Name="guest_email" Type="System.String" DbType="NVarChar(25)" CanBeNull="true" />
-      <Column Name="no_of_room" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="room_type" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
-      <Column Name="seen" Type="System.String" DbType="VarChar(3) NOT NULL" CanBeNull="false" />
-      <Column Name="referance_by_name" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
-      <Column Name="referance_by_contact" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
-      <Column Name="cancel_booking" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
-      <Column Name="Comments" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
-      <Column Name="room_rent" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="booking_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="total_rent" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="facility_total_payment" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="total_bill" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="paid_amount" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="paymentdate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="employee_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="chaqueno" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="payment_type" Type="System.String" DbType="VarChar(13)" CanBeNull="true" />
     </Type>
   </Table>
 </Database>
