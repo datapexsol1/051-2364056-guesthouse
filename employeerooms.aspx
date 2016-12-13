@@ -10,7 +10,7 @@
        }
    </style>
    <script>
-    
+     
        
               function activaTab(tab) {
 
@@ -23,10 +23,10 @@
 
 
               function showupdatediv(tab) {
-
+                  readonlytrue();
                   $('.nav-tabs a[href="#' + tab + '"]').tab('show');
                   $('#roomavalibilty').hide("slow", function () { });
-
+                  
                   //alert("working");
               };
               //function bookingtabactivate(tab) {
@@ -60,19 +60,40 @@
            $("input[name=roombranch]").val("");
        }
        function readonlyfalse() {
-           alert("working");
-         //  $('#comments').removeAttr("readonly");
+           // alert("working");
+           $('#<%=roomnonew.ClientID%>').removeAttr('value');
+           $('#btncancel').hide();
+           $('#btnupdatebooking').hide();
+           $('#<%=btnupdate.ClientID%>').show(); 
+           //  $('#comments').removeAttr("readonly");
+           if ($('#<%=comments.ClientID%>').attr("disabled", true)) {
+               $('#<%=comments.ClientID%>').attr("disabled", false);
+           }
+           $("#<%=btnupdate.ClientID%>").val('Cancel');
            if ($("#comments").attr("readonly", false)) {
                $("#comments").attr("readonly", true);
            };
        }
        function readonlytrue() {
-           $("#comments").attr("readonly", true);
+            $('#<%=btnupdate.ClientID%>').hide();
+       $('#<%=checkindate.ClientID%>').attr("disabled", true);
+           $('#<%=checkoutdate.ClientID%>').attr("disabled", true);
+       <%-- $('#<%=gname.ClientID%>').attr("disabled", true);
+        $('#<%=cnicno.ClientID%>').attr("disabled", true);
+        $('#<%=gphone.ClientID%>').attr("disabled", true);
+        $('#<%=gemail.ClientID%>').attr("disabled", true);
+        $('#<%=noofguest.ClientID%>').attr("disabled", true);
+        $('#<%=roomrent.ClientID%>').attr("disabled", true);
+        $('#<%=referanceby.ClientID%>').attr("disabled", true);
+        $('#<%=referancephone.ClientID%>').attr("disabled", true);
+        $('#<%=roomnonew.ClientID%>').attr("disabled", true);
+        $('#<%=comments.ClientID%>').attr("disabled", true);
+           $('#<%=comments.ClientID%>').attr("disabled", true);--%>
        }
        function btnupdatefunctions() {
-           alert("sdasd");
-           InsertAddRoomsValues();
-       
+           //alert("sdasd");
+           //InsertAddRoomsValues();
+           alert($('#<%=gname.ClientID %>').val()+"checking");
        }
    </script>
 </asp:Content>
@@ -152,7 +173,7 @@
                                                        %>
                                               <td><label id="availbiltyroomn" style="color:red">Temporary Booked</label></td>
                                            <%--//dnt change any thing in error its working --%>
-                                             <td><label id="Updateroomg"><input type="button" id="<%=r.room_no %>" class="xyz" value="Cancel/Detail" </label>
+                                             <td><label id="Updateroomg"><input type="button" id="<%=r.room_no %>" class="xyz" value="Cancel/Detail"  </label>
                                                  
                                                  <label id="Updateroombooking"><input type="button" id="bookbutton" value="Book"/></label></td>
 
@@ -191,7 +212,7 @@
                             </label>
                               <%--<input type="text" class="form-control has-feedback-left" id="Arrival" placeholder="First Name" aria-describedby="inputSuccess2Status2">--%>
 
-                              <input type="text" runat="server" id="checkindate" name="checkindate" class="form-control col-md-7 col-xs-12" />
+                              <input type="text" runat="server" id="checkindate" name="checkindate" class="form-control col-md-7 col-xs-12" readonly="readonly" />
                             </div>
                  
                             
@@ -200,7 +221,7 @@
                             </label>
                               <%--<input type="text" class="form-control has-feedback-left" id="Arrival" placeholder="First Name" aria-describedby="inputSuccess2Status2">--%>
 
-                              <input type="text" id="checkoutdate" runat="server" name="checkoutdate" class="form-control col-md-7 col-xs-12" />
+                              <input type="text" id="checkoutdate" runat="server" name="checkoutdate" class="form-control col-md-7 col-xs-12" readonly="readonly"/>
                             </div>
                          
                   </div>
@@ -213,7 +234,7 @@
                             <div class="item col-md-4 col-sm-4 col-xs-12">
                                 <label>Guest Name <span class="required">*</span>
                             </label>
-                              <input type="text" id="gname" name="gname"  runat="server"  class="form-control col-md-7 col-xs-12" />
+                              <input type="text" id="gname" name="gname"  runat="server"  class="form-control col-md-7 col-xs-12" readonly="readonly" />
                             </div>
                           
 
@@ -227,7 +248,7 @@
                                   <div class="item col-md-4 col-sm-4 col-xs-12">
                                                             <label>N.I.C No / Passport <span class="required"/>*</span>
                             </label>
-                              <input type="text" id="cnicno" name="cnicno"  runat="server"   class="form-control col-md-7 col-xs-12" />
+                              <input type="text" id="cnicno" name="cnicno"  runat="server"   class="form-control col-md-7 col-xs-12" readonly="readonly" />
                             </div>
 
 
@@ -246,8 +267,7 @@
                            <div class="item col-md-4 col-sm-4 col-xs-12">
                                  <label >Guest Phone <span class="required">*</span>
                             </label>
-                              <input type="number"  id="gphone" name="gphone"  runat="server"  class="form-control col-md-7 col-xs-12" 
-                                  />
+                              <input type="number"  id="gphone" name="gphone"  runat="server"  class="form-control col-md-7 col-xs-12" readonly="readonly"   />
                             </div>
                           <%--</div>
 
@@ -268,18 +288,18 @@
                                  <div class="col-md-4 col-sm-4 col-xs-12">
                                  <label >Guest Email <span class="required">*</span>
                             </label>
-                              <input type="text" id="gemail" name="gemail"  runat="server" class="form-control col-md-7 col-xs-12"/>
+                              <input type="text" id="gemail" name="gemail"  runat="server" class="form-control col-md-7 col-xs-12" readonly="readonly"/>
                             </div>
                                  <div class="col-md-4 col-sm-4 col-xs-12">
                                  <label >No of Guest<span class="required">*</span>
                             </label>
-                              <input type="text" id="noofguest" name="noofguest"   runat="server" class="form-control col-md-7 col-xs-12"/>
+                              <input type="text" id="noofguest" name="noofguest"   runat="server" class="form-control col-md-7 col-xs-12" readonly="readonly"/>
                             </div>
                           </div>
                             <div class="col-md-4 col-sm-4 col-xs-12">
                              <label>Room_Rent <span class="required">*</span>
                             </label>
-                              <input type="text" id="roomrent" name="roomrent"  runat="server"  class="form-control col-md-7 col-xs-12"/>
+                              <input type="text" id="roomrent" name="roomrent"  runat="server"  class="form-control col-md-7 col-xs-12" readonly="readonly"/>
                             </div>
 
                           </div>
@@ -288,7 +308,7 @@
                           
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                   <label>Referance by</label>
-                              <input id="referanceby" name="referanceby"  runat="server" class="form-control col-md-7 col-xs-12" type="text" />
+                              <input id="referanceby" name="referanceby"  runat="server" class="form-control col-md-7 col-xs-12" type="text" readonly="readonly" />
                             </div>
                           <%--</div>
 
@@ -297,15 +317,15 @@
                           
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                   <label>Referance by phone</label>
-                              <input id="referancephone" name="referancephone"  runat="server" class="form-control col-md-7 col-xs-12" type="text" />
+                              <input id="referancephone" name="referancephone"  runat="server" class="form-control col-md-7 col-xs-12" type="text" readonly="readonly" />
                             </div>
                                 <div class="col-md-4 col-sm-4 col-xs-12">
                                   <label>Selected Room No</label>
-                              <input id="roomnonew" name="roomnonew"  runat="server" class="form-control col-md-7 col-xs-12" type="text"/>
+                              <input id="roomnonew" name="roomnonew"  runat="server" class="form-control col-md-7 col-xs-12" type="text" readonly="readonly"/>
                             </div>
                                 <div class="col-md-12 col-sm-4 col-xs-12">
                                   <label>Comments</label>
-                              <textarea id="comments" name="comments"   runat="server" class="form-control col-md-7 col-xs-12"  >Comments:</textarea>
+                              <textarea id="comments" name="comments"   runat="server" class="form-control col-md-7 col-xs-12" readonly="readonly"  >Comments:</textarea>
                             </div>
 
                                   <div class="col-md-12 col-sm-8 col-xs-12">
@@ -320,10 +340,10 @@
 
      </div>
     </div>
-                                  <asp:Button ID="Button1" runat="server" Text="Update" OnClick="updateTempbooking_click" OnClientClick="btnupdatefunctions();" UseSubmitBehavior="false" />
-                                  <asp:Button ID="Button2" runat="server" Text="Update information" OnClick="updateTempbooking_click" OnClientClick="btnupdatefunctions();" UseSubmitBehavior="false" />     
-                                  <input type="button" id="Button3"  value="CancelBookingfalse"  onclick="readonlyfalse();" />    
-                                  <input type="button" id="Button4"  value="CancelBookingtrue"  onclick="readonlytrue();" /> 
+                                  <asp:Button ID="btnupdate" runat="server" Text="Update" OnClick="updateTempbooking_click" OnClientClick="btnupdatefunctions();" UseSubmitBehavior="false" />
+                                       
+                                  <input type="button" id="btncancel"  value="Cancel Booking" onclick="readonlyfalse()" />    
+                                  <input type="button" id="btnupdatebooking"  value="Update Booking"  onclick="readonlytrue()"/> 
                                      
                             </div>
                                  
@@ -477,6 +497,7 @@
    
    
     $(document).ready(function () {
+       
         if ($('#<%=hroomno.ClientID%>').val() == "") {
             $('#updateroomavalibilty').hide();
         }
@@ -485,27 +506,34 @@
         $('#<%=checkindate.ClientID%>').daterangepicker({
             singleDatePicker: true,
             calender_style: "picker_2",
-            showDropdowns: true
+            showDropdowns: true,
+            
         });
         ///dob 
         $('#<%=checkoutdate.ClientID%>').daterangepicker({
             //singleDatePicker: true,
             // calender_style: "picker_2"
             singleDatePicker: true,
-            showDropdowns: true
+            showDropdowns: true,
+           
+           
         });
         //
           
         //
-         
-       
         $(".xyz").click(function() {
-           $('#<%=hroomno.ClientID%>').val(this.id);
-           $('#roomavalibilty').hide("slow", function () { });
+            $('#<%=hroomno.ClientID%>').val(this.id);
+
+            $('#roomavalibilty').hide("slow", function () {});
+           
            $('#updateroomavalibilty').show(2000);
+           
            __doPostBack("mybtn", roomno)
           
        });
+         
+       
+       
        
        
        

@@ -125,8 +125,11 @@ public class onlineguestbooking
             }
 
             bookingRoomClass.Cancel_booking_Room(roomtocanel);
-            checkrooms.check_in_date = ogb.check_in_date;
-            checkrooms.check_out_date = ogb.check_out_date;
+            if (ogb.check_in_date != new DateTime(1991,4,1) && ogb.check_out_date != new DateTime(1991,4,1))// tempbirth just for null
+            {
+                checkrooms.check_in_date = ogb.check_in_date;
+                checkrooms.check_out_date = ogb.check_out_date;
+            }
             checkrooms.guest_name = ogb.guest_name;
             checkrooms.guest_phone = ogb.guest_phone;
             checkrooms.no_of_guest = ogb.no_of_guest;
