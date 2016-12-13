@@ -70,4 +70,51 @@ public class bookingRoomClass
             return false;
         }
     }
-}
+    public static List<bookingroomdetailclass> Getbookingandroomdetail(int branch)
+    {
+        ctownDataContext db = new ctownDataContext();
+        var result = from w in db.guests
+                     join x in db.bookings on w.Id equals x.guest_id
+                     join y in db.booking_Rooms on x.Id equals y.bookingId
+                     join z in db.rooms on y.roomid equals z.Id
+                     where x.branch_id==branch && x.check_out_date!=null
+                     select new
+                     {
+                         booking = x,
+                         booking_Room = y,
+                         room = z,
+                         guest=w
+                     };
+        List<bookingroomdetailclass> brattribute = new List<bookingroomdetailclass>();
+        foreach (var res in result)
+        {
+
+            string cnisorpass;
+            if (res.guest.cnic == null)
+            {
+                cnisorpass = res.guest.f_passport_no;
+            }else
+            {
+                cnisorpass = res.guest.cnic;
+            }
+            brattribute.Add(new bookingroomdetailclass()
+                {
+
+
+                     b_checkinDate=res.booking.check_in_date,
+                     b_roomno=res.room.room_no,
+                     b_no_pax=res.booking.no_of_pax,
+                     g_reg_no=res.guest.reg_no,
+                     g_guest_name=res.guest.guest_name,
+                     g_cnic_orpassport = cnisorpass,
+                     g_date_of_birth=res.guest.date_of_birth,
+                     g_f_nationality=res.guest.f_nationality,
+                     booking_id=res.booking.Id,
+                     booking_rent=res.booking_Room.booking_rent,
+                     phone=res.guest.mobile
+                });
+
+        }
+        return brattribute; 
+    }
+ }

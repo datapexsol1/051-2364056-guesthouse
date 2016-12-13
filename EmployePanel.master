@@ -115,7 +115,7 @@
                       <li>  <a href="employeguesthistory.aspx">Booking History</a></li>
                       <li><a href="employetemproomlayout.aspx">Temporary Room Booking</a></li>
                         
-                        <%--<li><a href="employeguestpayment.aspx">Guests Total Bill</a></li>--%>
+                      <li><a href="employeshiftroom.aspx">EmployeRoomShift</a></li>
                     </ul>
                   </li>
 
