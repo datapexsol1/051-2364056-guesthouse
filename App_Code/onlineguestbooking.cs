@@ -125,7 +125,7 @@ public class onlineguestbooking
             }
 
             bookingRoomClass.Cancel_booking_Room(roomtocanel);
-            if (ogb.check_in_date != null && ogb.check_out_date != null)
+            if (ogb.check_in_date != new DateTime(1991,4,1) && ogb.check_out_date != new DateTime(1991,4,1))// tempbirth just for null
             {
                 checkrooms.check_in_date = ogb.check_in_date;
                 checkrooms.check_out_date = ogb.check_out_date;

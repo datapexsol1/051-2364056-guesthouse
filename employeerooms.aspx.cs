@@ -63,15 +63,18 @@ public partial class employeerooms : System.Web.UI.Page
     }
     protected void updateTempbooking_click(object sender, EventArgs e)
     {
-
-        string temp = checkindate.Value;
-        string temp1 = DateTime.Now.ToShortTimeString();
-        string newdate = temp + temp1;
+        
         online_guest_booking b = new online_guest_booking();
         if (checkindate.Value != "" && checkoutdate.Value != "")
         {
-            b.check_in_date = DateTime.ParseExact(newdate, "dd-MM-yyyy HH:mm:ss", CultureInfo.InvariantCulture);// DateTime.Parse(checkindate.Value);
+            b.check_in_date = DateTime.ParseExact(checkindate.Value, "dd-MM-yyyy", CultureInfo.InvariantCulture);// DateTime.Parse(checkindate.Value);
             b.check_out_date = DateTime.ParseExact(checkoutdate.Value, "dd-MM-yyyy", CultureInfo.InvariantCulture);//DateTime.Parse(checkoutdate.Value);
+
+        }
+        else
+        {
+            b.check_in_date  = new DateTime(1991, 4, 1);
+            b.check_out_date = new DateTime(1991, 4, 1);
 
         }
         b.guest_name = gname.Value;
