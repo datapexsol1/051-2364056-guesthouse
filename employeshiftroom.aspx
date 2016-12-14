@@ -102,12 +102,17 @@
                            <table class="table tbl">
                               <thead class="thead-inverse">
                                 <tr>
-                                  <th>Room No</th>
-                                  <th>Room Type</th>
-                                  <th>Room Size</th>
+                                    <th></th>
+                                    <th>RegNO</th>
+                                  <th>Name</th>
+                                  <th>Cnic/Passort</th>
+                                  <th>Phone</th>
                                   <th>Room Rent</th>
-                                  <th>Branch</th>
-                                    <th>Availbilty</th>
+                                  <th>CheckInDate</th>
+                                    <th>Roomno</th>
+                                     <th>Nationality</th>
+                                    
+
                                 </tr>
                               </thead>
                               <tbody>
@@ -115,7 +120,9 @@
                                       foreach (bookingroomdetailclass r in rb)
                                       { %>
                                 <tr>
-                                  <td><label id="froomid"><%=r.g_guest_name%></label></td>
+                                    <td><label id="availbiltyroomy" style="color:green">ShiftRoom</label></td>
+                                   <td><label id="froombranch"><%=r.g_reg_no%></label></td>
+                                    <td><label id="froomid"><%=r.g_guest_name%></label></td>
                                   <td><label id="froomtype"><%=r.g_cnic_orpassport %></label></td>
                                   <td><label id="froomsize"><%=r.phone%></label></td>
                                   <td> <label id="froomrent"><%=r.booking_rent%></label></td>
@@ -131,12 +138,11 @@
                                             nationality = r.g_f_nationality;
                                         } %>
                                      <td><label id="froombranch"><%=nationality%></label></td>
-                                    <td><label id="froombranch"><%=r.g_reg_no%></label></td>
-                                     <td><label id="froombranch"><%=r.g_date_of_birth%></label></td>
+                                   
                                   
                                    
                                   
-                                              <td><label id="availbiltyroomy" style="color:green">Available</label></td>
+                                              
                                              
    
                                 </tr>

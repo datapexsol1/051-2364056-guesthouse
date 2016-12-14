@@ -13,7 +13,7 @@ namespace signalR_dependency
     {
         public void Configuration(IAppBuilder app)
         {
-            SqlConnection con= new SqlConnection(ConfigurationManager.ConnectionStrings["guest_house_databaseConnectionString1"].ConnectionString);
+            SqlConnection con= new SqlConnection(ConfigurationManager.ConnectionStrings["guest_house_databaseConnectionString"].ConnectionString);
             
 
 

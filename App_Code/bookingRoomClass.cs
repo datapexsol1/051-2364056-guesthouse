@@ -73,11 +73,11 @@ public class bookingRoomClass
     public static List<bookingroomdetailclass> Getbookingandroomdetail(int branch)
     {
         ctownDataContext db = new ctownDataContext();
-        var result = from w in db.guests
-                     join x in db.bookings on w.Id equals x.guest_id
+        var result = from x in db.bookings
+                     join w in db.guests on x.guest_id equals w.Id
                      join y in db.booking_Rooms on x.Id equals y.bookingId
                      join z in db.rooms on y.roomid equals z.Id
-                     where x.branch_id==branch && x.check_out_date!=null
+                     where x.branch_id==branch && x.check_out_date==null
                      select new
                      {
                          booking = x,
