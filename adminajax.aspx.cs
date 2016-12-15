@@ -257,9 +257,9 @@ public partial class adminajax : System.Web.UI.Page
     [WebMethod]
     public static IEnumerable<admin_notification> GetData()
     {
-        var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["guest_house_databaseConnectionString"].ConnectionString);
-        SqlDependency.Stop(ConfigurationManager.ConnectionStrings["guest_house_databaseConnectionString"].ConnectionString);
-        SqlDependency.Start(ConfigurationManager.ConnectionStrings["guest_house_databaseConnectionString"].ConnectionString);
+        var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["guest_house_databaseConnectionString1"].ConnectionString);
+        SqlDependency.Stop(ConfigurationManager.ConnectionStrings["guest_house_databaseConnectionString1"].ConnectionString);
+        SqlDependency.Start(ConfigurationManager.ConnectionStrings["guest_house_databaseConnectionString1"].ConnectionString);
         connection.Open();
         //   string com1 = "select count(Id) from dbo.Products";
         using (SqlCommand com = new SqlCommand("select Id,eid,branch_id,time,table_name,Changed_row_id,operation_type,seen from admin_notification", connection))
@@ -294,9 +294,9 @@ public partial class adminajax : System.Web.UI.Page
          [WebMethod]
     public static IEnumerable<online_guest_booking> GetWebsitebooking()
     {
-        var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["guest_house_databaseConnectionString"].ConnectionString);
-        SqlDependency.Stop(ConfigurationManager.ConnectionStrings["guest_house_databaseConnectionString"].ConnectionString);
-        SqlDependency.Start(ConfigurationManager.ConnectionStrings["guest_house_databaseConnectionString"].ConnectionString);
+        var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["guest_house_databaseConnectionString1"].ConnectionString);
+        SqlDependency.Stop(ConfigurationManager.ConnectionStrings["guest_house_databaseConnectionString1"].ConnectionString);
+        SqlDependency.Start(ConfigurationManager.ConnectionStrings["guest_house_databaseConnectionString1"].ConnectionString);
         connection.Open();
         //   string com1 = "select count(Id) from dbo.Products";
         using (SqlCommand com = new SqlCommand(@"select Id,branch_id,check_in_date,check_out_date,no_of_guest,request_time,guest_name,guest_cnic_passport,guest_phone,guest_email,no_of_room,room_type,seen,referance_by_name,referance_by_contact,cancel_booking,Comments,room_rent

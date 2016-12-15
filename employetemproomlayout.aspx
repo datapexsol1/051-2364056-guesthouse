@@ -174,7 +174,7 @@
                                   <div class="item col-md-4 col-sm-4 col-xs-12">
                                                             <label>N.I.C No / Passport <span class="required"/>*</span>
                             </label>
-                              <input type="text" id="cnicno" name="cnicno"   class="form-control col-md-7 col-xs-12" />
+                              <input type="text" id="cnicno" name="cnicno"   class="form-control col-md-7 col-xs-12" data-inputmask="'mask' : '99999-9999999-9'"/>
                             </div>
 
 
@@ -327,5 +327,12 @@
             updateTextArea();
         });
     </script>
+       <!-- jquery.inputmask -->
+    <script>
+      $(document).ready(function() {
+        $(":input").inputmask();
+      });
+    </script>
+    <!-- /jquery.inputmask -->
 </asp:Content>
 

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EmployePanel.master" AutoEventWireup="true" CodeFile="employeguestregistration.aspx.cs" Inherits="employeguestregistration" EnableEventValidation="false" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EmployePanel.master" AutoEventWireup="true" CodeFile="employetemporaryregistration.aspx.cs" Inherits="employetemporaryregistration" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
    <%-- <script src="../vendors/jquery/dist/jquery.min.js"></script>
@@ -39,7 +39,10 @@
             
             </div>
             <div class="clearfix"></div>
-
+             <%  if (!IsPostBack)
+                                    {
+                     selectedrooms.Text=Request.QueryString["id"].ToString();
+                         %>
             <div class="row">
              <div class="col-md-12 col-sm-12 col-xs-12">
                 
@@ -52,16 +55,24 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Room No <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <%  int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());//get from session %>
+                                <%  
+
+
+                                    int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());//get from session
+                                    string roomno = selectedrooms.Text;
+                                      online_guest_booking b=onlineguestbooking.getTemporaryBookingRoom(roomno);
+
+                                    %>
                                <input type="hidden" name="branch" id="branch" value=<%= bid%> />
                                     <input type="hidden" name="guestType" id="guestType" value="xyz" />
                                 <asp:TextBox ID="selectedrooms" runat="server" ></asp:TextBox>
+                                 
                             </div>
                           </div>
 
                           <%
-                              string oneroomrent = selectedrooms.Text.Split(',').First();
-                              room r = roomsclass.getRoomInfo(oneroomrent,bid);
+    
+    room r = roomsclass.getRoomInfo(roomno, bid);
 
                                %>
 
@@ -215,7 +226,7 @@
                             <div class="item col-md-4 col-sm-4 col-xs-12">
                                 <label>Guest Name <span class="required">*</span>
                             </label>
-                              <input type="text" id="gname" name="gname"  class="form-control col-md-7 col-xs-12" required="required" data-validate-length-range="6" data-validate-words="1"/>
+                              <input type="text" id="gname" name="gname" value="<%=b.guest_name %>" class="form-control col-md-7 col-xs-12" required="required" data-validate-length-range="6" data-validate-words="1"/>
                             </div>
                           
 
@@ -693,7 +704,7 @@
 
 
                       </div>
-                    </div>
+                   <%} %> </div>
                  </div>
      <%--           
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -908,7 +919,7 @@
                 
                 //$("input[name=arrivaldate]").val("");
                 $("input[name=atime]").val("");
-                $("input[name=gname]").val("");
+               // $("input[name=gname]").val("");
                 $("input[name=cnicno]").val("");
               //  $("input[name=dob]").val("");
                 $("input[name=cname]").val("");
@@ -1019,7 +1030,7 @@
                 $("input[name=regno]").val("abc abc");
                // $("input[name=arrivaldate]").val("2016-01-01");
                 $("input[name=atime]").val("18:01");
-                $("input[name=gname]").val("00");
+              //  $("input[name=gname]").val("00");
                 $("input[name=cnicno]").val("00000-0000000-0");
               //  $("input[name=dob]").val("2016-01-01");
                 $("input[name=cname]").val("abc abc");

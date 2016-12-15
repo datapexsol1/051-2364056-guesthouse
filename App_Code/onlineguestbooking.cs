@@ -151,7 +151,7 @@ public class onlineguestbooking
         ctownDataContext db = new ctownDataContext();
         var bookings = from x in db.online_guest_bookings
                        select x; 
-        foreach(var x in bookings)
+        foreach(var x in bookings.OrderByDescending(w=>w.Id))
         {
             string[] splitroomnos = x.no_of_room.Split(',');
             foreach(string room in splitroomnos)

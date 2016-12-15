@@ -40,8 +40,8 @@ public partial class employeerooms : System.Web.UI.Page
             if (Request.Form["__EVENTTARGET"] == "mybtn")
             {
                 online_guest_booking b=onlineguestbooking.getTemporaryBookingRoom(hroomno.Value.ToString());
-                checkindate.Value = b.check_in_date.ToShortDateString();
-                checkoutdate.Value = b.check_out_date.ToShortDateString();
+                checkindate.Value = b.check_in_date.ToString("dd-MM-yyyy");
+                checkoutdate.Value = b.check_out_date.ToString("dd-MM-yyyy");
                 gname.Value = b.guest_name;
                 gphone.Value = b.guest_phone;
                 noofguest.Value = b.no_of_guest.ToString();
@@ -54,6 +54,12 @@ public partial class employeerooms : System.Web.UI.Page
                 cnicno.Value = b.guest_cnic_passport;
                 roomrent.Value = b.room_rent;
                 ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "showupdatediv('updateroomavalibilty');", true);
+            }
+            else if(Request.Form["__EVENTTARGET"] == "getidofbooking")
+            {
+                string[] str = hroomno.Value.Split('_');
+            
+                Response.Redirect("employetemporaryregistration.aspx?id="+str[1]);
             }
             
         }

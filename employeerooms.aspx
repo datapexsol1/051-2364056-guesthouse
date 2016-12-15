@@ -65,14 +65,15 @@
            $('#btncancel').hide();
            $('#btnupdatebooking').hide();
            $('#<%=btnupdate.ClientID%>').show(); 
+           $('#<%=comments.ClientID%>').attr("readonly", false);
            //  $('#comments').removeAttr("readonly");
-           if ($('#<%=comments.ClientID%>').attr("disabled", true)) {
+           <%--if ($('#<%=comments.ClientID%>').attr("disabled", true)) {
                $('#<%=comments.ClientID%>').attr("disabled", false);
-           }
+           }--%>
            $("#<%=btnupdate.ClientID%>").val('Cancel');
-           if ($("#comments").attr("readonly", false)) {
-               $("#comments").attr("readonly", true);
-           };
+           //if ($("#comments").attr("readonly", false)) {
+           //    $("#comments").attr("readonly", true);
+           //};
        }
        function readonlytrue() {
             $('#<%=btnupdate.ClientID%>').hide();
@@ -94,6 +95,28 @@
            //alert("sdasd");
            //InsertAddRoomsValues();
            alert($('#<%=gname.ClientID %>').val()+"checking");
+       }
+       function updatebookingclick() {
+           //alert("click on Update booking ");
+           $('#<%=btnupdate.ClientID%>').show();
+           $('#btncancel').hide();
+           $('#btnupdatebooking').hide();
+           
+           $('#<%=gname.ClientID%>').attr("readonly", false);
+           $('#<%=cnicno.ClientID%>').attr("readonly", false);
+           $('#<%=gphone.ClientID%>').attr("readonly", false);
+           $('#<%=gemail.ClientID%>').attr("readonly", false);
+           $('#<%=noofguest.ClientID%>').attr("readonly", false);
+           $('#<%=roomrent.ClientID%>').attr("readonly", false);
+           $('#<%=referanceby.ClientID%>').attr("readonly", false);
+           $('#<%=referancephone.ClientID%>').attr("readonly", false);
+           $('#<%=roomnonew.ClientID%>').attr("readonly", false);
+           $('#<%=comments.ClientID%>').attr("readonly", false);
+           $('#<%=checkindate.ClientID%>').attr("disabled", false);
+           $('#<%=checkoutdate.ClientID%>').attr("disabled", false);
+           $('#<%=checkindate.ClientID%>').attr("readonly", false);
+           $('#<%=checkoutdate.ClientID%>').attr("readonly", false);
+           
        }
    </script>
 </asp:Content>
@@ -175,7 +198,8 @@
                                            <%--//dnt change any thing in error its working --%>
                                              <td><label id="Updateroomg"><input type="button" id="<%=r.room_no %>" class="xyz" value="Cancel/Detail"  </label>
                                                  
-                                                 <label id="Updateroombooking"><input type="button" id="bookbutton" value="Book"/></label></td>
+                                                 <label id="Updateroombooking">
+                                                     <input type="button"  value="Book" class="bookroomurl" id="book_<%=r.room_no %>"/></label></td>
 
                                             
                                                     
@@ -248,7 +272,7 @@
                                   <div class="item col-md-4 col-sm-4 col-xs-12">
                                                             <label>N.I.C No / Passport <span class="required"/>*</span>
                             </label>
-                              <input type="text" id="cnicno" name="cnicno"  runat="server"   class="form-control col-md-7 col-xs-12" readonly="readonly" />
+                              <input type="text" id="cnicno" name="cnicno"  runat="server" data-inputmask="'mask' : '99999-9999999-9'"  class="form-control col-md-7 col-xs-12" readonly="readonly" />
                             </div>
 
 
@@ -343,7 +367,7 @@
                                   <asp:Button ID="btnupdate" runat="server" Text="Update" OnClick="updateTempbooking_click" OnClientClick="btnupdatefunctions();" UseSubmitBehavior="false" />
                                        
                                   <input type="button" id="btncancel"  value="Cancel Booking" onclick="readonlyfalse()" />    
-                                  <input type="button" id="btnupdatebooking"  value="Update Booking"  onclick="readonlytrue()"/> 
+                                  <input type="button" id="btnupdatebooking"  value="Update Booking"  onclick="updatebookingclick()"/> 
                                      
                             </div>
                                  
@@ -497,24 +521,40 @@
    
    
     $(document).ready(function () {
-       
+        var d = new Date();
+        var mm = d.getMonth() + 1;
+        var yy = d.getFullYear();
         if ($('#<%=hroomno.ClientID%>').val() == "") {
             $('#updateroomavalibilty').hide();
         }
        
 
         $('#<%=checkindate.ClientID%>').daterangepicker({
+            //singleDatePicker: true,
+            //calender_style: "picker_5",
+            //showDropdowns: true,
             singleDatePicker: true,
-            calender_style: "picker_2",
-            showDropdowns: true,
+            minDate: '01-' + mm + '-' + yy,
+            buttonClasses: ['btn btn-default'],
+            applyClass: 'btn-small btn-primary',
+            calender_style: "picker_5",
+            startDate: '01-' + mm + '-' + yy,
+            showDropdowns: true
             
         });
         ///dob 
         $('#<%=checkoutdate.ClientID%>').daterangepicker({
             //singleDatePicker: true,
-            // calender_style: "picker_2"
+            //singleDatePicker: true,
+            //calender_style: "picker_5",
+            //showDropdowns: true,
             singleDatePicker: true,
-            showDropdowns: true,
+            minDate: '01-' + mm + '-' + yy,
+            buttonClasses: ['btn btn-default'],
+            applyClass: 'btn-small btn-primary',
+            calender_style: "picker_5",
+            startDate: '01-' + mm + '-' + yy,
+            showDropdowns: true
            
            
         });
@@ -530,7 +570,12 @@
            
            __doPostBack("mybtn", roomno)
           
-       });
+        });
+        $(".bookroomurl").click(function () {
+            $('#<%=hroomno.ClientID%>').val(this.id);
+            alert(this.id);
+            __doPostBack("getidofbooking", roomno);
+        });
          
        
        
@@ -559,6 +604,12 @@
 
       <!-- jQuery -->
 
-  
+     <!-- jquery.inputmask -->
+    <script>
+      $(document).ready(function() {
+        $(":input").inputmask();
+      });
+    </script>
+    <!-- /jquery.inputmask -->
 </asp:Content>
 

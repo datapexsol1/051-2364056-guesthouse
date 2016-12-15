@@ -98,8 +98,8 @@
                         
                         <div id="myTabContent" class="tab-content">
                             <!-- start recent activity -->
-                           <div id="roomavalibilty">
-                           <table class="table tbl">
+                           <div id="roomavalibilty" class="table-responsive">
+                           <table class="table">
                               <thead class="thead-inverse">
                                 <tr>
                                     <th></th>
