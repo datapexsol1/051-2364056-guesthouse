@@ -77,7 +77,7 @@ public class bookingRoomClass
                      join w in db.guests on x.guest_id equals w.Id
                      join y in db.booking_Rooms on x.Id equals y.bookingId
                      join z in db.rooms on y.roomid equals z.Id
-                     where x.branch_id==branch && x.check_out_date==null
+                     where x.branch_id==branch && y.checkout==null
                      select new
                      {
                          booking = x,

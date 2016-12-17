@@ -96,7 +96,7 @@
         </div></div>
          <br />
    <a id="linktopage" name="linktopage" class="btn btn-success" >Book Room</a>
-    </div></div></div></div></div></div></div>
+    </div></div></div></div></div>
     <script>
         $(document).ready(function () {
             $("#linktopage").click(function () {

@@ -756,11 +756,10 @@
               //singleDatePicker: true,
               //calender_style: "picker_2"
               singleDatePicker: true,
-              minDate:'01-'+mm+'-'+yy ,
               buttonClasses: ['btn btn-default'],
               applyClass: 'btn-small btn-primary',
               calender_style: "picker_5",
-              startDate: '01-'+mm+'-'+yy,
+              startDate: '01-'+mm+'-'+1990,
               showDropdowns:true
           }, function (start, end, label) {
               console.log(start.toISOString(), end.toISOString(), label);
