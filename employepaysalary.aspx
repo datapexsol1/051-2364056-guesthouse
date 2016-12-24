@@ -4,10 +4,15 @@
     <script>
         function updatevalue(x) {
             var val ="#paidamount"+x;//"#paidamount"+val;
-           
+            
+
             $("#<%=tbid.ClientID%>").val(x);
-            $("#<%=tbpaidvalue.ClientID%>").val( $(val).val());
-   
+            if ($(val).val() == "") {
+                $("#elementId").prop("required", true);
+                alert("requiredaddred");
+            } else {
+                $("#<%=tbpaidvalue.ClientID%>").val($(val).val());
+            }
         }
         function activaTab(tab) {
 
@@ -70,7 +75,7 @@
                                   <td><label id="Salary"><%=x.salary %></label></td>
                                  <td><label id="amounttopay"><%=x.salary %> </label></td>
                                     <td><div class="item form-group">
-                                        <input type="number" id="paidamount<%=x.Id%>" class="form-control" required="required" name="paidamount<%=x.Id%>" onchange="updatevalue(<%=x.Id%>);"/>
+                                        <input type="number" id="paidamount<%=x.Id%>" class="form-control" min="0" max="90" name="paidamount<%=x.Id%>" onchange="updatevalue(<%=x.Id%>);"/>
                                         </div>
                                         </td>
                                     

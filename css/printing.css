@@ -1,0 +1,8 @@
+﻿table {
+    border:solid red !important;
+    border-width:100px 0 0 1px !important;
+}
+th, td ,tr{
+    border:solid red !important;
+    border-width:5px 1px 1px 10px !important;
+}

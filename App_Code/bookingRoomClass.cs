@@ -42,7 +42,7 @@ public class bookingRoomClass
         int orders = (from x in db.booking_Rooms
                       join room in db.rooms on x.roomid equals room.Id
                       join bookingid in db.bookings on x.bookingId equals bookingid.Id
-                      where room.room_no == roomno
+                      where room.room_no == roomno && x.checkout==null
                       select bookingid.Id).First();
                      
 
@@ -61,6 +61,23 @@ public class bookingRoomClass
                  where x.bookingId == bookingid && r.availbilty=="yes"
                  select x).Count();
         if (totalrooms==Checkoutroom)
+        {
+            return true;
+
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public static bool CheckPaymentspayed(int bookingid)
+    {
+        ctownDataContext db = new ctownDataContext();
+
+        int count = (from x in db.total_payments
+                     where x.booking_id == bookingid
+                     select x).Count();
+        if (count==0)
         {
             return true;
 

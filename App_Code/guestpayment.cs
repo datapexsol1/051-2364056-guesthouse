@@ -23,6 +23,14 @@ public class guestpayment
         }
 
     }
+    public static List<total_payment> getbookingpayment(int bid)
+    {
+        db = new ctownDataContext();
+        List<total_payment> payment = (from x in db.total_payments
+                                      where x.booking_id == bid
+                                      select x).ToList();
+        return payment;
+    }
     public static List<employepaymentrecivableAttributes> getGuest_recivables(int bid)
     {
 
@@ -128,22 +136,34 @@ public class guestpayment
         try {
             db = new ctownDataContext();
             var tp = (from x in db.total_payments
-                                      where x.Id == tpid
-                                      select x).First();
-            total_payment tpayment = new total_payment();
-            tpayment.booking_id = tp.booking_id;
-            tpayment.total_rent = tp.total_rent;
-            tpayment.facility_total_payment = tp.facility_total_payment;
-            tpayment.total_bill = tp.total_bill;
-           
-            tpayment.paid_amount = amount;
-            tpayment.paymentdate = DateTime.Now;
-            tpayment.employee_id = tp.employee_id;
-            tpayment.payment_type = paytype;
-            tpayment.chaqueno = chaquno;
-            db.total_payments.InsertOnSubmit(tpayment);
-            db.SubmitChanges();
-            return true;
+                      where x.Id == tpid
+                      select x).First();
+            List<total_payment> alltp = (from x in db.total_payments
+                                         where x.booking_id==tp.booking_id
+                                         select x).ToList();
+            int paid_amount = alltp.Sum(x => int.Parse(x.paid_amount))+int.Parse(amount);
+            int amount_topay = int.Parse(tp.total_bill);
+            if ((amount_topay - paid_amount) >= 0)
+            {
+                total_payment tpayment = new total_payment();
+                tpayment.booking_id = tp.booking_id;
+                tpayment.total_rent = tp.total_rent;
+                tpayment.facility_total_payment = tp.facility_total_payment;
+                tpayment.total_bill = tp.total_bill;
+
+                tpayment.paid_amount = amount;
+                tpayment.paymentdate = DateTime.Now;
+                tpayment.employee_id = tp.employee_id;
+                tpayment.payment_type = paytype;
+                tpayment.chaqueno = chaquno;
+                db.total_payments.InsertOnSubmit(tpayment);
+                db.SubmitChanges();
+                return true;
+            }else
+            {
+                return false;
+            }
+            
         }
         catch(Exception ex)
         {

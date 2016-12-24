@@ -5302,6 +5302,8 @@ public partial class total_payment : INotifyPropertyChanging, INotifyPropertyCha
 	
 	private string _payment_type;
 	
+	private string _discount_type;
+	
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -5326,6 +5328,8 @@ public partial class total_payment : INotifyPropertyChanging, INotifyPropertyCha
     partial void OnchaquenoChanged();
     partial void Onpayment_typeChanging(string value);
     partial void Onpayment_typeChanged();
+    partial void Ondiscount_typeChanging(string value);
+    partial void Ondiscount_typeChanged();
     #endregion
 	
 	public total_payment()
@@ -5529,6 +5533,26 @@ public partial class total_payment : INotifyPropertyChanging, INotifyPropertyCha
 				this._payment_type = value;
 				this.SendPropertyChanged("payment_type");
 				this.Onpayment_typeChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_discount_type", DbType="VarChar(50)")]
+	public string discount_type
+	{
+		get
+		{
+			return this._discount_type;
+		}
+		set
+		{
+			if ((this._discount_type != value))
+			{
+				this.Ondiscount_typeChanging(value);
+				this.SendPropertyChanging();
+				this._discount_type = value;
+				this.SendPropertyChanged("discount_type");
+				this.Ondiscount_typeChanged();
 			}
 		}
 	}

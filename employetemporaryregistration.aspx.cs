@@ -193,6 +193,7 @@ public partial class employetemporaryregistration : System.Web.UI.Page
                         r[i].booking_rent = Request.Form["rrent"].ToString();
                         r[i].checkout = null;
                         r[i].bookingId = bid;//.Parse(Request.Form["branch"].ToString());
+                       
 
                     }
 

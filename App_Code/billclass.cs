@@ -127,6 +127,12 @@ public class billclass
                   select x).First();
         return b;
     }
+    public static int getmonthdays()
+    {
+        DateTime d = DateTime.Now;
+     return DateTime.DaysInMonth(d.Year, d.Month);
+      
+    }
     public static List<bill> getBillItem(string val, int branchId)
     {
 
@@ -138,9 +144,10 @@ public class billclass
         List<bill> selectedbills = new List<bill>();
         foreach (bill x in billid)
         {
-            TimeSpan subtractdate = (DateTime.Now.Subtract(x.Date));
-            int days = subtractdate.Days;
-            if (days == 0)
+            //TimeSpan subtractdate = (DateTime.Now.Subtract(x.Date));
+            //int days = subtractdate.Days;
+            //int daysinthismonth = getmonthdays();
+            if (DateTime.Now.Month==x.Date.Month && DateTime.Now.Year==x.Date.Year)
             {
                 //bill b = (bill)x;
                 selectedbills.Add(x);

@@ -82,6 +82,7 @@ public class gusetRegistrationClass
 
 
                 query.availbilty = "no";
+                query.temporarybooked = "no";
                 db.SubmitChanges();
             }
 

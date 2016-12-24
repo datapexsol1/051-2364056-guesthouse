@@ -1,6 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EmployePanel.master" AutoEventWireup="true" CodeFile="employepolicereport.aspx.cs" Inherits="employepolicereport" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+    
+  <link rel="stylesheet" type="text/css" href="css/printing.css" media="print" />
      <script>
          function xyz(value) {
              if ( $('#tbox' + value).is(":checked"))
@@ -10,7 +12,7 @@
                  
              }
          }
-
+         
         
          </script>
 </asp:Content>
@@ -46,14 +48,14 @@
              </div>
          <div class="row">
                          <div class="table-responsive">
-                  <table border="0" width="100%"  class="table table-bordered table-striped">
+                  <table id="example" border="0" width="100%"  class="table table-bordered ">
                       <tr style="text-align:left">
-                          <th></th>
+                          <th class="hidecheckbox">Remove</th>
                           
                           <th>Room no</th>
                           <th>Guest name</th>
                           <th>CNIC/Passport#</th>
-                          <th>Address</th>
+                          <th colspan="2">Address</th>
                           <th>Arrival</th>
                           <th>Departure</th>
                           <th>Persons</th>
@@ -66,12 +68,12 @@
                           {
                            %>
                       <tr id="trow<%=x.g.Id %>" style="text-align:left">
-                          <td><input type="checkbox" id="tbox<%=x.g.Id %>" name="tbox<%=x.g.Id %>" value="<%=x.g.Id %>" onclick='xyz(this.value)'/></td>
+                          <td class="hidecheckbox"><input type="checkbox" id="tbox<%=x.g.Id %>" name="tbox<%=x.g.Id %>"  value="<%=x.g.Id %>" onclick='xyz(this.value)'/></td>
                           <%--<td><input type="text" id='ibox" + x.Id + "' value="<%=x.g.Id %>"/></td>--%>
                           <td><%=x.r.room_no %></td>
                           <td><%=x.g.guest_name %></td>
                           <td><%=x.g.cnic %><%=x.g.f_passport_no %></td>
-                          <td><%=x.g.permanent_address %></td>
+                          <td colspan="2"><%=x.g.permanent_address %></td>
                           <td><%=x.b.check_in_date %></td>
                           <td>OPEN</td>
                           <td><%=x.b.no_of_pax %></td>
@@ -90,8 +92,14 @@
                   
 
     <script>
+
         $(document).ready(function () {
             $("#logoid").hide();
+            
+            $("#btn").click(function () {
+                $(".hidecheckbox").hide();
+              
+            });
         });
         $(function () {
             $("#btn").click(function () {

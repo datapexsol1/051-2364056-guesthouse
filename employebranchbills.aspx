@@ -6,9 +6,9 @@
     <script>
            
         function activaTab(tab) {
-
+           
             $('.nav-tabs a[href="#' + tab + '"]').tab('show');
-
+           
             //alert("working");
         };
        
@@ -28,8 +28,8 @@
             document.getElementById('desc').value = "";
         }
         function setAddVal() {
-                <%try
-        {%>
+             
+    
             //$("input[name=abamount]").val("123");
             document.getElementById('abamount').value = 123;
             document.getElementById('<%=abtype.ClientID %>').value = "Water";
@@ -46,19 +46,19 @@
         function setHomeRent() {
             if(document.getElementById('<%=abtype.ClientID %>').value  == "House Rent")
             {
-
-                //document.getElementById('abamount').value = 242000;
                 <%
-        int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
-        bill b = billclass.latestcheckHouseRentYear(bid);//latest bill year
-        bill oldyeardate = billclass.oldestcheckHouseRentYear(bid);//oldest bill year
-
-        int y1 = oldyeardate.Date.Year; //old year
-        int y2 = b.Date.Year; ///new year
-        // DateTime.Subtract(DateTime);
-        int d3 = y2 - y1;
-        if (d3 == 0)
+        try
         {
+            int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
+            bill b = billclass.latestcheckHouseRentYear(bid);//latest bill year
+            bill oldyeardate = billclass.oldestcheckHouseRentYear(bid);//oldest bill year
+
+            int y1 = oldyeardate.Date.Year; //old year
+            int y2 = b.Date.Year; ///new year
+            // DateTime.Subtract(DateTime);
+            int d3 = y2 - y1;
+            if (d3 == 0)
+            {
             %>
                 document.getElementById('abamount').value = 242000;
                 <%
@@ -71,17 +71,21 @@
                 
                 document.getElementById('abamount').value = 242000 + <%=increment * d3 %> ;
                 <%
+            }
+            // var newDate = myDate.AddYears(-1);
+            if (b != null)
+            {
+                abcd.Value = b.Date.ToShortDateString();
+            }
+            else
+            {
+                abcd.Value = "";
+            }
         }
-        // var newDate = myDate.AddYears(-1);
-        if (b != null)
+        catch (Exception ex)
         {
-            abcd.Value = b.Date.ToShortDateString();
-        }
-        else
-        {
-            abcd.Value = "";
-        }
 
+        }
         %>
             }
             else
@@ -89,12 +93,10 @@
                 document.getElementById('abamount').value = '';
             }
         }
-        <%}
-            catch (Exception ex)
-            {
-
-            }
-        %>
+        
+        
+        
+        
        
     </script>
 
@@ -265,7 +267,7 @@
                              <select class="form-control" id="abtype" name="abtype"  onchange="setHomeRent();" runat="server">
                                             <option value="0">Select</option>
                                         
-                                 <option value="Electricity" id="abtype1">Electricity</option>
+                                          <option value="Electricity" id="abtype1">Electricity</option>
                                           <option value="Gas" id="abtype2">Gas</option>
                                           <option value="Water" id="abtype3">Water</option>
                                           <option value="Nayatel" id="abtype4">Nayatel</option>
@@ -287,7 +289,7 @@
                         
                         <div class="col-md-4">
                             <label >Date <span class="required">*</span></label>
-                          <input type="text" id="abdate" name="abdate"  value="123"  placeholder="Date" class="form-control " data-validation="required" 
+                          <input type="text" id="abdate" name="abdate"  value="<%=DateTime.Now.ToShortDateString() %>"  class="form-control " data-validation="required" 
 		 data-validation-error-msg="Bill Date is required !"/>
                         </div>
                       
@@ -307,7 +309,7 @@
                         <div class="col-md-6 col-md-offset-11">
                             <%--<a href="#" onserverclick="Button1_Click" runat="server" class="btn btn-success" >Submit</a>--%>
                            <%--<button onserverclick="Button1_Click" runat="server" class="btn btn-success">Submit</button>--%>
-                          <asp:Button ID="Button1" runat="server" Text="Submit"  CausesValidation="true" class="btn btn-success" OnClick="Button1_Click" />
+                          <asp:Button ID="Button1" runat="server" Text="Submit"  CausesValidation="true" class="btn btn-success" OnClick="Button1_Click" OnClientClick=" return checkbilltype()" />
                             <%--<input type="submit" name="submit" onserverclick="Button1_Click" runat="server" class="btn btn-success"/>--%>
                         <input type="hidden" id="abcd" runat="server" />
                         </div>
@@ -331,16 +333,17 @@
       $(document).ready(function() {
           var d = new Date();
           var mm = d.getMonth() + 1;
-          var yy = d.getFullYear();
+          var yy = d.getFullYear()
+          var dd=d.getDate();
           $('#abdate').daterangepicker({
           //singleDatePicker: true,
               //calender_style: "picker_2"
               singleDatePicker: true,
-              minDate: '01-' + mm + '-' + yy,
+              minDate: dd+'-' + mm + '-' + yy,
               buttonClasses: ['btn btn-default'],
               applyClass: 'btn-small btn-primary',
               calender_style: "picker_5",
-              startDate: '01-' + mm + '-' + yy,
+              startDate: dd+'-' + mm + '-' + yy,
               showDropdowns: true
         }, function(start, end, label) {
           console.log(start.toISOString(), end.toISOString(), label);
@@ -348,6 +351,17 @@
      
        
       });
+      function checkbilltype(){
+          if(document.getElementById('<%=abtype.ClientID %>').value  == "0"){
+              ShowNotification('Error','Please Select BILL TYPE');
+              return false;
+          }
+          else{
+              return true;
+          }
+         
+          
+      }
         function setUpdatePanelVal(){ 
 
            // alert("hello");
@@ -355,8 +369,9 @@
             document.getElementById('<%=ubamount.ClientID %>').value = '123';
 
 
-             $("#addpanelid").find("input[type=text]").val('');
-          document.getElementById('<%=abtype.ClientID %>').value = 'Select';
+            $("#addpanelid").find("input[type=text]").val('');
+          $("#<%=abtype.ClientID%>")[0].selectedIndex=0;
+            $('#abdate').val('<%=DateTime.Now.ToString("dd-MM-yyyy")%>');
           $("#addpanelid").find("input[type=number]").val('');
         };
         

@@ -118,7 +118,7 @@
                            </asp:Table>
                          </div>
                             <asp:Button ID="getsummary" runat="server" Text="Place Order" OnClick="getsummary_click" CssClass="btn btn-success" />
-                             <asp:Button ID="savetodb" runat="server" Visible="false" CssClass="btn btn-default" Text="PrintBill"  />
+                            
                        <input type="button" id="btnPrint" value="Print "  class="btn btn-default"/>
                         </div>
                     </div>

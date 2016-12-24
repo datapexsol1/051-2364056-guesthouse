@@ -22,8 +22,9 @@
 
     <!-- Custom Theme Style -->
     <link href="../build/css/custom.min.css" rel="stylesheet">
-    <link href="Notifications/NotificationStyle.css" rel="stylesheet" />
+   
         <script src="js/jquery-1.10.2.min.js"></script>
+     <link href="Notifications/NotificationStyle.css" rel="stylesheet" />
     <script src="js/NotificationJS.js"></script>
 
   </head>

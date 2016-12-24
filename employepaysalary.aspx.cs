@@ -86,7 +86,7 @@ public partial class employepaysalary : System.Web.UI.Page
             }
             else
             {
-                msg = "There is some error";
+                msg = "Please Enter Amout to pay";
                 type = "Error";
             }
             Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('" + type + "','" + msg + "');</script>");

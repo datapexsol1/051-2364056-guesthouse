@@ -52,6 +52,7 @@ public partial class employebranchbills : System.Web.UI.Page
                 b.BranchId = bid;// employeeProfile.getEmployeBranch(Session["loginName"].ToString());//get from session
                 b.BillAmount = Convert.ToInt32(Request.Form["abamount"]);
                 b.bill_description = Request.Form["desc"];
+             string str=   Request.Form["abdate"];
                 b.Date = DateTime.ParseExact(Request.Form["abdate"], "dd-MM-yyyy", CultureInfo.InvariantCulture);// Convert.ToDateTime(Request.Form["abdate"]);
                 //checking if bill already exist
                 if (abtype.Value == "Electricity" || abtype.Value == "Gas" || abtype.Value == "Water" || abtype.Value == "Nayatel")
@@ -192,30 +193,33 @@ public partial class employebranchbills : System.Web.UI.Page
         ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "activaTab('tab_content2');", true);
 
         int branchID = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
-        var bType = ddBillType.SelectedValue;
+        string bType = ddBillType.SelectedValue;
+        
 
-        ////date dropdownlist
-        List<bill> bs = billclass.getBillItem(bType, branchID);
+            ////date dropdownlist
+            List<bill> bs = billclass.getBillItem(bType, branchID);
 
-        string[] billType = new string[bs.Count() + 1];
-        billType[0] = "Select";
-        int i = 1;
-        foreach (var x in bs)
-        {
-            //int result = int.Parse((DateTime.Now.Day - x.Date.Day).ToString());
-            //if (result == 1 || result == 0)
-            //{
+            string[] billType = new string[bs.Count() + 1];
+            billType[0] = "Select";
+            int i = 1;
+            foreach (var x in bs)
+            {
+                //int result = int.Parse((DateTime.Now.Day - x.Date.Day).ToString());
+                //if (result == 1 || result == 0)
+                //{
 
-            billType[i] = x.Date.ToShortDateString();
-            i++;
-            //}
+                billType[i] = x.Date.ToShortDateString();
+                i++;
+                //}
 
-        }
-        ddDate.DataSource = billType;
-        ddDate.DataBind();
+            }
+            ddDate.DataSource = billType;
+            ddDate.DataBind();
 
 
-        ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "activaTab('tab_content2');", true);
+            ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "activaTab('tab_content2');", true);
+
+        
     }
 }
 

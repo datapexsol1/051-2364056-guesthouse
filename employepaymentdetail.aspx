@@ -113,13 +113,74 @@
      <div class="x_content">
      <div class="col-md-9 col-sm-9 col-xs-12">
          <div id="printPaymentpage">
-         <h3>Guest Payment</h3>
+             <div class="row">
+                 <table id="logoid" border="0" width="100%">
+                     <tr>
+                         <td><img src="img/logo.png" width="200" height="200"/></td>
+                         <td style="text-align:center;font-family:Magneto"><b style="font-size:xx-large">Cape Town</b></td>
+                         <td style="text-align:center;font-size:large">
+                 
+                             <label>House NO. 10 Street 12 <br />
+                             F-7/2 Islamabad<br />
+                             Ph. 0518318731-2<br />
+                             NTN#4263282-0</label>
+
+                         </td>
+                     </tr>
+                 </table>
+             </div>
+             <br />
+             <%
+                 int bookingId = int.Parse(Request.QueryString["booking"]);
+                 guest g = bookingclass.getguestdetail(bookingId);
+                  %>
+             <hr style="border:dashed;" />
+             <div class="row">
+                 <h3>Guest Information</h3>
+                 <table  width="80%" class="table table-bordered table-striped">
+                     <tr style="text-align:left">
+                         <th>Registration #</th>
+                         <th>Guest Name</th>
+                         <th>CNIC</th>
+                         <th>Address</th>
+                         <th>Contact</th>
+                     </tr>
+                     <tr style="text-align:left">
+                         <td><%=g.reg_no %></td>
+                         <td><%=g.guest_name %></td>
+                         <td><%=g.cnic %><%=g.f_passport_no %></td>
+                         <td><%=g.permanent_address %></td>
+                         <td><%=g.mobile %></td>
+                     </tr>
+                 </table>
+
+             </div>
+<%--             <div class="row">
+             <div class="col-md-3" style="float:left;width:20%">
+                 <img src="img/logo.png" width="200" height="200"/>
+             </div>
+             <div class="col-md-3">
+         <h3 style="text-align:center;width:20%;float:left">Guest Payment</h3>
+                 </div>
+             <div class="col-md-6" style="">
+                 <h5>Cape Town</h5>
+                 
+                 <h5>House NO. 10 Street 12</h5>
+                 <h5>F-7/2 Islamabad</h5>
+                 <h5>Ph. 0518318731.2</h5>
+                 <h5>NTN#4263282-0</h5>
+                 </div>
+                 </div>--%>
+             <div class="clearfix"></div>
          <hr style="border:dashed;" />
+                 
          <div>
              <asp:HiddenField ID="roomCheckout" runat="server" />
+             <div id="roompaymentid">
              <h3>Room Payment</h3>
+                 
                <div style="overflow:auto;white-space:nowrap;">
-                   <asp:Table ID="bookingtable" runat="server" class="table table-bordered table-striped">
+                   <asp:Table ID="bookingtable" runat="server" Width="100%" class="table table-bordered table-striped">
 
 
 
@@ -129,17 +190,20 @@
                                     
                                  
         </div>
+                 </div>
          </div>
 
 
-          <div>
+          <div id ="facilities">
              <h3>Facilities</h3>
                <hr style="border:dashed;" />
-               <asp:Table ID="facilites" runat="server" class="table table-bordered table-striped">
+              <div style="overflow:auto;white-space:nowrap;">
+               <asp:Table ID="facilites" runat="server" Width="100%" class="table table-bordered table-striped">
 
 
 
     </asp:Table>
+                  </div>
          
          </div>
           <hr style="border:dashed;" />
@@ -150,19 +214,48 @@
              <br />
              <div style="float:right;">
                   
-               
-                                    
+                 <label id="gbill" style="background-color:goldenrod;width:100%;text-align:center;font-size:x-large"><u>Bill  </u></label>
+                 <br />
+                 <b id="type">
+                     <b>Payment type</b>
+                  <asp:label name="setpaymenttype" runat="server" ID="setpaymenttype" ></asp:label>
+
+                 </b>
+                 <br />
+                 <b id="roomrent">Room Rent
+                 <asp:Label Font-Bold="true" ID="lbroomrent" runat="server"></asp:Label></b>
+                 <br />
+                 
+                 <b id="facility"> Facilities 
+                 <asp:Label Font-Bold="true" ID="lbfacilities" runat="server"></asp:Label></b>
+                 <br />
+                 <b>Tax</b>
+                 <asp:Label Font-Bold="true" ID="lbtax" runat="server"></asp:Label>
+                      <br />
+                       <b>Total Bill</b>
+                 <asp:Label Font-Bold="true" ID="tbill" runat="server"></asp:Label>
+                 <br />
+                     
+                       <b>Advance</b>
+                 <asp:Label Font-Bold="true" ID="lbadvance" runat="server"></asp:Label>
+                 <br />
+                                     <label id="chequeid" runat="server" ><u>Chaque No:<asp:TextBox ID="chaqueno" runat="server" placeholder="Enter cheque no."></asp:TextBox> </u></label>
 
 
-           
+             <label id="gtotal" ><u>Total Bill : </u></label>
+                 <asp:Label Font-Bold="true" ID="Gtotal" runat="server"></asp:Label>
+                      <asp:HiddenField ID="gtotaltb" runat="server" />
              <br />
-                 
+                  <label id="gtotal1"><u>Paid Amount : </u></label>
                
-                 
+                 <asp:Label ID="tbpaidamount" runat="server"></asp:Label>  
                
                  <!-- if stay hours is less than 6 hours-->
                
-
+                            <div id="cb">
+                                <asp:CheckBox ID="timelesscbox" ClientIDMode="Static" runat="server" Text="RentDiscount" AutoPostBack="true" OnCheckedChanged="checkedchange"  />
+                                <asp:CheckBox ID="taxtdiscount" ClientIDMode="Static" runat="server" Text="Tax Discount" AutoPostBack="true" OnCheckedChanged="tax_discount"  />
+</div>
                  <br />
                 <%--  --%><%--<asp:DropDownList ID="paymentDropdown" runat="server" AutoPostBack="True" CausesValidation="True" OnSelectedIndexChanged="paymentDropdown_SelectedIndexChanged">
                     <asp:ListItem>Select Payment Method</asp:ListItem>       
@@ -203,14 +296,16 @@
          <div style="float:right;margin-top:250px">
            
 
-                 
-                                  
-             <input type="button" id="btnPrint" value="Print Bill"  class="btn btn-default"/>
+              
+                                       
+             <input type="button" id="btnPrint" value="Print Complete Bill"  class="btn btn-default"/>
+                          <input type="button" id="btnRoomPayment" value="Print Room Bill "  class="btn btn-default"/>
+             <input type="button" id="btnfacility" value="Print Facility Bill "  class="btn btn-default"/>
                  <%--<a href="#" data-toggle="modal" data-target="#login-modal"  class="btn btn-default">Print Bill Now</a>--%>
-                <%-- <asp:HiddenField ID="tbroombill" runat="server" />
+                 <asp:HiddenField ID="tbroombill" runat="server" />
                  <asp:HiddenField ID="tbfacilitebill" runat="server" />
                   <asp:HiddenField ID="taxdiscountH" runat="server" />
-             <asp:HiddenField ID="tbpayType" runat="server" />--%>
+             <asp:HiddenField ID="tbpayType" runat="server" />
              </div>
          <!--popup start-->
                          <%-- <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
@@ -283,9 +378,19 @@
          <input id="totalbill" type="hidden" runat="server" />
             </div>
      <script>
-        $(function () {
+         $(document).ready(function () {
+             $("#logoid").hide();
+         });
+         $(function () {
             $("#btnPrint").click(function () {
                 //alert("hello");
+                <%
+         if (bookingRoomClass.checkBookingRoomcheckout(int.Parse(tbbid.Value)) == true)
+         {
+            
+                 // setpaymenttype.Value = paymentDropdown.SelectedValue;
+                 // setpaymenttype.Value = paymentDropdown.SelectedValue;
+         %>
 <%--                $("#type").show();
                var v = "<%=paymentDropdown.SelectedValue.ToString()%>";
                // alert(v);
@@ -293,6 +398,7 @@
                 //$("input[name=setpaymenttype]").val(v);
                 //$("tbpayType").val(v);
                 $("#cb").hide();
+                $("#logoid").show();
                 $("#paymenttype").hide();
                 var contents = $("#printPaymentpage").html();
                 var frame1 = $('<iframe />');
@@ -316,9 +422,120 @@
                     window.frames["frame1"].print();
                     frame1.remove();
                 }, 500);
+               <%
+         }
+         else
+         {%>
+                ShowNotification('Error', 'Pay bill first to print the bill');
+        <% }%>
             });
         });
 
+        $(function () {
+            $("#btnRoomPayment").click(function () {
+                
+                $("#logoid").show();
+                $("#cb").hide();
+                $("#paymenttype").hide();
+               $("#facilities").hide();
+                // $("#facilities").style.marginTop = "50px";
+               // $("#facility").css('margin-top', 5000 );
+               // document.getElementById("facility").style.marginTop = "7500px";
+                $("#facility").hide();
+                //$("#facility").hide(); 
+                var totalbill =$("#<%=tbill.ClientID%>").text() ; //document.getElementById(<%=tbill.ClientID%>).val;//$("#<%=tbill.ClientID%>").val(); 
+                var facility = $("#<%=lbfacilities.ClientID%>").text();
+                var tax = $("#<%=lbtax.ClientID%>").text();
+                var roomrent =$("#<%=lbroomrent.ClientID%>").text() ;
+                var roomtax = roomrent * 17 / 100;
+                $("#<%=lbtax.ClientID%>").text(roomtax);
+                totalbill = parseInt(roomrent) + parseInt(roomtax);
+                $("#<%=tbill.ClientID%>").text(totalbill);
+                //Remaining bill
+                var advance = $("#<%=lbadvance.ClientID%>").text() ;
+                var remainingBill = parseInt(totalbill) - parseInt(advance )
+                $("#<%=Gtotal.ClientID%>").text(remainingBill);
+                $("#<%=tbpaidamount.ClientID%>").text(remainingBill);
+
+                <%--var totalbill =$("#<%=tbill.ClientID%>").text() ;
+                alert(totalbill);--%>
+                //$("#<%=lbtax.ClientID%>").hide(); 
+                var contents = $("#printPaymentpage").html();
+                var frame1 = $('<iframe />');
+                frame1[0].name = "frame1";
+                frame1.css({ "position": "absolute", "top": "-1000000px" });
+                $("body").append(frame1);
+                var frameDoc = frame1[0].contentWindow ? frame1[0].contentWindow : frame1[0].contentDocument.document ? frame1[0].contentDocument.document : frame1[0].contentDocument;
+                frameDoc.document.open();
+                //Create a new HTML document.
+                frameDoc.document.write('<html><head><title>CapeTown guest house</title>');
+                frameDoc.document.write('</head><body style="-webkit-print-color-adjust: exact;background-color:white; height: 950px;left: 0; right: 0;top=10; background-repeat: no-repeat; background-size:700px 500px;align-content:center;>');
+                //Append the external CSS file.
+
+
+                //Append the DIV contents.
+                frameDoc.document.write(contents);
+                frameDoc.document.write('</body></html>');
+                frameDoc.document.close();
+                setTimeout(function () {
+                    window.frames["frame1"].focus();
+                    window.frames["frame1"].print();
+                    frame1.remove();
+                }, 500);
+             
+            });
+        });
+         $(function () {
+             $("#btnfacility").click(function () {
+                
+                $("#logoid").show();
+                $("#cb").hide();
+                $("#paymenttype").hide();
+                $("#facilities").show();
+                $("#facility").show();
+                $("#roomrent").hide();
+                
+                $("#roompaymentid").hide();
+
+
+                 var totalbill =$("#<%=tbill.ClientID%>").text() ; //document.getElementById(<%=tbill.ClientID%>).val;//$("#<%=tbill.ClientID%>").val(); 
+                var facility = $("#<%=lbfacilities.ClientID%>").text();
+                var tax = $("#<%=lbtax.ClientID%>").text();
+                var roomrent =$("#<%=lbfacilities.ClientID%>").text() ;
+                var roomtax = roomrent * 17 / 100;
+                $("#<%=lbtax.ClientID%>").text(roomtax);
+                totalbill = parseInt(roomrent) + parseInt(roomtax);
+                $("#<%=tbill.ClientID%>").text(totalbill);
+
+
+
+
+                var contents = $("#printPaymentpage").html();
+                var frame1 = $('<iframe />');
+                frame1[0].name = "frame1";
+                frame1.css({ "position": "absolute", "top": "-1000000px" });
+                $("body").append(frame1);
+                var frameDoc = frame1[0].contentWindow ? frame1[0].contentWindow : frame1[0].contentDocument.document ? frame1[0].contentDocument.document : frame1[0].contentDocument;
+                frameDoc.document.open();
+                //Create a new HTML document.
+                frameDoc.document.write('<html><head><title>CapeTown guest house</title>');
+                frameDoc.document.write('</head><body style="-webkit-print-color-adjust: exact;background-color:white; height: 950px;left: 0; right: 0; background-repeat: no-repeat; background-size:700px 500px;align-content:center;>');
+                //Append the external CSS file.
+
+
+                //Append the DIV contents.
+                frameDoc.document.write(contents);
+                frameDoc.document.write('</body></html>');
+                frameDoc.document.close();
+                setTimeout(function () {
+                    window.frames["frame1"].focus();
+                    window.frames["frame1"].print();
+                    frame1.remove();
+                }, 500);
+             
+            });
+        });
+         
     </script>
 
 </asp:Content>
