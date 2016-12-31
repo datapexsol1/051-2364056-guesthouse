@@ -66,23 +66,34 @@ public class gusetRegistrationClass
         }
     }
     //get number of rooms and add them in to db
-    public static bool bookRooms(booking_Room[] rooms)
+    public static bool bookRooms(booking_Room[] rooms,string guesthoursename)
     {
-
+        string bookingcomments = "";
+        int bid = rooms[0].bookingId;
         ctownDataContext db = new ctownDataContext();
         try
         {
+
             foreach (booking_Room r in rooms)
             {
+
                 db.booking_Rooms.InsertOnSubmit(r);
                 //update room database
                 var query = (from room in db.rooms
                              where room.Id == r.roomid
                              select room).First();
 
-
+                if (query.room_type == "no" || query.room_type == "othere")
+                {
+                    bookingcomments += query.room_no+",";
+                }
                 query.availbilty = "no";
                 query.temporarybooked = "no";
+                db.SubmitChanges();
+                var booking=(from x in db.bookings
+                            where x.Id==bid
+                            select x).First();
+                booking.shift_comments = bookingcomments + "Rooms are booked in " + guesthoursename;
                 db.SubmitChanges();
             }
 

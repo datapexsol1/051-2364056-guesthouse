@@ -35,68 +35,12 @@ public partial class employeerooms : System.Web.UI.Page
             ddRoomNo.DataSource = roomNo;
             ddRoomNo.DataBind();
         }
-        else
-        {
-            if (Request.Form["__EVENTTARGET"] == "mybtn")
-            {
-                online_guest_booking b=onlineguestbooking.getTemporaryBookingRoom(hroomno.Value.ToString());
-                checkindate.Value = b.check_in_date.ToString("dd-MM-yyyy");
-                checkoutdate.Value = b.check_out_date.ToString("dd-MM-yyyy");
-                gname.Value = b.guest_name;
-                gphone.Value = b.guest_phone;
-                noofguest.Value = b.no_of_guest.ToString();
-                roomnonew.Value = b.no_of_room;
-                gemail.Value = b.guest_email;
-                comments.Value = b.Comments;
-                referanceby.Value = b.referance_by_name;
-                referancephone.Value = b.referance_by_contact;
-                tbookingid.Value = b.Id.ToString();
-                cnicno.Value = b.guest_cnic_passport;
-                roomrent.Value = b.room_rent;
-                ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "showupdatediv('updateroomavalibilty');", true);
-            }
-            else if(Request.Form["__EVENTTARGET"] == "getidofbooking")
-            {
-                string[] str = hroomno.Value.Split('_');
-            
-                Response.Redirect("employetemporaryregistration.aspx?id="+str[1]);
-            }
-            
-        }
+       
        
 
        
     }
-    protected void updateTempbooking_click(object sender, EventArgs e)
-    {
-        
-        online_guest_booking b = new online_guest_booking();
-        if (checkindate.Value != "" && checkoutdate.Value != "")
-        {
-            b.check_in_date = DateTime.ParseExact(checkindate.Value, "dd-MM-yyyy", CultureInfo.InvariantCulture);// DateTime.Parse(checkindate.Value);
-            b.check_out_date = DateTime.ParseExact(checkoutdate.Value, "dd-MM-yyyy", CultureInfo.InvariantCulture);//DateTime.Parse(checkoutdate.Value);
-
-        }
-        else
-        {
-            b.check_in_date  = new DateTime(1991, 4, 1);
-            b.check_out_date = new DateTime(1991, 4, 1);
-
-        }
-        b.guest_name = gname.Value;
-        b.guest_phone = gphone.Value;
-        b.no_of_guest = int.Parse(noofguest.Value);
-         b.no_of_room= roomnonew.Value;
-         b.guest_email= gemail.Value;
-         b.Comments= comments.Value;
-         b.referance_by_name= referanceby.Value;
-       b.referance_by_contact = referancephone.Value;
-        b.Id = int.Parse(tbookingid.Value);
-         b.guest_cnic_passport= cnicno.Value;
-          b.room_rent= roomrent.Value;
-        onlineguestbooking.updateTemorarybookingRoom(b);
-        ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), " activaTab('roomavalibilty');", true);
-    }
+   
     protected void saveroom_click(object sender, EventArgs e)
     {
         try {

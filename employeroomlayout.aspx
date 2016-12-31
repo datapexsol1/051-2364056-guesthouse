@@ -34,16 +34,37 @@
         
     <div id="form1" >
     <table frame='box'>
-  <%   IQueryable<room> rooms = roomsclass.getAvailableRooms(employeeProfile.getEmployeBranch(Session["loginName"].ToString())); %>
+  <%   IQueryable<room> rooms = roomsclass.getAvailableRoomsall(employeeProfile.getEmployeBranch(Session["loginName"].ToString())); %>
     <h2 > Available Rooms</h2>
     <tr style="min-width: 400px;border:none"> 
       <%foreach (var r in rooms)
-        {  %>
+          {  %>
               <% if (r.availbilty == "yes")
                   {
-                     %>
+                      if (r.room_type == "othere" || r.room_type == "no") { %>
                     <td style="    padding: 0;float: left;padding: 22px;">
                         <div class="container">
+                          
+                            <div class="row">
+                                
+                        <div id='c_b'  >
+                            <label style="text-align:center" >
+                                <img name='img' id='imge<%=r.room_no %>'  src='layoutimg/images/openover5000.png' onclick='swapImage("imge<%=r.room_no %>","layoutimg/images/openover5000.png","layoutimg/images/over500close.png") 'width="50"  class='  imagehover'/>
+                       <input type='checkbox' class='checkbox' name='chkchk[]' id='' value="<%=r.room_no %>"  style='visibility:hidden'/>
+                                <%=r.room_no %>
+                            </label>
+                            </div>
+                                    </div>
+                            
+                          
+                        </div>
+                            
+        </td> 
+        <%} else {%> <td style="    padding: 0;padding: 22px;">
+      
+                              <div class="container">
+                          
+                    
                             <div class="row">
                                 
                         <div id='c_b'  >
@@ -53,10 +74,13 @@
                                 <%=r.room_no %>
                             </label>
                             </div>
+                              
                                     </div>
+                             
                         </div>
                             
-        </td> 
+        </td> <%} %>
+
                    <%} %>
 
                    <%else

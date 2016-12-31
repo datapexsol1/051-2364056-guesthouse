@@ -134,7 +134,7 @@ protected void Save_Click(object sender, EventArgs e)
 
         }
 
-        gusetRegistrationClass.bookRooms(r);
+        gusetRegistrationClass.bookRooms(r,"");
     }
 
 

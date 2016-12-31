@@ -55,6 +55,7 @@ function getbranchweeklyincome(val,date) {
 
 
 
+
 function getbranchweeklyexpenditure(val,date) {
    
     var input = val;

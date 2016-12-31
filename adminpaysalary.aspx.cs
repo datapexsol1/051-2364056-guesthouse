@@ -42,7 +42,7 @@ public partial class adminpaysalary : System.Web.UI.Page
         {
 
             int bid = branchClass.getBranchID(brid.SelectedValue); //employeeProfile.getEmployeBranch(Session["loginName"].ToString());
-            List<employee> emp = employeeProfile.getunpaidemploye(bid);
+            List<employesalarypay> emp = employeeProfile.getunpaidemploye(bid);
             //IQueryable<employee> bemploye = employeeProfile.getAllEmployee(bid);
             IQueryable<employee> bemploye = employeeProfile.getAllEmployeeUserName(bid);
             List<string> lname = new List<string>();
@@ -109,25 +109,28 @@ public partial class adminpaysalary : System.Web.UI.Page
         int id = employeeProfile.getEmployeeId(username);
         int salaryId = employeeProfile.getEmployeeIdSalaryID(id);
 
-        employesalary x = employeeProfile.getInfo(salaryId);
+       IQueryable <employesalary> empsal = employeeProfile.getInfo(salaryId);
         employee emp = employeeProfile.getEmpInfo(id);
 
-
-        if (x.payment_date.Month == DateTime.Now.Month)
+        foreach (employesalary x in empsal)
         {
-            empname.InnerText = emp.name;
-            empphone.InnerText = emp.employee_no;
-            inputid.Value = x.Id.ToString();
-            empamount.InnerText = x.amount;
-            idhid.Value = x.employe_id.ToString();
-            empdate.InnerText = x.payment_date.ToShortDateString();
-            Hiddenname.Value = empname.InnerText;
-            Hiddenphone.Value = empphone.InnerText;
-        }
-        else
-        {
-            table.Visible = false;
-            tbupdate.Visible = false;
+           
+            if (x.payment_date.Month == DateTime.Now.Month)
+            {
+                empname.InnerText = emp.name;
+                empphone.InnerText = emp.employee_no;
+                inputid.Value = x.Id.ToString();
+                empamount.InnerText = x.amount;
+                idhid.Value = x.employe_id.ToString();
+                empdate.InnerText = x.payment_date.ToShortDateString();
+                Hiddenname.Value = empname.InnerText;
+                Hiddenphone.Value = empphone.InnerText;
+            }
+            else
+            {
+                table.Visible = false;
+                tbupdate.Visible = false;
+            }
         }
 
     }
@@ -163,7 +166,7 @@ public partial class adminpaysalary : System.Web.UI.Page
             {
                 int bid = branchClass.getBranchID(brid.SelectedValue);// employeeProfile.getEmployeBranch(Session["loginName"].ToString());
 
-                List<employee> emp = employeeProfile.getunpaidemploye(bid);
+                List<employesalarypay> emp = employeeProfile.getunpaidemploye(bid);
                 IQueryable<employee> bemploye = employeeProfile.getAllEmployee(bid);
                 List<string> lname = new List<string>();
                 lname.Add("Select");

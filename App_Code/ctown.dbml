@@ -23,23 +23,6 @@
       <Column Name="employee_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
-  <Table Name="dbo.booking" Member="bookings">
-    <Type Name="booking">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="guest_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="employee_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="check_in_date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="check_out_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="branch_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="guest_reg_card_arr_date" Type="System.String" DbType="NVarChar(25) NOT NULL" CanBeNull="false" />
-      <Column Name="no_of_pax" Type="System.String" DbType="NVarChar(25) NOT NULL" CanBeNull="false" />
-      <Column Name="front_identity_layout" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="back_identity_layout" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="registration_form_image" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="referance_by_name" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
-      <Column Name="referance_by_contact" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.booking_Room" Member="booking_Rooms">
     <Type Name="booking_Room">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -87,15 +70,6 @@
       <Column Name="dateofjoining" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="address" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
       <Column Name="salary" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
-  <Table Name="dbo.employesalary" Member="employesalaries">
-    <Type Name="employesalary">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="employe_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="payment_date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="amount" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="paidby" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
   <Table Name="dbo.event_calender" Member="event_calenders">
@@ -267,6 +241,35 @@
       <Column Name="chaqueno" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
       <Column Name="payment_type" Type="System.String" DbType="VarChar(13)" CanBeNull="true" />
       <Column Name="discount_type" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.employesalary" Member="employesalaries">
+    <Type Name="employesalary">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="employe_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="payment_date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="amount" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="paidby" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="amount_Topay" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="payment_paid_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.booking" Member="bookings">
+    <Type Name="booking">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="guest_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="employee_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="check_in_date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="check_out_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="branch_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="guest_reg_card_arr_date" Type="System.String" DbType="NVarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="no_of_pax" Type="System.String" DbType="NVarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="front_identity_layout" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="back_identity_layout" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="registration_form_image" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="referance_by_name" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="referance_by_contact" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="shift_comments" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

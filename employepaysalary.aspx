@@ -4,14 +4,54 @@
     <script>
         function updatevalue(x) {
             var val ="#paidamount"+x;//"#paidamount"+val;
+           
+            $("#<%=tbid.ClientID%>").val(x);
+            $("#<%=tbpaidvalue.ClientID%>").val($(val).val());
+            $("#<%=tbamounttopay.ClientID%>").val($('#amounttopay'+x).html());
+           
+   
+        }
+       
+        function updateclick(sid,amount,amounttopay) {
+            $('.hideall').hide();
+            $('.btnupdate').show();
+            $('#<%=salaryid.ClientID%>').val(sid);
+            $('#<%=amount.ClientID%>').val(amount)
+            $('#<%=amountopay.ClientID%>').val(amounttopay)
+            $('#tbamout' + sid).val(amount);
+            $('#tbamout' + sid).show();
+            $('#tbupdatebtn' + sid).hide();
+            $('#tbsavebtn' + sid).show();
+           
+          
+        }
+         function saveclick() {
+            var sid= $('#<%=salaryid.ClientID%>').val();
             
-
+             var amount = parseInt($('#tbamout' + sid).val());
+             $('#<%=amount.ClientID%>').val(amount);
+             var paidamout = parseInt($('#<%=amountopay.ClientID%>').val());
+             alert(amount + "-" + paidamout);
+             if (amount <= paidamout) {
+                 __doPostBack("savebtn", "");
+                 
+             } 
+             else {
+                 ShowNotification('Warning', 'You can not Enter Amount More then Amount to pay');
+             }
+          }
+           
+         function updatadvace(x) {
+             var val = "#advace" + x;//"#paidamount"+val;
+            var empsalary = "#empsalary" + x;
             $("#<%=tbid.ClientID%>").val(x);
             if ($(val).val() == "") {
                 $("#elementId").prop("required", true);
                 alert("requiredaddred");
             } else {
                 $("#<%=tbpaidvalue.ClientID%>").val($(val).val());
+                $("#<%=tbamounttopay.ClientID%>").val($(empsalary).html());
+                
             }
         }
         function activaTab(tab) {
@@ -23,10 +63,13 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <div id="Notify"></div>
+   <asp:HiddenField ID="salaryid" runat="server" />
+    <asp:HiddenField ID="amount" runat="server" />
+    <asp:HiddenField ID="amountopay" runat="server" />
+     <div id="Notify"></div>
      <div class="messagealert" id="alert_container"  style=" opacity: 0;transition: visibility 0s 2s, opacity 2s linear;">  </div>  
     <% int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
-                               List<employee> emp = employeeProfile.getunpaidemploye(bid);
+                               List<employesalarypay> emp = employeeProfile.getunpaidemploye(bid);
          %> 
      <div class="right_col" role="main">
     <div class="row">
@@ -39,8 +82,11 @@
                         <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
                           <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true" onclick="setsalaryhistory()">Pending Salary</a></li>
                           
-                          <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab1" data-toggle="tab" aria-expanded="false">View Salary History</a></li>
-                            <asp:HiddenField ID="tbpaidvalue" runat="server" />
+                          <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab1" data-toggle="tab" aria-expanded="false">View History</a></li>
+                                                  <li role="presentation" class=""><a href="#advancesalary" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Advance Salary</a></li>
+
+                                <asp:HiddenField ID="tbpaidvalue" runat="server" />
+                            <asp:HiddenField ID="tbamounttopay" runat="server" />
                             <asp:HiddenField ID="tbid" runat="server" />    
                             
                         </ul>
@@ -66,16 +112,17 @@
                               </thead>
                               <tbody>
                                <%
-                                   foreach (employee x in emp)
+                                   foreach (employesalarypay x in emp)
                                    { %>
                                 <tr>
                                   <%--<td><label id="empid""><%=x.Id %></label></td>--%>
-                                  <td><label id="name" name="nameid"> <%=x.name %></label></td>
-                                  <td><label id="joiningdate"><%=x.dateofjoining %> </label></td>
-                                  <td><label id="Salary"><%=x.salary %></label></td>
-                                 <td><label id="amounttopay"><%=x.salary %> </label></td>
+                                  <td><label id="name" name="nameid"> <%=x.emp.name %></label></td>
+                                  <td><label id="joiningdate"><%=x.emp.dateofjoining %> </label></td>
+                                  <td><label id="Salary"><%=x.emp.salary %></label></td>
+                                 <td><label id="amounttopay<%=x.emp.Id%>"><%=x.amount_topay %> </label></td>
+
                                     <td><div class="item form-group">
-                                        <input type="number" id="paidamount<%=x.Id%>" class="form-control" min="0" max="90" name="paidamount<%=x.Id%>" onchange="updatevalue(<%=x.Id%>);"/>
+                                        <input type="number" id="paidamount<%=x.emp.Id%>" class="form-control" min="0"  name="paidamount<%=x.emp.Id%>" onchange="updatevalue(<%=x.emp.Id%>);"/>
                                         </div>
                                         </td>
                                     
@@ -112,37 +159,12 @@
                                       </asp:DropDownList>
 
                                  </div>
+                             <div class="table table-responsive">      
+                          <asp:Table ID="table" class="table tbl"  runat="server">
 
-                                    <table class="table tbl" id="table" runat="server">
-                              <thead class="thead-inverse">
-                                <tr>
-                                  <th> Name</th>
-                                  <th>Phone</th>
-                                  <th>Paid Amount</th>
-                                  <th>Date</th>
-                                    
-                                    
-                                    
-                                </tr>
-                              </thead>
-                              <tbody>
-                              
-                                <tr>
-                                 
-                                  <td><label id="empname" runat="server"></label></td>
-                                    <td><label id="empphone"  runat="server"></label></td>
-                                    <td><label id="empamount"  runat="server"></label></td>
-                                    <td><label  id="empdate"   runat="server" ></label></td>
-                                    <td><a href="#" runat="server" class="btn btn-success" onserverclick="updateSalary">Update</a></td>
-                                  <td> <input id="inputid" type="hidden"  runat="server" /></td>
-                                    
-                                    
-                                         
-                                </tr>
-                              
-                               
-                              </tbody>
-                            </table>
+                              </asp:Table>
+                                  </div>
+                                   <input id="inputid" type="hidden"  runat="server" />
                                    <div runat="server" id="tbupdate" >
                                       <table class="table tbl" >
                                           <%
@@ -184,8 +206,53 @@
                                    <input id="Hiddenphone" type="hidden" runat="server" />
                             </div>
                                    </div>
-                                 </div>  
-                        
+                                 </div> 
+                            
+                                         <div role="tabpanel" class="tab-pane fade" id="advancesalary" aria-labelledby="home-tab">
+
+
+
+                            <!-- start recent activity -->
+                           <div class="table table-responsive">
+                           <table class="table tbl">
+                              <thead class="thead-inverse">
+                                <tr>
+                                 
+                                  <th>Employee Name</th>
+                                  <th>Joining Date</th>
+                                  <th>Salary</th>
+                                     <th>Designation</th>
+                                     
+                                   
+                                    
+                                    
+                                </tr>
+                              </thead>
+                              <tbody>
+                                  <%
+                                      IQueryable<employee> allemp = employeeProfile.getAllEmployee(bid);
+                                      foreach (employee e in allemp) {%>
+                                  <tr>
+                                      <td><%=e.name %></td>
+                                      <td><%=e.dateofjoining %></td>
+                                      <td id="empsalary<%=e.Id %>"><%=e.salary %></td>
+                                       <td><%=e.designation %></td>
+                                        <td>
+                                             <input type="number" id="advace<%=e.Id%>" class="form-control" min="0"  name="advance<%=e.Id%>" onchange="updatadvace(<%=e.Id%>);"/> 
+                                            <asp:Button ID="advance" runat="server" Text="Pay Advance" class="btn btn-success" OnClick="advancebtnclick" />
+                                        </td>
+                                  </tr>
+                                     <% } %>
+                               
+                              </tbody>
+                            </table>
+                               </div>
+                            <!-- end recent activity -->
+                              <asp:Table ID="Table1" runat="server">
+
+                              </asp:Table>
+
+                 </div>
                             </div>
         
     </div>

@@ -21,15 +21,40 @@ public partial class employeguestregistration : System.Web.UI.Page
         {
             Response.Redirect("employelogin.aspx");
         }
-
         else if (!IsPostBack)
         {
 
-           string value =Request.QueryString["id"].ToString();
+            string value = Request.QueryString["id"].ToString();
             selectedrooms.Text = value;
-            //ScriptManager.RegisterOnSubmitStatement(Page, GetType(), "Onsubmit1", string.Format(@"var button = $find('{0}');button.set_enabled(true);", Save.ClientID));
-            // Save_Click(sender, e);
+            string[] roomsbooked = selectedrooms.Text.Split(',');
+            //    booking_Room[] r = new booking_Room[roomsbooked.Length];
+            int branchid = employeeProfile.getEmployeBranch(int.Parse(Session["loginId"].ToString()));
+            bool checkguesthouseroom = false;
+            for (int i = 0; i < roomsbooked.Length; i++)
+            {
+                string st = roomsbooked[i];
+                if (roomsclass.checkroomtypeno(roomsbooked[i], branchid) == true)
+                {
+                    checkguesthouseroom = true;
+                    break;
 
+                }
+                //ScriptManager.RegisterOnSubmitStatement(Page, GetType(), "Onsubmit1", string.Format(@"var button = $find('{0}');button.set_enabled(true);", Save.ClientID));
+                // Save_Click(sender, e);
+
+            }
+            if (checkguesthouseroom == false)
+            {
+                othereguesthousename.Value = "All Rooms In Capetown";
+               
+                othereguesthousename.Visible = false;
+
+            }
+            else
+            {
+              
+                othereguesthousename.Visible = true;
+            }
         }
 
     }
@@ -57,6 +82,7 @@ public partial class employeguestregistration : System.Web.UI.Page
                 g.residence = Request.Form["presidence"];
                 g.mobile = Request.Form["pcell"];
                 g.f_purpose_of_vist = Request.Form["lvisit"];
+               
                 /* g.f_passport_no = null;
                  g.f_nationality = null;
                  g.place_of_issue = null;
@@ -162,6 +188,8 @@ public partial class employeguestregistration : System.Web.UI.Page
                 //   b.booking_rent = Request.Form["rrent"].ToString();
                 b.guest_reg_card_arr_date = "111";
                 b.no_of_pax = Request.Form["noofpax"].ToString();
+                b.referance_by_name = Request.Form["referancename"].ToString();
+                b.referance_by_name = Request.Form["refphone"].ToString();
                 //if (cnicfrontimg.HasFile && cnicbackimg.HasFile && regformimage.HasFile)
                 //{
 
@@ -179,6 +207,7 @@ public partial class employeguestregistration : System.Web.UI.Page
                 //}
 
                 //  gusetRegistrationClass.bookRoom(b);
+               
                 int bid = gusetRegistrationClass.roomBooking(b);
                 if (bid != 0)
                 {
@@ -194,8 +223,8 @@ public partial class employeguestregistration : System.Web.UI.Page
                         r[i].bookingId = bid;//.Parse(Request.Form["branch"].ToString());
 
                     }
-
-                    bool check = gusetRegistrationClass.bookRooms(r);
+                    //give the guesthouse name here 
+                    bool check = gusetRegistrationClass.bookRooms(r,othereguesthousename.Value);
                     if (check == true)
                     {
                         admin_notification_class.addnotification(employeeProfile.getEmployeid(Session["loginName"].ToString()), bid, DateTime.Now, admin_notification_class.TableNames.guests.ToString(), employeeProfile.getEmployeid(Session["loginName"].ToString()), admin_notification_class.CommandType.Add.ToString());

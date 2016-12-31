@@ -14,7 +14,7 @@ public partial class adminsingleroomcheckout : System.Web.UI.Page
             int rid=int.Parse(Request.QueryString["roomid"].ToString());
             ctownDataContext db = new ctownDataContext();
             booking_Room data = (from x in db.booking_Rooms
-                       where x.roomid == rid 
+                       where x.roomid == rid && x.checkout==null
                        select x).First();
             data.checkout = DateTime.Now.ToString();
           

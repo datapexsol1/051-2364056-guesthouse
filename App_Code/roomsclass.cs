@@ -118,8 +118,17 @@ public class roomsclass
         ctownDataContext db = new ctownDataContext();
         IQueryable<room> rom = from r in db.rooms
                  
-                   where r.availbilty=="yes" && r.branch_id==bid
-                   select r;
+                   where r.availbilty=="yes" && r.branch_id==bid && r.room_type != "no"
+                               select r;
+        return rom;
+    }
+    public static IQueryable<room> getAvailableRoomsall(int bid)
+    {
+        ctownDataContext db = new ctownDataContext();
+        IQueryable<room> rom = from r in db.rooms
+
+                               where r.availbilty == "yes" && r.branch_id == bid
+                               select r;
         return rom;
     }
     public static int getAvailableRoomNos(int bid)
@@ -127,16 +136,17 @@ public class roomsclass
         ctownDataContext db = new ctownDataContext();
         int num = (from r in db.rooms
 
-                               where r.availbilty == "yes" && r.branch_id == bid
+                               where r.availbilty == "yes" && r.branch_id == bid 
                                select r).Count();
         return num;
     }
+   
     public static IQueryable<room> getBookedROoms(int bid)
     {
         ctownDataContext db = new ctownDataContext();
         IQueryable<room> rom = from r in db.rooms
 
-                               where r.availbilty == "no" && r.branch_id == bid
+                               where r.availbilty == "no" && r.branch_id == bid && r.room_type != "no"
                                select r;
         return rom;
     }
@@ -159,6 +169,21 @@ public class roomsclass
                      select r.Id).First();
                     
         return romid;
+    }
+    public static bool checkroomtypeno(string roomno, int bid)
+    {
+        ctownDataContext db = new ctownDataContext();
+        int count= (from r in db.GetTable<room>()
+                     where r.room_no == roomno && r.branch_id == bid && r.room_type=="no"
+                     select r.Id).Count();
+        if (count == 0)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
     public static string getRoomNo(int rid, int bid)
     {

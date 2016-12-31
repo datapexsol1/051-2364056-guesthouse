@@ -11,7 +11,10 @@
    </style>
    <script>
      
-       
+       function checkroomtypedd() {
+           alert("returning false");
+           return false;
+       };
               function activaTab(tab) {
 
                   $('.nav-tabs a[href="#' + tab + '"]').tab('show');
@@ -59,65 +62,7 @@
            $("input[name=roomminrent]").val("");
            $("input[name=roombranch]").val("");
        }
-       function readonlyfalse() {
-           // alert("working");
-           $('#<%=roomnonew.ClientID%>').removeAttr('value');
-           $('#btncancel').hide();
-           $('#btnupdatebooking').hide();
-           $('#<%=btnupdate.ClientID%>').show(); 
-           $('#<%=comments.ClientID%>').attr("readonly", false);
-           //  $('#comments').removeAttr("readonly");
-           <%--if ($('#<%=comments.ClientID%>').attr("disabled", true)) {
-               $('#<%=comments.ClientID%>').attr("disabled", false);
-           }--%>
-           $("#<%=btnupdate.ClientID%>").val('Cancel');
-           //if ($("#comments").attr("readonly", false)) {
-           //    $("#comments").attr("readonly", true);
-           //};
-       }
-       function readonlytrue() {
-            $('#<%=btnupdate.ClientID%>').hide();
-       $('#<%=checkindate.ClientID%>').attr("disabled", true);
-           $('#<%=checkoutdate.ClientID%>').attr("disabled", true);
-       <%-- $('#<%=gname.ClientID%>').attr("disabled", true);
-        $('#<%=cnicno.ClientID%>').attr("disabled", true);
-        $('#<%=gphone.ClientID%>').attr("disabled", true);
-        $('#<%=gemail.ClientID%>').attr("disabled", true);
-        $('#<%=noofguest.ClientID%>').attr("disabled", true);
-        $('#<%=roomrent.ClientID%>').attr("disabled", true);
-        $('#<%=referanceby.ClientID%>').attr("disabled", true);
-        $('#<%=referancephone.ClientID%>').attr("disabled", true);
-        $('#<%=roomnonew.ClientID%>').attr("disabled", true);
-        $('#<%=comments.ClientID%>').attr("disabled", true);
-           $('#<%=comments.ClientID%>').attr("disabled", true);--%>
-       }
-       function btnupdatefunctions() {
-           //alert("sdasd");
-           //InsertAddRoomsValues();
-           alert($('#<%=gname.ClientID %>').val()+"checking");
-       }
-       function updatebookingclick() {
-           //alert("click on Update booking ");
-           $('#<%=btnupdate.ClientID%>').show();
-           $('#btncancel').hide();
-           $('#btnupdatebooking').hide();
-           
-           $('#<%=gname.ClientID%>').attr("readonly", false);
-           $('#<%=cnicno.ClientID%>').attr("readonly", false);
-           $('#<%=gphone.ClientID%>').attr("readonly", false);
-           $('#<%=gemail.ClientID%>').attr("readonly", false);
-           $('#<%=noofguest.ClientID%>').attr("readonly", false);
-           $('#<%=roomrent.ClientID%>').attr("readonly", false);
-           $('#<%=referanceby.ClientID%>').attr("readonly", false);
-           $('#<%=referancephone.ClientID%>').attr("readonly", false);
-           $('#<%=roomnonew.ClientID%>').attr("readonly", false);
-           $('#<%=comments.ClientID%>').attr("readonly", false);
-           $('#<%=checkindate.ClientID%>').attr("disabled", false);
-           $('#<%=checkoutdate.ClientID%>').attr("disabled", false);
-           $('#<%=checkindate.ClientID%>').attr("readonly", false);
-           $('#<%=checkoutdate.ClientID%>').attr("readonly", false);
-           
-       }
+      
    </script>
 </asp:Content>
 
@@ -219,7 +164,7 @@
                               </tbody>
                             </table>
                                </div>
-                              <div id="updateroomavalibilty">
+                <%--              <div id="updateroomavalibilty">
                                     <h1>Booking Detail</h1>
                                      <div id="s2">
  <div  class="form-vertical">
@@ -227,14 +172,10 @@
      <div class="form-group">
                             
                            
-                          <%--</div>
-
-                          <div class="form-group">--%>
-                           
+                        
                             <div class="item col-md-6 col-sm-4 col-xs-12">
                                  <label >Check In Date<span class="required">*</span>
                             </label>
-                              <%--<input type="text" class="form-control has-feedback-left" id="Arrival" placeholder="First Name" aria-describedby="inputSuccess2Status2">--%>
 
                               <input type="text" runat="server" id="checkindate" name="checkindate" class="form-control col-md-7 col-xs-12" readonly="readonly" />
                             </div>
@@ -243,7 +184,6 @@
                             <div class="item col-md-6 col-sm-4 col-xs-12">
                                  <label >Check out Date<span class="required">*</span>
                             </label>
-                              <%--<input type="text" class="form-control has-feedback-left" id="Arrival" placeholder="First Name" aria-describedby="inputSuccess2Status2">--%>
 
                               <input type="text" id="checkoutdate" runat="server" name="checkoutdate" class="form-control col-md-7 col-xs-12" readonly="readonly"/>
                             </div>
@@ -251,10 +191,7 @@
                   </div>
 
                           <div class="form-group">
-                          <%--</div>
-                            
-                          <div class="form-group">--%>
-                            
+                         
                             <div class="item col-md-4 col-sm-4 col-xs-12">
                                 <label>Guest Name <span class="required">*</span>
                             </label>
@@ -264,8 +201,7 @@
 
                           
                           
-                          <%--</div>
-                          <div class="form-group">--%>
+                      
                            
 
 
@@ -282,9 +218,7 @@
                           <div class="form-group">
 
                         
-                          <%--</div>
-
-                            <div class="form-group">--%>
+                        
                            
                             <div class="form-group">
                              
@@ -293,9 +227,7 @@
                             </label>
                               <input type="number"  id="gphone" name="gphone"  runat="server"  class="form-control col-md-7 col-xs-12" readonly="readonly"   />
                             </div>
-                          <%--</div>
-
-                             <div class="form-group">--%>
+                        
                                 
                         
                           
@@ -306,9 +238,7 @@
                             <div class="form-group">
                             
                          
-                          <%--</div>
-
-                             <div class="form-group">--%>
+                         
                                  <div class="col-md-4 col-sm-4 col-xs-12">
                                  <label >Guest Email <span class="required">*</span>
                             </label>
@@ -334,10 +264,7 @@
                                   <label>Referance by</label>
                               <input id="referanceby" name="referanceby"  runat="server" class="form-control col-md-7 col-xs-12" type="text" readonly="readonly" />
                             </div>
-                          <%--</div>
-
-                            <div class="form-group">--%>
-
+                       
                           
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                   <label>Referance by phone</label>
@@ -369,15 +296,13 @@
                                   <input type="button" id="btncancel"  value="Cancel Booking" onclick="readonlyfalse()" />    
                                   <input type="button" id="btnupdatebooking"  value="Update Booking"  onclick="updatebookingclick()"/> 
                                      
-                            </div>
+                            </div>--%>
                                  
                                  
                                  
 
                               </div>
-                            <!-- end recent activity -->
-                              
-                            
+                           
                  
                          
                             
@@ -400,6 +325,28 @@
                         <div class="col-md-8">
                           <input type="text" id="roomtype" name="roomtype" data-validation="required" 
 		 data-validation-error-msg="Room Type is required !" placeholder="Room type" class="form-control "/>
+                            <select class="form-control" name="roomtypedd" id="roomtypedd ">
+                                <option>Select</option>
+                                <option>
+                                    S.G.L 
+                                </option>
+                                 <option>
+                                    B.D.L 
+                                </option>
+                                 <option>
+                                    JrSuite
+                                </option>
+                                 <option>
+                                    Exec.Suite
+                                </option>
+                                 <option>
+                                    Royal Suite
+                                </option>
+                                 <option>
+                                   Other Guest House
+                                </option>
+                                
+                            </select>
                         </div>
                       </div>
                                <div class="form-group col-md-6">
@@ -445,7 +392,7 @@
                       </div>
                               <div class="form-group">
                         <div class="col-md-6 col-md-offset-1">
-                          <asp:Button ID="saveroom" runat="server" Text="Save Room" OnClick="saveroom_click" CssClass="btn btn-success" />
+                          <asp:Button ID="saveroom" runat="server" Text="Save Room" OnClick="saveroom_click" CssClass="btn btn-success" OnClientClick="checkroomtypedd()" />
                         </div>
                       </div>
                            
@@ -502,7 +449,7 @@
                                     </div>
                                   </div>
                                     </div>
-                                <asp:Button runat="server" Text="Update" OnClick="updateRoomInfo" CssClass="btn btn-success" />
+                                <asp:Button runat="server" Text="Update" OnClick="updateRoomInfo" CssClass="btn btn-success"  />
                           </div>
                             
                         </div>
@@ -527,41 +474,12 @@
         if ($('#<%=hroomno.ClientID%>').val() == "") {
             $('#updateroomavalibilty').hide();
         }
-       
 
-        $('#<%=checkindate.ClientID%>').daterangepicker({
-            //singleDatePicker: true,
-            //calender_style: "picker_5",
-            //showDropdowns: true,
-            singleDatePicker: true,
-            minDate: '01-' + mm + '-' + yy,
-            buttonClasses: ['btn btn-default'],
-            applyClass: 'btn-small btn-primary',
-            calender_style: "picker_5",
-            startDate: '01-' + mm + '-' + yy,
-            showDropdowns: true
-            
-        });
-        ///dob 
-        $('#<%=checkoutdate.ClientID%>').daterangepicker({
-            //singleDatePicker: true,
-            //singleDatePicker: true,
-            //calender_style: "picker_5",
-            //showDropdowns: true,
-            singleDatePicker: true,
-            minDate: '01-' + mm + '-' + yy,
-            buttonClasses: ['btn btn-default'],
-            applyClass: 'btn-small btn-primary',
-            calender_style: "picker_5",
-            startDate: '01-' + mm + '-' + yy,
-            showDropdowns: true
-           
-           
-        });
+       
         //
-          
+
         //
-        $(".xyz").click(function() {
+        <%--  $(".xyz").click(function() {
             $('#<%=hroomno.ClientID%>').val(this.id);
 
             $('#roomavalibilty').hide("slow", function () {});
@@ -575,31 +493,23 @@
             $('#<%=hroomno.ClientID%>').val(this.id);
             alert(this.id);
             __doPostBack("getidofbooking", roomno);
+        }); 
+
+    });--%>
+
+
+
+
+        $.validate({
+            modules: 'location, date, security, file',
+            onModulesLoaded: function () {
+                $('#country').suggestCountry();
+            }
         });
-         
-       
-       
-       
-       
-       
-      
-       
 
+        // Restrict presentation length
+        $('#presentation').restrictLength($('#pres-max-length'));
     });
-
-
-
-
-  $.validate({
-    modules : 'location, date, security, file',
-    onModulesLoaded : function() {
-      $('#country').suggestCountry();
-    }
-  });
-
-  // Restrict presentation length
-  $('#presentation').restrictLength( $('#pres-max-length') );
-
 </script>
 
       <!-- jQuery -->

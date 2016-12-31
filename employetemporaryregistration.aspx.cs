@@ -197,7 +197,7 @@ public partial class employetemporaryregistration : System.Web.UI.Page
 
                     }
 
-                    bool check = gusetRegistrationClass.bookRooms(r);
+                    bool check = gusetRegistrationClass.bookRooms(r,"not yet");
                     if (check == true)
                     {
                         admin_notification_class.addnotification(employeeProfile.getEmployeid(Session["loginName"].ToString()), bid, DateTime.Now, admin_notification_class.TableNames.guests.ToString(), employeeProfile.getEmployeid(Session["loginName"].ToString()), admin_notification_class.CommandType.Add.ToString());

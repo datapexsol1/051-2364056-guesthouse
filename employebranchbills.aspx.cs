@@ -93,6 +93,8 @@ public partial class employebranchbills : System.Web.UI.Page
                     }
                     else
                     {
+                        b.BillType = abtype.Value.ToString();
+                        addcheck = billclass.Addbill(b);
                         abcd.Value = "";
                     }
                 }

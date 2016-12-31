@@ -64,6 +64,40 @@ public partial class employeerooms : System.Web.UI.Page
 
                 ScriptManager.RegisterStartupScript(this, this.GetType(), System.Guid.NewGuid().ToString(), "showupdatediv('updateroomavalibilty');", true);
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "  <script>ShowNotification('Success','Room is Shifted Succesfully');</script>");
+            }else if (Request.Form["__EVENTTARGET"] == "broomshift")
+            {
+                int bid = int.Parse(hbid.Value);
+                string roomno = hroomno.Value;
+                string[] room_array = roomno.Split(',');
+                string newroomno = Request.Form["newroom"].ToString();
+                string newrent = Request.Form["newrent"].ToString();
+                string oldroomno = Request.Form["oldroom"].ToString();
+                string oldrent = Request.Form["oldrent"].ToString();
+                ctownDataContext db = new ctownDataContext();
+                int oldroomid = (from x in db.rooms
+                                 where x.room_no == oldroomno
+                                 select x.Id).First();
+                int newroomid = (from x in db.rooms
+                                 where x.room_no ==newroomno
+                                 select x.Id).First();
+                var booking_rooms = (from x in db.booking_Rooms
+                                  where (x.roomid ==oldroomid && x.checkout==null) ||( x.roomid == newroomid && x.checkout == null)
+                                  select x);
+                foreach(booking_Room x in booking_rooms)
+                {
+                    if (x.roomid == oldroomid) {
+                        x.roomid = newroomid;
+                        x.booking_rent = newrent;
+                        db.SubmitChanges();
+                    }
+                    else if (x.roomid == newroomid)
+                    {
+                        x.roomid = oldroomid;
+                        x.booking_rent = oldrent;
+                        db.SubmitChanges();
+                    }
+                }
+
             }
             
         }

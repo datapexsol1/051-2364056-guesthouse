@@ -63,7 +63,7 @@
     {
         int bid = branchClass.getBranchID(brid.SelectedValue);
         // int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
-        List<employee> emp = employeeProfile.getunpaidemploye(bid);
+        List<employesalarypay> emp = employeeProfile.getunpaidemploye(bid);
          %>
 
 
@@ -84,16 +84,16 @@
                               </thead>
                               <tbody>
                                <%
-                                   foreach (employee x in emp)
+                                   foreach (employesalarypay x in emp)
                                    { %>
                                 <tr>
                                   <%--<td><label id="empid""><%=x.Id %></label></td>--%>
-                                  <td><label id="name" name="nameid"> <%=x.name %></label></td>
-                                  <td><label id="joiningdate"><%=x.dateofjoining %> </label></td>
-                                  <td><label id="Salary"><%=x.salary %></label></td>
-                                 <td><label id="amounttopay"><%=x.salary %> </label></td>
+                                  <td><label id="name" name="nameid"> <%=x.emp.name %></label></td>
+                                  <td><label id="joiningdate"><%=x.emp.dateofjoining %> </label></td>
+                                  <td><label id="Salary"><%=x.emp.salary %></label></td>
+                                 <td><label id="amounttopay"><%=x.amount_topay %> </label></td>
                                     <td><div class="item form-group">
-                                        <input type="number" id="paidamount<%=x.Id%>" class="form-control" required="required" name="paidamount<%=x.Id%>" onchange="updatevalue(<%=x.Id%>);"/>
+                                        <input type="number" id="paidamount<%=x.emp.Id%>" class="form-control" required="required" name="paidamount<%=x.emp.Id%>" onchange="updatevalue(<%=x.emp.Id%>);"/>
                                         </div>
                                         </td>
                                     

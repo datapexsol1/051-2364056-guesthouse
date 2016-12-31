@@ -52,9 +52,19 @@
             int bid = employeeProfile.getEmployeBranch(Session["loginName"].ToString());
             bill b = billclass.latestcheckHouseRentYear(bid);//latest bill year
             bill oldyeardate = billclass.oldestcheckHouseRentYear(bid);//oldest bill year
-
-            int y1 = oldyeardate.Date.Year; //old year
-            int y2 = b.Date.Year; ///new year
+            int y1 = 0;
+            int y2 = 0;
+            if (b == null || oldyeardate == null)
+            {
+                y1 = 0;
+                y2 = 0;
+            }
+            else
+            {
+               y1 = oldyeardate.Date.Year; //old year
+               y2 = b.Date.Year; ///new year
+            }
+            
             // DateTime.Subtract(DateTime);
             int d3 = y2 - y1;
             if (d3 == 0)
@@ -155,7 +165,7 @@
 <%--                                  <td><label id="bilid"><%=r.Id %></label></td>--%>
                                   <td><label id="bilamount"><%=r.BillAmount%></label></td>
                                   <td><label id="biltype"><%=r.BillType%></label></td>
-                                  <td> <label id="bildate"><%=r.Date%></label></td>
+                                  <td> <label id="bildate"><%=r.Date.ToShortDateString()%></label></td>
                                   
                                 </tr>
                                <%} %>
@@ -250,19 +260,8 @@
            <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
                              
  
-                         <div id="addpanelid">     
-                            <div class="col-md-4">
-                             <label >Bill Amount <span class="required">*</span></label>
-
-                              <input type="number" id="abamount" min="0" name="abamount" 
-                                  aria-required="true"  placeholder="Amount" data-validation="required" 
-		 data-validation-error-msg="Bill amount is required !" class="form-control"/>
-
-                            </div>
-                                  
-                     
-                                
-                        <div class="col-md-4">
+                         <div id="addpanelid"> 
+                                 <div class="col-md-4">
                             <label>Bill Type <span class="required">*</span></label>
                              <select class="form-control" id="abtype" name="abtype"  onchange="setHomeRent();" runat="server">
                                             <option value="0">Select</option>
@@ -282,7 +281,19 @@
                                           <option value="Other" id="abtype13">Other</option>
 
                             </select>
-                        </div>
+                        </div>    
+                            <div class="col-md-4">
+                             <label >Bill Amount <span class="required">*</span></label>
+
+                              <input type="number" id="abamount" min="0" name="abamount" 
+                                  aria-required="true"  placeholder="Amount" data-validation="required" 
+		 data-validation-error-msg="Bill amount is required !" class="form-control"/>
+
+                            </div>
+                                  
+                     
+                                
+                    
                       
                            
 

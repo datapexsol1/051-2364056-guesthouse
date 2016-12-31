@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/EmployePanel.master" AutoEventWireup="true" CodeFile="employeshiftroom.aspx.cs" Inherits="employeerooms" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
-
+   
  <link rel="stylesheet" href="css/seatlayout.css" />
     <script>
         
@@ -115,7 +115,7 @@
     <div class="row">
      <div class="col-md-12 col-sm-12 col-xs-12">
      <div class="x_content">
-     <div class="col-md-9 col-sm-9 col-xs-12">
+     <div class="col-md-12 col-sm-12 col-xs-12">
         
           <div class="container">
     <div class="" role="tabpanel" data-example-id="togglable-tabs">
@@ -151,7 +151,7 @@
                                     <td><label id="froomid"><%=r.g_guest_name%></label></td>
                                   <td><label id="froomtype"><%=r.g_cnic_orpassport %></label></td>
                                   <td><label id="froomsize"><%=r.phone%></label></td>
-                                  <td> <label id="froomrent"><%=r.booking_rent%></label></td>
+                                  <td> <label id="froomrent<%=r.b_roomno%>"><%=r.booking_rent%></label></td>
                                   <td><label id="checkindate"><%=r.b_checkinDate%></label></td>
                                     <td><label id="roomno"><%=r.b_roomno%></label></td>
                                     <%string nationality;
@@ -193,6 +193,7 @@
          <h1 >Room Selection</h1>
          <hr  style="width:50%;border-color:#800000;border-width: 4px;"/>
          <br /><br />
+         <input type="button" value="BookedRoom Shift" id="brshift"/>
     <div class="" role="tabpanel" data-example-id="togglable-tabs" >
   
         
@@ -246,10 +247,32 @@
            if (totalNoOfRooms >= 1)
            {
                %>
-        
-         <input id="t" type="text" name='roomselected' class='input' placeholder="Select room" required="required" /> 
-       
-        <input id="newroomrent" type="text" name="newroomrent" placeholder="Room Rent" /> 
+        <%--<div class="row">
+         <div class="col-md-12 col-sm-12 col-xs-12">--%>
+          <div class="form-group col-md-12  col-sm-12 col-xs-12">
+                            
+                            <label class="control-label col-md-4  col-sm-6 col-xs-12">New Room <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                               
+                                         <input id="t" type="text" name='roomselected' class='input' placeholder="Select room" required="required" /> 
+
+                            </div>
+            
+                          
+                          </div>
+           
+              <div class="form-group col-md-12  col-sm-12 col-xs-12">
+               <label class="control-label col-md-4  col-sm-6 col-xs-12" for="first-name">RoomRent <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6  col-sm-6 col-xs-12">
+                               
+                            <input id="newroomrent" type="text" name="newroomrent" class='input' placeholder="Room Rent" /> 
+                            </div>
+                          </div>
+                         <%-- </div>
+        </div>--%>
+    
         <%        }
     else
     {
@@ -260,7 +283,13 @@
 
 
 
-        </div></div>
+        </div>
+
+        <!-- Inhouse Transfer-->
+
+   
+
+    </div>
          <br />
    <a id="linktopage" name="linktopage" class="btn btn-success" >Book Room</a>
     </div></div></div></div></div>
@@ -277,7 +306,159 @@
                                  
                                      
                             </div>
+                            
+                                <!--inhouse Roomshift start--> 
+                            <div id="updatebookedroom">
+                                    <h1>Room Shift</h1>
+                                     <div id="s2">
+ <div  class="form-vertical">
+
+     <div class="form-group">
+                            
+                           
+                         <div class="right_col" role="main" align="center">
+    <div class="row">
+     <div class="col-md-12 col-sm-12 col-xs-12">
+     <div class="x_content">
+     <div class="col-md-9 col-sm-9 col-xs-12">
+         <h1 >Room Selection</h1>
+         <hr  style="width:50%;border-color:#800000;border-width: 4px;"/>
+         <br /><br />
+         <input type="button" value="BookedRoom Shift" id="rshift"/>
+    <div class="" role="tabpanel" data-example-id="togglable-tabs" >
+   <div id="form1" >
+    <table frame='box'>
+  <%   IQueryable<room> roomsbooked = roomsclass.getBookedROoms(employeeProfile.getEmployeBranch(Session["loginName"].ToString())); %>
+    <h2 > Available Rooms</h2>
+    <tr style="min-width: 400px;border:none"> 
+      <%foreach (var r in roomsbooked)
+        {  %>
+              <% if (r.availbilty == "no")
+                  {
+                     %>
+                    <td style="    padding: 0;float: left;padding: 22px;">
+                        <div class="container">
+                            <div class="row">
+                                
+                        <div id='c_b1'  >
+                            <label style="text-align:center" >
+                                <img name='img' id='imge1<%=r.room_no %>'  src='layoutimg/images/closed_door.png' width="45"  class='  imagehover'/>
+                       <input type='checkbox' class='checkbox' name='chkchk[]' id='' value="<%=r.room_no %>"  style='visibility:hidden'/>
+                                <%=r.room_no %>
+                            </label>
+                            </div>
+                                    </div>
+                        </div>
+                            
+        </td> 
+                   <%} %>
+
+                   <%else
+    {%> 
+               
+               <td><div class='container_un'><img src='images/ac_semi_sleeper_unavailable.jpg'/></div></td>;
+
+                   <%}
+    }%>
+        </tr>
+        <tr>
+             
+      
+       
+     
+    </tr>
+   
+</table>
+        <br /><br />
+        <h2>Selected Rooms</h2>
+       <%
+           int broom = roomsbooked.Count(); //roomsclass.getAvailableRoomNos(employeeProfile.getEmployeBranch(Session["loginName"].ToString()));
+           if (broom >= 1)
+           {
+               %>
+        <%--<div class="row">
+         <div class="col-md-12 col-sm-12 col-xs-12">--%>
+         <div class="form-group col-md-6  col-sm-6 col-xs-12">
+                            
+                            <label class="control-label col-md-6  col-sm-6 col-xs-12">Old Room <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                               
+                                         <input id="oldroom" readonly type="text" name='oldroom' class='input' placeholder="Select room" required="required" /> 
+
+                            </div>
+            
+                          
+                          </div>
+           
+              <div class="form-group col-md-6  col-sm-6 col-xs-12">
+               <label class="control-label col-md-6  col-sm-6 col-xs-12" for="first-name">Old Room Rent <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6  col-sm-6 col-xs-12">
+                               
+                            <input id="oldrent" type="text" name="oldrent" class='input' placeholder="Room Rent" /> 
+                            </div>
+                    </div>
+
+
+          <div class="form-group col-md-6  col-sm-6 col-xs-12">
+                            
+                            <label class="control-label col-md-6  col-sm-6 col-xs-12">New Room <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                               
+                                         <input id="newroom" type="text" readonly name='newroom' class='input' placeholder="Select room" required="required" /> 
+
+                            </div>
+            
+                          
+                          </div>
+           
+              <div class="form-group col-md-6  col-sm-6 col-xs-12">
+               <label class="control-label col-md-6  col-sm-6 col-xs-12" for="first-name">New Room Rent <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6  col-sm-6 col-xs-12">
+                               
+                            <input id="newrent" type="text" name="newrent" class='input' placeholder="Room Rent" /> 
+                            </div>
+                          </div>
+                         <%-- </div>
+        </div>--%>
+    
+        <%        }
+    else
+    {
+         %>
+         <h3> No rooms Available</h3>
+
+ <%   }%>
+
+
+
+        </div>
+          </div>
+         <br />
+   <a id="btnbroomshift" name="linktopage" class="btn btn-success" >Book Room</a>
+    </div></div></div></div></div>
+                           
+                           
+                          </div>
+
+
+
+     
+
+     </div>
+    </div>
                                  
+                                     
+                            </div>                   
+                            
+                            
+                            
+                            
+                            
+                            
                                  
                                  
 
@@ -299,16 +480,34 @@
          </div>
         </div>
           </div>
-    </div>
      <%--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>--%>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+
 <script>
     $(document).ready(function () {
         if ($('#<%=hroomno.ClientID%>').val() == "") {
             $('#updateroomavalibilty').hide();
+            $('#updatebookedroom').hide();
         }
         $("#linktopage").click(function () {
             __doPostBack("mybtn", roomno);
+        });
+        $("#btnbroomshift").click(function () {
+
+            __doPostBack("broomshift", roomno);
+        });
+        $('#brshift').click(function () {
+            $('#updateroomavalibilty').hide();
+            $('#updatebookedroom').show();
+            var roomrentid = '#froomrent' +$('#<%=hroomno.ClientID%>').val() ;
+            $('#oldroom').val($('#<%=hroomno.ClientID%>').val());
+            $('#oldrent').val($(roomrentid).html());
+        });
+        $('#rshift').click(function () {
+            $('#updateroomavalibilty').show();
+            $('#updatebookedroom').hide();
+            
+
         });
         
     });
@@ -320,6 +519,7 @@
             document.getElementById(id).src = primary;
         }
     }
+   
 
 
     function updateTextArea() {
@@ -327,14 +527,40 @@
         $('#c_b :checked').each(function () {
             allVals.push($(this).val());
         });
-        $('#t').val(allVals)
+        $('#t').val(allVals);
     }
     $(function () {
         $('#c_b input').click(updateTextArea);
         updateTextArea();
     });
+    function updateTextArea1() {
+        $('#newroom').val($(this).val());
+        $('#newrent').val(getroombookingrent($(this).val()));
+    }
+    $(function () {
+        $('#c_b1 input').click(updateTextArea1);
+       /// updateTextArea1();
+    });
    
-   
+    function getroombookingrent(roomnox) {
+        var obj;
+        var Data = JSON.stringify({ roomno: roomnox });
+        $.ajax({
+
+            url: "adminajax.aspx/getroomRent",
+            async: false,
+            data: Data,
+            type: "POST",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: function (mydata) {
+
+                obj = mydata.d;
+
+            }
+        });
+        return obj;
+    }
 
 
 
@@ -347,11 +573,10 @@
   });
 
   // Restrict presentation length
-  $('#presentation').restrictLength( $('#pres-max-length') );
+  $('#presentation').restrictLength($('#pres-max-length'));
 
 </script>
-
-      <!-- jQuery -->
+     
 
   
 </asp:Content>

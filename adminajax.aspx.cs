@@ -26,6 +26,19 @@ public partial class adminajax : System.Web.UI.Page
 
     }
     [WebMethod]
+    public static int getroomRent(string roomno)
+    {
+        ctownDataContext db = new ctownDataContext();
+        int id = (from x in db.rooms
+                  where x.room_no == roomno
+                  select x.Id).First();
+        string brent = (from x in db.booking_Rooms
+                     join r in db.rooms on x.roomid equals r.Id
+                     where r.Id == id && r.availbilty=="no"
+                     select x.booking_rent).First();
+        return int.Parse(brent);
+    }
+    [WebMethod]
     public static int[] getBranchWeeklyIncome(string inputVal,string dateofweek)
     {
         int[] list = new int[7];

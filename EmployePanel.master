@@ -100,7 +100,7 @@
                  <li><a href="#"><i class="fa fa-edit"></i> Employee Panel<span class="fa fa-chevron-down"></span></a>
                       <ul class="nav child_menu">
                         <li><a href="employeeviewemployeeinfo.aspx">Employee Info</a></li>
-                      <li><a href="employepaysalary.aspx"> Employee Salary</a></li>
+                      <li><a href="employepaysalary.aspx">Manage Salary </a></li>
                         
                         </ul>
                  </li>
@@ -111,18 +111,18 @@
                   <li><a><i class="fa fa-desktop"></i> Guest Panel <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="employeroomlayout.aspx"> Book Room</a>  </li>
-                      <li><a href="employeerooms.aspx">Rooms</a></li>
+                      <li><a href="employeerooms.aspx">Manage Rooms</a></li>
                       <li><a href="employeguests.aspx">Checkout Bookings</a></li>
                       <li>  <a href="employeguesthistory.aspx">Booking History</a></li>
                       <li><a href="employetemproomlayout.aspx">Temporary Room Booking</a></li>
                         
-                      <li><a href="employeshiftroom.aspx">EmployeRoomShift</a></li>
+                      <li><a href="employeshiftroom.aspx">Room Shift</a></li>
                     </ul>
                   </li>
 
-                      <li><a><i class="fa fa-desktop"></i>Bills Panel <span class="fa fa-chevron-down"></span></a>
+                      <li><a><i class="fa fa-desktop"></i>Expenses Panel <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="employebranchbills.aspx">Branch Bills</a></li>
+                      <li><a href="employebranchbills.aspx">Manage Expenses</a></li>
                         <%--<li><a href="employeguestpayment.aspx">Guests Total Bill</a></li>--%>
                     </ul>
                   </li>
@@ -151,7 +151,7 @@
                  </li>
                      <li><a ><i class="fa fa-file-text-o"></i>Guest Other Services<span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
-                        <li><a href="employeguest_service.aspx">Services</a></li>
+                        <li><a href="employeguest_service.aspx">Manage Services</a></li>
                     </ul>
                  </li>
                     <li><a ><i class="fa fa-file-text-o"></i>Receivable Payments<span class="fa fa-chevron-down"></span></a>
